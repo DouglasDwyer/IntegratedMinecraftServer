@@ -1,1 +1,0 @@
-[ERROR] [5/10/2020 12:22:35 PM] IMS_Library.JavaServerConfiguration, IMS-Library, Version=0.0.1.0, Culture=neutral, PublicKeyToken=null IMS_Library.IMSSettings, IMS-Library, Version=0.0.1.0, Culture=neutral, PublicKeyToken=null
