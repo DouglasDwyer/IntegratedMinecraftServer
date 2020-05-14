@@ -1,0 +1,66 @@
+IMS_Library.JavaServerConfiguration, IMS-Library, Version=0.0.1.0, Culture=neutral, PublicKeyToken=null
+<?xml version="1.0" encoding="utf-16"?>
+<JavaServerConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="IMS_Service">
+  <ID>81a130d2-502f-4cf1-a376-63edeb000e9f</ID>
+  <ServerName>Test server #1</ServerName>
+  <IsEnabled>true</IsEnabled>
+  <WorldID>00000000-0000-0000-0000-000000000000</WorldID>
+  <UseJITCompiler>false</UseJITCompiler>
+  <MinimumMemoryMB>512</MinimumMemoryMB>
+  <MaximumMemoryMB>1024</MaximumMemoryMB>
+  <JavaArguments>-XX:+AggressiveOpts -XX:+UnlockExperimentalVMOptions</JavaArguments>
+  <AllowFlight>false</AllowFlight>
+  <AllowNether>true</AllowNether>
+  <BroadcastConsoleToOps>true</BroadcastConsoleToOps>
+  <BroadcastRCONToOps>true</BroadcastRCONToOps>
+  <Difficulty>1</Difficulty>
+  <EnableCommandBlocks>false</EnableCommandBlocks>
+  <EnableRCON>false</EnableRCON>
+  <SyncChunkWrites>true</SyncChunkWrites>
+  <EnableQuery>false</EnableQuery>
+  <ForceGamemode>false</ForceGamemode>
+  <FunctionPermissionLevel>2</FunctionPermissionLevel>
+  <Gamemode>0</Gamemode>
+  <GenerateStructures>true</GenerateStructures>
+  <GeneratorSettings />
+  <HardcoreMode>false</HardcoreMode>
+  <LevelName>world</LevelName>
+  <LevelSeed />
+  <LevelType>default</LevelType>
+  <MaxBuildHeight>256</MaxBuildHeight>
+  <MaxPlayers>20</MaxPlayers>
+  <MaxTickTime>60000</MaxTickTime>
+  <MaxWorldSize>29999984</MaxWorldSize>
+  <MessageOfTheDay>&lt;font color="#55ffff"&gt;&lt;sup&gt;Okay&lt;/sup&gt; so &lt;u&gt;we've&lt;/u&gt; &lt;i&gt;finally&lt;/i&gt; (sort of) got a system &lt;strike&gt;working&lt;/strike&gt;.&lt;/font&gt;</MessageOfTheDay>
+  <NetworkCompressionThreshold>256</NetworkCompressionThreshold>
+  <OnlineMode>true</OnlineMode>
+  <DefaultOpPermissionLevel>4</DefaultOpPermissionLevel>
+  <PlayerIdleTimeout>0</PlayerIdleTimeout>
+  <PreventProxyConnections>false</PreventProxyConnections>
+  <EnablePVP>true</EnablePVP>
+  <QueryPort>
+    <Port>25565</Port>
+    <AttemptUPnPForwarding>true</AttemptUPnPForwarding>
+  </QueryPort>
+  <RCONPassword />
+  <RCONPort>
+    <Port>25575</Port>
+    <AttemptUPnPForwarding>false</AttemptUPnPForwarding>
+  </RCONPort>
+  <ResourcePack />
+  <ResourcePackSHA1 />
+  <ServerIP />
+  <ServerPort>
+    <Port>25565</Port>
+    <AttemptUPnPForwarding>true</AttemptUPnPForwarding>
+  </ServerPort>
+  <SnooperEnabled>true</SnooperEnabled>
+  <SpawnAnimals>true</SpawnAnimals>
+  <SpawnMonsters>true</SpawnMonsters>
+  <SpawnVillagers>true</SpawnVillagers>
+  <SpawnProtection>0</SpawnProtection>
+  <UseLinuxNativeTransport>false</UseLinuxNativeTransport>
+  <ViewDistance>10</ViewDistance>
+  <UseWhitelist>false</UseWhitelist>
+  <EnforceWhitelist>false</EnforceWhitelist>
+</JavaServerConfiguration>

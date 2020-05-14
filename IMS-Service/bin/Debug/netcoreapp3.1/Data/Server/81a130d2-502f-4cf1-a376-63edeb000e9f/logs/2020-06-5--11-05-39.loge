@@ -1,0 +1,56 @@
+[11:05:44] [main/WARN]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[11:05:44] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[11:05:44] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[11:05:44] [main/WARN]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[11:05:44] [main/WARN]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[11:05:44] [Server thread/INFO]: Starting minecraft server version 1.15.2
+[11:05:44] [Server thread/INFO]: Loading properties
+[11:05:44] [Server thread/INFO]: Default game type: SURVIVAL
+[11:05:44] [Server thread/INFO]: Generating keypair
+[11:05:44] [Server thread/INFO]: Starting Minecraft server on *:25565
+[11:05:44] [Server thread/INFO]: Using default channel type
+[11:05:45] [Server thread/INFO]: Preparing level "world"
+[11:05:45] [Server thread/INFO]: Reloading ResourceManager: Default, yert
+[11:05:45] [Server thread/INFO]: Loaded 6 recipes
+[11:05:46] [Server thread/INFO]: Loaded 1 custom command functions
+[11:05:46] [Server thread/INFO]: Loaded 825 advancements
+[11:05:46] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld
+[11:05:47] [Server thread/INFO]: Preparing spawn area: 0%
+[11:05:47] [Server thread/INFO]: Preparing spawn area: 0%
+[11:05:47] [Server thread/INFO]: Preparing spawn area: 0%
+[11:05:48] [Server-Worker-1/INFO]: Preparing spawn area: 0%
+[11:05:48] [Server thread/INFO]: Preparing spawn area: 0%
+[11:05:48] [Server thread/INFO]: Time elapsed: 2261 ms
+[11:05:48] [Server thread/INFO]: Done (3.853s)! For help, type "help"
+[11:05:54] [Server thread/INFO]: Unbanned popbob
+[11:05:54] [Server thread/INFO]: Banned popbob: Banned by an operator.
+[11:05:55] [Server thread/INFO]: Unbanned popbob
+[11:05:55] [Server thread/INFO]: Banned popbob: Banned by an operator.
+[11:05:56] [Server thread/INFO]: Made popbob no longer a server operator
+[11:05:57] [Server thread/INFO]: Made popbob a server operator
+[11:05:58] [Server thread/INFO]: Made popbob no longer a server operator
+[11:05:59] [Server thread/INFO]: Made popbob a server operator
+[11:06:00] [Server thread/INFO]: Made popbob no longer a server operator
+[11:06:03] [Server thread/INFO]: Made popbob a server operator
+[11:06:04] [Server thread/INFO]: Unbanned popbob
+[11:06:04] [Server thread/INFO]: Banned popbob: Banned by an operator.
+[11:06:05] [Server thread/INFO]: Made popbob no longer a server operator
+[11:06:06] [Server thread/INFO]: Removed popbob from the whitelist
+[11:06:13] [Server thread/INFO]: Added popbob to the whitelist
+[11:06:18] [Server thread/INFO]: Made popbob a server operator
+[11:06:19] [Server thread/INFO]: Removed popbob from the whitelist
+[11:06:24] [Server thread/INFO]: Added popbob to the whitelist
+[11:06:29] [Server thread/INFO]: Made popbob no longer a server operator
+[11:07:12] [Server thread/INFO]: Made popbob a server operator
+[11:07:55] [Server thread/INFO]: Made popbob no longer a server operator
+[11:07:56] [Server thread/INFO]: Made popbob a server operator
+[11:07:57] [Server thread/INFO]: Unbanned popbob
+[11:08:13] [Server thread/INFO]: Banned popbob: Banned by an operator.
+[11:08:14] [Server thread/INFO]: Unbanned popbob
+[11:08:15] [Server thread/INFO]: Made popbob no longer a server operator
+[11:08:15] [Server thread/INFO]: Made popbob a server operator
+[11:08:16] [Server thread/INFO]: Banned popbob: Banned by an operator.
+[11:08:16] [Server thread/INFO]: Made popbob no longer a server operator
+[11:08:17] [Server thread/INFO]: Nothing changed. The player is already banned
+[11:08:21] [Server thread/INFO]: Made popbob a server operator
+[11:09:24] [Server thread/INFO]: Made popbob no longer a server operator

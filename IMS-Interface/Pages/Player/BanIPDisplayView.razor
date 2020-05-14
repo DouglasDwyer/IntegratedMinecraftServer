@@ -1,0 +1,154 @@
+﻿@using IMS_Library
+
+@inherits PlayerDisplayView
+
+@inject IJSRuntime JSRuntime
+
+<style>
+    .playertable > thead > tr > th {
+        vertical-align: middle;
+    }
+
+    .playertable > tbody > tr > th {
+        vertical-align: middle;
+    }
+
+    .playertable > tbody > tr > td {
+        vertical-align: middle;
+    }
+
+    .playerheadicon {
+        width: 28px;
+        height: 28px;
+        background-size: 100%;
+        image-rendering: pixelated;
+    }
+
+    .linkbutton {
+        background: none !important;
+        border: none;
+        padding: 0 !important;
+        color: #23527c;
+    }
+</style>
+@{ 
+    IEnumerable<BanIPTag> bannedIPs = IMS.AsThreadSafe(() => CurrentServer.GetAllBannedIPs());
+    if(bannedIPs.Count() == 0)
+    {
+        <label style="padding-top:3px; font-weight:normal"><i>There are currently no banned IPs.</i></label>
+        return;
+    }
+}
+<table class="playertable table table-striped">
+    <thead>
+        <tr>
+            <th>
+                IP
+            </th>
+            <th>
+                Banned on
+            </th>
+            <th>
+                Banned by
+            </th>
+            <th>
+                Reason
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            IEnumerable<MinecraftPlayer> onlinePlayers = IMS.AsThreadSafe(() => CurrentServer.GetOnlinePlayers());
+            List<BanInformation> banPlayers = IMS.AsThreadSafe(() => CurrentServer.GetAllBans());
+            List<BanIPTag> banIPs = IMS.AsThreadSafe(() => CurrentServer.GetAllBannedIPs());
+        }
+        @foreach (BanIPTag player in bannedIPs)
+        {
+            <tr>
+                <th>
+                    @player.ip
+                </th>
+                <td>
+                    @DateTime.Parse(player.created).ToString()
+                </td>
+                <td>
+                    @player.source
+                </td>
+                <td>
+                    @player.reason
+                </td>
+                <td style="text-align:right">
+                    <div style="display:inline">
+                        <button class="linkbutton" @onclick="x => UnbanIP(player.ip)">Unban IP</button>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    protected string GetHoursAndMinutesOfTimespan(TimeSpan span)
+    {
+        string toReturn = "";
+        toReturn += span.Minutes == 1 ? "1 minute" : span.Minutes + " minutes";
+        if (span.TotalHours > 1)
+        {
+            if (Math.Round(span.TotalHours) == 1)
+            {
+                toReturn = "1 hour " + toReturn;
+            }
+            else
+            {
+                toReturn = Math.Round(span.TotalHours) + " hours " + toReturn;
+            }
+        }
+        return toReturn;
+    }
+
+    protected void BanPlayer(string name)
+    {
+        IMS.AsThreadSafe(() => CurrentServer.BanPlayer(name, ""));
+    }
+
+    protected void UnbanPlayer(string name)
+    {
+        IMS.AsThreadSafe(() => CurrentServer.UnbanPlayer(name));
+    }
+
+    protected void BanIP(string ip)
+    {
+        IMS.AsThreadSafe(() => CurrentServer.BanIP(ip, ""));
+    }
+
+    protected void UnbanIP(string ip)
+    {
+        IMS.AsThreadSafe(() => CurrentServer.UnbanIP(ip));
+    }
+
+    protected void WhitelistPlayer(string name)
+    {
+        IMS.AsThreadSafe(() => CurrentServer.WhitelistPlayer(name));
+    }
+
+    protected void UnwhitelistPlayer(string name)
+    {
+        IMS.AsThreadSafe(() => CurrentServer.RemoveWhitelistPlayer(name));
+    }
+
+    protected void OpPlayer(string name)
+    {
+        IMS.AsThreadSafe(() => CurrentServer.OpPlayer(name));
+    }
+
+    protected void DeopPlayer(string name)
+    {
+        IMS.AsThreadSafe(() => CurrentServer.DeopPlayer(name));
+    }
+
+    protected void KickPlayer(string name)
+    {
+        IMS.AsThreadSafe(() => CurrentServer.KickPlayer(name, ""));
+    }
+}

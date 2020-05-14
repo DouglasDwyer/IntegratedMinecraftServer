@@ -1,0 +1,116 @@
+﻿@using IMS_Library
+@using System.Reflection;
+
+<style>
+    label {
+        font-weight: 100;
+        margin-bottom: 0;
+    }
+</style>
+
+@foreach (PreferenceDisplay display in FieldDisplays)
+{
+    display.ParentDisplay = this;
+    RenderFragment fragment = builder =>
+    {
+        builder.OpenComponent(0, display.GetComponentType());
+        builder.AddAttribute(0, "DisplayData", display);
+        builder.CloseComponent();
+    };
+    @fragment
+    if (!(display is ConditionalDisplay))
+    {
+        <br />
+    }
+}
+<div style="padding: 6px;background-color: white;border-radius: 3px;float:right;position: sticky;bottom: 20px;z-index: 20;border: 1px solid #ddd;">
+    @if (!string.IsNullOrEmpty(ErrorText))
+    {
+        <label class="alert alert-success" style="padding:6px; margin-right:8px; margin-bottom:unset">@ErrorText</label>
+    }
+    <button class="btn btn-success" @onclick="Apply">@ApplyText</button>
+    <button class="btn btn-warning" @onclick="Revert">@RevertText</button>
+    <button class="btn btn-danger" @onclick="Reset">@ResetText</button>
+</div>
+<br />
+<br />
+
+@code {
+
+    [Parameter]
+    public string ApplyText { get; set; } = "Apply";
+    [Parameter]
+    public string RevertText { get; set; } = "Revert";
+    [Parameter]
+    public string ResetText { get; set; } = "Reset to Default";
+
+    public string ErrorText;
+
+    [Parameter]
+    public IMSConfiguration StartingConfiguration
+    {
+        set
+        {
+            if (CurrentConfiguration is null)
+            {
+                CurrentConfiguration = value;
+            }
+        }
+    }
+
+    public IMSConfiguration CurrentConfiguration
+    {
+        get
+        {
+            return (IMSConfiguration)LoadedConfiguration;
+        }
+        set
+        {
+            if (value is null)
+            {
+                LoadedConfiguration = InitialConfiguration = null;
+            }
+            else
+            {
+                LoadedConfiguration = (IMSConfiguration)value.Clone();
+                InitialConfiguration = (IMSConfiguration)value.Clone();
+            }
+        }
+    }
+    [Parameter]
+    public List<PreferenceDisplay> FieldDisplays { get; set; }
+    [Parameter]
+    public EventCallback<IMSConfiguration> OnApply { get; set; }
+
+    private IMSConfiguration LoadedConfiguration;
+    private IMSConfiguration InitialConfiguration;
+
+    public void NotifyStateChanged()
+    {
+        ErrorText = null;
+        StateHasChanged();
+    }
+
+    public void NotifyStateChanged(bool maintainErrorText)
+    {
+        StateHasChanged();
+    }
+
+    protected async Task Apply()
+    {
+        InitialConfiguration = (IMSConfiguration)LoadedConfiguration.Clone();
+        await OnApply.InvokeAsync(CurrentConfiguration);
+    }
+
+    protected void Revert()
+    {
+        ErrorText = null;
+        CurrentConfiguration = InitialConfiguration;
+    }
+
+    protected void Reset()
+    {
+        ErrorText = null;
+        LoadedConfiguration = (IMSConfiguration)Activator.CreateInstance(CurrentConfiguration.GetType());
+    }
+}

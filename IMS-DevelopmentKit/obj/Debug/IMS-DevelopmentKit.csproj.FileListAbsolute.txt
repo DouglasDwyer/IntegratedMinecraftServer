@@ -1,0 +1,29 @@
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\IMS-DevelopmentKit.dll
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\IMS-DevelopmentKit.pdb
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\IMS-DevelopmentKit.pkgdef
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\IMS-DevelopmentKit.vsix
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\extension.vsixmanifest
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\IMS-DevelopmentKit.csprojAssemblyReference.cache
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\_EmptyResource.resources
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\IMS-DevelopmentKit.csproj.GenerateResource.cache
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\IMS-DevelopmentKit.dll
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\IMS-DevelopmentKit.pdb
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\IMS-DevelopmentKit.pkgdef
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\IMS-DevelopmentKit.latest.pkgdef
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\extension.vsixmanifest
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\files.json
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\ims_icon.ico
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\IMS-Library.dll
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\KinglyNetworking.dll
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\KinglyNetworking.pdb
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\KinglyNetworking.xml
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\IMS-DevelopmentKit.csproj.CopyComplete
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\ProjectTemplates\IMS\IMS Plugin.zip
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\TemplateManifests\templateManifest0.noloc.vstman
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\ProjectTemplates\IMS\IMS Plugin\IMS-DevelopmentKitTemplate.csproj
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\ProjectTemplates\IMS\IMS Plugin\Properties\launchSettings.json
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\ProjectTemplates\IMS\IMS Plugin\IMS-Library.dll
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\ProjectTemplates\IMS\IMS Plugin\__TemplateIcon.ico
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\ProjectTemplates\IMS\IMS Plugin\__PreviewImage.ico
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\ProjectTemplates\IMS\IMS Plugin\MyTemplate.vstemplate
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\templateFiles.json

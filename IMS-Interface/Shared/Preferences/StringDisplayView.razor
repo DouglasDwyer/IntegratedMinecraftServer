@@ -1,0 +1,27 @@
+﻿@using System.Reflection
+
+@inherits PreferenceDisplayView
+
+<label>@DisplayData.DisplayName</label>
+<br />
+<input class="form-control"
+       style="margin-top:5px;margin-bottom:5px; width:200px; display:unset"
+       data-toggle="tooltip"
+       data-placement="right"
+       data-title="@DisplayData.Description"
+       type="text"
+       @bind="DataValue" />
+<br />
+
+@code {
+    public string DataValue {
+        get {
+            return (string)DisplayData.ParentDisplay.CurrentConfiguration.GetType()
+                .GetField(DisplayData.FieldName, BindingFlags.Public | BindingFlags.Instance)
+                .GetValue(DisplayData.ParentDisplay.CurrentConfiguration);
+        }
+        set {
+            DisplayData.ParentDisplay.CurrentConfiguration.GetType().GetField(DisplayData.FieldName, BindingFlags.Public | BindingFlags.Instance).SetValue(DisplayData.ParentDisplay.CurrentConfiguration, value);
+        }
+    }
+}

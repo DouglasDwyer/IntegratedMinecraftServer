@@ -1,0 +1,92 @@
+[11:30:47] [main/WARN]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[11:30:47] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[11:30:47] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[11:30:47] [main/WARN]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[11:30:47] [main/WARN]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[11:30:47] [Server thread/INFO]: Starting minecraft server version 1.15.2
+[11:30:47] [Server thread/INFO]: Loading properties
+[11:30:47] [Server thread/INFO]: Default game type: SURVIVAL
+[11:30:47] [Server thread/INFO]: Generating keypair
+[11:30:47] [Server thread/INFO]: Starting Minecraft server on *:25565
+[11:30:47] [Server thread/INFO]: Using default channel type
+[11:30:48] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[11:30:48] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
+[11:30:48] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[11:30:48] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[11:30:48] [Server thread/INFO]: Preparing level "world"
+[11:30:48] [Server thread/INFO]: Reloading ResourceManager: Default, yert
+[11:30:49] [Server thread/INFO]: Loaded 6 recipes
+[11:30:49] [Server thread/INFO]: Loaded 1 custom command functions
+[11:30:50] [Server thread/INFO]: Loaded 825 advancements
+[11:30:50] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld
+[11:30:51] [Server thread/INFO]: Preparing spawn area: 0%
+[11:30:51] [Server thread/INFO]: Preparing spawn area: 0%
+[11:30:51] [Server thread/INFO]: Preparing spawn area: 0%
+[11:30:52] [Server-Worker-6/INFO]: Preparing spawn area: 0%
+[11:30:52] [Server-Worker-4/INFO]: Preparing spawn area: 0%
+[11:30:53] [Server thread/INFO]: Preparing spawn area: 53%
+[11:30:53] [Server thread/INFO]: Time elapsed: 2632 ms
+[11:30:53] [Server thread/INFO]: Done (4.450s)! For help, type "help"
+[12:21:06] [Server thread/INFO]: King_Cat[/127.0.0.1:52008] logged in with entity id 153 at (201.41472505203117, 67.0, -63.88536157057864)
+[12:21:06] [Server thread/INFO]: King_Cat joined the game
+[12:24:44] [Server thread/INFO]: [King_Cat: Set the weather to rain]
+[12:25:05] [Server thread/INFO]: [King_Cat: Set own game mode to Survival Mode]
+[12:25:13] [Server thread/WARN]: King_Cat was kicked for floating too long!
+[12:25:13] [Server thread/INFO]: King_Cat lost connection: Disconnected
+[12:25:13] [Server thread/INFO]: King_Cat left the game
+[12:25:13] [Server thread/WARN]: handleDisconnection() called twice
+[12:25:15] [Server thread/INFO]: King_Cat[/127.0.0.1:52226] logged in with entity id 1413 at (275.3829020559913, 270.77029116527467, -13.993456486568018)
+[12:25:15] [Server thread/INFO]: King_Cat joined the game
+[12:25:53] [Server thread/WARN]: King_Cat moved too quickly! -1.8935770864113124,14.480224833702607,-5.732416853271019
+[12:25:59] [Server thread/INFO]: King_Cat fell from a high place
+[12:26:00] [Server thread/WARN]: King_Cat moved too quickly! -97.30463704759347,12.0,98.00003839342756
+[12:26:18] [Server thread/INFO]: [King_Cat: Teleported 7 entities to King_Cat]
+[12:26:47] [Server thread/INFO]: King_Cat has made the advancement [Suit Up]
+[12:26:47] [Server thread/INFO]: [King_Cat: Gave 1 [Iron Chestplate] to King_Cat]
+[12:26:56] [Server thread/INFO]: [King_Cat: Gave 1 [Iron Helmet] to King_Cat]
+[12:26:59] [Server thread/INFO]: [King_Cat: Gave 1 [Iron Boots] to King_Cat]
+[12:27:02] [Server thread/INFO]: [King_Cat: Gave 1 [Iron Leggings] to King_Cat]
+[12:27:10] [Server thread/INFO]: King_Cat fell from a high place
+[12:27:15] [Server thread/INFO]: [King_Cat: Teleported 10 entities to King_Cat]
+[12:27:29] [Server thread/INFO]: King_Cat fell from a high place
+[12:27:31] [Server thread/INFO]: [King_Cat: Teleported 11 entities to King_Cat]
+[12:27:58] [Server thread/INFO]: King_Cat fell from a high place
+[12:28:00] [Server thread/INFO]: [King_Cat: Teleported 8 entities to King_Cat]
+[12:28:57] [Server thread/INFO]: King_Cat fell from a high place
+[12:28:59] [Server thread/INFO]: [King_Cat: Teleported 8 entities to King_Cat]
+[12:29:03] [Server thread/INFO]: [King_Cat: Set own game mode to Creative Mode]
+[12:32:27] [Server thread/INFO]: King_Cat lost connection: Disconnected
+[12:32:27] [Server thread/INFO]: King_Cat left the game
+[13:33:50] [Server thread/INFO]: King_Cat[/127.0.0.1:52536] logged in with entity id 3237 at (200.5, 81.0, -40.5)
+[13:33:50] [Server thread/INFO]: King_Cat joined the game
+[13:34:17] [Server thread/INFO]: [King_Cat: Set own game mode to Survival Mode]
+[13:34:44] [Server thread/INFO]: [King_Cat: Set own game mode to Creative Mode]
+[13:37:48] [Server thread/INFO]: [King_Cat: Set own game mode to Survival Mode]
+[13:39:57] [Server thread/INFO]: [King_Cat: Gave 64 [Steak] to King_Cat]
+[13:40:06] [Server thread/INFO]: [King_Cat: Set the time to 13000]
+[13:40:18] [Server thread/INFO]: King_Cat fell from a high place
+[13:40:25] [Server thread/INFO]: [King_Cat: Teleported 14 entities to King_Cat]
+[13:40:40] [Server thread/INFO]: [King_Cat: Set own game mode to Creative Mode]
+[13:40:53] [Server thread/INFO]: [King_Cat: Applied enchantment Riptide III to King_Cat's item]
+[13:41:01] [Server thread/INFO]: [King_Cat: Set own game mode to Survival Mode]
+[13:42:33] [Server thread/INFO]: King_Cat fell from a high place
+[13:42:34] [Server thread/WARN]: King_Cat moved too quickly! 1.9655162642491462,-36.0,-40.34556355322623
+[13:42:40] [Server thread/INFO]: [King_Cat: Teleported 16 entities to King_Cat]
+[13:46:10] [Server thread/INFO]: <King_Cat> YEET
+[13:46:28] [Server thread/INFO]: King_Cat fell from a high place
+[13:46:33] [Server thread/INFO]: [King_Cat: Set own game mode to Creative Mode]
+[13:46:34] [Server thread/INFO]: King_Cat lost connection: Disconnected
+[13:46:34] [Server thread/INFO]: King_Cat left the game
+[13:46:39] [Server thread/INFO]: Stopping the server
+[13:46:39] [Server thread/INFO]: Stopping server
+[13:46:39] [Server thread/INFO]: Saving players
+[13:46:39] [Server thread/INFO]: Saving worlds
+[13:46:39] [Server thread/INFO]: Saving chunks for level 'world'/minecraft:the_end
+[13:46:39] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[13:46:39] [Server thread/INFO]: Saving chunks for level 'world'/minecraft:overworld
+[13:46:39] [Server thread/INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+[13:46:39] [Server thread/INFO]: Saving chunks for level 'world'/minecraft:the_nether
+[13:46:39] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[13:46:39] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[13:46:39] [Server thread/INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+[13:46:40] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved

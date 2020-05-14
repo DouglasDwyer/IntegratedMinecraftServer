@@ -1,0 +1,37 @@
+[11:40:47] [main/WARN]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[11:40:47] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[11:40:47] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[11:40:47] [main/WARN]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[11:40:47] [main/WARN]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[11:40:47] [Server thread/INFO]: Starting minecraft server version 1.15.2
+[11:40:47] [Server thread/INFO]: Loading properties
+[11:40:47] [Server thread/INFO]: Default game type: SURVIVAL
+[11:40:47] [Server thread/INFO]: Generating keypair
+[11:40:47] [Server thread/INFO]: Starting Minecraft server on *:25565
+[11:40:47] [Server thread/INFO]: Using default channel type
+[11:40:48] [Server thread/INFO]: Preparing level "world"
+[11:40:48] [Server thread/INFO]: Reloading ResourceManager: Default, yert
+[11:40:49] [Server thread/INFO]: Loaded 6 recipes
+[11:40:49] [Server thread/INFO]: Loaded 1 custom command functions
+[11:40:49] [Server thread/INFO]: Loaded 825 advancements
+[11:40:50] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld
+[11:40:51] [Server thread/INFO]: Preparing spawn area: 0%
+[11:40:51] [Server thread/INFO]: Preparing spawn area: 0%
+[11:40:51] [Server thread/INFO]: Preparing spawn area: 0%
+[11:40:51] [Server-Worker-7/INFO]: Preparing spawn area: 0%
+[11:40:52] [Server thread/INFO]: Time elapsed: 1868 ms
+[11:40:52] [Server thread/INFO]: Done (3.373s)! For help, type "help"
+[11:40:59] [Server thread/INFO]: [Server] helor
+[12:32:11] [Server thread/INFO]: Stopping the server
+[12:32:11] [Server thread/INFO]: Stopping server
+[12:32:11] [Server thread/INFO]: Saving players
+[12:32:11] [Server thread/INFO]: Saving worlds
+[12:32:11] [Server thread/INFO]: Saving chunks for level 'world'/minecraft:overworld
+[12:32:11] [Server thread/INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+[12:32:11] [Server thread/INFO]: Saving chunks for level 'world'/minecraft:the_nether
+[12:32:11] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[12:32:11] [Server thread/INFO]: Saving chunks for level 'world'/minecraft:the_end
+[12:32:11] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[12:32:11] [Server thread/INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+[12:32:11] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[12:32:11] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved

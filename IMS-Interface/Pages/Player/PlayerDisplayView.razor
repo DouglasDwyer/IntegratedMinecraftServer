@@ -1,0 +1,11 @@
+﻿@using IMS_Library
+
+@code{
+    [Parameter]
+    public PlayerDisplay DisplayData { get; set; }
+
+    [CascadingParameter(Name = "CurrentServer")]
+    public Guid CurrentServerID { get; set; }
+
+    public ServerProxy CurrentServer => IMS.AsThreadSafe(() => IMS.Instance.ServerManager.GetServer(CurrentServerID));
+}

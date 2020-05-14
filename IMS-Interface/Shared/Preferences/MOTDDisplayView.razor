@@ -1,0 +1,152 @@
+﻿@using System.Reflection
+@using System.Text.RegularExpressions;
+@using IMS_Library
+
+@inject IJSRuntime JSRuntime
+
+@inherits PreferenceDisplayView
+
+<style>
+    .editor {
+        border: solid 1px #ccc;
+        padding: 8px 10px;
+        margin-top: -1px;
+        min-height: 59px;
+        font-family: minecraft;
+        font-size: 16px;
+        border-bottom-left-radius:3px;
+        border-bottom-right-radius:3px;
+    }
+
+    .sample-toolbar {
+        border: solid 1px #ddd;
+        background: #eeeeee;
+        padding: 8px 10px;
+        border-radius: 3px;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+
+        .sample-toolbar > span {
+            cursor: pointer;
+        }
+
+            .sample-toolbar > span:hover {
+                text-decoration: underline;
+            }
+
+    .editor-button {
+        background-color: transparent;
+        color: #23527c;
+        border-radius: 5px;
+        border: 1px solid #23527c;
+        height: 33px;
+        width: 33px;
+        padding: 0px;
+    }
+
+    sup {
+        border-top: 2px solid rgb(0, 0, 217);
+        border-bottom: 2px solid rgb(0, 0, 217);
+        top: 5px;
+        font-size: 100%;
+        vertical-align: super
+    }
+
+    .color-box {
+        left: 230px;
+        top: -69px;
+        position: absolute;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 2px;
+        width: 106px;
+        height: 105px;
+        padding: 5px 6px 5px 6px;
+    }
+
+        .color-box > button {
+            border-radius: 5px;
+            border: 1px solid #aaa;
+        }
+
+        .color-box .arrow {
+            top: calc(50% - 8px);
+            border-style: solid;
+            position: absolute;
+        }
+
+    .bubble-left {
+        border-color: transparent #bbb transparent transparent;
+        border-width: 8px 8px 8px 0px;
+        left: -8px;
+    }
+
+        .bubble-left:after {
+            border-color: transparent white transparent transparent;
+            border-style: solid;
+            border-width: 7px 7px 7px 0px;
+            left: 1px;
+            content: "";
+            position: absolute;
+            top: -7px;
+        }
+</style>
+
+<!-- Original code taken from https://www.thatsoftwaredude.com/content/8912/create-a-basic-text-editor-in-javascript -->
+<label style="margin-bottom:5px">@DisplayData.DisplayName</label>
+<br />
+<div style="width:454px; padding-bottom:5px"
+     data-toggle="tooltip"
+     data-placement="right"
+     data-title="@DisplayData.Description">
+    <div class="sample-toolbar">
+        <button id="boldButton" data-toggle="tooltip" data-trigger="hover" data-placement="top" title="Bold" onclick="format('bold'); document.getElementById('mainEditor').focus(); setButtonFormattingsForMOTDDisplay(this.parentElement.parentElement); executeInputEvent(this.parentElement.parentElement, 'EditorData');" class="editor-button"><b>B</b></button>
+        <button id="italicButton" data-toggle="tooltip" data-trigger="hover" data-placement="top" title="Italics" onclick="format('italic'); document.getElementById('mainEditor').focus(); setButtonFormattingsForMOTDDisplay(this.parentElement.parentElement); executeInputEvent(this.parentElement.parentElement, 'EditorData');" class="editor-button"><i>I</i></button>
+        <button id="underlineButton" data-toggle="tooltip" data-trigger="hover" data-placement="top" title="Underline" onclick="format('underline'); document.getElementById('mainEditor').focus(); setButtonFormattingsForMOTDDisplay(this.parentElement.parentElement); executeInputEvent(this.parentElement.parentElement, 'EditorData');" class="editor-button"><u>U</u></button>
+        <button id="strikethroughButton" data-toggle="tooltip" data-trigger="hover" data-placement="top" title="Strikethrough" onclick="format('strikethrough'); document.getElementById('mainEditor').focus(); setButtonFormattingsForMOTDDisplay(this.parentElement.parentElement); executeInputEvent(this.parentElement.parentElement, 'EditorData');" class="editor-button"><del>S</del></button>
+        <button id="superscriptButton" data-toggle="tooltip" data-trigger="hover" data-placement="top" title="Obfuscated" onclick="format('superscript'); document.getElementById('mainEditor').focus(); setButtonFormattingsForMOTDDisplay(this.parentElement.parentElement); executeInputEvent(this.parentElement.parentElement, 'EditorData');" class="editor-button">O</button>
+        <button id="foreColorButton" onclick="this.parentElement.querySelector('.color-box').hidden ^= true;" data-toggle="tooltip" data-trigger="hover" data-placement="top" title="Color" class="editor-button">
+            C
+        </button>
+        <button id="foreColorButton" data-toggle="tooltip" data-trigger="hover" data-placement="top" title="Clear color" onclick="format('removeFormat', 'foreColor'); document.getElementById('mainEditor').focus();" class="editor-button">
+            X
+        </button>
+        <div style="position:relative">
+            <div class="color-box" hidden>
+                <div class="arrow bubble-left"></div>
+                @foreach (string color in Constants.MinecraftColorsHexAndFormattingCodes.Keys)
+                {
+                    <button style="width:20px; height:20px; display:inline; margin-top:1px;margin-bottom:1px; background-color:@color" onclick="this.parentElement.hidden = true; format('foreColor', '@color'); document.getElementById('mainEditor').focus();"></button>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div @ref="Editor" id="mainEditor" class="editor" contenteditable="true" onpaste="event.preventDefault(); var text = event.clipboardData.getData('text/plain'); document.execCommand('insertText', false, text);" oninput="var hiddenData = this.parentElement.querySelector('#EditorData'); hiddenData.value = this.innerHTML; hiddenData.dispatchEvent(new Event(event.type, event));" spellcheck="false" onkeydown="setButtonFormattingsForMOTDDisplay(this.parentElement)" onkeyup="setButtonFormattingsForMOTDDisplay(this.parentElement)" onclick="setButtonFormattingsForMOTDDisplay(this.parentElement)">
+    </div>
+    <input id="EditorData" @oninput="x => MOTDValue = (string)x.Value" value="@MOTDValue" hidden />
+</div>
+
+@code {
+    protected ElementReference Editor;
+
+    public string MOTDValue
+    {
+        get
+        {
+            return (string)DisplayData.ParentDisplay.CurrentConfiguration.GetType()
+                .GetField(DisplayData.FieldName, BindingFlags.Public | BindingFlags.Instance)
+                .GetValue(DisplayData.ParentDisplay.CurrentConfiguration);
+        }
+        set
+        {
+            DisplayData.ParentDisplay.CurrentConfiguration.GetType().GetField(DisplayData.FieldName, BindingFlags.Public | BindingFlags.Instance).SetValue(DisplayData.ParentDisplay.CurrentConfiguration, value);
+        }
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        JSRuntime.InvokeVoidAsync("setInnerHTMLOfElement", Editor, MOTDValue);
+    }
+}

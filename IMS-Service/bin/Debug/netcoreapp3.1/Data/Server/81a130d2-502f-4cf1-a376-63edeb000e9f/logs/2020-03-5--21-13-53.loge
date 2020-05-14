@@ -1,0 +1,29 @@
+[21:13:57] [main/WARN]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[21:13:57] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[21:13:57] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[21:13:57] [main/WARN]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[21:13:57] [main/WARN]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[21:13:57] [Server thread/INFO]: Starting minecraft server version 1.15.2
+[21:13:57] [Server thread/INFO]: Loading properties
+[21:13:57] [Server thread/INFO]: Default game type: SURVIVAL
+[21:13:57] [Server thread/INFO]: Generating keypair
+[21:13:57] [Server thread/INFO]: Starting Minecraft server on *:25565
+[21:13:57] [Server thread/INFO]: Using default channel type
+[21:13:59] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[21:13:59] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
+[21:13:59] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[21:13:59] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[21:13:59] [Server thread/INFO]: Preparing level "world"
+[21:13:59] [Server thread/INFO]: Reloading ResourceManager: Default, yert
+[21:14:00] [Server thread/INFO]: Loaded 6 recipes
+[21:14:00] [Server thread/INFO]: Loaded 1 custom command functions
+[21:14:00] [Server thread/INFO]: Loaded 825 advancements
+[21:14:01] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld
+[21:14:02] [Server thread/INFO]: Preparing spawn area: 0%
+[21:14:02] [Server thread/INFO]: Preparing spawn area: 0%
+[21:14:02] [Server thread/INFO]: Preparing spawn area: 0%
+[21:14:02] [Server-Worker-4/INFO]: Preparing spawn area: 0%
+[21:14:02] [Server thread/INFO]: Time elapsed: 1866 ms
+[21:14:02] [Server thread/INFO]: Done (3.500s)! For help, type "help"
+[21:14:03] [Server thread/INFO]: King_Cat[/127.0.0.1:49716] logged in with entity id 207 at (201.16857788662787, 64.0, -118.74899701698645)
+[21:14:03] [Server thread/INFO]: King_Cat joined the game

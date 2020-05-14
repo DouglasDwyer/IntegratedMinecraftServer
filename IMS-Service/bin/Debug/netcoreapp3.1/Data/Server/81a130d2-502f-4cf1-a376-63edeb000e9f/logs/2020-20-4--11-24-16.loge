@@ -1,0 +1,50 @@
+[11:24:20] [main/WARN]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[11:24:20] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[11:24:20] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[11:24:20] [main/WARN]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[11:24:20] [main/WARN]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[11:24:21] [Server thread/INFO]: Starting minecraft server version 1.15.2
+[11:24:21] [Server thread/INFO]: Loading properties
+[11:24:21] [Server thread/INFO]: Default game type: SURVIVAL
+[11:24:21] [Server thread/INFO]: Generating keypair
+[11:24:21] [Server console handler/ERROR]: Exception handling console input
+java.io.IOException: The handle is invalid
+	at java.io.FileInputStream.readBytes(Native Method) ~[?:1.8.0_251]
+	at java.io.FileInputStream.read(Unknown Source) ~[?:1.8.0_251]
+	at java.io.BufferedInputStream.read1(Unknown Source) ~[?:1.8.0_251]
+	at java.io.BufferedInputStream.read(Unknown Source) ~[?:1.8.0_251]
+	at sun.nio.cs.StreamDecoder.readBytes(Unknown Source) ~[?:1.8.0_251]
+	at sun.nio.cs.StreamDecoder.implRead(Unknown Source) ~[?:1.8.0_251]
+	at sun.nio.cs.StreamDecoder.read(Unknown Source) ~[?:1.8.0_251]
+	at java.io.InputStreamReader.read(Unknown Source) ~[?:1.8.0_251]
+	at java.io.BufferedReader.fill(Unknown Source) ~[?:1.8.0_251]
+	at java.io.BufferedReader.readLine(Unknown Source) ~[?:1.8.0_251]
+	at java.io.BufferedReader.readLine(Unknown Source) ~[?:1.8.0_251]
+	at wd$2.run(SourceFile:110) [server.jar:?]
+[11:24:21] [Server thread/INFO]: Starting Minecraft server on *:25565
+[11:24:21] [Server thread/INFO]: Using default channel type
+[11:24:23] [Server thread/INFO]: Preparing level "world"
+[11:24:23] [Server thread/INFO]: Reloading ResourceManager: Default, yert
+[11:24:23] [Server thread/INFO]: Loaded 6 recipes
+[11:24:24] [Server thread/INFO]: Loaded 1 custom command functions
+[11:24:24] [Server thread/INFO]: Loaded 825 advancements
+[11:24:24] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld
+[11:24:26] [Server thread/INFO]: Preparing spawn area: 0%
+[11:24:26] [Server thread/INFO]: Preparing spawn area: 0%
+[11:24:26] [Server thread/INFO]: Preparing spawn area: 0%
+[11:24:26] [Server thread/INFO]: Preparing spawn area: 73%
+[11:24:26] [Server thread/INFO]: Time elapsed: 1600 ms
+[11:24:26] [Server thread/INFO]: Done (3.156s)! For help, type "help"
+[11:24:34] [Server thread/INFO]: Stopping the server
+[11:24:34] [Server thread/INFO]: Stopping server
+[11:24:34] [Server thread/INFO]: Saving players
+[11:24:34] [Server thread/INFO]: Saving worlds
+[11:24:34] [Server thread/INFO]: Saving chunks for level 'world'/minecraft:overworld
+[11:24:34] [Server thread/INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+[11:24:34] [Server thread/INFO]: Saving chunks for level 'world'/minecraft:the_nether
+[11:24:34] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[11:24:34] [Server thread/INFO]: Saving chunks for level 'world'/minecraft:the_end
+[11:24:34] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[11:24:34] [Server thread/INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+[11:24:35] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[11:24:35] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved

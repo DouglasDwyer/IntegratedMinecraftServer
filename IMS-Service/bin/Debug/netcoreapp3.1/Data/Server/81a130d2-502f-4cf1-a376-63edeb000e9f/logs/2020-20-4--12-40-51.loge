@@ -1,0 +1,23 @@
+[12:40:56] [main/WARN]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[12:40:56] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[12:40:56] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[12:40:56] [main/WARN]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[12:40:56] [main/WARN]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[12:40:56] [Server thread/INFO]: Starting minecraft server version 1.15.2
+[12:40:56] [Server thread/INFO]: Loading properties
+[12:40:56] [Server thread/INFO]: Default game type: SURVIVAL
+[12:40:56] [Server thread/INFO]: Generating keypair
+[12:40:57] [Server thread/INFO]: Starting Minecraft server on *:25565
+[12:40:57] [Server thread/INFO]: Using default channel type
+[12:40:59] [Server thread/INFO]: Preparing level "world"
+[12:40:59] [Server thread/INFO]: Reloading ResourceManager: Default, yert
+[12:41:00] [Server thread/INFO]: Loaded 6 recipes
+[12:41:00] [Server thread/INFO]: Loaded 1 custom command functions
+[12:41:00] [Server thread/INFO]: Loaded 825 advancements
+[12:41:00] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld
+[12:41:01] [Server thread/INFO]: Preparing spawn area: 0%
+[12:41:01] [Server thread/INFO]: Preparing spawn area: 0%
+[12:41:01] [Server thread/INFO]: Time elapsed: 903 ms
+[12:41:01] [Server thread/INFO]: Done (1.914s)! For help, type "help"
+[13:36:19] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 1367838ms or 27356 ticks behind
+[14:41:17] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 1528301ms or 30566 ticks behind

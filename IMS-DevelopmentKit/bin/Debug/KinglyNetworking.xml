@@ -1,0 +1,379 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>KinglyNetworking</name>
+    </assembly>
+    <members>
+        <member name="M:KinglyStudios.Knetworking.CallbackKinglyClient.ProcessNextMessage">
+            <summary>
+            Processes the next RPC that requires use of the main thread.
+            </summary>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.CallbackKinglyClient.ProcessUnthreadedMessage">
+            <summary>
+            Processes a raw message.
+            </summary>
+        </member>
+        <member name="T:KinglyStudios.Knetworking.GZipCompressor">
+            <summary>
+            Provides compression using the GZip algorithm.
+            </summary>
+        </member>
+        <member name="T:KinglyStudios.Knetworking.ICompressor">
+            <summary>
+            Represents an abstract compression algorithm.
+            </summary>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.ICompressor.Compress(System.Byte[])">
+            <summary>
+            Compresses a series of bytes.
+            </summary>
+            <param name="toCompress">The series of bytes to compress.</param>
+            <returns>The compressed byte array.</returns>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.ICompressor.Decompress(System.Byte[])">
+            <summary>
+            Decompresses a series of bytes.
+            </summary>
+            <param name="toDecompress">The series of bytes to decompress.</param>
+            <returns>The decompressed byte array.</returns>
+        </member>
+        <member name="T:KinglyStudios.Knetworking.KinglyClient">
+            <summary>
+            Represents a generic binding between a TCP stream and an application-specific dataset.
+            </summary>
+        </member>
+        <member name="P:KinglyStudios.Knetworking.KinglyClient.NetworkID">
+            <summary>
+            The NetworkID of this object.  Is used to identify the object across the network.
+            </summary>
+        </member>
+        <member name="P:KinglyStudios.Knetworking.KinglyClient.TargetIP">
+            <summary>
+            The remote endpoint of the TCP stream.
+            </summary>
+        </member>
+        <member name="P:KinglyStudios.Knetworking.KinglyClient.TargetPort">
+            <summary>
+            The port of the remote endpoint of the TCP stream.
+            </summary>
+        </member>
+        <member name="P:KinglyStudios.Knetworking.KinglyClient.RPCClass">
+            <summary>
+            The class on which RPCs are invoked.
+            </summary>
+        </member>
+        <member name="P:KinglyStudios.Knetworking.KinglyClient.RPCContext">
+            <summary>
+            The object upon which RPCs are invoked.
+            </summary>
+        </member>
+        <member name="P:KinglyStudios.Knetworking.KinglyClient.CompressionAlgorithm">
+            <summary>
+            The compression algorithm used in network operations.
+            </summary>
+        </member>
+        <member name="P:KinglyStudios.Knetworking.KinglyClient.AwaitingMessage">
+            <summary>
+            Returns whether a message is available to be read from the TCP stream.
+            </summary>
+        </member>
+        <member name="P:KinglyStudios.Knetworking.KinglyClient.HostServer">
+            <summary>
+            The server which the client resides on.  Is null for a client-side client.
+            </summary>
+        </member>
+        <member name="E:KinglyStudios.Knetworking.KinglyClient.OnDisconnectedEvent">
+            <summary>
+            This event is called when the KinglyClient disconnects from a server.
+            </summary>
+        </member>
+        <member name="E:KinglyStudios.Knetworking.KinglyClient.OnErrorEvent">
+            <summary>
+            This event is called when a networking error occurs.
+            </summary>
+        </member>
+        <member name="F:KinglyStudios.Knetworking.KinglyClient.TcpUser">
+            <summary>
+            The underlying TCP client.
+            </summary>
+        </member>
+        <member name="F:KinglyStudios.Knetworking.KinglyClient.TcpStream">
+            <summary>
+            The underlying TCP stream.
+            </summary>
+        </member>
+        <member name="F:KinglyStudios.Knetworking.KinglyClient.RPCDictionary">
+            <summary>
+            The dictionary of callable RPCs.
+            </summary>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.KinglyClient.Connect">
+            <summary>
+            Connects to a server.
+            </summary>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.KinglyClient.ConnectAsync">
+            <summary>
+            Connects to a server without blocking.
+            </summary>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.KinglyClient.Disconnect">
+            <summary>
+            Disconnects from a server.
+            </summary>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.KinglyClient.ProcessNextMessage">
+            <summary>
+            Processes the next message packet on the stream.
+            </summary>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.KinglyClient.SendRPC(System.String,System.Object[])">
+            <summary>
+            Sends a remote procedure call over the network, serializing all arguments.
+            </summary>
+            <param name="methodName">The name of the remote method to call.</param>
+            <param name="arguments">The arguments to pass to the method.</param>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.KinglyClient.Send(System.Byte[])">
+            <summary>
+            Sends a raw string of bytes over the network, prefixed with a message length.
+            </summary>
+            <param name="toSend">The string of bytes to send.</param>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.KinglyClient.Receive">
+            <summary>
+            Retrieves a length-prefixed message from the network.
+            </summary>
+            <returns>The message.</returns>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.KinglyClient.ClearDisconnectEvent">
+            <summary>
+            Removes all event listeners from the disconnect event list.
+            </summary>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.KinglyClient.ClearErrorEvent">
+            <summary>
+            Removes all event listeners from the error event list.
+            </summary>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.KinglyClient.SuppressAllFinalizers(System.Object)">
+            <summary>
+            Prevents finalizers from being called on all objects.  This disables the ability for finalizers to run malicious/abitrary code from serialization.
+            </summary>
+            <param name="obj">The object to suppress.</param>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.KinglyClient.SuppressAllFinalizers(System.Object,System.Collections.Generic.List{System.Object})">
+            <summary>
+            Prevents finalizers from being called on all objects.  This disables the ability for finalizers to run malicious/abitrary code from serialization.
+            </summary>
+            <param name="obj">The object to suppress.</param>
+            /// <param name="finishedObjects">A list of objects that have already been suppressed.</param>
+        </member>
+        <member name="P:KinglyStudios.Knetworking.KinglyServer.ConnectedClients">
+            <summary>
+            The clients currently connected to the server.
+            </summary>
+        </member>
+        <member name="P:KinglyStudios.Knetworking.KinglyServer.Port">
+            <summary>
+            The port the server is listening on.
+            </summary>
+        </member>
+        <member name="P:KinglyStudios.Knetworking.KinglyServer.MaximumConnections">
+            <summary>
+            The maximum number of connections allowed to the server.
+            </summary>
+        </member>
+        <member name="P:KinglyStudios.Knetworking.KinglyServer.DefaultRPCClass">
+            <summary>
+            The default type for RPCs assigned to new clients.
+            </summary>
+        </member>
+        <member name="P:KinglyStudios.Knetworking.KinglyServer.RequireRPCTag">
+            <summary>
+            Determines whether methods must have the NetworkedMethod attribute to be callable as RPCs.
+            </summary>
+        </member>
+        <member name="P:KinglyStudios.Knetworking.KinglyServer.CompressionAlgorithm">
+            <summary>
+            The compression algorithm to use in networking operations.
+            </summary>
+        </member>
+        <member name="F:KinglyStudios.Knetworking.KinglyServer.DefaultErrorEvent">
+            <summary>
+            The error event raised when an exception occurs for any one client.
+            </summary>
+        </member>
+        <member name="F:KinglyStudios.Knetworking.KinglyServer.DefaultRPCObject">
+            <summary>
+            The default object to call RPCs on.
+            </summary>
+        </member>
+        <member name="F:KinglyStudios.Knetworking.KinglyServer.ClientList">
+            <summary>
+            The raw list of clients.
+            </summary>
+        </member>
+        <member name="F:KinglyStudios.Knetworking.KinglyServer.TcpServer">
+            <summary>
+            The underlying TCP server.
+            </summary>
+        </member>
+        <member name="F:KinglyStudios.Knetworking.KinglyServer.ListenerThread">
+            <summary>
+            The thread which listens for new clients.
+            </summary>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.KinglyServer.Start">
+            <summary>
+            Starts the server.
+            </summary>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.KinglyServer.StartNoListener">
+            <summary>
+            Starts the server without invoking the new client listener thread.
+            </summary>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.KinglyServer.ProcessNewConnections">
+            <summary>
+            Processes any new connections that may be waiting to connect.
+            </summary>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.KinglyServer.UpdateAllClients">
+            <summary>
+            Processes one message for every awaiting client.
+            </summary>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.KinglyServer.OnClientConnected(System.String,System.Net.Sockets.TcpClient)">
+            <summary>
+            Called when a new client connects.  Used to generate KinglyClients specific to an application.
+            </summary>
+            <param name="client">The raw TCP client.</param>
+            <returns>The generated KinglyClient.</returns>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.KinglyServer.Stop">
+            <summary>
+            Shuts down the server.
+            </summary>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.KinglyServer.GetClientByNetworkID(System.String)">
+            <summary>
+            Finds a client based on the client's Network ID.
+            </summary>
+            <param name="netID">The Network ID of the client to find.</param>
+            <returns>The found client.</returns>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.KinglyServer.RemoveClient(KinglyStudios.Knetworking.KinglyClient)">
+            <summary>
+            Removes a client from the server's master list.
+            </summary>
+            <param name="client">The client to remove.</param>
+        </member>
+        <member name="T:KinglyStudios.Knetworking.KinglyServer.NullCompressor">
+            <summary>
+            Represents a compression algorithm that does not perform any compression.
+            </summary>
+        </member>
+        <member name="T:KinglyStudios.Knetworking.NetworkedMethod">
+            <summary>
+            Denotes a method that can be called by RPCs.
+            </summary>
+        </member>
+        <member name="T:KinglyStudios.Knetworking.NetworkRPC">
+            <summary>
+            Represents an RPC sent across the network.
+            </summary>
+        </member>
+        <member name="T:KinglyStudios.Knetworking.SerializationManagement">
+            <summary>
+            Used to serialize objects.
+            </summary>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.SerializationManagement.ObjectToByteArray(System.Object)">
+            <summary>
+            Converts an object to a byte array/
+            </summary>
+            <param name="obj">The object to convert.</param>
+            <returns>The byte-based representation of the object.</returns>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.SerializationManagement.ByteArrayToObject(System.Byte[])">
+            <summary>
+            Converts a byte array to an object.
+            </summary>
+            <param name="obj">The byte array to convert.</param>
+            <returns>The converted object.</returns>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.SerializationManagement.ByteArrayToObject``1(System.Byte[])">
+            <summary>
+            Converts a byte array to an object.
+            </summary>
+            <typeparam name="T">The type to convert to.</typeparam>
+            <param name="obj">The byte array to convert.</param>
+            <returns>The converted object.</returns>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.SerializationManagement.ObjectToXML(System.Object)">
+            <summary>
+            Converts an object to XML.
+            </summary>
+            <param name="dataToSerialize">The object to convert.</param>
+            <returns>The XML representation of the object.</returns>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.SerializationManagement.XMLToObject``1(System.String)">
+            <summary>
+            Converts XML to an object.
+            </summary>
+            <typeparam name="T">The type to convert to.</typeparam>
+            <param name="xmlText">The XML to convert.</param>
+            <returns>The converted object.</returns>
+        </member>
+        <member name="T:KinglyStudios.Knetworking.SerializationManagement.NullRepresentative">
+            <summary>
+            Represents a null object in serialization.
+            </summary>
+        </member>
+        <member name="T:KinglyStudios.Knetworking.SingleThreaded">
+            <summary>
+            Denotes an RPC that may only be called from a main thread.
+            </summary>
+        </member>
+        <member name="T:KinglyStudios.Knetworking.ThreadedKinglyClient">
+            <summary>
+            Represents a KinglyClient which does not require management by the main thread.
+            </summary>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.ThreadedKinglyClient.Connect">
+            <summary>
+            Attempts to connect to the server.
+            </summary>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.ThreadedKinglyClient.ProcessNextMessage">
+            <summary>
+            Processes the next RPC that requires use of the main thread.
+            </summary>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.ThreadedKinglyClient.ProcessUnthreadedMessage">
+            <summary>
+            Processes a raw message.
+            </summary>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.ThreadedKinglyServer.OnClientConnected(System.String,System.Net.Sockets.TcpClient)">
+            <summary>
+            Used to generate a KinglyClient that reads messages on its own.
+            </summary>
+            <param name="client">The raw TCP stream.</param>
+            <param name="guid">The NetworkID of the new client.</param>
+            <returns>The generated KinglyClient.</returns>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.ThreadedKinglyServer.RunSingleThreadedUpdates">
+            <summary>
+            Runs any updates on clients that may require the main thread for RPCs.
+            </summary>
+        </member>
+        <member name="M:KinglyStudios.Knetworking.ThreadedKinglyServer.ProcessNewConnections">
+            <summary>
+            Processes any new connections that may be waiting to connect.
+            </summary>
+        </member>
+    </members>
+</doc>

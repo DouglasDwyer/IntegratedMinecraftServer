@@ -1,0 +1,28 @@
+[10:56:15] [main/WARN]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[10:56:15] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[10:56:15] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[10:56:15] [main/WARN]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[10:56:15] [main/WARN]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[10:56:15] [Server thread/INFO]: Starting minecraft server version 1.15.2
+[10:56:15] [Server thread/INFO]: Loading properties
+[10:56:15] [Server thread/INFO]: Default game type: SURVIVAL
+[10:56:15] [Server thread/INFO]: Generating keypair
+[10:56:15] [Server thread/INFO]: Starting Minecraft server on *:25565
+[10:56:15] [Server thread/INFO]: Using default channel type
+[10:56:16] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[10:56:16] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
+[10:56:16] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[10:56:16] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[10:56:16] [Server thread/INFO]: Preparing level "world"
+[10:56:16] [Server thread/INFO]: Reloading ResourceManager: Default, yert
+[10:56:17] [Server thread/INFO]: Loaded 6 recipes
+[10:56:17] [Server thread/INFO]: Loaded 1 custom command functions
+[10:56:17] [Server thread/INFO]: Loaded 825 advancements
+[10:56:18] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld
+[10:56:19] [Server thread/INFO]: Preparing spawn area: 0%
+[10:56:19] [Server thread/INFO]: Preparing spawn area: 0%
+[10:56:19] [Server thread/INFO]: Preparing spawn area: 0%
+[10:56:20] [Server-Worker-7/INFO]: Preparing spawn area: 0%
+[10:56:20] [Server-Worker-4/INFO]: Preparing spawn area: 0%
+[10:56:20] [Server thread/INFO]: Time elapsed: 2242 ms
+[10:56:20] [Server thread/INFO]: Done (3.921s)! For help, type "help"

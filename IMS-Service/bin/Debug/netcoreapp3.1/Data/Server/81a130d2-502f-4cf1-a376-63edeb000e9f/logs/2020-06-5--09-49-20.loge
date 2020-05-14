@@ -1,0 +1,17 @@
+[09:49:26] [main/WARN]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[09:49:26] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[09:49:26] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[09:49:26] [main/WARN]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[09:49:26] [main/WARN]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[09:49:26] [Server thread/INFO]: Starting minecraft server version 1.15.2
+[09:49:26] [Server thread/INFO]: Loading properties
+[09:49:26] [Server thread/INFO]: Default game type: SURVIVAL
+[09:49:26] [Server thread/INFO]: Generating keypair
+[09:49:26] [Server thread/INFO]: Starting Minecraft server on *:25565
+[09:49:26] [Server thread/INFO]: Using default channel type
+[09:49:27] [Server thread/INFO]: Preparing level "world"
+[09:49:27] [Server thread/INFO]: Reloading ResourceManager: Default, yert
+[09:49:28] [Server thread/INFO]: Loaded 6 recipes
+[09:49:28] [Server thread/INFO]: Loaded 1 custom command functions
+[09:49:28] [Server thread/INFO]: Loaded 825 advancements
+[09:49:29] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld

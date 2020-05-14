@@ -1,0 +1,60 @@
+[20:46:29] [main/WARN]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[20:46:29] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[20:46:29] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[20:46:29] [main/WARN]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[20:46:29] [main/WARN]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[20:46:30] [Server thread/INFO]: Starting minecraft server version 1.15.2
+[20:46:30] [Server thread/INFO]: Loading properties
+[20:46:30] [Server thread/INFO]: Default game type: SURVIVAL
+[20:46:30] [Server thread/INFO]: Generating keypair
+[20:46:30] [Server thread/INFO]: Starting Minecraft server on *:25565
+[20:46:30] [Server thread/INFO]: Using default channel type
+[20:46:31] [Server thread/INFO]: Preparing level "world"
+[20:46:31] [Server thread/INFO]: Reloading ResourceManager: Default, yert
+[20:46:31] [Server thread/INFO]: Loaded 6 recipes
+[20:46:32] [Server thread/INFO]: Loaded 1 custom command functions
+[20:46:32] [Server thread/INFO]: Loaded 825 advancements
+[20:46:32] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld
+[20:46:33] [Server thread/INFO]: Preparing spawn area: 0%
+[20:46:33] [Server thread/INFO]: Preparing spawn area: 0%
+[20:46:33] [Server thread/INFO]: Preparing spawn area: 0%
+[20:46:34] [Server-Worker-6/INFO]: Preparing spawn area: 0%
+[20:46:34] [Server-Worker-3/INFO]: Preparing spawn area: 0%
+[20:46:35] [Server thread/INFO]: Time elapsed: 2453 ms
+[20:46:35] [Server thread/INFO]: Done (4.009s)! For help, type "help"
+[20:46:36] [Server thread/INFO]: Added King_Cat to the whitelist
+[20:46:40] [Server thread/INFO]: Removed King_Cat from the whitelist
+[20:47:12] [User Authenticator #1/INFO]: UUID of player King_Cat is e3087768-76b3-487d-987b-741694b3d97f
+[20:47:12] [Server thread/INFO]: King_Cat[/127.0.0.1:59774] logged in with entity id 165 at (177.20146577094354, 64.0, -119.30000001192093)
+[20:47:12] [Server thread/INFO]: King_Cat joined the game
+[20:47:18] [Server thread/INFO]: [King_Cat: Added King_Cat to the whitelist]
+[20:47:22] [Server thread/INFO]: Removed King_Cat from the whitelist
+[20:49:12] [Server thread/INFO]: Kicked King_Cat: Kicked by an operator
+[20:49:12] [Server thread/INFO]: King_Cat lost connection: Kicked by an operator
+[20:49:12] [Server thread/INFO]: King_Cat left the game
+[20:49:17] [User Authenticator #2/INFO]: UUID of player King_Cat is e3087768-76b3-487d-987b-741694b3d97f
+[20:49:17] [Server thread/INFO]: King_Cat[/127.0.0.1:59780] logged in with entity id 507 at (211.30000001192093, 60.5, -113.22025219501018)
+[20:49:17] [Server thread/INFO]: King_Cat joined the game
+[20:49:25] [Server thread/INFO]: [King_Cat: Added King_Cat to the whitelist]
+[20:49:27] [Server thread/INFO]: King_Cat lost connection: Disconnected
+[20:49:27] [Server thread/INFO]: King_Cat left the game
+[20:49:29] [User Authenticator #3/INFO]: UUID of player King_Cat is e3087768-76b3-487d-987b-741694b3d97f
+[20:49:29] [Server thread/INFO]: King_Cat[/127.0.0.1:59787] logged in with entity id 521 at (212.76115700202547, 67.04522897090695, -91.2998208442942)
+[20:49:29] [Server thread/INFO]: King_Cat joined the game
+[20:50:22] [Server thread/INFO]: [King_Cat: Set own game mode to Survival Mode]
+[20:50:36] [Server thread/INFO]: [King_Cat: Set own game mode to Creative Mode]
+[20:51:40] [Server thread/INFO]: King_Cat lost connection: Disconnected
+[20:51:40] [Server thread/INFO]: King_Cat left the game
+[20:57:04] [Server thread/INFO]: Stopping the server
+[20:57:04] [Server thread/INFO]: Stopping server
+[20:57:04] [Server thread/INFO]: Saving players
+[20:57:04] [Server thread/INFO]: Saving worlds
+[20:57:04] [Server thread/INFO]: Saving chunks for level 'world'/minecraft:overworld
+[20:57:04] [Server thread/INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+[20:57:04] [Server thread/INFO]: Saving chunks for level 'world'/minecraft:the_end
+[20:57:04] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[20:57:04] [Server thread/INFO]: Saving chunks for level 'world'/minecraft:the_nether
+[20:57:04] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[20:57:04] [Server thread/INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+[20:57:04] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[20:57:04] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved

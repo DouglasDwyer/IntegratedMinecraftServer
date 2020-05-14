@@ -1,0 +1,29 @@
+﻿@page "/IMSPreferences"
+@layout MainLayout
+@using IMS_Library;
+
+<h3>IMS Preferences</h3>
+<br />
+<PreferenceEditor FieldDisplays="PreferenceLayout" StartingConfiguration="GetCurrentPreferences()" OnApply="ApplySettings" @ref="Editor"></PreferenceEditor>
+
+@code {
+    public List<PreferenceDisplay> PreferenceLayout = new List<PreferenceDisplay>();
+    public PreferenceEditor Editor;
+
+    public IMSPreferences()
+    {
+        PreferenceLayout.Add(new PortDisplay("ManagementPort", "Management Port", "This is the port which the IMS web interface runs on."));
+        PreferenceLayout.Add(new BooleanDisplay("RunIMSOnStartup", "Run on startup", "This setting determines whether IMS runs when the computer boots.", "Run", "Don't run"));
+    }
+
+    public IMSSettings GetCurrentPreferences()
+    {
+        return IMS.AsThreadSafe(() => IMS.Instance.CurrentSettings);
+    }
+
+    public void ApplySettings(IMSConfiguration configuration)
+    {
+        Editor.ErrorText = "Settings applied successfully at " + DateTime.Now + ".";
+        IMS.AsThreadSafe(() => IMS.Instance.ChangeSettings((IMSSettings)configuration));
+    }
+}

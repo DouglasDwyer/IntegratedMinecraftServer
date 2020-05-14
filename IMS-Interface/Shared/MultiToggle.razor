@@ -1,0 +1,30 @@
+﻿
+<div style="display:inline-block">
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        @{
+            for(int i = 0; i < Options.Length; i++)
+            {
+                int index = i;
+                <label class="btn btn-primary @(index == SelectedIndex ? "active" : "")" @onclick="@(() => { OnClicked(index); })">
+                    <input type="radio" autocomplete="off"> @Options[index]
+                </label>
+            }
+        }
+    </div>
+</div>
+<br />
+
+@code {
+    [Parameter]
+    public string[] Options { get; set; }
+    [Parameter]
+    public int SelectedIndex { get; set; }
+    [Parameter]
+    public EventCallback<int> OnSelectionChange { get; set; }
+
+    protected void OnClicked(int clickedBox)
+    {
+        SelectedIndex = clickedBox;
+        OnSelectionChange.InvokeAsync(SelectedIndex);
+    }
+}

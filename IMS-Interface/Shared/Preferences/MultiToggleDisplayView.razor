@@ -1,0 +1,33 @@
+﻿@inherits PreferenceDisplayView
+@using System.Reflection
+
+<label>@DisplayData.DisplayName</label>
+<br />
+<div data-toggle="tooltip"
+     data-placement="right"
+     data-title="@DisplayData.Description" style="display:inline-block; margin:5px 0px">
+    <MultiToggle Options="(DisplayData as MultiToggleDisplay).Values"
+                 SelectedIndex="@SelectedItem"
+                 OnSelectionChange="@(x => SelectedItem = x)"></MultiToggle>
+</div>
+<br />
+
+@code {
+    public virtual int SelectedItem
+    {
+        get
+        {
+            return (int)DisplayData.ParentDisplay.CurrentConfiguration.GetType()
+                .GetField(DisplayData.FieldName, BindingFlags.Public | BindingFlags.Instance)
+                .GetValue(DisplayData.ParentDisplay.CurrentConfiguration) - (DisplayData as MultiToggleDisplay).IndexOffset;
+        }
+        set
+        {
+            if (value >= 0 && value < (DisplayData as MultiToggleDisplay).Values.Length)
+            {
+                DisplayData.ParentDisplay.CurrentConfiguration.GetType().GetField(DisplayData.FieldName, BindingFlags.Public | BindingFlags.Instance).SetValue(DisplayData.ParentDisplay.CurrentConfiguration, value + (DisplayData as MultiToggleDisplay).IndexOffset);
+            }
+            DisplayData.ParentDisplay.NotifyStateChanged();
+        }
+    }
+}

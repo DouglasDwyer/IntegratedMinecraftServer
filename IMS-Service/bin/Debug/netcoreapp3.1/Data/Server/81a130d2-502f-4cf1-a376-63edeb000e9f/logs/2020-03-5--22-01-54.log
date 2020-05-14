@@ -1,0 +1,48 @@
+[22:01:58] [main/WARN]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[22:01:58] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[22:01:58] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[22:01:58] [main/WARN]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[22:01:58] [main/WARN]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[22:01:58] [Server thread/INFO]: Starting minecraft server version 1.15.2
+[22:01:58] [Server thread/INFO]: Loading properties
+[22:01:58] [Server thread/INFO]: Default game type: SURVIVAL
+[22:01:58] [Server thread/INFO]: Generating keypair
+[22:01:59] [Server thread/INFO]: Starting Minecraft server on *:25565
+[22:01:59] [Server thread/INFO]: Using default channel type
+[22:02:00] [Server thread/INFO]: Preparing level "world"
+[22:02:00] [Server thread/INFO]: Reloading ResourceManager: Default, yert
+[22:02:01] [Server thread/INFO]: Loaded 6 recipes
+[22:02:01] [Server thread/INFO]: Loaded 1 custom command functions
+[22:02:01] [Server thread/INFO]: Loaded 825 advancements
+[22:02:02] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld
+[22:02:03] [Server thread/INFO]: Preparing spawn area: 0%
+[22:02:03] [Server thread/INFO]: Preparing spawn area: 0%
+[22:02:03] [Server thread/INFO]: Preparing spawn area: 0%
+[22:02:03] [Server thread/INFO]: Preparing spawn area: 0%
+[22:02:04] [Server thread/INFO]: Time elapsed: 1788 ms
+[22:02:04] [Server thread/INFO]: Done (3.299s)! For help, type "help"
+[22:02:06] [User Authenticator #1/INFO]: UUID of player King_Cat is e3087768-76b3-487d-987b-741694b3d97f
+[22:02:06] [Server thread/INFO]: King_Cat[/127.0.0.1:52524] logged in with entity id 154 at (172.49341307296265, 64.0, -102.3301384246217)
+[22:02:06] [Server thread/INFO]: King_Cat joined the game
+[22:02:17] [Server thread/INFO]: Banned King_Cat: Banned by an operator.
+[22:02:17] [Server thread/INFO]: King_Cat lost connection: You are banned from this server
+[22:02:17] [Server thread/INFO]: King_Cat left the game
+[22:02:22] [User Authenticator #2/INFO]: UUID of player King_Cat is e3087768-76b3-487d-987b-741694b3d97f
+[22:02:22] [Server thread/INFO]: Disconnecting com.mojang.authlib.GameProfile@ec4278[id=e3087768-76b3-487d-987b-741694b3d97f,name=King_Cat,properties={textures=[com.mojang.authlib.properties.Property@59907408]},legacy=false] (/127.0.0.1:52530): You are banned from this server.
+Reason: Banned by an operator.
+[22:02:22] [Server thread/INFO]: com.mojang.authlib.GameProfile@ec4278[id=e3087768-76b3-487d-987b-741694b3d97f,name=King_Cat,properties={textures=[com.mojang.authlib.properties.Property@59907408]},legacy=false] (/127.0.0.1:52530) lost connection: You are banned from this server.
+Reason: Banned by an operator.
+[22:02:50] [Server thread/INFO]: Unbanned King_Cat
+[22:03:48] [Server thread/INFO]: Stopping the server
+[22:03:48] [Server thread/INFO]: Stopping server
+[22:03:48] [Server thread/INFO]: Saving players
+[22:03:48] [Server thread/INFO]: Saving worlds
+[22:03:48] [Server thread/INFO]: Saving chunks for level 'world'/minecraft:overworld
+[22:03:49] [Server thread/INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+[22:03:49] [Server thread/INFO]: Saving chunks for level 'world'/minecraft:the_nether
+[22:03:49] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[22:03:49] [Server thread/INFO]: Saving chunks for level 'world'/minecraft:the_end
+[22:03:49] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[22:03:49] [Server thread/INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+[22:03:50] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[22:03:50] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved

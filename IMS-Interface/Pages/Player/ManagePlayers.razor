@@ -1,0 +1,117 @@
+﻿@using System.Reflection
+
+@page "/ManagePlayers"
+
+<style>
+    .tab-ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+        .tab-ul > li {
+            float: left;
+        }
+
+            .tab-ul > li > a {
+                display: block;
+                text-align: center;
+                padding: 16px;
+                text-decoration: none;
+            }
+
+            .tab-ul > li a:hover {
+                background-color: #eeeeee;
+            }
+
+    .nav-link {
+        background: transparent;
+        border: 1px solid transparent;
+        color: #23527c;
+        font-weight: normal;
+        border-radius: 3px;
+        margin-left: 2px;
+        margin-right: 2px;
+        padding: 5px;
+    }
+
+    .nav-link-active {
+        border: 1px solid #23527c;
+        background: transparent;
+        color: #23527c;
+        font-weight: normal;
+        border-radius: 3px;
+        margin-left: 2px;
+        margin-right: 2px;
+        padding: 5px 6px 5px 6px;
+    }
+
+    .nav-link:hover, .nav-link:focus {
+        background: rgba(200, 200, 200, 0.25);
+    }
+</style>
+
+<h3>Manage Players</h3>
+<br />
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                <div style="display:table; margin:0 0">
+                    <ul class="nav tab-ul" style="
+                        list-style: none;
+                        margin-bottom: unset;
+                        padding-left: unset;">
+                        @foreach (PlayerDisplay display in PlayerViews)
+                        {
+                            <li style="display:inline; position:static">
+                                <button class="@(display == SelectedView ? "nav-link-active" : "nav-link")" @onclick="x => SelectedView = display">@display.Name</button>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @if (SelectedView != null)
+                {
+                    RenderFragment fragment = builder =>
+                    {
+                        builder.OpenComponent(0, SelectedView.GetComponentType());
+                        builder.AddAttribute(0, "DisplayData", SelectedView);
+                        builder.CloseComponent();
+                    };
+                    @fragment
+                }
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<Timer @ref="UpdateTimer" Interval="250" UpdateScope=this></Timer>
+
+@code {
+    protected Timer UpdateTimer;
+    protected List<PlayerDisplay> PlayerViews = new List<PlayerDisplay>();
+    protected PlayerDisplay SelectedView;
+    private string View;
+
+    public ManagePlayers()
+    {
+        PlayerViews.Add(SelectedView = new OnlinePlayerDisplay());
+        PlayerViews.Add(new AllPlayerDisplay());
+        PlayerViews.Add(new WhitelistPlayerDisplay());
+        PlayerViews.Add(new OpPlayerDisplay());
+        PlayerViews.Add(new BanPlayerDisplay());
+        PlayerViews.Add(new BanIPDisplay());
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        UpdateTimer.Enabled = true;
+    }
+}

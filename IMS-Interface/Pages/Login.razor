@@ -1,0 +1,94 @@
+﻿@page "/Login"
+@layout EmptyLayout
+
+@using System;
+@using IMS_Library;
+@using System.Text;
+@using System.Threading.Tasks;
+@using Microsoft.AspNetCore.Http;
+@inject IJSRuntime JSRuntime
+@inject IHttpContextAccessor Context;
+
+<div>
+    <div class="jumbotron" style="padding: 15px 20px 15px 20px; position: absolute; width: 400px; height: 310px; vertical-align: middle; margin: auto; top: 0px; right: 0px; bottom: 0px; left: 0px;">
+        <label style="font-size:x-large">IMS Login</label>
+        <br />
+        <br />
+        <label style="font-size:medium">Username</label>
+        <br />
+        <input class="form-control" @bind="Username" />
+        <br />
+        <label style="font-size:medium">Password</label>
+        <br />
+        <input class="form-control" type="password" @bind="Password" onkeyup="if (event.keyCode === 13) { document.getElementById('LoginButton').click(); }"/>
+        <br />
+        <button class="btn btn-primary" id="LoginButton" type="submit" @onclick="AttemptLoginAsync">Login</button>
+        <button class="btn btn-primary" style="margin-left:10px; background-color:transparent; color:#23527c" @onclick="RequestLoginReset">Reset username/password</button>
+        <br />
+        <div style="margin-top:10px">
+            <label class="alert-danger" style="background-color:transparent; font-weight:normal;">@ErrorText</label>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Inject]
+    protected NavigationManager Navigator { get; set; }
+
+    public string ErrorText;
+
+    public string Username;
+    public string Password;
+
+    private static string realusername = "admin", realpassword = "chef";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if(HasValidLoginCookie(JSRuntime, Context))
+        {
+            Navigator.NavigateTo("/");
+        }
+    }
+
+    public async Task AttemptLoginAsync()
+    {
+        if (Username == realusername && Password == realpassword)
+        {
+            await WriteLoginCookie(JSRuntime, Context);
+            Navigator.NavigateTo("/");
+        }
+        else
+        {
+            ErrorText = "Incorrect username or password.";
+        }
+    }
+
+    public void RequestLoginReset()
+    {
+        ErrorText = "This feature has not been implemented yet.";
+    }
+
+    public static bool HasValidLoginCookie(IJSRuntime runtime, IHttpContextAccessor context)
+    {
+        string toCompare = ByteArrayToString(Encryption.HashBytes(Encoding.ASCII.GetBytes(realusername + context.HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString() + realpassword)));
+        return toCompare == context.HttpContext.Request.Cookies["LoginKey"];
+    }
+
+    public static async Task WriteLoginCookie(IJSRuntime runtime, IHttpContextAccessor context)
+    {
+        await runtime.InvokeVoidAsync("setCookie", "LoginKey", ByteArrayToString(Encryption.HashBytes(Encoding.ASCII.GetBytes(realusername + context.HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString() + realpassword))), 36500);
+    }
+
+    public static async Task DeleteLoginCookie(IJSRuntime runtime, IHttpContextAccessor context)
+    {
+        await runtime.InvokeVoidAsync("deleteCookie", "LoginKey");
+    }
+
+    private static string ByteArrayToString(byte[] ba)
+    {
+        StringBuilder hex = new StringBuilder(ba.Length * 2);
+        foreach (byte b in ba)
+            hex.AppendFormat("{0:x2}", b);
+        return hex.ToString();
+    }
+}

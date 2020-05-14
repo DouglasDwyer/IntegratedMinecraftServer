@@ -1,0 +1,18 @@
+﻿@inherits PreferenceDisplayView
+
+@{
+    ConditionalDisplay display = (DisplayData as ConditionalDisplay);
+    if (display.Condition())
+    {
+
+        display.InternalDisplay.ParentDisplay = display.ParentDisplay;
+        RenderFragment fragment = builder =>
+        {
+            builder.OpenComponent(0, display.InternalDisplay.GetComponentType());
+            builder.AddAttribute(0, "DisplayData", display.InternalDisplay);
+            builder.CloseComponent();
+        };
+        @fragment
+        <br />
+    }
+}

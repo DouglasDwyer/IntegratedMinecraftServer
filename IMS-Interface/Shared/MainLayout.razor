@@ -1,0 +1,106 @@
+﻿@inherits LayoutComponentBase
+@using IMS_Library;
+@using Microsoft.AspNetCore.Http;
+
+@inject IJSRuntime JSRuntime
+@inject IHttpContextAccessor Context
+
+    <CascadingValue Value="@SelectedServer" Name="CurrentServer">
+        <NavMenu />
+        <div class="main">
+
+            <div class="navbar navbar-inverse navbar-fixed-top" style="z-index:300">
+                <div>
+                    <div class="navbar-header">
+                        <a class="navbar-brand" style="padding:15px 0px" href="/">Integrated Minecraft Server</a>
+                    </div>
+
+                    <div style="left:62px; right:8px; position:absolute; width:400px; top: 50%; margin-top:-15px; margin-left:calc(100% - 405px); margin-right:0">
+                        <select style="width:250px" class="btn btn-default dropdown-toggle">
+                            @{
+                                bool firstServer = true;
+                                @foreach (ServerProxy proxy in IMS.Instance.ServerManager.Servers)
+                                {
+                                    if(firstServer)
+                                    {
+                                        SelectedServer = proxy.ID;
+                                        firstServer = false;
+                                    }
+                                    <option value="@proxy.ID">@proxy.CurrentConfiguration.ServerName</option>
+                                }
+                            }
+                            <option value="NEW">Create new server...</option>
+                        </select>
+                        <button style="background-color:transparent; margin-left:10px; border-style:none; color:white" @onclick="LogoutAsync">Sign Out</button>
+                        //<asp:DropDownList style="width:250px" CssClass="btn btn-default dropdown-toggle" ID="ServerSelectionMenu" runat="server" OnSelectedIndexChanged="ServerSelectionMenu_SelectedIndexChanged" AutoPostBack="True" ViewStateMode="Enabled"></asp:DropDownList>
+                        //<asp:Button ID="SignOutButton" runat="server" Text="Sign Out" BackColor="Transparent" style="" BorderStyle="None" ForeColor="White" OnClick="SignOutButton_Click" CausesValidation="False" TabIndex="0" UseSubmitBehavior="False" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="px-4" style="margin-left:80px; margin-top:74px; margin-right:10px">
+                @Body
+                <br />
+            </div>
+        </div>
+    </CascadingValue>
+@code {
+    [Inject]
+    protected NavigationManager Navigator { get; set; }
+    public Guid SelectedServer {
+        get {
+            return IMS.AsThreadSafe(() => {
+                if (CurrentServer == Guid.Empty)
+                {
+                    IList<ServerProxy> servers = IMS.Instance.ServerManager.Servers;
+                    if (servers.Count > 0)
+                    {
+                        return CurrentServer = servers[0].ID;
+                    }
+                    else
+                    {
+                        return Guid.Empty;
+                    }
+                }
+                return CurrentServer;
+            });
+        } set {
+            CurrentServer = value;    
+        }
+    }
+    private Guid CurrentServer;
+
+    protected override void OnInitialized()
+    {
+        if (Navigator.ToBaseRelativePath(Navigator.Uri) != "Login" && !Pages.Login.HasValidLoginCookie(JSRuntime, Context))
+        {
+            Navigator.NavigateTo("/Login", true);
+            throw new NavigationException("/Login");
+        }
+        NavigateToNewServerPage();
+    }
+
+    protected void NavigateToNewServerPage()
+    {
+        if (IMS.Instance.ServerManager.Servers.Count == 0 && Navigator.ToBaseRelativePath(Navigator.Uri) != "CreateNewServer")
+        {
+            Navigator.NavigateTo("/CreateNewServer", true);
+            throw new NavigationException("/CreateNewServer");
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JSRuntime.InvokeVoidAsync("pageLoad");
+    }
+
+    protected async Task LogoutAsync()
+    {
+        if (Pages.Login.HasValidLoginCookie(JSRuntime, Context))
+        {
+            await Pages.Login.DeleteLoginCookie(JSRuntime, Context);
+            Navigator.NavigateTo("/Login", true);
+            throw new NavigationException("/Login");
+        }
+    }
+}

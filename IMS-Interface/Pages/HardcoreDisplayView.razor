@@ -1,0 +1,47 @@
+﻿@inherits PreferenceDisplayView
+@using System.Reflection
+
+<label>@DisplayData.DisplayName</label>
+<br />
+<div data-toggle="tooltip"
+     data-placement="right"
+     data-title="@DisplayData.Description" style="display:inline-block; margin:5px 0px">
+    <MultiToggle Options="(DisplayData as HardcoreDisplay).Values"
+                 SelectedIndex="@SelectedItem"
+                 OnSelectionChange="@(x => SelectedItem = x)"></MultiToggle>
+</div>
+<br />
+
+@code {
+    public virtual int SelectedItem
+    {
+        get
+        {
+            return (bool)DisplayData.ParentDisplay.CurrentConfiguration.GetType()
+                .GetField((DisplayData as HardcoreDisplay).HardcoreFieldName, BindingFlags.Public | BindingFlags.Instance)
+                .GetValue(DisplayData.ParentDisplay.CurrentConfiguration) ? (DisplayData as HardcoreDisplay).Values.Length - 1 : (int)DisplayData.ParentDisplay.CurrentConfiguration.GetType()
+                .GetField(DisplayData.FieldName, BindingFlags.Public | BindingFlags.Instance)
+                .GetValue(DisplayData.ParentDisplay.CurrentConfiguration);
+        }
+        set
+        {
+            if (value >= 0 && value < (DisplayData as HardcoreDisplay).Values.Length)
+            {
+                if(value == (DisplayData as HardcoreDisplay).Values.Length - 1)
+                {
+                    DisplayData.ParentDisplay.CurrentConfiguration.GetType()
+                        .GetField((DisplayData as HardcoreDisplay).HardcoreFieldName, BindingFlags.Public | BindingFlags.Instance)
+                        .SetValue(DisplayData.ParentDisplay.CurrentConfiguration, true);
+                }
+                else
+                {
+                    DisplayData.ParentDisplay.CurrentConfiguration.GetType()
+                        .GetField((DisplayData as HardcoreDisplay).HardcoreFieldName, BindingFlags.Public | BindingFlags.Instance)
+                        .SetValue(DisplayData.ParentDisplay.CurrentConfiguration, false);
+                        DisplayData.ParentDisplay.CurrentConfiguration.GetType().GetField(DisplayData.FieldName, BindingFlags.Public | BindingFlags.Instance).SetValue(DisplayData.ParentDisplay.CurrentConfiguration, value);
+                }
+            }
+            DisplayData.ParentDisplay.NotifyStateChanged();
+        }
+    }
+}

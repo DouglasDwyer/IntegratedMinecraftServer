@@ -1,0 +1,20 @@
+[INFO] [5/10/2020 12:26:22 PM] Starting IMS...
+[INFO] [5/10/2020 12:26:22 PM] IMS settings configuration loaded.
+[INFO] [5/10/2020 12:26:22 PM] Attempting to find suitable UPnP router for port forwarding...
+[INFO] [5/10/2020 12:26:22 PM] Successfully connected to UPnP capable device with IP 10.0.0.16
+[INFO] [5/10/2020 12:26:22 PM] Loading servers from disk...
+[ERROR] [5/10/2020 12:26:25 PM] Error loading server 81a130d2-502f-4cf1-a376-63edeb000e9f!
+System.InvalidOperationException: There is an error in XML document (2, 2).
+ ---> System.InvalidOperationException: <ServerConfiguration xmlns='IMS_Service'> was not expected.
+   at Microsoft.Xml.Serialization.GeneratedAssembly.XmlSerializationReaderJavaServerConfiguration.Read6_JavaServerConfiguration()
+   --- End of inner exception stack trace ---
+   at System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle, XmlDeserializationEvents events)
+   at System.Xml.Serialization.XmlSerializer.Deserialize(TextReader textReader)
+   at KinglyStudios.Knetworking.SerializationManagement.XMLToObject(String xmlText, Type type) in D:\Projects\Kingly Studios\KinglyNetworking\KinglyNetworking\SerializationManagement.cs:line 112
+   at IMS_Library.IMSConfigurationUtility.FromConfiguration[T](T imsConfiguration) in D:\Projects\IntegratedMinecraftServer\IMS-Library\IMSConfiguration.cs:line 35
+   at IMS_Library.ServerController.LoadServersFromDisk() in D:\Projects\IntegratedMinecraftServer\IMS-Library\ServerController.cs:line 102
+[WARNING] [5/10/2020 12:26:25 PM] Couldn't load folder D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1/Data/Server\ubuntte as Minecraft server instance!
+[INFO] [5/10/2020 12:26:25 PM] Servers loaded.  Starting servers...
+[INFO] [5/10/2020 12:26:25 PM] All servers started.
+[INFO] [5/10/2020 12:26:48 PM] Shutting down all servers...
+[INFO] [5/10/2020 12:26:48 PM] All servers shut down.

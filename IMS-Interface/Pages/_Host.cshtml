@@ -1,0 +1,156 @@
+﻿@page "/"
+@namespace IMS_Interface.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script>
+        function callOnLoad() {
+            $('[onload]').trigger('onload');
+        }
+
+        function executeInputEvent(parent, elementId) {
+	        parent.querySelector('#' + elementId).dispatchEvent(new Event('input', { bubbles: true, cancelable: true,}));
+        }
+
+        function setButtonFormattingsForMOTDDisplay(parent) {
+            var selectedButton = 'radial-gradient(transparent 30%,rgba(35,82,124,0.5) 100%)';
+            var unselectedButton = 'unset';
+            var formattings = ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'foreColor'];
+            var i;
+            for (i = 0; i < formattings.length; i++) {
+                var button = parent.querySelector('#' + formattings[i] + 'Button');
+                if (document.queryCommandState(formattings[i])) {
+                    button.style.backgroundImage = selectedButton;
+                }
+                else {
+                    button.style.backgroundImage = unselectedButton;
+                }
+            }
+        }
+
+        function setInnerHTMLOfElement(element, data) {
+            if (element.innerHTML != data) {
+                element.innerHTML = data;
+            }
+        }
+
+        function getWidthOfText(inputText) {
+            var font = "16px minecraft";
+
+            var canvas = document.createElement("canvas");
+            var context = canvas.getContext("2d");
+            context.font = font;
+            var width = context.measureText(inputText).width;
+            return Math.ceil(width);
+        }
+
+        function stripHtml(html) {
+            // Create a new div element
+            var temporalDivElement = document.createElement("div");
+            // Set the HTML content with the providen
+            temporalDivElement.innerHTML = html;
+            // Retrieve the text property of the element (cross-browser support)
+            return temporalDivElement.textContent || temporalDivElement.innerText || "";
+        }
+
+        function format(command, value) {
+            document.execCommand(command, false, value);
+        }
+
+        function serverConsoleSetText(textboxID, text) {
+            var box = document.getElementById(textboxID);
+            if (box.value != text) {
+                var isScrolledAllTheWay = box.scrollHeight == (box.scrollTop + box.clientHeight);
+                box.value = text;
+                if (isScrolledAllTheWay) {
+                    box.scrollTop = box.scrollHeight - box.clientHeight;
+                }
+            }
+        }
+
+        function scrollToBottom(textboxID) {
+            var box = document.getElementById(textboxID);
+            box.scrollTop = box.scrollHeight - box.clientHeight;
+        }
+
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toGMTString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        function deleteCookie(cname) {
+            var d = new Date();
+            d.setTime(0);
+            var expires = "expires=" + d.toGMTString();
+            document.cookie = cname + "=" + " " + ";" + expires + ";path=/";
+        }
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return undefined;
+        }
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IMS Interface</title>
+    <base href="~/" />
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="minecraft-font/stylesheet.css" />
+    <link href="css/site.css" rel="stylesheet" />
+</head>
+<body>
+
+    <app>
+        <component type="typeof(App)" render-mode="ServerPrerendered" />
+    </app>
+
+    <script>
+        function pageLoad() {
+            $('[data-toggle="tooltip"]').tooltip();
+            $("body").click(
+                function (e) {
+                 if(e.target.className != 'color-box' && e.target.id != 'foreColorButton'){
+                     $('.color-box').attr("hidden",true);
+                 }
+            });
+        }
+    </script>
+
+    <div id="blazor-error-ui">
+        <environment include="Staging,Production">
+            An error has occurred. This application may no longer respond until reloaded.
+        </environment>
+        <environment include="Development">
+            An unhandled exception has occurred. See browser dev tools for details.
+        </environment>
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+
+    <script src="_framework/blazor.server.js"></script>
+</body>
+</html>

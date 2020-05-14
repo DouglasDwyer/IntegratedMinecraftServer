@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>IMS_Service</RootNamespace>
+    <ApplicationIcon>ims_icon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="ims_icon.xcf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Blazored.LocalStorage" Version="2.1.5" />
+    <PackageReference Include="Microsoft.Windows.Compatibility" Version="3.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IMS-Interface\IMS-Interface.csproj" />
+    <ProjectReference Include="..\IMS-Library\IMS-Library.csproj" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="XCOPY &quot;D:\Projects\IntegratedMinecraftServer\IMS-Interface\wwwroot&quot; &quot;D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\wwwroot\&quot; /S /Y" />
+  </Target>
+
+</Project>

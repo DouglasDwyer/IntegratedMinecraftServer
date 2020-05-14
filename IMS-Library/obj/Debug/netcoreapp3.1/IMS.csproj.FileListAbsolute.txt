@@ -1,0 +1,5 @@
+D:\Projects\IntegratedMinecraftServer\IMS\bin\Debug\netcoreapp3.1\IMS.deps.json
+D:\Projects\IntegratedMinecraftServer\IMS\bin\Debug\netcoreapp3.1\IMS.dll
+D:\Projects\IntegratedMinecraftServer\IMS\obj\Debug\netcoreapp3.1\IMS.csprojAssemblyReference.cache
+D:\Projects\IntegratedMinecraftServer\IMS\obj\Debug\netcoreapp3.1\IMS.AssemblyInfoInputs.cache
+D:\Projects\IntegratedMinecraftServer\IMS\obj\Debug\netcoreapp3.1\IMS.AssemblyInfo.cs

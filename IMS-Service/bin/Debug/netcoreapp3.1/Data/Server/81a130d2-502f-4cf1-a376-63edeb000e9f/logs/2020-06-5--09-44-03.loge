@@ -1,0 +1,30 @@
+[09:44:07] [main/WARN]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[09:44:07] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[09:44:07] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[09:44:07] [main/WARN]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[09:44:07] [main/WARN]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[09:44:07] [Server thread/INFO]: Starting minecraft server version 1.15.2
+[09:44:07] [Server thread/INFO]: Loading properties
+[09:44:07] [Server thread/INFO]: Default game type: SURVIVAL
+[09:44:07] [Server thread/INFO]: Generating keypair
+[09:44:07] [Server thread/INFO]: Starting Minecraft server on *:25565
+[09:44:07] [Server thread/INFO]: Using default channel type
+[09:44:08] [Server thread/INFO]: Preparing level "world"
+[09:44:08] [Server thread/INFO]: Reloading ResourceManager: Default, yert
+[09:44:09] [Server thread/INFO]: Loaded 6 recipes
+[09:44:09] [Server thread/INFO]: Loaded 1 custom command functions
+[09:44:10] [Server thread/INFO]: Loaded 825 advancements
+[09:44:10] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld
+[09:44:11] [User Authenticator #1/INFO]: UUID of player King_Cat is e3087768-76b3-487d-987b-741694b3d97f
+[09:44:12] [Server thread/INFO]: Preparing spawn area: 0%
+[09:44:12] [Server thread/INFO]: Preparing spawn area: 0%
+[09:44:12] [Server thread/INFO]: Preparing spawn area: 0%
+[09:44:12] [Server thread/INFO]: Preparing spawn area: 0%
+[09:44:12] [Server-Worker-7/INFO]: Preparing spawn area: 0%
+[09:44:13] [Server thread/INFO]: Preparing spawn area: 5%
+[09:44:13] [Server thread/INFO]: Time elapsed: 2682 ms
+[09:44:13] [Server thread/INFO]: Done (4.360s)! For help, type "help"
+[09:44:13] [Server thread/INFO]: King_Cat[/127.0.0.1:63577] logged in with entity id 168 at (177.02287722769745, 64.0, -120.69999998807907)
+[09:44:13] [Server thread/INFO]: King_Cat joined the game
+[09:44:16] [Server thread/INFO]: King_Cat lost connection: Disconnected
+[09:44:16] [Server thread/INFO]: King_Cat left the game

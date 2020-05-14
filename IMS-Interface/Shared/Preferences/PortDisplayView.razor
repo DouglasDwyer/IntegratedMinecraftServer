@@ -1,0 +1,65 @@
+﻿@using System.Reflection;
+@using IMS_Library;
+
+@inherits PreferenceDisplayView
+
+<label>@DisplayData.DisplayName</label>
+<br />
+<input class="form-control"
+       style="margin-top:5px;margin-bottom:5px; width:200px; display:unset"
+       data-toggle="tooltip"
+       data-placement="right"
+       data-title="@DisplayData.Description"
+       type="number"
+       min="0"
+       max="65535"
+       @bind="PortValue" />
+<br />
+<MultiToggle Options="Options" SelectedIndex="@ForwardPort" OnSelectionChange="@(x => ForwardPort = x)"></MultiToggle>
+
+@code {
+    private static readonly string[] Options = new[] { "Forward", "Don't forward" };
+
+    public virtual string PortValue
+    {
+        get
+        {
+            return CurrentPort.Port.ToString();
+        }
+        set
+        {
+            int val;
+            if (int.TryParse((string)value, out val) && val >= 0 && val <= 65535)
+            {
+                WebPort port = CurrentPort;
+                port.Port = val;
+                DisplayData.ParentDisplay.CurrentConfiguration.GetType().GetField(DisplayData.FieldName, BindingFlags.Public | BindingFlags.Instance).SetValue(DisplayData.ParentDisplay.CurrentConfiguration, port);
+            }
+            DisplayData.ParentDisplay.NotifyStateChanged();
+        }
+    }
+    public virtual int ForwardPort
+    {
+        get
+        {
+            return CurrentPort.AttemptUPnPForwarding ? 0 : 1;
+        }
+        set
+        {
+            if(value == 0 || value == 1)
+            {
+                WebPort port = CurrentPort;
+                port.AttemptUPnPForwarding = value == 0;
+                DisplayData.ParentDisplay.CurrentConfiguration.GetType().GetField(DisplayData.FieldName, BindingFlags.Public | BindingFlags.Instance).SetValue(DisplayData.ParentDisplay.CurrentConfiguration, port);
+            }
+            DisplayData.ParentDisplay.NotifyStateChanged();
+        }
+    }
+    protected WebPort CurrentPort
+    {
+        get
+        {
+            return (WebPort)DisplayData.ParentDisplay.CurrentConfiguration.GetType().GetField(DisplayData.FieldName, BindingFlags.Public | BindingFlags.Instance).GetValue(DisplayData.ParentDisplay.CurrentConfiguration);
+        }
+    }
+}

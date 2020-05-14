@@ -1,0 +1,135 @@
+[21:14:26] [main/WARN]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[21:14:26] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[21:14:26] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[21:14:26] [main/WARN]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[21:14:26] [main/WARN]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[21:14:26] [Server thread/INFO]: Starting minecraft server version 1.15.2
+[21:14:26] [Server thread/INFO]: Loading properties
+[21:14:26] [Server thread/INFO]: Default game type: SURVIVAL
+[21:14:26] [Server thread/INFO]: Generating keypair
+[21:14:26] [Server thread/INFO]: Starting Minecraft server on *:25565
+[21:14:26] [Server thread/INFO]: Using default channel type
+[21:14:27] [Server thread/INFO]: Preparing level "world"
+[21:14:27] [Server thread/INFO]: Reloading ResourceManager: Default, yert
+[21:14:28] [Server thread/INFO]: Loaded 6 recipes
+[21:14:28] [Server thread/INFO]: Loaded 1 custom command functions
+[21:14:28] [Server thread/INFO]: Loaded 825 advancements
+[21:14:29] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld
+[21:14:30] [Server thread/INFO]: Preparing spawn area: 0%
+[21:14:30] [Server thread/INFO]: Preparing spawn area: 0%
+[21:14:30] [Server thread/INFO]: Preparing spawn area: 0%
+[21:14:31] [Server-Worker-7/INFO]: Preparing spawn area: 0%
+[21:14:31] [Server-Worker-7/INFO]: Preparing spawn area: 0%
+[21:14:31] [Server thread/INFO]: Time elapsed: 2395 ms
+[21:14:31] [Server thread/INFO]: Done (3.950s)! For help, type "help"
+[21:14:35] [Server thread/INFO]: Banned IP 127.0.0.1: Banned by an operator.
+[21:14:38] [Server thread/INFO]: Unbanned IP 127.0.0.1
+[21:14:40] [Server thread/INFO]: Banned IP 127.0.0.1: Banned by an operator.
+[21:14:46] [Server thread/INFO]: Unbanned IP 127.0.0.1
+[21:14:47] [Server thread/INFO]: Unbanned IP 10.0.0.8
+[21:14:55] [Server thread/INFO]: Unbanned King_Cat
+[21:14:55] [Server thread/INFO]: Unbanned popbob
+[21:14:56] [Server thread/INFO]: Unbanned Tester
+[21:14:56] [Server thread/INFO]: Unbanned dad
+[21:14:59] [Server thread/INFO]: Nothing changed. The player is not an operator
+[21:15:01] [Server thread/INFO]: Nothing changed. The player is not an operator
+[21:15:01] [Server thread/INFO]: Nothing changed. The player is not an operator
+[21:15:02] [Server thread/INFO]: Nothing changed. The player is not an operator
+[21:15:11] [Server thread/INFO]: Nothing changed. The player is not an operator
+[21:15:24] [User Authenticator #1/INFO]: UUID of player King_Cat is e3087768-76b3-487d-987b-741694b3d97f
+[21:15:24] [Server thread/INFO]: King_Cat[/127.0.0.1:60257] logged in with entity id 233 at (210.30176997121177, 64.0, -126.11908407487137)
+[21:15:25] [Server thread/INFO]: King_Cat joined the game
+[21:15:28] [Server thread/INFO]: Made King_Cat no longer a server operator
+[21:15:33] [Server thread/INFO]: Made King_Cat a server operator
+[21:15:41] [Server thread/INFO]: King_Cat lost connection: Disconnected
+[21:15:41] [Server thread/INFO]: King_Cat left the game
+[21:15:43] [Server thread/INFO]: Made King_Cat no longer a server operator
+[21:15:44] [Server thread/INFO]: Made King_Cat a server operator
+[21:15:48] [Server thread/INFO]: Made King_Cat no longer a server operator
+[21:15:51] [Server thread/INFO]: Made King_Cat a server operator
+[21:15:54] [Server thread/INFO]: Made King_Cat no longer a server operator
+[21:15:57] [Server thread/INFO]: Made King_Cat a server operator
+[21:16:06] [Server thread/INFO]: Banned IP 127.0.0.1: Banned by an operator.
+[21:16:09] [User Authenticator #2/INFO]: UUID of player King_Cat is e3087768-76b3-487d-987b-741694b3d97f
+[21:16:09] [Server thread/INFO]: Disconnecting com.mojang.authlib.GameProfile@4a0a8457[id=e3087768-76b3-487d-987b-741694b3d97f,name=King_Cat,properties={textures=[com.mojang.authlib.properties.Property@465837c7]},legacy=false] (/127.0.0.1:60264): Your IP address is banned from this server.
+Reason: Banned by an operator.
+[21:16:09] [Server thread/INFO]: com.mojang.authlib.GameProfile@4a0a8457[id=e3087768-76b3-487d-987b-741694b3d97f,name=King_Cat,properties={textures=[com.mojang.authlib.properties.Property@465837c7]},legacy=false] (/127.0.0.1:60264) lost connection: Your IP address is banned from this server.
+Reason: Banned by an operator.
+[21:16:11] [Server thread/INFO]: Unbanned IP 127.0.0.1
+[21:16:13] [User Authenticator #3/INFO]: UUID of player King_Cat is e3087768-76b3-487d-987b-741694b3d97f
+[21:16:13] [Server thread/INFO]: King_Cat[/127.0.0.1:60267] logged in with entity id 265 at (206.3764556534624, 63.0, -126.64791416239676)
+[21:16:13] [Server thread/INFO]: King_Cat joined the game
+[21:16:21] [Server thread/INFO]: Banned IP 127.0.0.1: Banned by an operator.
+[21:16:21] [Server thread/INFO]: This ban affects 1 players: King_Cat
+[21:16:21] [Server thread/INFO]: King_Cat lost connection: Disconnected
+[21:16:21] [Server thread/INFO]: King_Cat left the game
+[21:16:21] [Server thread/WARN]: handleDisconnection() called twice
+[21:16:26] [User Authenticator #4/INFO]: UUID of player King_Cat is e3087768-76b3-487d-987b-741694b3d97f
+[21:16:26] [Server thread/INFO]: Disconnecting com.mojang.authlib.GameProfile@780edddc[id=e3087768-76b3-487d-987b-741694b3d97f,name=King_Cat,properties={textures=[com.mojang.authlib.properties.Property@8657d20]},legacy=false] (/127.0.0.1:60269): Your IP address is banned from this server.
+Reason: Banned by an operator.
+[21:16:27] [Server thread/INFO]: com.mojang.authlib.GameProfile@780edddc[id=e3087768-76b3-487d-987b-741694b3d97f,name=King_Cat,properties={textures=[com.mojang.authlib.properties.Property@8657d20]},legacy=false] (/127.0.0.1:60269) lost connection: Your IP address is banned from this server.
+Reason: Banned by an operator.
+[21:16:29] [Server thread/INFO]: Unbanned IP 127.0.0.1
+[21:16:30] [Server thread/INFO]: Banned IP 127.0.0.1: Banned by an operator.
+[21:16:31] [User Authenticator #5/INFO]: UUID of player King_Cat is e3087768-76b3-487d-987b-741694b3d97f
+[21:16:31] [Server thread/INFO]: Disconnecting com.mojang.authlib.GameProfile@e636df9[id=e3087768-76b3-487d-987b-741694b3d97f,name=King_Cat,properties={textures=[com.mojang.authlib.properties.Property@2d8123e3]},legacy=false] (/127.0.0.1:60272): Your IP address is banned from this server.
+Reason: Banned by an operator.
+[21:16:31] [Server thread/INFO]: com.mojang.authlib.GameProfile@e636df9[id=e3087768-76b3-487d-987b-741694b3d97f,name=King_Cat,properties={textures=[com.mojang.authlib.properties.Property@2d8123e3]},legacy=false] (/127.0.0.1:60272) lost connection: Your IP address is banned from this server.
+Reason: Banned by an operator.
+[21:16:32] [Server thread/INFO]: Unbanned IP 127.0.0.1
+[21:16:36] [User Authenticator #6/INFO]: UUID of player King_Cat is e3087768-76b3-487d-987b-741694b3d97f
+[21:16:36] [Server thread/INFO]: King_Cat[/127.0.0.1:60274] logged in with entity id 273 at (206.3764556534624, 63.0, -126.64791416239676)
+[21:16:36] [Server thread/INFO]: King_Cat joined the game
+[21:16:43] [Server thread/INFO]: Banned King_Cat: Banned by an operator.
+[21:16:43] [Server thread/INFO]: King_Cat lost connection: You are banned from this server
+[21:16:43] [Server thread/INFO]: King_Cat left the game
+[21:16:52] [User Authenticator #7/INFO]: UUID of player King_Cat is e3087768-76b3-487d-987b-741694b3d97f
+[21:16:52] [Server thread/INFO]: Disconnecting com.mojang.authlib.GameProfile@65691bc[id=e3087768-76b3-487d-987b-741694b3d97f,name=King_Cat,properties={textures=[com.mojang.authlib.properties.Property@cbc337]},legacy=false] (/127.0.0.1:60275): You are banned from this server.
+Reason: Banned by an operator.
+[21:16:52] [Server thread/INFO]: com.mojang.authlib.GameProfile@65691bc[id=e3087768-76b3-487d-987b-741694b3d97f,name=King_Cat,properties={textures=[com.mojang.authlib.properties.Property@cbc337]},legacy=false] (/127.0.0.1:60275) lost connection: You are banned from this server.
+Reason: Banned by an operator.
+[21:17:00] [Server thread/INFO]: Unbanned King_Cat
+[21:17:26] [User Authenticator #8/INFO]: UUID of player King_Cat is e3087768-76b3-487d-987b-741694b3d97f
+[21:17:26] [Server thread/INFO]: King_Cat[/127.0.0.1:60281] logged in with entity id 293 at (191.30000001192093, 63.0, -132.47623108423136)
+[21:17:26] [Server thread/INFO]: King_Cat joined the game
+[21:17:30] [Server thread/INFO]: Made King_Cat no longer a server operator
+[21:17:41] [Server thread/INFO]: Made King_Cat a server operator
+[21:19:00] [Server thread/INFO]: [King_Cat: Changed the block at 176, 64, -114]
+[21:19:02] [Server thread/INFO]: [King_Cat: Changed the block at 177, 64, -114]
+[21:19:02] [Server thread/INFO]: [King_Cat: Changed the block at 177, 64, -114]
+[21:19:04] [Server thread/INFO]: [King_Cat: Changed the block at 177, 64, -114]
+[21:19:07] [Server thread/INFO]: [King_Cat: Changed the block at 177, 64, -114]
+[21:19:08] [Server thread/INFO]: [King_Cat: Changed the block at 177, 64, -114]
+[21:19:08] [Server thread/INFO]: [King_Cat: Changed the block at 177, 64, -114]
+[21:19:15] [Server thread/INFO]: [King_Cat: Changed the block at 176, 64, -115]
+[21:19:15] [Server thread/INFO]: [King_Cat: Changed the block at 176, 64, -115]
+[21:19:18] [Server thread/INFO]: [King_Cat: Changed the block at 176, 64, -115]
+[21:19:19] [Server thread/INFO]: [King_Cat: Changed the block at 176, 64, -115]
+[21:19:19] [Server thread/INFO]: [King_Cat: Changed the block at 176, 64, -115]
+[21:19:22] [Server thread/INFO]: [King_Cat: Changed the block at 176, 64, -115]
+[21:19:22] [Server thread/INFO]: [King_Cat: Changed the block at 176, 64, -115]
+[21:19:23] [Server thread/INFO]: [King_Cat: Changed the block at 176, 64, -115]
+[21:19:32] [Server thread/INFO]: [King_Cat: Changed the block at 176, 64, -115]
+[21:19:33] [Server thread/INFO]: [King_Cat: Changed the block at 176, 64, -115]
+[21:19:37] [Server thread/INFO]: [King_Cat: Changed the block at 176, 64, -115]
+[21:19:38] [Server thread/INFO]: [King_Cat: Changed the block at 176, 64, -115]
+[21:19:40] [Server thread/INFO]: [King_Cat: Changed the block at 176, 64, -115]
+[21:19:44] [Server thread/INFO]: [King_Cat: Changed the block at 176, 64, -115]
+[21:20:01] [Server thread/INFO]: [King_Cat: Changed the block at 180, 64, -114]
+[21:20:55] [Server thread/INFO]: [King_Cat: Changed the block at 176, 64, -112]
+[21:24:09] [Server thread/WARN]: Fetching packet for removed entity awb['Sand'/1292, l='world', x=175.71, y=63.57, z=-117.50]
+[21:24:18] [Server thread/INFO]: King_Cat lost connection: Disconnected
+[21:24:18] [Server thread/INFO]: King_Cat left the game
+[21:24:22] [Server thread/INFO]: Stopping the server
+[21:24:22] [Server thread/INFO]: Stopping server
+[21:24:22] [Server thread/INFO]: Saving players
+[21:24:22] [Server thread/INFO]: Saving worlds
+[21:24:22] [Server thread/INFO]: Saving chunks for level 'world'/minecraft:overworld
+[21:24:22] [Server thread/INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+[21:24:22] [Server thread/INFO]: Saving chunks for level 'world'/minecraft:the_end
+[21:24:22] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[21:24:22] [Server thread/INFO]: Saving chunks for level 'world'/minecraft:the_nether
+[21:24:22] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[21:24:22] [Server thread/INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+[21:24:23] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[21:24:23] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved

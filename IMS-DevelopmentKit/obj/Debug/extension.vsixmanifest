@@ -1,0 +1,22 @@
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011">
+  <Metadata>
+    <Identity Id="IMS_DevelopmentKit.d3e7dd32-dfd8-4c05-b704-e20491f2d45c" Version="0.0.1" Language="en-US" Publisher="Douglas Dwyer" />
+    <DisplayName>IMS Development Kit</DisplayName>
+    <Description xml:space="preserve">This extension is used for developing Integrated Minecraft Server plugins and GUI.</Description>
+    <Icon>ims_icon.ico</Icon>
+  </Metadata>
+  <Installation>
+    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[16.0, 17.0)" />
+  </Installation>
+  <Dependencies>
+    <Dependency Id="Microsoft.NetCore.CSharp.ProjectTemplates" DisplayName="C# .NETCore Project Templates" Version="[16.3.0.1955503,17.0)" />
+    <Dependency Id="Microsoft.WebTools.Languages.Razor.3" DisplayName="Microsoft WebTools Razor 3_0" Version="[12.0,13.0)" />
+  </Dependencies>
+  <Prerequisites>
+    <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[16.0,17.0)" DisplayName="Visual Studio core editor" />
+  </Prerequisites>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.Assembly" Path="IMS-Library.dll" AssemblyName="IMS-Library, Version=0.0.1.0, Culture=neutral, PublicKeyToken=null" />
+    <Asset Type="Microsoft.VisualStudio.ProjectTemplate" Path="ProjectTemplates" />
+  </Assets>
+</PackageManifest>

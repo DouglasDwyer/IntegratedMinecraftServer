@@ -1,0 +1,40 @@
+﻿
+<style>
+    ul.brightness-img {
+    }
+
+        ul.brightness-img > li > a > img:hover {
+            filter: brightness(125%);
+    }
+</style>
+<div class="navbar navbar-inverse navbar-fixed-left" style="background-color:rgb(238,238,238); border-bottom-color:transparent; border-radius:0px; border:unset; height:100%; width:70px; position:fixed">
+    <div style="padding-left:10px; width:72px">
+        <ul class="brightness-img nav navbar-nav-side" style="padding-top:58px">
+            <li>
+                <a href="/ServerPreferences" style="background-color:transparent">
+                    <img draggable="false" src="/img/lever.png" data-toggle="tooltip" data-container="app" data-trigger="hover" data-placement="right" title="Manage Server" style="height:50px; width:50px; margin-left:-15px" onclick="$(this).tooltip('hide');" />
+                </a>
+            </li>
+            <li>
+                <a href="/ManagePlayers" style="background-color:transparent">
+                    <img draggable="false" src="/img/steve.png" data-toggle="tooltip" data-container="app" data-trigger="hover" data-placement="right" title="Manage Players" style="height:50px; width:50px; margin-left:-15px" onclick="$(this).tooltip('hide');" />
+                </a>
+            </li>
+            <li>
+                <a href="/WorldsAndBackups" style="background-color:transparent">
+                    <img draggable="false" src="/img/grass_block.png" data-toggle="tooltip" data-container="app" data-trigger="hover" data-placement="right" title="Worlds and Backups" style="height:50px; width:50px; margin-left:-15px" onclick="$(this).tooltip('hide');" />
+                </a>
+            </li>
+            <li>
+                <a href="ServerConsole" style="background-color:transparent">
+                    <img draggable="false" src="/img/command_block.png" data-toggle="tooltip" data-container="app" data-trigger="hover" data-placement="right" title="Server Console" style="height:50px; width:50px; margin-left:-15px" onclick="$(this).tooltip('hide');" />
+                </a>
+            </li>
+            <li>
+                <a href="IMSPreferences" style="background-color:transparent">
+                    <img draggable="false" src="/img/enchanted_book.png" data-toggle="tooltip" data-container="app" data-trigger="hover" data-placement="right" title="IMS Preferences" style="height:50px; width:50px; margin-left:-15px" onclick="$(this).tooltip('hide')" />
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

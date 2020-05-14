@@ -1,0 +1,44 @@
+[INFO] [5/6/2020 9:36:02 AM] Starting IMS...
+[INFO] [5/6/2020 9:36:02 AM] IMS settings configuration loaded.
+[INFO] [5/6/2020 9:36:02 AM] Attempting to find suitable UPnP router for port forwarding...
+[INFO] [5/6/2020 9:36:02 AM] Successfully connected to UPnP capable device with IP 10.0.0.16
+[INFO] [5/6/2020 9:36:02 AM] Loading servers from disk...
+[WARNING] [5/6/2020 9:36:02 AM] Couldn't load folder D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1/Data/Server\ubuntte as Minecraft server instance!
+[INFO] [5/6/2020 9:36:02 AM] Servers loaded.  Starting servers...
+[INFO] [5/6/2020 9:36:02 AM] Successfully forwarded port 25565
+[INFO] [5/6/2020 9:36:03 AM] All servers started.
+[WARNING] [5/6/2020 9:36:06 AM] Could not get player 6d89d61b-c55f-3c44-ba1f-40e1a65abf42's profile from Mojang servers!
+[WARNING] [5/6/2020 9:36:06 AM] Could not get player 6d89d61b-c55f-3c44-ba1f-40e1a65abf42's profile from Mojang servers!
+[WARNING] [5/6/2020 9:36:06 AM] Could not get player 4cbfcbc4-1d99-42cc-8bf9-5bf78e449bee's profile from Mojang servers!
+[WARNING] [5/6/2020 9:36:07 AM] Could not get player 4cbfcbc4-1d99-42cc-8bf9-5bf78e449bee's profile from Mojang servers!
+[WARNING] [5/6/2020 9:36:07 AM] Could not get player 6d89d61b-c55f-3c44-ba1f-40e1a65abf42's profile from Mojang servers!
+[WARNING] [5/6/2020 9:36:08 AM] Could not get player 6d89d61b-c55f-3c44-ba1f-40e1a65abf42's profile from Mojang servers!
+[WARNING] [5/6/2020 9:36:08 AM] Could not get player 4cbfcbc4-1d99-42cc-8bf9-5bf78e449bee's profile from Mojang servers!
+[WARNING] [5/6/2020 9:36:08 AM] Could not get player 4cbfcbc4-1d99-42cc-8bf9-5bf78e449bee's profile from Mojang servers!
+[WARNING] [5/6/2020 9:36:09 AM] Could not get player 6d89d61b-c55f-3c44-ba1f-40e1a65abf42's profile from Mojang servers!
+[WARNING] [5/6/2020 9:36:09 AM] Could not get player 6d89d61b-c55f-3c44-ba1f-40e1a65abf42's profile from Mojang servers!
+[WARNING] [5/6/2020 9:36:09 AM] Could not get player 4cbfcbc4-1d99-42cc-8bf9-5bf78e449bee's profile from Mojang servers!
+[WARNING] [5/6/2020 9:36:10 AM] Could not get player 4cbfcbc4-1d99-42cc-8bf9-5bf78e449bee's profile from Mojang servers!
+[WARNING] [5/6/2020 9:36:10 AM] Could not get player 6d89d61b-c55f-3c44-ba1f-40e1a65abf42's profile from Mojang servers!
+[WARNING] [5/6/2020 9:36:10 AM] Could not get player 6d89d61b-c55f-3c44-ba1f-40e1a65abf42's profile from Mojang servers!
+[WARNING] [5/6/2020 9:36:10 AM] Could not get player 4cbfcbc4-1d99-42cc-8bf9-5bf78e449bee's profile from Mojang servers!
+[WARNING] [5/6/2020 9:36:10 AM] Could not get player 4cbfcbc4-1d99-42cc-8bf9-5bf78e449bee's profile from Mojang servers!
+[WARNING] [5/6/2020 9:36:11 AM] Could not get player 6d89d61b-c55f-3c44-ba1f-40e1a65abf42's profile from Mojang servers!
+[WARNING] [5/6/2020 9:36:11 AM] Could not get player 6d89d61b-c55f-3c44-ba1f-40e1a65abf42's profile from Mojang servers!
+[WARNING] [5/6/2020 9:36:11 AM] Could not get player 4cbfcbc4-1d99-42cc-8bf9-5bf78e449bee's profile from Mojang servers!
+[WARNING] [5/6/2020 9:36:11 AM] Could not get player 4cbfcbc4-1d99-42cc-8bf9-5bf78e449bee's profile from Mojang servers!
+[WARNING] [5/6/2020 9:36:11 AM] Could not get player 6d89d61b-c55f-3c44-ba1f-40e1a65abf42's profile from Mojang servers!
+[WARNING] [5/6/2020 9:36:12 AM] Could not get player 6d89d61b-c55f-3c44-ba1f-40e1a65abf42's profile from Mojang servers!
+[WARNING] [5/6/2020 9:36:13 AM] Could not get player 4cbfcbc4-1d99-42cc-8bf9-5bf78e449bee's profile from Mojang servers!
+[WARNING] [5/6/2020 9:36:13 AM] Could not get player 4cbfcbc4-1d99-42cc-8bf9-5bf78e449bee's profile from Mojang servers!
+[WARNING] [5/6/2020 9:36:13 AM] Could not get player 6d89d61b-c55f-3c44-ba1f-40e1a65abf42's profile from Mojang servers!
+[WARNING] [5/6/2020 9:36:14 AM] Could not get player 6d89d61b-c55f-3c44-ba1f-40e1a65abf42's profile from Mojang servers!
+[WARNING] [5/6/2020 9:36:14 AM] Could not get player 4cbfcbc4-1d99-42cc-8bf9-5bf78e449bee's profile from Mojang servers!
+[WARNING] [5/6/2020 9:36:14 AM] Could not get player 4cbfcbc4-1d99-42cc-8bf9-5bf78e449bee's profile from Mojang servers!
+[WARNING] [5/6/2020 9:36:15 AM] Could not get player 6d89d61b-c55f-3c44-ba1f-40e1a65abf42's profile from Mojang servers!
+[WARNING] [5/6/2020 9:36:15 AM] Could not get player 6d89d61b-c55f-3c44-ba1f-40e1a65abf42's profile from Mojang servers!
+[WARNING] [5/6/2020 9:36:15 AM] Could not get player 4cbfcbc4-1d99-42cc-8bf9-5bf78e449bee's profile from Mojang servers!
+[WARNING] [5/6/2020 9:36:15 AM] Could not get player 4cbfcbc4-1d99-42cc-8bf9-5bf78e449bee's profile from Mojang servers!
+[INFO] [5/6/2020 9:36:21 AM] Shutting down all servers...
+[INFO] [5/6/2020 9:36:22 AM] Successfully removed forwarded port 25565
+[INFO] [5/6/2020 9:36:22 AM] All servers shut down.

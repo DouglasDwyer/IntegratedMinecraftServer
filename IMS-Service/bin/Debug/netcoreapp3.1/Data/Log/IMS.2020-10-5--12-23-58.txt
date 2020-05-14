@@ -1,0 +1,24 @@
+[INFO] [5/10/2020 12:23:58 PM] Starting IMS...
+[INFO] [5/10/2020 12:23:58 PM] IMS settings configuration loaded.
+[INFO] [5/10/2020 12:23:58 PM] Attempting to find suitable UPnP router for port forwarding...
+[INFO] [5/10/2020 12:23:58 PM] Successfully connected to UPnP capable device with IP 10.0.0.16
+[INFO] [5/10/2020 12:23:58 PM] Loading servers from disk...
+[ERROR] [5/10/2020 12:23:58 PM] Error loading server 81a130d2-502f-4cf1-a376-63edeb000e9f!
+System.InvalidOperationException: There is an error in XML document (1, 1).
+ ---> System.Xml.XmlException: Data at the root level is invalid. Line 1, position 1.
+   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String arg)
+   at System.Xml.XmlTextReaderImpl.ParseRootLevelWhitespace()
+   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlTextReader.Read()
+   at System.Xml.XmlReader.MoveToContent()
+   at Microsoft.Xml.Serialization.GeneratedAssembly.XmlSerializationReaderServerConfiguration.Read6_ServerConfiguration()
+   --- End of inner exception stack trace ---
+   at System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle, XmlDeserializationEvents events)
+   at System.Xml.Serialization.XmlSerializer.Deserialize(TextReader textReader)
+   at KinglyStudios.Knetworking.SerializationManagement.XMLToObject[T](String xmlText) in D:\Projects\Kingly Studios\KinglyNetworking\KinglyNetworking\SerializationManagement.cs:line 98
+   at IMS_Library.ServerController.LoadServersFromDisk() in D:\Projects\IntegratedMinecraftServer\IMS-Library\ServerController.cs:line 101
+[WARNING] [5/10/2020 12:23:58 PM] Couldn't load folder D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1/Data/Server\ubuntte as Minecraft server instance!
+[INFO] [5/10/2020 12:23:58 PM] Servers loaded.  Starting servers...
+[INFO] [5/10/2020 12:23:58 PM] All servers started.

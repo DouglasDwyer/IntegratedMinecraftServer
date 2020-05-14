@@ -1,0 +1,71 @@
+﻿@using System.Reflection;
+
+@implements IDisposable
+
+@code {
+    [Parameter]
+    public double Interval {
+        get {
+            return InternalTimer.Interval;
+        }
+        set
+        {
+            InternalTimer.Interval = value;
+        }
+    }
+
+    [Parameter]
+    public ComponentBase UpdateScope { get; set; }
+
+    public bool Enabled
+    {
+        get => InternalTimer.Enabled;
+        set => InternalTimer.Enabled = value;
+    }
+
+    [Parameter]
+    public Action Tick { get; set; }
+
+    [Parameter]
+    public bool UseSynchronousTick { get; set; } = true;
+    [Parameter]
+    public bool UpdateComponentOnTick { get; set; } = true;
+
+    private System.Timers.ElapsedEventHandler tickAction;
+
+    private System.Timers.Timer InternalTimer = new System.Timers.Timer();
+
+    public Timer()
+    {
+        tickAction = (x, y) =>
+        {
+            if (UseSynchronousTick)
+            {
+                InvokeAsync(() =>
+                {
+                    Tick?.Invoke();
+                    if (UpdateComponentOnTick)
+                    {
+                        MethodInfo updater = UpdateScope.GetType().GetMethod("StateHasChanged", BindingFlags.NonPublic | BindingFlags.Instance);
+                        updater.Invoke(UpdateScope, new object[0]);
+                    }
+                });
+            }
+            else
+            {
+                Tick?.Invoke();
+                if (UpdateComponentOnTick)
+                {
+                    MethodInfo updater = UpdateScope.GetType().GetMethod("StateHasChanged", BindingFlags.NonPublic | BindingFlags.Instance);
+                    InvokeAsync(() => { updater.Invoke(UpdateScope, new object[0]); });
+                }
+            }
+        };
+        InternalTimer.Elapsed += tickAction;
+    }
+
+    public void Dispose()
+    {
+        Enabled = false;
+    }
+}

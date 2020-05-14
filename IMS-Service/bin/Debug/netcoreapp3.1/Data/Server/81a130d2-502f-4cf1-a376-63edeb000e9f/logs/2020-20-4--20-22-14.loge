@@ -1,0 +1,67 @@
+[20:22:18] [main/WARN]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[20:22:18] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[20:22:18] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[20:22:18] [main/WARN]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[20:22:18] [main/WARN]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[20:22:19] [Server thread/INFO]: Starting minecraft server version 1.15.2
+[20:22:19] [Server thread/INFO]: Loading properties
+[20:22:19] [Server thread/INFO]: Default game type: SURVIVAL
+[20:22:19] [Server thread/INFO]: Generating keypair
+[20:22:19] [Server console handler/ERROR]: Exception handling console input
+java.io.IOException: The handle is invalid
+	at java.io.FileInputStream.readBytes(Native Method) ~[?:1.8.0_251]
+	at java.io.FileInputStream.read(Unknown Source) ~[?:1.8.0_251]
+	at java.io.BufferedInputStream.read1(Unknown Source) ~[?:1.8.0_251]
+	at java.io.BufferedInputStream.read(Unknown Source) ~[?:1.8.0_251]
+	at sun.nio.cs.StreamDecoder.readBytes(Unknown Source) ~[?:1.8.0_251]
+	at sun.nio.cs.StreamDecoder.implRead(Unknown Source) ~[?:1.8.0_251]
+	at sun.nio.cs.StreamDecoder.read(Unknown Source) ~[?:1.8.0_251]
+	at java.io.InputStreamReader.read(Unknown Source) ~[?:1.8.0_251]
+	at java.io.BufferedReader.fill(Unknown Source) ~[?:1.8.0_251]
+	at java.io.BufferedReader.readLine(Unknown Source) ~[?:1.8.0_251]
+	at java.io.BufferedReader.readLine(Unknown Source) ~[?:1.8.0_251]
+	at wd$2.run(SourceFile:110) [server.jar:?]
+[20:22:19] [Server thread/INFO]: Starting Minecraft server on *:25565
+[20:22:19] [Server thread/INFO]: Using default channel type
+[20:22:20] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[20:22:20] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
+[20:22:20] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[20:22:20] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[20:22:20] [Server thread/INFO]: Preparing level "world"
+[20:22:20] [Server thread/INFO]: Reloading ResourceManager: Default, yert
+[20:22:20] [Server thread/INFO]: Loaded 6 recipes
+[20:22:21] [Server thread/INFO]: Loaded 1 custom command functions
+[20:22:21] [Server thread/INFO]: Loaded 825 advancements
+[20:22:22] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld
+[20:22:23] [Server thread/INFO]: Preparing spawn area: 0%
+[20:22:23] [Server thread/INFO]: Preparing spawn area: 0%
+[20:22:23] [Server thread/INFO]: Preparing spawn area: 0%
+[20:22:24] [Server-Worker-5/INFO]: Preparing spawn area: 0%
+[20:22:24] [Server-Worker-5/INFO]: Preparing spawn area: 0%
+[20:22:24] [Server thread/INFO]: Time elapsed: 2499 ms
+[20:22:24] [Server thread/INFO]: Done (4.508s)! For help, type "help"
+[20:22:28] [Server thread/INFO]: King_Cat[/127.0.0.1:61451] logged in with entity id 177 at (260.69999998807907, 61.0, 25.30000001192093)
+[20:22:28] [Server thread/INFO]: King_Cat joined the game
+[20:22:31] [Server thread/INFO]: Kong_Fat[/127.0.0.1:61453] logged in with entity id 193 at (174.81454691531837, 63.0, -106.00015810104583)
+[20:22:31] [Server thread/INFO]: Kong_Fat joined the game
+[20:22:44] [Server thread/INFO]: Made King_Cat no longer a server operator
+[20:22:44] [Server thread/INFO]: Made King_Cat no longer a server operator
+[20:23:23] [Server thread/INFO]: Made King_Cat a server operator
+[20:23:23] [Server thread/INFO]: Made King_Cat a server operator
+[20:25:28] [Server thread/INFO]: Whitelist is now turned on
+[20:26:56] [Server thread/INFO]: Banned IP 10.0.0.8: Banned by an operator.
+[20:30:38] [Server thread/INFO]: Stopping the server
+[20:30:38] [Server thread/INFO]: Stopping server
+[20:30:38] [Server thread/INFO]: Saving players
+[20:30:38] [Server thread/INFO]: King_Cat lost connection: Disconnected
+[20:30:38] [Server thread/INFO]: King_Cat left the game
+[20:30:38] [Server thread/INFO]: Saving worlds
+[20:30:38] [Server thread/INFO]: Saving chunks for level 'world'/minecraft:overworld
+[20:30:38] [Server thread/INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+[20:30:38] [Server thread/INFO]: Saving chunks for level 'world'/minecraft:the_nether
+[20:30:38] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[20:30:38] [Server thread/INFO]: Saving chunks for level 'world'/minecraft:the_end
+[20:30:38] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[20:30:38] [Server thread/INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+[20:30:39] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[20:30:39] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved

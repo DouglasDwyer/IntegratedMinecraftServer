@@ -1,0 +1,17 @@
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\netcoreapp3.1\IMS-DevelopmentKit.deps.json
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\netcoreapp3.1\IMS-DevelopmentKit.dll
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\netcoreapp3.1\IMS-DevelopmentKit.pdb
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\netcoreapp3.1\IMS-Library.dll
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\netcoreapp3.1\KinglyNetworking.dll
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\netcoreapp3.1\IMS-Library.pdb
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\netcoreapp3.1\KinglyNetworking.pdb
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\netcoreapp3.1\KinglyNetworking.xml
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\netcoreapp3.1\IMS-DevelopmentKit.csprojAssemblyReference.cache
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\netcoreapp3.1\staticwebassets\IMS-DevelopmentKit.StaticWebAssets.Manifest.cache
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\netcoreapp3.1\staticwebassets\IMS-DevelopmentKit.StaticWebAssets.xml
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\netcoreapp3.1\IMS-DevelopmentKit.AssemblyInfoInputs.cache
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\netcoreapp3.1\IMS-DevelopmentKit.AssemblyInfo.cs
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\netcoreapp3.1\IMS-DevelopmentKit.RazorTargetAssemblyInfo.cache
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\netcoreapp3.1\IMS-DevelopmentKit.csproj.CopyComplete
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\netcoreapp3.1\IMS-DevelopmentKit.dll
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\netcoreapp3.1\IMS-DevelopmentKit.pdb

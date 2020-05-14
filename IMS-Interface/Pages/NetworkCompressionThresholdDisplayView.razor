@@ -1,0 +1,75 @@
+﻿@inherits PreferenceDisplayView
+@using System.Reflection
+
+<label>@DisplayData.DisplayName</label>
+<br />
+<div data-toggle="tooltip"
+     data-placement="right"
+     data-title="@DisplayData.Description" style="display:inline-block; margin:5px 0px">
+    <MultiToggle Options="Values"
+                 SelectedIndex="SelectedItem"
+                 OnSelectionChange="@(x => SelectedItem = x)"></MultiToggle>
+</div>
+<br />
+@if ((int)DisplayData.ParentDisplay.CurrentConfiguration.GetType().GetField(DisplayData.FieldName, BindingFlags.Public | BindingFlags.Instance).GetValue(DisplayData.ParentDisplay.CurrentConfiguration) > 0)
+{
+    <input class="form-control"
+           style="margin-top:5px;margin-bottom:5px; width:150px; display:unset"
+           type="number"
+           min="1"
+           max="@int.MaxValue)"
+           @bind="Value" />
+    <br />
+}
+
+@code {
+    private string[] Values = new[] { "No compression", "Compress everything", "Compression limit" };
+
+    public string Value
+    {
+        get
+        {
+            return DisplayData.ParentDisplay.CurrentConfiguration.GetType().GetField(DisplayData.FieldName, BindingFlags.Public | BindingFlags.Instance).GetValue(DisplayData.ParentDisplay.CurrentConfiguration).ToString();
+        }
+        set
+        {
+            int val;
+            if (int.TryParse((string)value, out val) && val >= 1 && val <= int.MaxValue)
+            {
+                DisplayData.ParentDisplay.CurrentConfiguration.GetType().GetField(DisplayData.FieldName, BindingFlags.Public | BindingFlags.Instance).SetValue(DisplayData.ParentDisplay.CurrentConfiguration, val);
+            }
+
+            DisplayData.ParentDisplay.NotifyStateChanged();
+        }
+    }
+
+    public int SelectedItem
+    {
+        get
+        {
+            int selection = (int)DisplayData.ParentDisplay.CurrentConfiguration.GetType().GetField(DisplayData.FieldName, BindingFlags.Public | BindingFlags.Instance).GetValue(DisplayData.ParentDisplay.CurrentConfiguration);
+            if (selection == -1)
+            {
+                return 0;
+            }
+            else if (selection == 0)
+            {
+                return 1;
+            }
+            else
+            {
+                return 2;
+            }
+        }
+        set
+        {
+            if (value >= 0 && value < 3 && value != SelectedItem)
+            {
+                int toSet = value - 1;
+                if (toSet == 1) { toSet = 256; }
+                DisplayData.ParentDisplay.CurrentConfiguration.GetType().GetField(DisplayData.FieldName, BindingFlags.Public | BindingFlags.Instance).SetValue(DisplayData.ParentDisplay.CurrentConfiguration, toSet);
+            }
+            DisplayData.ParentDisplay.NotifyStateChanged();
+        }
+    }
+}
