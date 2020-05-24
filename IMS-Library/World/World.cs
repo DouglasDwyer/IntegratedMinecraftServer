@@ -2,16 +2,20 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace IMS_Library
 {
-    public class World : IMSConfiguration
+    public sealed class World : IMSConfiguration
     {
         public Guid ID;
         public string Name;
         public WorldType WorldEdition;
+        public List<IBackupPolicy> BackupPolicies = new List<IBackupPolicy>();
+        public List<BackupInformation> Backups = new List<BackupInformation>();
 
-        public string FolderPath { get => Constants.WorldFolderLocation + "/" + ID; }
+        public string FolderPath { get => Constants.ExecutionPath + Constants.WorldFolderLocation + "/" + ID; }
         public string WorldPath { get {
                 string toReturn = FolderPath + "/world";
                 if (!Directory.Exists(toReturn))
@@ -22,9 +26,69 @@ namespace IMS_Library
             }
         }
 
+        public World() { }
+
         public World(Guid id)
         {
             ID = id;
+        }
+
+        public async Task<Guid> MakeBackupAsync(string backupName = "Automatic backup")
+        {
+            Guid backupID = Guid.NewGuid();
+            ServerProxy server = IMS.Instance.WorldManager.GetServerOfWorld(this);
+            Backups.Add(new BackupInformation { Name = backupName, Date = DateTime.Now, ID = backupID });
+            if (server is null || server.State == ServerProxy.ServerState.Disabled) {
+                await Task.Run(() =>
+                {
+                    Extensions.CopyFolder(WorldPath, FolderPath + "/" + backupID);
+                });
+            }
+            else
+            {
+                await server.BackupToLocationAsync(FolderPath + "/" + backupID);
+            }
+            return backupID;
+        }
+
+        public async Task RestoreFromBackupAsync(Guid backupID, bool makeBackupOfCurrentWorld = true, string currentWorldBackupName = "Overwritten world backup")
+        {
+            if(Backups.FindIndex(x => x.ID == backupID) < 0)
+            {
+                throw new ArgumentException("Backup ID did not match any known backup.", "backupID");
+            }
+            ServerProxy server = IMS.Instance.WorldManager.GetServerOfWorld(this);
+            if(server != null)
+            {
+                if(server.State == ServerProxy.ServerState.Disabled)
+                {
+                    server = null;
+                }
+                else
+                {
+                    server.Stop();
+                }
+            }
+            if(makeBackupOfCurrentWorld)
+            {
+                await MakeBackupAsync(currentWorldBackupName);
+            }
+            await Task.Run(() =>
+            {
+                Directory.Delete(WorldPath, true);
+                Extensions.CopyFolder(FolderPath + "/" + backupID, WorldPath);
+            });
+            IMS.AsThreadSafe(() => server?.Start());
+        }
+
+        public async Task DeleteBackupAsync(Guid backupID)
+        {
+            BackupInformation info = Backups.Find(x => x.ID == backupID);
+            if(info != null)
+            {
+                Backups.Remove(info);
+                await Task.Run(() => Directory.Delete(FolderPath + "/" + info.ID, true));
+            }
         }
 
         public override string GetDefaultFilePath()
@@ -32,9 +96,27 @@ namespace IMS_Library
             return FolderPath + "/config.xml";
         }
 
+        public void RunBackupUpdates(ServerProxy boundServer)
+        {
+            foreach(IBackupPolicy policy in BackupPolicies)
+            {
+                policy.Update(this);
+            }
+        }
+
         public long GetTotalSize()
         {
             return GetDirectorySize(new DirectoryInfo(FolderPath));
+        }
+
+        public async Task<long> GetTotalSizeAsync()
+        {
+            return await Task.Run(GetTotalSize);
+        }
+
+        public async Task<long> GetWorldSizeAsync()
+        {
+            return await Task.Run(GetWorldSize);
         }
 
         public long GetWorldSize()

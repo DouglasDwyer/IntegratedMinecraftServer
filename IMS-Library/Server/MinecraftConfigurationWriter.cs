@@ -87,6 +87,7 @@ namespace IMS_Library
             {
                 switch (subelement) {
                     case "<b>":
+                    case "<b style=\"\">":
                         textModifiers.Bold = true;
                         finalString += ActiveModifiers.FormattingResetCharacter + textModifiers.GetFormattingCodes();
                         break;
@@ -95,6 +96,7 @@ namespace IMS_Library
                         finalString += ActiveModifiers.FormattingResetCharacter + textModifiers.GetFormattingCodes();
                         break;
                     case "<i>":
+                    case "<i style=\"\">":
                         textModifiers.Italic = true;
                         finalString += ActiveModifiers.FormattingResetCharacter + textModifiers.GetFormattingCodes();
                         break;
@@ -103,6 +105,7 @@ namespace IMS_Library
                         finalString += ActiveModifiers.FormattingResetCharacter + textModifiers.GetFormattingCodes();
                         break;
                     case "<u>":
+                    case "<u style=\"\">":
                         textModifiers.Underline = true;
                         finalString += ActiveModifiers.FormattingResetCharacter + textModifiers.GetFormattingCodes();
                         break;
@@ -111,6 +114,7 @@ namespace IMS_Library
                         finalString += ActiveModifiers.FormattingResetCharacter + textModifiers.GetFormattingCodes();
                         break;
                     case "<strike>":
+                    case "<strike style=\"\">":
                         textModifiers.Strikethrough = true;
                         finalString += ActiveModifiers.FormattingResetCharacter + textModifiers.GetFormattingCodes();
                         break;
@@ -119,6 +123,7 @@ namespace IMS_Library
                         finalString += ActiveModifiers.FormattingResetCharacter + textModifiers.GetFormattingCodes();
                         break;
                     case "<sup>":
+                    case "<sup style=\"\">":
                         textModifiers.Obfuscated = true;
                         finalString += ActiveModifiers.FormattingResetCharacter + textModifiers.GetFormattingCodes();
                         break;

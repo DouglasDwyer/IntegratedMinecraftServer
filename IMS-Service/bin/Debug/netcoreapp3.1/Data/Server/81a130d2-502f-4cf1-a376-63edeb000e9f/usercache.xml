@@ -1,74 +1,38 @@
-<?xml version="1.0" encoding="utf-16"?>
-<ArrayOfMinecraftPlayer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <MinecraftPlayer>
-    <Username>King_Cat</Username>
-    <UUID>e3087768-76b3-487d-987b-741694b3d97f</UUID>
-    <IP>127.0.0.1</IP>
-    <IsWhitelisted>true</IsWhitelisted>
-    <PermissionLevel>4</PermissionLevel>
-    <LastConnectionEvent>2020-05-10T11:06:09.4908948-04:00</LastConnectionEvent>
-  </MinecraftPlayer>
-  <MinecraftPlayer>
-    <Username>popbob</Username>
-    <UUID>0f75a81d-70e5-43c5-b892-f33c524284f2</UUID>
-    <IsWhitelisted>false</IsWhitelisted>
-    <PermissionLevel>0</PermissionLevel>
-    <LastConnectionEvent>0001-01-01T00:00:00</LastConnectionEvent>
-  </MinecraftPlayer>
-  <MinecraftPlayer>
-    <Username>BIGBRO</Username>
-    <UUID>2551ec8f-69a4-4869-a06a-69f1c44cd897</UUID>
-    <IsWhitelisted>false</IsWhitelisted>
-    <PermissionLevel>0</PermissionLevel>
-    <LastConnectionEvent>0001-01-01T00:00:00</LastConnectionEvent>
-  </MinecraftPlayer>
-  <MinecraftPlayer>
-    <Username>baskjdsajd</Username>
-    <UUID>1b3ee31c-33f0-368f-90af-706af5ed5367</UUID>
-    <IsWhitelisted>false</IsWhitelisted>
-    <PermissionLevel>0</PermissionLevel>
-    <LastConnectionEvent>0001-01-01T00:00:00</LastConnectionEvent>
-  </MinecraftPlayer>
-  <MinecraftPlayer>
-    <Username>King_Cat</Username>
-    <UUID>6d89d61b-c55f-3c44-ba1f-40e1a65abf42</UUID>
-    <IsWhitelisted>false</IsWhitelisted>
-    <PermissionLevel>0</PermissionLevel>
-    <LastConnectionEvent>0001-01-01T00:00:00</LastConnectionEvent>
-  </MinecraftPlayer>
-  <MinecraftPlayer>
-    <Username>Kong_Fat</Username>
-    <UUID>f2b1048e-e56b-3629-9273-606fae62f947</UUID>
-    <IsWhitelisted>false</IsWhitelisted>
-    <PermissionLevel>0</PermissionLevel>
-    <LastConnectionEvent>0001-01-01T00:00:00</LastConnectionEvent>
-  </MinecraftPlayer>
-  <MinecraftPlayer>
-    <Username>submit</Username>
-    <UUID>395d2f8d-0907-4a2a-8ed7-91d09d12bffc</UUID>
-    <IsWhitelisted>false</IsWhitelisted>
-    <PermissionLevel>0</PermissionLevel>
-    <LastConnectionEvent>0001-01-01T00:00:00</LastConnectionEvent>
-  </MinecraftPlayer>
-  <MinecraftPlayer>
-    <Username>PumkinSpic3</Username>
-    <UUID>c7505999-da2b-4aef-b0ce-5896eaaf88f1</UUID>
-    <IsWhitelisted>true</IsWhitelisted>
-    <PermissionLevel>0</PermissionLevel>
-    <LastConnectionEvent>0001-01-01T00:00:00</LastConnectionEvent>
-  </MinecraftPlayer>
-  <MinecraftPlayer>
-    <Username>Tester</Username>
-    <UUID>4a6525ce-83b3-4640-8444-88796f9a669f</UUID>
-    <IsWhitelisted>false</IsWhitelisted>
-    <PermissionLevel>0</PermissionLevel>
-    <LastConnectionEvent>0001-01-01T00:00:00</LastConnectionEvent>
-  </MinecraftPlayer>
-  <MinecraftPlayer>
-    <Username>dad</Username>
-    <UUID>2f2e43be-a609-4128-b3b3-e6468333cd2e</UUID>
-    <IsWhitelisted>false</IsWhitelisted>
-    <PermissionLevel>0</PermissionLevel>
-    <LastConnectionEvent>0001-01-01T00:00:00</LastConnectionEvent>
-  </MinecraftPlayer>
-</ArrayOfMinecraftPlayer>
+<RoyalXML>
+    <Root
+        type="MinecraftPlayer[]"
+        ranksize0="2">
+        <ArrayElement
+            type="MinecraftPlayer">
+            <Username
+                type="String">King_Cat</Username>
+            <UUID
+                type="String">e3087768-76b3-487d-987b-741694b3d97f</UUID>
+            <IP
+                type="String">127.0.0.1</IP>
+            <IsWhitelisted>True</IsWhitelisted>
+            <PermissionLevel>4</PermissionLevel>
+            <LastConnectionEvent>5/22/2020 9:09:28 PM</LastConnectionEvent>
+        </ArrayElement>
+        <ArrayElement
+            type="MinecraftPlayer">
+            <Username
+                type="String">PumkinSpic3</Username>
+            <UUID
+                type="String">c7505999-da2b-4aef-b0ce-5896eaaf88f1</UUID>
+            <IP
+                type="String"></IP>
+            <IsWhitelisted>True</IsWhitelisted>
+            <PermissionLevel>0</PermissionLevel>
+            <LastConnectionEvent>1/1/0001 12:00:00 AM</LastConnectionEvent>
+        </ArrayElement>
+    </Root>
+    <Types>
+        <TypeInfo
+            type="IMS_Library.MinecraftPlayer[], IMS-Library, Version=0.0.1.0, Culture=neutral, PublicKeyToken=null">MinecraftPlayer[]</TypeInfo>
+        <TypeInfo
+            type="IMS_Library.MinecraftPlayer, IMS-Library, Version=0.0.1.0, Culture=neutral, PublicKeyToken=null">MinecraftPlayer</TypeInfo>
+        <TypeInfo
+            type="System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">String</TypeInfo>
+    </Types>
+</RoyalXML>

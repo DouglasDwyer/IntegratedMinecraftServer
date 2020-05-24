@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Xml.Serialization;
 using KinglyStudios.Knetworking;
+using RoyalXML;
 
 namespace IMS_Library
 {
@@ -31,8 +32,7 @@ namespace IMS_Library
         {
             if(File.Exists(imsConfiguration.GetDefaultFilePath()))
             {
-                string config = File.ReadAllText(imsConfiguration.GetDefaultFilePath());
-                return (T)SerializationManagement.XMLToObject(config.Substring(config.IndexOf("\n") + 1), Type.GetType(config.Remove(config.IndexOf("\n"))));
+                return RoyalSerializer.XMLToObject<T>(File.ReadAllText(imsConfiguration.GetDefaultFilePath()));
             }
             else
             {
@@ -50,27 +50,8 @@ namespace IMS_Library
                 {
                     Directory.CreateDirectory(folder);
                 }
-                File.WriteAllText(path, imsConfiguration.GetType().AssemblyQualifiedName + "\n" + SerializationManagement.ObjectToXML(imsConfiguration));
-            }
-        }
-
-        private static string ServerConfigurationToXML(ServerConfiguration dataToSerialize)
-        {
-            using (StringWriter stringwriter = new StringWriter())
-            {
-                var serializer = new XmlSerializer(typeof(ServerConfiguration));
-                serializer.Serialize(stringwriter, dataToSerialize);
-                return stringwriter.ToString();
-            }
-        }
-
-        private static ServerConfiguration XMLToServerConfiguration(string xmlText)
-        {
-            using (StringReader stringReader = new StringReader(xmlText))
-            {
-                return (ServerConfiguration)new XmlSerializer(typeof(ServerConfiguration)).Deserialize(stringReader);
+                File.WriteAllText(path, RoyalSerializer.ObjectToXML(imsConfiguration));
             }
         }
     }
-
 }

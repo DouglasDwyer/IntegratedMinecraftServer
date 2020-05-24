@@ -5,6 +5,10 @@
 <h3>Server Preferences</h3>
 
 <br />
+<button @onclick=@(x => IMS.AsThreadSafe(() => IMS.Instance.WorldManager.LoadedWorlds[0].BackupPolicies.Add(new BackupAfterTimeIntervalPolicy { BackupInterval = TimeSpan.FromMinutes(1) })))>Save as test</button>
+<br />
+
+<br />
 <PreferenceEditor FieldDisplays="PreferenceLayout" StartingConfiguration="GetCurrentPreferences()" OnApply="ApplySettings" ApplyText="@ApplyText" @ref="Editor"></PreferenceEditor>
 
 @code {
@@ -72,6 +76,11 @@
     {
         if(UpdateSettingsTask != null) { return; }
         ServerProxy toRestart = IMS.Instance.ServerManager.GetServer(CurrentServer);
+        ServerConfiguration serverConfig = configuration as ServerConfiguration;
+        serverConfig.ID = toRestart.CurrentConfiguration.ID;
+        serverConfig.IsEnabled = toRestart.CurrentConfiguration.IsEnabled;
+        serverConfig.ServerName = toRestart.CurrentConfiguration.ServerName;
+        serverConfig.WorldID = toRestart.CurrentConfiguration.WorldID;
         if (toRestart.State == ServerProxy.ServerState.Disabled)
         {
             toRestart.CurrentConfiguration = (ServerConfiguration)configuration;

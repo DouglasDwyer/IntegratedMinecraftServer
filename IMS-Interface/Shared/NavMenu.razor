@@ -1,4 +1,5 @@
-﻿
+﻿@using IMS_Library
+
 <style>
     ul.brightness-img {
     }
@@ -21,7 +22,7 @@
                 </a>
             </li>
             <li>
-                <a href="/WorldsAndBackups" style="background-color:transparent">
+                <a href=@("/WorldManager/" + IMS.AsThreadSafe(() => IMS.Instance.ServerManager.GetServer(CurrentServer).CurrentConfiguration.WorldID)) style="background-color:transparent">
                     <img draggable="false" src="/img/grass_block.png" data-toggle="tooltip" data-container="app" data-trigger="hover" data-placement="right" title="Worlds and Backups" style="height:50px; width:50px; margin-left:-15px" onclick="$(this).tooltip('hide');" />
                 </a>
             </li>
@@ -38,3 +39,8 @@
         </ul>
     </div>
 </div>
+
+@code {
+    [CascadingParameter(Name = "CurrentServer")]
+    public Guid CurrentServer { get; set; }
+}

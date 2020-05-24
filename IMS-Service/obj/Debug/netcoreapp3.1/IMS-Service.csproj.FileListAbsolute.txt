@@ -101,3 +101,5 @@ D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\Micros
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\Microsoft.JSInterop.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\IMS-Interface.StaticWebAssets.xml
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\Cloudcrate.AspNetCore.Blazor.Browser.Storage.dll
+D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\RoyalXML.dll
+D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\RoyalXML.pdb

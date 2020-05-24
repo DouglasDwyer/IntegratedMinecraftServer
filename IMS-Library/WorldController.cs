@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Timers;
 
 namespace IMS_Library
 {
@@ -10,14 +11,27 @@ namespace IMS_Library
         public IList<World> LoadedWorlds { get => Worlds.Values.ToList(); }
         protected Dictionary<Guid, World> Worlds = new Dictionary<Guid, World>();
 
+        protected Timer DoUpdateTimer = new Timer();
+
         public void Start()
         {
             LoadWorldsFromDisk();
+            DoUpdateTimer.Elapsed += (x, y) => IMS.AsThreadSafe(Update);
+            DoUpdateTimer.Interval = 60 * 1000;
+            DoUpdateTimer.Enabled = true;
+        }
+
+        protected void Update()
+        {
+            foreach(ServerProxy server in IMS.Instance.ServerManager.Servers)
+            {
+                Worlds[server.CurrentConfiguration.WorldID].RunBackupUpdates(server);
+            }
         }
 
         public World GetWorldByID(Guid id)
         {
-            return Worlds[id];
+            return Worlds.ContainsKey(id) ? Worlds[id] : null;
         }
 
         protected void LoadWorldsFromDisk()
@@ -37,9 +51,10 @@ namespace IMS_Library
                         {
                             Worlds[worldGuid] = new World(worldGuid).FromConfiguration();
                         }
-                        catch (Exception e)
+                        catch (InvalidCastException e)
                         {
                             Logger.WriteError("Error loading world " + worldGuid + "!\n" + e);
+                            throw;
                         }
                     }
                     else
@@ -54,9 +69,30 @@ namespace IMS_Library
             }
         }
 
+        public ServerProxy GetServerOfWorld(World world)
+        {
+            foreach(ServerProxy server in IMS.Instance.ServerManager.Servers)
+            {
+                if(server.CurrentConfiguration.WorldID == world.ID)
+                {
+                    return server;
+                }
+            }
+            return null;
+        }
+
         public void AddWorldToRegistry(World world)
         {
             Worlds.Add(world.ID, world);
+        }
+
+        public void Stop()
+        {
+            DoUpdateTimer.Enabled = false;
+            foreach(World world in Worlds.Values)
+            {
+                world.SaveConfiguration();
+            }
         }
     }
 }

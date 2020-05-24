@@ -1,0 +1,47 @@
+<RoyalXML>
+    <Root
+        type="World">
+        <ID>f51ac23e-abd8-4813-a2de-6f60d765d422</ID>
+        <Name
+            type="String">Test Server X World</Name>
+        <WorldEdition>Java</WorldEdition>
+        <BackupPolicies
+            type="List`1">
+            <ICollectionData
+                data="ICollection"
+                type="IBackupPolicy[]"
+                ranksize0="0" />
+        </BackupPolicies>
+        <Backups
+            type="List`10">
+            <ICollectionData
+                data="ICollection"
+                type="BackupInformation[]"
+                ranksize0="1">
+                <ArrayElement
+                    type="BackupInformation">
+                    <Name
+                        type="String">Overwritten world backup</Name>
+                    <Date>5/22/2020 9:08:29 PM</Date>
+                    <ID>5a71e098-c537-4c8f-9245-b049b561fe5f</ID>
+                </ArrayElement>
+            </ICollectionData>
+        </Backups>
+    </Root>
+    <Types>
+        <TypeInfo
+            type="IMS_Library.World, IMS-Library, Version=0.0.1.0, Culture=neutral, PublicKeyToken=null">World</TypeInfo>
+        <TypeInfo
+            type="System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">String</TypeInfo>
+        <TypeInfo
+            type="System.Collections.Generic.List`1[[IMS_Library.IBackupPolicy, IMS-Library, Version=0.0.1.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">List`1</TypeInfo>
+        <TypeInfo
+            type="IMS_Library.IBackupPolicy[], IMS-Library, Version=0.0.1.0, Culture=neutral, PublicKeyToken=null">IBackupPolicy[]</TypeInfo>
+        <TypeInfo
+            type="System.Collections.Generic.List`1[[IMS_Library.BackupInformation, IMS-Library, Version=0.0.1.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">List`10</TypeInfo>
+        <TypeInfo
+            type="IMS_Library.BackupInformation[], IMS-Library, Version=0.0.1.0, Culture=neutral, PublicKeyToken=null">BackupInformation[]</TypeInfo>
+        <TypeInfo
+            type="IMS_Library.BackupInformation, IMS-Library, Version=0.0.1.0, Culture=neutral, PublicKeyToken=null">BackupInformation</TypeInfo>
+    </Types>
+</RoyalXML>

@@ -1119,6 +1119,14 @@
             "fileVersion": "1.0.0.0"
           }
         }
+      },
+      "RoyalXML/1.0.0.0": {
+        "runtime": {
+          "RoyalXML.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -1902,6 +1910,11 @@
       "sha512": ""
     },
     "KinglyNetworking/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RoyalXML/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

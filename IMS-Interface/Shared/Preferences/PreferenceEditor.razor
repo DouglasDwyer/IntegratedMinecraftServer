@@ -99,7 +99,7 @@
     protected async Task Apply()
     {
         InitialConfiguration = (IMSConfiguration)LoadedConfiguration.Clone();
-        await OnApply.InvokeAsync(CurrentConfiguration);
+        await OnApply.InvokeAsync((IMSConfiguration)CurrentConfiguration.Clone());
     }
 
     protected void Revert()

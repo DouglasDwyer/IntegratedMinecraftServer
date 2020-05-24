@@ -13,7 +13,8 @@
           "Newtonsoft.Json": "12.0.3",
           "Open.NAT.Core": "2.1.0.5",
           "KinglyNetworking": "1.0.0.0",
-          "Microsoft.VisualBasic.Reference": "10.0.0.0"
+          "Microsoft.VisualBasic.Reference": "10.0.0.0",
+          "RoyalXML": "1.0.0.0"
         },
         "runtime": {
           "IMS-Library.dll": {}
@@ -806,11 +807,19 @@
           }
         }
       },
+      "RoyalXML/1.0.0.0": {
+        "runtime": {
+          "RoyalXML.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "System.Windows.Forms/4.0.0.0": {
         "runtime": {
           "System.Windows.Forms.dll": {
             "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.8.4121.0"
+            "fileVersion": "4.8.4150.0"
           }
         }
       },
@@ -1280,6 +1289,11 @@
       "sha512": ""
     },
     "Microsoft.VisualBasic.Reference/10.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RoyalXML/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

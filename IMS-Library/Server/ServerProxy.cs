@@ -51,7 +51,7 @@ namespace IMS_Library
         public abstract void ReloadServerPermissions();
         public abstract List<LogFileInformation> GetLogFiles();
         public abstract string GetLogFile(string name);
-        public abstract void BackupToLocation(string location);
+        public abstract Task BackupToLocationAsync(string location);
 
         public virtual ServerConfiguration GetDefaultServerConfiguration()
         {

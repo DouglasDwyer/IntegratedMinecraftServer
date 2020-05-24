@@ -1,5 +1,6 @@
 ﻿using KinglyStudios.Knetworking;
 using Newtonsoft.Json;
+using RoyalXML;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -58,8 +59,8 @@ namespace IMS_Library
         protected List<string> ConsoleText = new List<string>();
 
         protected bool AutomaticSavingPlayerEnabled = true;
-        protected string BackupLocation = null;
-        protected string WorldLocation { get => ServerPreferences.GetServerFolderLocation() + "/" + ServerPreferences.ServerName; }
+        protected bool HasCompletedAutomaticSave = true;
+        protected string WorldLocation { get => ServerPreferences.GetServerFolderLocation() + "/" + ServerPreferences.LevelName; }
 
         public JavaServer(Guid id, JavaServerConfiguration configuration) : base(id)
         {
@@ -97,6 +98,10 @@ namespace IMS_Library
 
         public void OnServerProcessDie()
         {
+            if(ServerProcess != null && !ServerProcess.EnableRaisingEvents)
+            {
+                return;
+            }
             if(State != ServerState.Stopping)
             {
                 if (State == ServerState.Running)
@@ -139,14 +144,32 @@ namespace IMS_Library
             }
         }
 
-        public override void BackupToLocation(string location)
+        public override async Task BackupToLocationAsync(string location)
         {
-            BackupLocation = location;
+            if(!HasCompletedAutomaticSave)
+            {
+                return;
+            }
+            HasCompletedAutomaticSave = false;
             if(AutomaticSavingPlayerEnabled)
             {
                 SendUncheckedConsoleCommand("save-off");
             }
             SendUncheckedConsoleCommand("save-all");
+            while(!HasCompletedAutomaticSave)
+            {
+                await Task.Delay(1);
+            }
+            await Task.Run(() => {
+                Extensions.CopyFolder(WorldLocation, location);
+                IMS.AsThreadSafe(() => {
+                    if (AutomaticSavingPlayerEnabled)
+                    {
+                        SendUncheckedConsoleCommand("save-on");
+                    }
+                    location = null;
+                });
+            });
         }
 
         public override void Restart()
@@ -337,15 +360,16 @@ namespace IMS_Library
             {
                 throw new Exception("Cannot stop a server that isn't running!");
             }
-            if(CurrentConfiguration.WorldID == default)
+            World world = IMS.Instance.WorldManager.GetWorldByID(CurrentConfiguration.WorldID);
+            if (world is null)
             {
-                World world = new World(Guid.NewGuid());
+                world = new World(Guid.NewGuid());
                 world.Name = CurrentConfiguration.ServerName + " World";
                 world.WorldEdition = World.WorldType.Java;
                 ServerPreferences.WorldID = world.ID;
                 IMS.Instance.WorldManager.AddWorldToRegistry(world);
             }
-            JunctionPoint.Create(WorldLocation, IMS.Instance.WorldManager.GetWorldByID(ServerPreferences.WorldID).WorldPath, true);
+            JunctionPoint.Create(WorldLocation, world.WorldPath, true);
             if (File.Exists(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log"))
             {
                 File.Copy(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log", ServerPreferences.GetServerFolderLocation() + "/logs/" + File.GetCreationTime(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log").ToString("yyyy-dd-M--HH-mm-ss") + ".loge", true);
@@ -353,7 +377,7 @@ namespace IMS_Library
             }
             if (File.Exists(ServerPreferences.GetServerFolderLocation() + "/usercache.xml"))
             {
-                foreach (MinecraftPlayer player in SerializationManagement.XMLToObject<MinecraftPlayer[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/usercache.xml")))
+                foreach (MinecraftPlayer player in RoyalSerializer.XMLToObject<MinecraftPlayer[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/usercache.xml")))
                 {
                     if(ServerPreferences.OnlineMode) {
                         AllUsers[player.UUID] = player;
@@ -616,34 +640,19 @@ namespace IMS_Library
                 //Manage server using /save on
                 else if (CheckRegexMatch(data, "^Automatic saving is now enabled$", out regexMatch))
                 {
-                    if(BackupLocation is null)
-                    {
-                        AutomaticSavingPlayerEnabled = true;
-                    }
+                    AutomaticSavingPlayerEnabled = true;
                 }
                 //Manage server using /save off
                 else if (CheckRegexMatch(data, "^Automatic saving is now disabled$", out regexMatch))
                 {
-                    if(BackupLocation is null)
+                    if(HasCompletedAutomaticSave)
                     {
                         AutomaticSavingPlayerEnabled = false;
                     }
                 }
                 else if(data == "Saved the game")
                 {
-                    if(BackupLocation != null)
-                    {
-                        Task.Run(() => {
-                            new Microsoft.VisualBasic.Devices.Computer().FileSystem.CopyDirectory(ServerPreferences.GetServerFolderLocation() + "/" + ServerPreferences.LevelName, BackupLocation);
-                            IMS.AsThreadSafe(() => {
-                                if(AutomaticSavingPlayerEnabled)
-                                {
-                                    SendUncheckedConsoleCommand("save-on");
-                                }
-                                BackupLocation = null;
-                            });
-                        });
-                    }
+                    HasCompletedAutomaticSave = true;
                 }
                 //end
                 //Manage players stopping the server
@@ -679,9 +688,10 @@ namespace IMS_Library
         {
             if(State == ServerState.Disabled) { return; }
             State = ServerState.Stopping;
+            ServerProcess.EnableRaisingEvents = false;
             SendUncheckedConsoleCommand("stop");
             OnlineUsers.Clear();
-            File.WriteAllText(ServerPreferences.GetServerFolderLocation() + "/usercache.xml", SerializationManagement.ObjectToXML(AllUsers.Values.ToArray()));
+            File.WriteAllText(ServerPreferences.GetServerFolderLocation() + "/usercache.xml", RoyalSerializer.ObjectToXML(AllUsers.Values.ToArray()));
             while(!ServerProcess.HasExited) { Thread.Sleep(5); }
             if(File.Exists(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log"))
             {

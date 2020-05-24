@@ -1,0 +1,141 @@
+﻿@page "/WorldManager/{WorldID:guid}"
+
+@using System.Reflection
+@using IMS_Library
+
+<style>
+    .tab-ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+        .tab-ul > li {
+            float: left;
+        }
+
+            .tab-ul > li > a {
+                display: block;
+                text-align: center;
+                padding: 16px;
+                text-decoration: none;
+            }
+
+            .tab-ul > li a:hover {
+                background-color: #eeeeee;
+            }
+
+    .nav-link {
+        background: transparent;
+        border: 1px solid transparent;
+        color: #23527c;
+        font-weight: normal;
+        border-radius: 3px;
+        margin-left: 2px;
+        margin-right: 2px;
+        padding: 5px;
+    }
+
+    .nav-link-active {
+        border: 1px solid #23527c;
+        background: transparent;
+        color: #23527c;
+        font-weight: normal;
+        border-radius: 3px;
+        margin-left: 2px;
+        margin-right: 2px;
+        padding: 5px 6px 5px 6px;
+    }
+
+    .nav-link:hover, .nav-link:focus {
+        background: rgba(200, 200, 200, 0.25);
+    }
+</style>
+
+<h3>Manage @IMS.AsThreadSafe(() => IMS.Instance.WorldManager.GetWorldByID(WorldID).Name)</h3>
+@{
+    bool shouldRenderWorldSize = WorldSize is null ? false : WorldSize.IsCompletedSuccessfully;
+    if (shouldRenderWorldSize)
+    {
+        <label style="color:gray; font-weight:normal">Current world size: @(WorldSize.Result / 1000000)MB</label>
+    }
+    if (TotalSize != null && TotalSize.IsCompletedSuccessfully)
+    {
+        if(shouldRenderWorldSize)
+        {
+            <label style="color:gray"> | </label>
+        }
+        <label style="color:gray; font-weight:normal">Total world/backup size: @(TotalSize.Result / 1000000)MB</label>
+    }
+}
+<br />
+<br />
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                <div style="display:table; margin:0 0">
+                    <ul class="nav tab-ul" style="
+                        list-style: none;
+                        margin-bottom: unset;
+                        padding-left: unset;">
+                        @foreach (WorldDisplay display in PlayerViews)
+                        {
+                            <li style="display:inline; position:static">
+                                <button class="@(display == SelectedView ? "nav-link-active" : "nav-link")" @onclick="x => SelectedView = display">@display.Name</button>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @if (SelectedView != null)
+                {
+                    RenderFragment fragment = builder =>
+                    {
+                        builder.OpenComponent(0, SelectedView.GetComponentType());
+                        builder.AddAttribute(0, "CurrentWorldID", WorldID);
+                        builder.CloseComponent();
+                    };
+                    @fragment
+                }
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<Timer @ref="UpdateTimer" Interval="250" UpdateScope=this></Timer>
+
+@code {
+    protected List<WorldDisplay> PlayerViews = new List<WorldDisplay>();
+    protected WorldDisplay SelectedView;
+
+    protected Task<long> WorldSize, TotalSize;
+
+    protected Timer UpdateTimer { get; set; }
+
+    [Parameter]
+    public Guid WorldID { get; set; }
+
+    public WorldManager()
+    {
+        PlayerViews.Add(SelectedView = new WorldBackupsDisplay());
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            UpdateTimer.Enabled = true;
+            //TODO: Make these update dynamically when stuff happens, not just load once at page beginning
+            WorldSize = IMS.AsThreadSafe(() => IMS.Instance.WorldManager.GetWorldByID(WorldID).GetWorldSizeAsync());
+            TotalSize = IMS.AsThreadSafe(() => IMS.Instance.WorldManager.GetWorldByID(WorldID).GetTotalSizeAsync());
+        }
+    }
+}

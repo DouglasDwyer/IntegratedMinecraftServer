@@ -1,0 +1,181 @@
+﻿@using IMS_Library
+
+@inherits WorldDisplayView
+
+<style>
+    .playertable > thead > tr > th {
+        vertical-align: middle;
+    }
+
+    .playertable > tbody > tr > th {
+        vertical-align: middle;
+    }
+
+    .playertable > tbody > tr > td {
+        vertical-align: middle;
+    }
+
+    .playerheadicon {
+        width: 28px;
+        height: 28px;
+        background-size: 100%;
+        image-rendering: pixelated;
+    }
+
+    .linkbutton {
+        background: none !important;
+        border: none;
+        padding: 0 !important;
+        color: #23527c;
+    }
+</style>
+
+<div style="margin:5px">
+    <label>Make backup</label>
+    <br />
+    <input class="form-control" style="width:200px; display:inline-block" placeholder="New backup" onkeyup="if (event.keyCode === 13) { document.getElementById('AddBackupButton').click(); }" @bind="NewBackupName" />
+    @if (CurrentTask is null)
+    {
+        <button id="AddBackupButton" class="btn btn-primary" @onclick="CreateNewBackup">Create</button>
+    }
+    else
+    {
+        <button id="AddBackupButton" class="btn btn-primary" disabled>Create</button>
+    }
+</div>
+<hr />
+
+@{
+    List<BackupInformation> backups = IMS.AsThreadSafe(() => CurrentWorld.Backups.ToList());
+    backups.Sort((x, y) => DateTime.Compare(y.Date, x.Date));
+    if (backups.Count() == 0)
+    {
+        <label style="padding-top:3px; font-weight:normal"><i>No backups of this world currently exist.</i></label>
+        return;
+    }
+}
+<table class="playertable table table-striped">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Date
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (BackupInformation backup in backups)
+        {
+            <tr>
+                <th>
+                    @if (CurrentlyEditingName == backup)
+                    {
+                        <input @bind="CurrentlyEditingNameText" class="form-control" style="display:inline-block; font-weight:normal; width:200px" />
+                        <button class="btn btn-success" @onclick="x => { backup.Name = CurrentlyEditingNameText; SetCurrentlyEditingNameOf(null); }">Confirm</button>
+                    }
+                    else
+                    {
+                        @backup.Name
+                    }
+                </th>
+                <td>
+                    @backup.Date
+                </td>
+                <td style="text-align:right">
+                    <div style="display:inline">
+                        @if (CurrentTask is null)
+                        {
+                            if (CurrentlyEditingName == backup)
+                            {
+                                <button class="linkbutton" @onclick="x => SetCurrentlyEditingNameOf(null)">Cancel</button> @("|")
+                            }
+                            else
+                            {
+                                <button class="linkbutton" @onclick="x => SetCurrentlyEditingNameOf(backup)">Rename</button> @("|")
+                            }
+                            <button class="linkbutton" @onclick="x => RestoreWorldAsync(backup.ID)">Restore</button> @("|")
+                            <button class="linkbutton" @onclick="x => DeleteWorldAsync(backup.ID)">Delete</button>
+                        }
+                        else
+                        {
+                            if (CurrentlyEditingName == backup)
+                            {
+                                <button class="linkbutton" style="color:gray" disabled">Cancel</button> @("|")
+                            }
+                            else
+                            {
+                                <button class="linkbutton" style="color:gray" disabled">Rename</button> @("|")
+                            }
+                            <button class="linkbutton" style="color:gray" disabled>Restore</button> @("|")
+                            <button class="linkbutton" style="color:gray" disabled>Delete</button>
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    protected static Task CurrentTask = null;
+    protected BackupInformation CurrentlyEditingName;
+    protected string CurrentlyEditingNameText;
+    protected string NewBackupName;
+
+    protected void CreateNewBackup()
+    {
+        string backup = NewBackupName;
+        if(string.IsNullOrEmpty(backup))
+        {
+            backup = "New backup";
+        }
+        Task.Run(() =>
+        {
+            CurrentTask = new Task(() => { });
+            CurrentTask = IMS.AsThreadSafe(() => CurrentWorld.MakeBackupAsync(backup));
+        });
+        NewBackupName = "";
+    }
+
+    protected void SetCurrentlyEditingNameOf(BackupInformation information)
+    {
+        CurrentlyEditingName = information;
+        if (CurrentlyEditingName != null)
+        {
+            CurrentlyEditingNameText = CurrentlyEditingName.Name;
+        }
+    }
+
+    protected void RestoreWorldAsync(Guid guid)
+    {
+        if (CurrentTask is null)
+        {
+            Task.Run(() =>
+            {
+                CurrentTask = new Task(() => { });
+                CurrentTask = IMS.AsThreadSafe(() => CurrentWorld.RestoreFromBackupAsync(guid));
+            });
+        }
+    }
+
+    protected void DeleteWorldAsync(Guid guid)
+    {
+        if (CurrentTask is null)
+        {
+            CurrentTask = new Task(() => { });
+            Task.Run(() => CurrentTask = IMS.AsThreadSafe(() => CurrentWorld.DeleteBackupAsync(guid)));
+        }
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        if (CurrentTask != null && CurrentTask.IsCompleted)
+        {
+            CurrentTask = null;
+        }
+    }
+}

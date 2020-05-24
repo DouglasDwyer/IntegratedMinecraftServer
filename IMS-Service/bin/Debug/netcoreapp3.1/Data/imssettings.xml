@@ -1,9 +1,20 @@
-IMS_Library.IMSSettings, IMS-Library, Version=0.0.1.0, Culture=neutral, PublicKeyToken=null
-<?xml version="1.0" encoding="utf-16"?>
-<IMSSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <ManagementPort>
-    <Port>8080</Port>
-    <AttemptUPnPForwarding>false</AttemptUPnPForwarding>
-  </ManagementPort>
-  <RunIMSOnStartup>false</RunIMSOnStartup>
-</IMSSettings>
+<RoyalXML>
+    <Root
+        type="IMSSettings">
+        <ManagementPort>
+            <Port>8080</Port>
+            <AttemptUPnPForwarding>False</AttemptUPnPForwarding>
+        </ManagementPort>
+        <RunIMSOnStartup>False</RunIMSOnStartup>
+        <Username
+            type="String"></Username>
+        <PasswordHash
+            type="null" />
+    </Root>
+    <Types>
+        <TypeInfo
+            type="IMS_Library.IMSSettings, IMS-Library, Version=0.0.1.0, Culture=neutral, PublicKeyToken=null">IMSSettings</TypeInfo>
+        <TypeInfo
+            type="System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">String</TypeInfo>
+    </Types>
+</RoyalXML>

@@ -26,6 +26,9 @@
     <Reference Include="Microsoft.VisualBasic">
       <HintPath>C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.VisualBasic.dll</HintPath>
     </Reference>
+    <Reference Include="RoyalXML">
+      <HintPath>..\..\RoyalXML\RoyalXML\bin\Debug\netstandard2.0\RoyalXML.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Caching">
       <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Runtime.Caching.dll</HintPath>
     </Reference>

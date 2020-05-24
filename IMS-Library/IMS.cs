@@ -175,6 +175,7 @@ namespace IMS_Library
             {
                 WebServer.Stop();
                 ServerManager.Stop();
+                WorldManager.Stop();
                 PortManager.Dispose();
                 CurrentSettings.SaveConfiguration();
                 if(exitCode != 0)

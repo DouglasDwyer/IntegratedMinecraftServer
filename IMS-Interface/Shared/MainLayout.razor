@@ -16,21 +16,23 @@
                     </div>
 
                     <div style="left:62px; right:8px; position:absolute; width:400px; top: 50%; margin-top:-15px; margin-left:calc(100% - 405px); margin-right:0">
-                        <select style="width:250px" class="btn btn-default dropdown-toggle">
-                            @{
-                                bool firstServer = true;
-                                @foreach (ServerProxy proxy in IMS.Instance.ServerManager.Servers)
-                                {
-                                    if(firstServer)
+                        @if(IMS.Instance.ServerManager.Servers.Count > 0) {
+                            <select style="width:250px" class="btn btn-default dropdown-toggle">
+                                @{
+                                    bool firstServer = true;
+                                    @foreach (ServerProxy proxy in IMS.Instance.ServerManager.Servers)
                                     {
-                                        SelectedServer = proxy.ID;
-                                        firstServer = false;
+                                        if (firstServer)
+                                        {
+                                            SelectedServer = proxy.ID;
+                                            firstServer = false;
+                                        }
+                                        <option value="@proxy.ID">@proxy.CurrentConfiguration.ServerName</option>
                                     }
-                                    <option value="@proxy.ID">@proxy.CurrentConfiguration.ServerName</option>
                                 }
-                            }
-                            <option value="NEW">Create new server...</option>
-                        </select>
+                                <option value="NEW">Create new server...</option>
+                            </select>
+                        }
                         <button style="background-color:transparent; margin-left:10px; border-style:none; color:white" @onclick="LogoutAsync">Sign Out</button>
                         //<asp:DropDownList style="width:250px" CssClass="btn btn-default dropdown-toggle" ID="ServerSelectionMenu" runat="server" OnSelectedIndexChanged="ServerSelectionMenu_SelectedIndexChanged" AutoPostBack="True" ViewStateMode="Enabled"></asp:DropDownList>
                         //<asp:Button ID="SignOutButton" runat="server" Text="Sign Out" BackColor="Transparent" style="" BorderStyle="None" ForeColor="White" OnClick="SignOutButton_Click" CausesValidation="False" TabIndex="0" UseSubmitBehavior="False" />

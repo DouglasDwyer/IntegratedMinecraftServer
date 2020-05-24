@@ -1,0 +1,10 @@
+﻿@using IMS_Library
+
+@code {
+    [CascadingParameter(Name = "CurrentServer")]
+    public Guid CurrentServerID { get; set; }
+
+    [Parameter]
+    public Guid CurrentWorldID { get; set; }
+    public World CurrentWorld => IMS.AsThreadSafe(() => IMS.Instance.WorldManager.GetWorldByID(CurrentWorldID));
+}
