@@ -1,6 +1,8 @@
 ﻿@using IMS_Library
 
 @inherits WorldDisplayView
+@inject NavigationManager Navigator
+@inject DownloadManager Downloader
 
 <style>
     .playertable > thead > tr > th {
@@ -41,6 +43,15 @@
     else
     {
         <button id="AddBackupButton" class="btn btn-primary" disabled>Create</button>
+    }
+
+    @if (CurrentTask is null)
+    {
+        <button style="float:right;vertical-align:top" class="linkbutton" @onclick="DownloadCurrentWorld">Download current world</button>
+    }
+    else
+    {
+        <button style="float:right;vertical-align:top; color:gray" class="linkbutton" disabled>Download current world</button>
     }
 </div>
 <hr />
@@ -96,6 +107,7 @@
                             {
                                 <button class="linkbutton" @onclick="x => SetCurrentlyEditingNameOf(backup)">Rename</button> @("|")
                             }
+                            <button class="linkbutton" @onclick="x => DownloadWorldAsync(backup.ID)">Download</button> @("|")
                             <button class="linkbutton" @onclick="x => RestoreWorldAsync(backup.ID)">Restore</button> @("|")
                             <button class="linkbutton" @onclick="x => DeleteWorldAsync(backup.ID)">Delete</button>
                         }
@@ -109,6 +121,7 @@
                             {
                                 <button class="linkbutton" style="color:gray" disabled">Rename</button> @("|")
                             }
+                            <button class="linkbutton" style="color:gray" disabled>Download</button> @("|")
                             <button class="linkbutton" style="color:gray" disabled>Restore</button> @("|")
                             <button class="linkbutton" style="color:gray" disabled>Delete</button>
                         }
@@ -125,6 +138,14 @@
     protected string CurrentlyEditingNameText;
     protected string NewBackupName;
 
+    protected void DownloadCurrentWorld()
+    {
+        if (CurrentTask is null)
+        {
+            CurrentTask = Downloader.DownloadServerWorldAsync(Navigator, IMS.AsThreadSafe(() => IMS.Instance.ServerManager.GetServer(CurrentServerID)));
+        }
+    }
+
     protected void CreateNewBackup()
     {
         string backup = NewBackupName;
@@ -138,6 +159,14 @@
             CurrentTask = IMS.AsThreadSafe(() => CurrentWorld.MakeBackupAsync(backup));
         });
         NewBackupName = "";
+    }
+
+    protected void DownloadWorldAsync(Guid guid)
+    {
+        if(CurrentTask is null)
+        {
+            CurrentTask = Downloader.ZipAndDownloadFolderAsync(Navigator, CurrentWorld.GetPathOfBackup(guid));
+        }
     }
 
     protected void SetCurrentlyEditingNameOf(BackupInformation information)

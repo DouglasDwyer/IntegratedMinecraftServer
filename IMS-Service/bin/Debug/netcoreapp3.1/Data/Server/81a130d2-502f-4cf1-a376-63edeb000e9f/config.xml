@@ -33,7 +33,7 @@
         <MaxTickTime>60000</MaxTickTime>
         <MaxWorldSize>29999984</MaxWorldSize>
         <MessageOfTheDay
-            type="String">&lt;font color="#ff55ff"&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; Happy &lt;/font&gt;&lt;b style=""&gt;&lt;i style=""&gt;&lt;u style=""&gt;&lt;font color="#aa0000"&gt;kek&lt;/font&gt;&lt;/u&gt;&lt;/i&gt;&lt;/b&gt;&lt;font color="#ff55ff"&gt; day, yert.&lt;/font&gt;&lt;div&gt;&lt;font color="#ff55ff"&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;/font&gt;&lt;font color="#00aaaa"&gt;&lt;sup&gt;rrrrrrr||||rrrrrr&lt;/sup&gt;&lt;/font&gt;&lt;/div&gt;</MessageOfTheDay>
+            type="String">&lt;font color="#ff55ff"&gt;&lt;b&gt;Why am I like this?&lt;/b&gt;&lt;/font&gt;</MessageOfTheDay>
         <NetworkCompressionThreshold>256</NetworkCompressionThreshold>
         <OnlineMode>True</OnlineMode>
         <DefaultOpPermissionLevel>4</DefaultOpPermissionLevel>

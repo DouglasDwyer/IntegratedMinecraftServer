@@ -18,3 +18,4 @@ D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Debug\netcoreapp3.1\Access
 D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Debug\netcoreapp3.1\System.Runtime.Serialization.Formatters.Soap.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Debug\netcoreapp3.1\RoyalXML.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Debug\netcoreapp3.1\RoyalXML.pdb
+D:\Projects\IntegratedMinecraftServer\IMS-Library\obj\Debug\netcoreapp3.1\IMS-Library.csproj.CoreCompileInputs.cache

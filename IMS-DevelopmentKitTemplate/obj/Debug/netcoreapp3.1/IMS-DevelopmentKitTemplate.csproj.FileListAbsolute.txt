@@ -28,3 +28,4 @@ D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKitTemplate\obj\Debug\netco
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKitTemplate\obj\Debug\netcoreapp3.1\IMS-DevelopmentKitTemplate.csproj.CopyComplete
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKitTemplate\obj\Debug\netcoreapp3.1\IMS-DevelopmentKitTemplate.dll
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKitTemplate\obj\Debug\netcoreapp3.1\IMS-DevelopmentKitTemplate.pdb
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKitTemplate\obj\Debug\netcoreapp3.1\IMS-DevelopmentKitTemplate.csproj.CoreCompileInputs.cache

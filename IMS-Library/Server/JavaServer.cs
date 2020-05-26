@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Runtime.Caching;
 using System.Text;
@@ -25,6 +26,7 @@ namespace IMS_Library
                 else
                 {
                     ServerPreferences = (JavaServerConfiguration)value;
+                    ServerPreferences.SaveConfiguration();
                 }
             }
         }
@@ -96,9 +98,9 @@ namespace IMS_Library
             return toReturn;
         }
 
-        public void OnServerProcessDie()
+        public void OnServerProcessDie(Process process)
         {
-            if(ServerProcess != null && !ServerProcess.EnableRaisingEvents)
+            if(!process.EnableRaisingEvents || process != ServerProcess)
             {
                 return;
             }
@@ -167,7 +169,36 @@ namespace IMS_Library
                     {
                         SendUncheckedConsoleCommand("save-on");
                     }
-                    location = null;
+                });
+            });
+        }
+
+        public override async Task BackupToZipFileAsync(string file)
+        {
+            if (!HasCompletedAutomaticSave)
+            {
+                return;
+            }
+            HasCompletedAutomaticSave = false;
+            if (AutomaticSavingPlayerEnabled)
+            {
+                SendUncheckedConsoleCommand("save-off");
+            }
+            SendUncheckedConsoleCommand("save-all");
+            while (!HasCompletedAutomaticSave)
+            {
+                await Task.Delay(1);
+            }
+            await Task.Run(() => {
+                string location = Path.GetTempPath() + "/IMS/" + Guid.NewGuid();
+                Extensions.CopyFolder(WorldLocation, location);
+                ZipFile.CreateFromDirectory(location, file);
+                Directory.Delete(location, true);
+                IMS.AsThreadSafe(() => {
+                    if (AutomaticSavingPlayerEnabled)
+                    {
+                        SendUncheckedConsoleCommand("save-on");
+                    }
                 });
             });
         }
@@ -430,8 +461,11 @@ namespace IMS_Library
             ServerProcess.ErrorDataReceived += IMS.AsThreadSafeDataEvent(OnServerConsoleDataReceived);
 
             ServerProcess.EnableRaisingEvents = true;
-            ServerProcess.Exited += IMS.AsThreadSafeEvent(OnServerProcessDie);
 
+            Process local = ServerProcess;
+            ServerProcess.Exited += IMS.AsThreadSafeEvent(() => OnServerProcessDie(local));
+
+            IMS.Instance.FirewallManager.CreateFirewallExecutableException("Server" + ID, ServerProcess.StartInfo.FileName);
             ServerProcess.Start();
 
             State = ServerState.Starting;
@@ -698,6 +732,8 @@ namespace IMS_Library
                 File.Copy(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log", ServerPreferences.GetServerFolderLocation() + "/logs/" + File.GetCreationTime(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log").ToString("yyyy-dd-M--HH-mm-ss") + ".log");
                 File.Delete(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log");
             }
+            IMS.Instance.FirewallManager.RemoveFirewallExecutableException("Server" + ID);
+            ServerProcess = null;
             State = ServerState.Disabled;
         }
 

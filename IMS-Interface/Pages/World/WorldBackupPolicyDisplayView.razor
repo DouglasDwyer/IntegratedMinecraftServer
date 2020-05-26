@@ -1,0 +1,92 @@
+﻿@using IMS_Library
+
+@inherits WorldDisplayView
+@implements IDisposable
+
+<style>
+    label {
+        font-weight:normal;
+    }
+
+    .linkbutton {
+        background: none !important;
+        border: none;
+        padding: 0 !important;
+        color: #23527c;
+        vertical-align:middle;
+    }
+</style>
+<select style="width:250px; margin-top:10px" class="btn btn-default dropdown-toggle" @bind="AddPolicyDropdownValue">
+    <option value="0">Add new backup policy...</option>
+    @{
+        int i = 0;
+        @foreach (BackupPolicyDisplay display in Provider.BackupPolicyDisplayBinding.Values)
+        {
+            <option value="@(i + 1)">@display.Name</option>
+            i++;
+        }
+    }
+</select>
+<hr />
+@{
+    IBackupPolicy[] policies = IMS.AsThreadSafe(() => CurrentWorld.BackupPolicies.ToArray());
+}
+
+@if (policies.Length > 0)
+{
+    <table class="playertable table table-striped">
+        <tbody>
+            @foreach (IBackupPolicy backup in policies)
+            {
+                <tr>
+                    <td>
+                        @if (Provider.BackupPolicyDisplayBinding.ContainsKey(backup.GetType()))
+                        {
+                            RenderFragment fragment = builder =>
+                            {
+                                builder.OpenComponent(0, Provider.BackupPolicyDisplayBinding[backup.GetType()].ComponentType);
+                                builder.AddAttribute(0, "CurrentWorldID", CurrentWorldID);
+                                builder.AddAttribute(0, "BackupPolicy", backup);
+                                builder.CloseComponent();
+                            };
+                            @fragment
+                        }
+                    </td>
+                    <td style="vertical-align:middle">
+                        <button class="linkbutton" @onclick="x => DeleteBackupPolicy(backup)">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <label><i>There currently are no backup policies in place.</i></label>
+}
+
+@code {
+    protected int AddPolicyDropdownValue { get => 0; set => OnUserAddPolicy(value); }
+
+    static WorldBackupPolicyDisplayView()
+    {
+        Provider.BackupPolicyDisplayBinding[typeof(BackupAfterTimeIntervalPolicy)] = new BackupPolicyDisplay("Backup after time interval...", typeof(BackupAfterTimeIntervalPolicyDisplayView));
+        Provider.BackupPolicyDisplayBinding[typeof(RemoveBackupAfterTimeIntervalPolicy)] = new BackupPolicyDisplay("Delete backups based on date...", typeof(RemoveBackupAfterTimeIntervalPolicyDisplayView));
+    }
+
+    protected void OnUserAddPolicy(int selectionIndex)
+    {
+        IBackupPolicy policy = (IBackupPolicy)Activator.CreateInstance(Provider.BackupPolicyDisplayBinding.Keys.ElementAt(selectionIndex - 1));
+        IMS.AsThreadSafe(() => CurrentWorld.BackupPolicies.Add(policy));
+    }
+
+    protected void DeleteBackupPolicy(IBackupPolicy policy)
+    {
+        IMS.AsThreadSafe(() => CurrentWorld.BackupPolicies.Remove(policy));
+    }
+
+    public void Dispose()
+    {
+        IMS.AsThreadSafe(() => CurrentWorld.SaveConfiguration());
+    }
+}

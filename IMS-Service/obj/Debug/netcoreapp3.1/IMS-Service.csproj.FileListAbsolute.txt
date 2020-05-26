@@ -19,7 +19,6 @@ D:\Projects\IntegratedMinecraftServer\IMS-Service\obj\Debug\netcoreapp3.1\IMS-Se
 D:\Projects\IntegratedMinecraftServer\IMS-Service\obj\Debug\netcoreapp3.1\IMS-Service.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\obj\Debug\netcoreapp3.1\IMS-Service.pdb
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\Microsoft.Win32.Registry.AccessControl.dll
-D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\Open.Nat.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\System.CodeDom.dll
@@ -33,14 +32,12 @@ D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\System
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\System.DirectoryServices.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\System.DirectoryServices.AccountManagement.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\System.DirectoryServices.Protocols.dll
-D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\System.Drawing.Common.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\System.IO.Packaging.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\System.IO.Ports.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\System.Management.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\System.Private.ServiceModel.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\System.Reflection.Context.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\System.Runtime.Caching.dll
-D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\System.Security.Cryptography.Pkcs.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\System.ServiceModel.Duplex.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\System.ServiceModel.Http.dll
@@ -52,7 +49,6 @@ D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\System
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\System.ServiceProcess.ServiceController.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\System.Threading.AccessControl.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\Microsoft.Win32.Registry.AccessControl.dll
-D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\runtimes\linux-arm\native\System.IO.Ports.Native.so
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\runtimes\linux-arm64\native\System.IO.Ports.Native.so
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\System.IO.Ports.Native.so
@@ -71,14 +67,11 @@ D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\runtim
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.DirectoryServices.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.DirectoryServices.AccountManagement.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.DirectoryServices.Protocols.dll
-D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
-D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\runtimes\linux\lib\netstandard2.0\System.IO.Ports.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\runtimes\osx\lib\netstandard2.0\System.IO.Ports.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.IO.Ports.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Management.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
-D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Security.Cryptography.Pkcs.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.ServiceProcess.ServiceController.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Threading.AccessControl.dll
@@ -103,3 +96,5 @@ D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\IMS-In
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\Cloudcrate.AspNetCore.Blazor.Browser.Storage.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\RoyalXML.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\RoyalXML.pdb
+D:\Projects\IntegratedMinecraftServer\IMS-Service\obj\Debug\netcoreapp3.1\IMS-Service.csproj.CoreCompileInputs.cache
+D:\Projects\IntegratedMinecraftServer\IMS-Service\obj\Debug\netcoreapp3.1\IMS-Service.genruntimeconfig.cache

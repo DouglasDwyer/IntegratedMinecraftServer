@@ -1,0 +1,14 @@
+﻿@using IMS_Library
+
+@page "/AllWorlds"
+@inject FileCache Cache
+
+@foreach(World world in IMS.AsThreadSafe(() => IMS.Instance.WorldManager.LoadedWorlds))
+{
+    <label>@world.Name</label>
+    <img src="@(Cache.CacheFile(world.WorldPath + "/icon.png"))"  />
+}
+
+@code {
+
+}

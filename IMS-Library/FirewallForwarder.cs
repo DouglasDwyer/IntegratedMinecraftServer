@@ -11,12 +11,26 @@ namespace IMS_Library
     {
         public void CreateFirewallExecutableException(string name, string path)
         {
-            throw new NotImplementedException();
+            Process process = new Process();
+            process.StartInfo = new ProcessStartInfo();
+            process.StartInfo.FileName = "cmd.exe";
+            process.StartInfo.Arguments = "/C netsh advfirewall firewall add rule name=\"IMS E" + name + "\" dir=in protocol=tcp program=" + path + " profile=any action=allow";
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.CreateNoWindow = true;
+            process.Start();
+            process.WaitForExit();
         }
 
-        public void RemoveFirewallExecutableException(string name, string path)
+        public void RemoveFirewallExecutableException(string name)
         {
-            throw new NotImplementedException();
+            Process process = new Process();
+            process.StartInfo = new ProcessStartInfo();
+            process.StartInfo.FileName = "cmd.exe";
+            process.StartInfo.Arguments = "/C netsh advfirewall firewall delete rule name=\"IMS E" + name + "\"";
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.CreateNoWindow = true;
+            process.Start();
+            process.WaitForExit();
         }
 
         public void CreateFirewallPortException(int port)
@@ -28,6 +42,7 @@ namespace IMS_Library
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.CreateNoWindow = true;
             process.Start();
+            process.WaitForExit();
         }
 
         public void RemoveFirewallPortException(int port)
@@ -39,6 +54,7 @@ namespace IMS_Library
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.CreateNoWindow = true;
             process.Start();
+            process.WaitForExit();
         }
     }
 }

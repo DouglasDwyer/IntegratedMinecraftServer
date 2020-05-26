@@ -81,6 +81,20 @@ namespace IMS_Library
             IMS.AsThreadSafe(() => server?.Start());
         }
 
+        public string GetPathOfBackup(BackupInformation backup)
+        {
+            if (Backups.Contains(backup))
+            {
+                return FolderPath + "/" + backup.ID;
+            }
+            return null;
+        }
+
+        public string GetPathOfBackup(Guid backup)
+        {
+            return FolderPath + "/" + backup;
+        }
+
         public async Task DeleteBackupAsync(Guid backupID)
         {
             BackupInformation info = Backups.Find(x => x.ID == backupID);

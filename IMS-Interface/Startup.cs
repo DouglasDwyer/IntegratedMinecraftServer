@@ -36,6 +36,8 @@ namespace IMS_Interface
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+            services.AddSingleton<DownloadManager>();
+            services.AddSingleton<FileCache>();
             services.AddHttpContextAccessor();
         }
 

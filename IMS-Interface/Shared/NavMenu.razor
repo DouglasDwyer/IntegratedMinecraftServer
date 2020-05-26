@@ -36,6 +36,14 @@
                     <img draggable="false" src="/img/enchanted_book.png" data-toggle="tooltip" data-container="app" data-trigger="hover" data-placement="right" title="IMS Preferences" style="height:50px; width:50px; margin-left:-15px" onclick="$(this).tooltip('hide')" />
                 </a>
             </li>
+            @foreach (NavigationBarLink link in Provider.NavigationBarLinks)
+            {
+                <li>
+                    <a href="@link.URL" style="background-color:transparent">
+                        <img draggable="false" src="@link.ImageLocation" data-toggle="tooltip" data-container="app" data-trigger="hover" data-placement="right" title="@link.Tooltip" style="height:50px; width:50px; margin-left:-15px" onclick="$(this).tooltip('hide');" />
+                    </a>
+                </li>
+            }
         </ul>
     </div>
 </div>

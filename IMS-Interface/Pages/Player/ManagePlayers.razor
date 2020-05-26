@@ -63,7 +63,7 @@
                         list-style: none;
                         margin-bottom: unset;
                         padding-left: unset;">
-                        @foreach (PlayerDisplay display in PlayerViews)
+                        @foreach (PlayerDisplay display in Provider.PlayerManagerDisplays)
                         {
                             <li style="display:inline; position:static">
                                 <button class="@(display == SelectedView ? "nav-link-active" : "nav-link")" @onclick="x => SelectedView = display">@display.Name</button>
@@ -96,17 +96,21 @@
 
 @code {
     protected Timer UpdateTimer;
-    protected List<PlayerDisplay> PlayerViews = new List<PlayerDisplay>();
     protected PlayerDisplay SelectedView;
+
+    static ManagePlayers()
+    {
+        Provider.PlayerManagerDisplays.Add(new OnlinePlayerDisplay());
+        Provider.PlayerManagerDisplays.Add(new AllPlayerDisplay());
+        Provider.PlayerManagerDisplays.Add(new WhitelistPlayerDisplay());
+        Provider.PlayerManagerDisplays.Add(new OpPlayerDisplay());
+        Provider.PlayerManagerDisplays.Add(new BanPlayerDisplay());
+        Provider.PlayerManagerDisplays.Add(new BanIPDisplay());
+    }
 
     public ManagePlayers()
     {
-        PlayerViews.Add(SelectedView = new OnlinePlayerDisplay());
-        PlayerViews.Add(new AllPlayerDisplay());
-        PlayerViews.Add(new WhitelistPlayerDisplay());
-        PlayerViews.Add(new OpPlayerDisplay());
-        PlayerViews.Add(new BanPlayerDisplay());
-        PlayerViews.Add(new BanIPDisplay());
+        SelectedView = Provider.PlayerManagerDisplays.First();
     }
 
     protected override void OnAfterRender(bool firstRender)

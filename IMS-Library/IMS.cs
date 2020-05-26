@@ -26,6 +26,7 @@ namespace IMS_Library
         public WorldController WorldManager { get; protected set; }
         public WebInterface WebServer { get; set; }
         public ServerController ServerManager { get; protected set; }
+        public PluginController PluginManager { get; protected set; }
 
         private Thread MainThread;
         private int exitCode = 0;
@@ -127,6 +128,9 @@ namespace IMS_Library
             Logger.WriteInfo("IMS settings configuration loaded.");
             Logger.WriteInfo("Attempting to find suitable UPnP router for port forwarding...");
 
+            PluginManager = new PluginController();
+            PluginManager.Initialize();
+
             PortManager = new PortForwarder();
             PortManager.Initialize();
 
@@ -140,6 +144,8 @@ namespace IMS_Library
 
             WebServer.Port = CurrentSettings.ManagementPort;
             WebServer.Start();
+
+            PluginManager.Start();
 
             while(true)
             {
@@ -173,6 +179,7 @@ namespace IMS_Library
         {
             IMS.AsThreadSafe(() =>
             {
+                PluginManager.Stop();
                 WebServer.Stop();
                 ServerManager.Stop();
                 WorldManager.Stop();
@@ -214,6 +221,7 @@ namespace IMS_Library
                 }
             }
             CurrentSettings = newSettings;
+            CurrentSettings.SaveConfiguration();
         }
     }
 }

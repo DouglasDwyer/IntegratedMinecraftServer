@@ -10,20 +10,48 @@
             <ICollectionData
                 data="ICollection"
                 type="IBackupPolicy[]"
-                ranksize0="0" />
+                ranksize0="2">
+                <ArrayElement
+                    type="BackupAfterTimeIntervalPolicy">
+                    <BackupName
+                        type="String">Semiautomatic backup</BackupName>
+                    <BackupInterval>01:00:00</BackupInterval>
+                    <LastBackedUp>5/24/2020 9:06:37 PM</LastBackedUp>
+                </ArrayElement>
+                <ArrayElement
+                    type="RemoveBackupAfterTimeIntervalPolicy">
+                    <BackupName
+                        type="String">Semiautomatic backup</BackupName>
+                    <BackupRemovalTime>01:00:00</BackupRemovalTime>
+                </ArrayElement>
+            </ICollectionData>
         </BackupPolicies>
         <Backups
             type="List`10">
             <ICollectionData
                 data="ICollection"
                 type="BackupInformation[]"
-                ranksize0="1">
+                ranksize0="3">
                 <ArrayElement
                     type="BackupInformation">
                     <Name
-                        type="String">Overwritten world backup</Name>
-                    <Date>5/22/2020 9:08:29 PM</Date>
-                    <ID>5a71e098-c537-4c8f-9245-b049b561fe5f</ID>
+                        type="String">boop</Name>
+                    <Date>5/24/2020 12:48:00 PM</Date>
+                    <ID>6b77514c-29c8-4c03-a70e-0a1541c2f7a4</ID>
+                </ArrayElement>
+                <ArrayElement
+                    type="BackupInformation">
+                    <Name
+                        type="String">YERT</Name>
+                    <Date>5/24/2020 6:54:14 PM</Date>
+                    <ID>4a625df8-367b-4a1e-9ebd-005004dc5cf2</ID>
+                </ArrayElement>
+                <ArrayElement
+                    type="BackupInformation">
+                    <Name
+                        type="String">Semiautomatic backup</Name>
+                    <Date>5/24/2020 9:06:37 PM</Date>
+                    <ID>5228add0-667e-40d1-b035-365f6e49f955</ID>
                 </ArrayElement>
             </ICollectionData>
         </Backups>
@@ -37,6 +65,10 @@
             type="System.Collections.Generic.List`1[[IMS_Library.IBackupPolicy, IMS-Library, Version=0.0.1.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">List`1</TypeInfo>
         <TypeInfo
             type="IMS_Library.IBackupPolicy[], IMS-Library, Version=0.0.1.0, Culture=neutral, PublicKeyToken=null">IBackupPolicy[]</TypeInfo>
+        <TypeInfo
+            type="IMS_Library.BackupAfterTimeIntervalPolicy, IMS-Library, Version=0.0.1.0, Culture=neutral, PublicKeyToken=null">BackupAfterTimeIntervalPolicy</TypeInfo>
+        <TypeInfo
+            type="IMS_Library.RemoveBackupAfterTimeIntervalPolicy, IMS-Library, Version=0.0.1.0, Culture=neutral, PublicKeyToken=null">RemoveBackupAfterTimeIntervalPolicy</TypeInfo>
         <TypeInfo
             type="System.Collections.Generic.List`1[[IMS_Library.BackupInformation, IMS-Library, Version=0.0.1.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">List`10</TypeInfo>
         <TypeInfo

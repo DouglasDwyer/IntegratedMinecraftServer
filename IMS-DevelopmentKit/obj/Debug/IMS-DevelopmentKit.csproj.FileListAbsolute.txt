@@ -27,3 +27,4 @@ D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\ProjectTempla
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\ProjectTemplates\IMS\IMS Plugin\__PreviewImage.ico
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\ProjectTemplates\IMS\IMS Plugin\MyTemplate.vstemplate
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\templateFiles.json
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\IMS-DevelopmentKit.csproj.CoreCompileInputs.cache

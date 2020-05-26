@@ -6,6 +6,13 @@
             <AttemptUPnPForwarding>False</AttemptUPnPForwarding>
         </ManagementPort>
         <RunIMSOnStartup>False</RunIMSOnStartup>
+        <PluginPaths
+            type="List`1">
+            <ICollectionData
+                data="ICollection"
+                type="String[]"
+                ranksize0="0" />
+        </PluginPaths>
         <Username
             type="String"></Username>
         <PasswordHash
@@ -14,6 +21,10 @@
     <Types>
         <TypeInfo
             type="IMS_Library.IMSSettings, IMS-Library, Version=0.0.1.0, Culture=neutral, PublicKeyToken=null">IMSSettings</TypeInfo>
+        <TypeInfo
+            type="System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">List`1</TypeInfo>
+        <TypeInfo
+            type="System.String[], System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">String[]</TypeInfo>
         <TypeInfo
             type="System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">String</TypeInfo>
     </Types>

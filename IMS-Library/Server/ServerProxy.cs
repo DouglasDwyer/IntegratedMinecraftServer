@@ -52,6 +52,7 @@ namespace IMS_Library
         public abstract List<LogFileInformation> GetLogFiles();
         public abstract string GetLogFile(string name);
         public abstract Task BackupToLocationAsync(string location);
+        public abstract Task BackupToZipFileAsync(string file);
 
         public virtual ServerConfiguration GetDefaultServerConfiguration()
         {

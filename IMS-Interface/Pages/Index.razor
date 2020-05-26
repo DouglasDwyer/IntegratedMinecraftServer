@@ -1,4 +1,8 @@
 ﻿@page "/"
+@using System.IO
+@inject NavigationManager manager
+@inject DownloadManager downloader
+
 Welcome
 Welcome
 Welcome
@@ -10,3 +14,12 @@ index pagee
 
 Welcome to your neeew CRAP.
 Aedd
+
+<button @onclick="Yeet">Click for yeet</button>
+
+@code { 
+    protected void Yeet()
+    {
+        downloader.ZipAndDownloadFolderAsync(manager, "C:/Users/Douglas/Documents/AP EXAM 2020");
+    }
+}

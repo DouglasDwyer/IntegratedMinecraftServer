@@ -81,12 +81,15 @@
                         list-style: none;
                         margin-bottom: unset;
                         padding-left: unset;">
-                        @foreach (WorldDisplay display in PlayerViews)
+                        @foreach (WorldDisplay display in Provider.WorldManagerDisplays)
                         {
                             <li style="display:inline; position:static">
                                 <button class="@(display == SelectedView ? "nav-link-active" : "nav-link")" @onclick="x => SelectedView = display">@display.Name</button>
                             </li>
                         }
+                        <li style="display:inline; position:static; float:right">
+                            <button class="nav-link" onclick="window.location='/AllWorlds'">All worlds</button>
+                        </li>
                     </ul>
                 </div>
             </th>
@@ -113,7 +116,6 @@
 <Timer @ref="UpdateTimer" Interval="250" UpdateScope=this></Timer>
 
 @code {
-    protected List<WorldDisplay> PlayerViews = new List<WorldDisplay>();
     protected WorldDisplay SelectedView;
 
     protected Task<long> WorldSize, TotalSize;
@@ -123,9 +125,15 @@
     [Parameter]
     public Guid WorldID { get; set; }
 
+    static WorldManager()
+    {
+        Provider.WorldManagerDisplays.Add(new WorldBackupsDisplay());
+        Provider.WorldManagerDisplays.Add(new WorldBackupPolicyDisplay());
+    }
+
     public WorldManager()
     {
-        PlayerViews.Add(SelectedView = new WorldBackupsDisplay());
+        SelectedView = Provider.WorldManagerDisplays.First();
     }
 
     protected override void OnAfterRender(bool firstRender)

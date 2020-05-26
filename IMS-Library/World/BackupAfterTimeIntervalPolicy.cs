@@ -6,14 +6,16 @@ namespace IMS_Library
 {
     public class BackupAfterTimeIntervalPolicy : IBackupPolicy
     {
-        public TimeSpan BackupInterval = TimeSpan.FromHours(1);
-        public DateTime LastBackedUp;
+        public string BackupName = "Automatic backup";
+
+        public TimeSpan BackupInterval = TimeSpan.FromHours(24);
+        public DateTime LastBackedUp = DateTime.Now;
 
         public void Update(World world)
         {
             if(LastBackedUp + BackupInterval < DateTime.Now)
             {
-                world.MakeBackupAsync();
+                world.MakeBackupAsync(BackupName);
                 LastBackedUp = DateTime.Now;
             }
         }

@@ -12,6 +12,8 @@ namespace IMS_Library
         public WebPort ManagementPort;
         public bool RunIMSOnStartup = true;
 
+        public List<string> PluginPaths = new List<string>();
+
         public string Username;
         public byte[] PasswordHash;
 
