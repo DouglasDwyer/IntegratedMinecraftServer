@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Timers;
 
 namespace IMS_Library
@@ -84,6 +85,15 @@ namespace IMS_Library
         public void AddWorldToRegistry(World world)
         {
             Worlds.Add(world.ID, world);
+        }
+
+        public async Task DeleteWorldAsync(World world)
+        {
+            if(!Worlds.Remove(world.ID))
+            {
+                throw new ArgumentException("World was not found in world registry.");
+            }
+            await Task.Run(() => Directory.Delete(world.FolderPath, true));
         }
 
         public void Stop()

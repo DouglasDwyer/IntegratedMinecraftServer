@@ -13,6 +13,18 @@ namespace IMS_Library
     {
         public static MemoryCache SkinLinkCache = new MemoryCache("IMS", null, true);
 
+        public static async Task<VersionInformationTag> GetAllJavaVersionInformation()
+        {
+            WebClientWithTimeout mojangRequest = new WebClientWithTimeout(1000);
+            return await Task.Run(() => JsonConvert.DeserializeObject<VersionInformationTag>(mojangRequest.DownloadString("https://launchermeta.mojang.com/mc/game/version_manifest.json")));
+        }
+
+        public static async Task<VersionDataTag> GetVersionInformation(VersionMetadataTag version)
+        {
+            WebClientWithTimeout mojangRequest = new WebClientWithTimeout(1000);
+            return await Task.Run(() => JsonConvert.DeserializeObject<VersionDataTag>(mojangRequest.DownloadString(version.url)));
+        }
+
         public static string GetUUIDFromUsername(string username)
         {
             try

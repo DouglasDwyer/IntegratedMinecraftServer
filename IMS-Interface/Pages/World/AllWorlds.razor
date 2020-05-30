@@ -1,14 +1,217 @@
 ﻿@using IMS_Library
+@using System.IO
+@using Blazor.FileReader
 
 @page "/AllWorlds"
 @inject FileCache Cache
+@inject IFileReaderService FileReader
+@inject PopupProvider PopupManager
+<!--Card styling taken from W3-->
+<style>
+    .world-card {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        width: 200px;
+        height: 250px;
+        border-radius: 5px;
+        display: inline-grid;
+        margin: 5px;
+        image-rendering:pixelated;
+        background-color:white;
+    }
 
-@foreach(World world in IMS.AsThreadSafe(() => IMS.Instance.WorldManager.LoadedWorlds))
-{
-    <label>@world.Name</label>
-    <img src="@(Cache.CacheFile(world.WorldPath + "/icon.png"))"  />
-}
+    .world-card > img {
+        border-radius: 5px 5px 0 0;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .world-card-container {
+        padding: 10px;
+        line-height:30px;
+        height:50px;
+    }
+</style>
+
+<h3>Manage Worlds</h3>
+<label class="btn btn-primary" style="padding:5px" disabled="@IsExecutingTask">
+    @if (CurrentWorldUpload != null)
+    {
+        @("Uploading... (" + Math.Round((double)CurrentWorldUpload.UploadedSize / CurrentWorldUpload.TotalSize * 100) + "%)")
+    }
+    else
+    {
+        @("Upload new world")
+    }
+    <input @ref="NewWorldInput" type="file" class="btn btn-primary" style="display:none" multiple webkitdirectory mozdirectory @onchange="BeginWorldUpload" disabled="@IsExecutingTask" />
+</label>
+<br />
+<label style="margin-top:2px;font-weight:normal; color:gray;">Java worlds are usually located at
+    <button style="background-color:transparent; border:none" onclick="navigator.clipboard.writeText('%AppData%\\.minecraft\\saves')">
+        <b style="border-bottom: 1px dotted #000;" data-toggle="tooltip" data-container="app" data-trigger="hover" data-placement="top" title="Click to copy path">%AppData%\.minecraft\saves</b>
+    </button>and Bedrock worlds at
+    <button style="background-color:transparent; border:none" onclick="navigator.clipboard.writeText('%LocalAppData%\\Packages\\Microsoft.MinecraftUWP_8wekyb3d8bbwe\\LocalState\\games\\com.mojang\\minecraftWorlds')">
+        <b style="border-bottom: 1px dotted #000;" data-toggle="tooltip" data-container="app" data-trigger="hover" data-placement="top" title="Click to copy path">%LocalAppData%\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang\minecraftWorlds</b>
+    </button>
+</label>
+<hr />
+<div style="padding:2px">
+    @{ 
+        IList<ServerProxy> loadedServers = IMS.AsThreadSafe(() => IMS.Instance.ServerManager.Servers);
+        ServerProxy selectedServer = loadedServers.Where(x => x.ID == CurrentServerID).First();
+    }
+    @foreach (World world in IMS.AsThreadSafe(() => IMS.Instance.WorldManager.LoadedWorlds).OrderBy(x => x.Name))
+    {
+        <div class="world-card">
+            <img src="@GetRelativeWorldIcon(world)" style="width:200px; height:200px" />
+            <div class="world-card-container">
+                @{
+                    ServerProxy server = loadedServers.Where(x => x.CurrentConfiguration.WorldID == world.ID).FirstOrDefault();
+                    if (server != null)
+                    {
+                        <label style="display:inline-block; position:relative; bottom:10px" data-toggle="tooltip" data-container="app" data-trigger="hover" data-placement="top" title=@("World " + (server.State == ServerProxy.ServerState.Disabled ? "mounted" : "running") + " on " + server.CurrentConfiguration.ServerName)>⛏</label>
+                    }
+                    <a href="@("WorldManager/" + world.ID)"  style="white-space: nowrap; overflow: hidden; width: 154px; text-overflow: ellipsis; display: inline-block;">@world.Name</a>
+                    <div style="float:right; position:relative; margin-top:-2px; display:inline-block">
+                        <select class="btn" style="width:30px; -webkit-appearance:none; color:black; position:absolute; right:0" @onchange="x => TakeActionOnWorld((string)x.Value, world, server)" keepSelectedIndexAtZero>
+                            <option selected disabled hidden>⋮</option>
+                            @if (server is null && selectedServer.SupportedEdition == world.Edition)
+                            {
+                                <option>
+                                    Set as server world
+                                </option>
+                            }
+                            <option>
+                                Rename
+                            </option>
+                            <option>
+                                Change world icon
+                            </option>
+                            <option>
+                                Delete
+                            </option>
+                        </select>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>
+
 
 @code {
+    protected static bool IsExecutingTask { get => CurrentTask != null && !CurrentTask.IsCompleted; }
+    protected static Task CurrentTask;
 
+    protected ElementReference NewWorldInput;
+    protected WorldUpload CurrentWorldUpload = null;
+
+    [CascadingParameter(Name = "CurrentServer")]
+    protected Guid CurrentServerID { get; set; }
+    protected int WorldSelection { get => 0; set { return; } }
+
+    protected string GetRelativeWorldIcon(World world)
+    {
+        if (File.Exists(world.IconPath))
+        {
+            return Cache.CacheFile(world.IconPath);
+        }
+        else
+        {
+            return world.Edition == World.WorldType.Java ? "/img/grass_block.png" : "/img/bedrock.png";
+        }
+    }
+
+    protected void BeginWorldUpload()
+    {
+        CurrentTask = UploadWorldAsync();
+    }
+
+    protected async Task UploadWorldAsync()
+    {
+        await Task.Run(() =>
+        {
+            try
+            {
+                IEnumerable<IFileReference> fileUpload = FileReader.CreateReference(NewWorldInput).EnumerateFilesAsync().Result;
+                IEnumerable<IFileInfo> fileInfo = fileUpload.Select(x => x.ReadFileInfoAsync().Result);
+                if (fileInfo.Where(x => x.Name == "level.dat").Count() == 0)
+                {
+                    Console.WriteLine("Invalid world");
+                }
+                else
+                {
+                    CurrentWorldUpload = new WorldUpload();
+                    foreach (IFileInfo file in fileInfo)
+                    {
+                        CurrentWorldUpload.TotalSize += file.Size;
+                    }
+                    World world = new World(Guid.NewGuid());
+                    world.Name = fileInfo.First().WebkitRelativePath.Remove(fileInfo.First().WebkitRelativePath.IndexOf("/"));
+                    if (fileInfo.Where(x => x.Name == "levelname.txt").Count() > 0)
+                    {
+                        world.Edition = World.WorldType.Bedrock;
+                    }
+                    else
+                    {
+                        world.Edition = World.WorldType.Java;
+                    }
+                    Directory.CreateDirectory(world.WorldPath);
+                    int i = 0;
+                    foreach (IFileReference entry in fileUpload)
+                    {
+                        IFileInfo info = fileInfo.ElementAt(i);
+                        string entryLocation = world.WorldPath + "/" + info.WebkitRelativePath.Substring(info.WebkitRelativePath.IndexOf("/") + 1);
+                        string entryPath = new FileInfo(entryLocation).Directory.FullName;
+                        if (!Directory.Exists(entryPath))
+                        {
+                            Directory.CreateDirectory(entryPath);
+                        }
+                        using (Stream fileStream = File.Create(entryLocation))
+                        using (MemoryStream memoryStream = entry.CreateMemoryStreamAsync(1024 * 1024).Result)
+                        {
+                            memoryStream.CopyToAsync(fileStream).Wait();
+                        }
+                        CurrentWorldUpload.UploadedSize += info.Size;
+                        InvokeAsync(StateHasChanged);
+                        i++;
+                    }
+                    CurrentWorldUpload = null;
+                    IMS.AsThreadSafe(() => IMS.Instance.WorldManager.AddWorldToRegistry(world));
+                    world.SaveConfiguration();
+                    CurrentTask = null;
+                    InvokeAsync(StateHasChanged);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        });
+    }
+
+    protected sealed class WorldUpload
+    {
+        public long TotalSize;
+        public long UploadedSize;
+    }
+
+    protected void TakeActionOnWorld(string action, World world, ServerProxy mountedServer)
+    {
+        switch(action) {
+            case "Rename":
+                PopupManager.ShowPopup(new RenameWorldDisplayView.RenameWorldDisplay(world, StateHasChanged));
+                break;
+            case "Delete":
+                PopupManager.ShowPopup(new DeleteWorldDisplayView.DeleteWorldDisplay(world, mountedServer is null ? null : mountedServer.CurrentConfiguration.ServerName, StateHasChanged));
+                break;
+            case "Change world icon":
+                PopupManager.ShowPopup(new ChangeWorldIconDisplayView.ChangeWorldIconDisplay(world, mountedServer is null ? null : mountedServer.CurrentConfiguration.ServerName, StateHasChanged));
+                break;
+            case "Set as server world":
+                PopupManager.ShowPopup(new ChangingWorldDisplayView.ChangingWorldDisplay(world, IMS.AsThreadSafe(() => IMS.Instance.ServerManager.GetServer(CurrentServerID)), StateHasChanged));
+                break;
+            default:
+                throw new InvalidOperationException();
+        }
+    }
 }

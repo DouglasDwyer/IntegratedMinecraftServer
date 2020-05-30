@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Server;
 using Microsoft.AspNetCore.Authentication;
 using Cloudcrate.AspNetCore.Blazor.Browser.Storage;
+using Blazor.FileReader;
 
 namespace IMS_Interface
 {
@@ -34,10 +35,12 @@ namespace IMS_Interface
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-            services.AddServerSideBlazor();
+            services.AddServerSideBlazor().AddHubOptions(options => options.MaximumReceiveMessageSize = 3 * 1024 * 1024);
             services.AddSingleton<WeatherForecastService>();
             services.AddSingleton<DownloadManager>();
             services.AddSingleton<FileCache>();
+            services.AddScoped<PopupProvider>();
+            services.AddFileReaderService();
             services.AddHttpContextAccessor();
         }
 

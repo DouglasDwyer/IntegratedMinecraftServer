@@ -13,6 +13,7 @@
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
   </PropertyGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)tewr.blazor.filereader\1.5.0.20109\buildTransitive\Tewr.Blazor.FileReader.props" Condition="Exists('$(NuGetPackageRoot)tewr.blazor.filereader\1.5.0.20109\buildTransitive\Tewr.Blazor.FileReader.props')" />
     <Import Project="$(NuGetPackageRoot)cloudcrate.aspnetcore.blazor.browser.storage\3.0.0\buildTransitive\Cloudcrate.AspNetCore.Blazor.Browser.Storage.props" Condition="Exists('$(NuGetPackageRoot)cloudcrate.aspnetcore.blazor.browser.storage\3.0.0\buildTransitive\Cloudcrate.AspNetCore.Blazor.Browser.Storage.props')" />
   </ImportGroup>
 </Project>

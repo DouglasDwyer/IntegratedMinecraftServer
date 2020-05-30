@@ -1,0 +1,69 @@
+﻿@using IMS_Library
+
+@inject PopupProvider PopupManager
+
+<style>
+    label {
+        font-weight: normal;
+    }
+</style>
+<label><b>Delete world?</b></label>
+<br />
+<label>This cannot be undone.</label>
+@if (DisplayData.CurrentServerName != null)
+{
+    <label>This will also cause @DisplayData.CurrentServerName to restart and generate a new world.</label>
+}
+<br />
+<br />
+<label></label>
+<div style="position:absolute;right:10px;bottom:10px;">
+    <button class="btn btn-danger" @onclick="Delete">Delete</button>
+    <button class="btn btn-default" @onclick="x => PopupManager.ClosePopup()">Cancel</button>
+</div>
+
+@code {
+
+    [Parameter]
+    public DeleteWorldDisplay DisplayData { get; set; }
+
+    protected void Delete()
+    {
+        IMS.AsThreadSafe(() => {
+            ServerProxy server = IMS.Instance.WorldManager.GetServerOfWorld(DisplayData.CurrentWorld);
+            if(server != null)
+            {
+                if(server.State == ServerProxy.ServerState.Disabled)
+                {
+                    server = null;
+                }
+                else
+                {
+                    server.Stop();
+                    server.CurrentConfiguration.WorldID = Guid.Empty;
+                }
+            }
+            IMS.Instance.WorldManager.DeleteWorldAsync(DisplayData.CurrentWorld);
+            if(server != null)
+            {
+                server.Start();
+            }
+        });
+        PopupManager.ClosePopup();
+        DisplayData.OnDeleteOccur?.Invoke();
+    }
+
+    public class DeleteWorldDisplay : PopupDisplay<DeleteWorldDisplayView>
+    {
+        public World CurrentWorld;
+        public string CurrentServerName;
+        public Action OnDeleteOccur;
+
+        public DeleteWorldDisplay(World world, string server, Action delete)
+        {
+            CurrentWorld = world;
+            CurrentServerName = server;
+            OnDeleteOccur = delete;
+        }
+    }
+}

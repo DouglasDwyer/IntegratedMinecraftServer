@@ -1,4 +1,5 @@
 ﻿using KinglyStudios.Knetworking;
+using RoyalXML;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ namespace IMS_Library
         public WebInterface WebServer { get; set; }
         public ServerController ServerManager { get; protected set; }
         public PluginController PluginManager { get; protected set; }
+        public MinecraftVersionProvider VersionManager { get; protected set; }
 
         private Thread MainThread;
         private int exitCode = 0;
@@ -136,6 +138,9 @@ namespace IMS_Library
 
             FirewallManager = new FirewallForwarder();
 
+            VersionManager = new MinecraftVersionProvider().FromConfiguration();
+            VersionManager.Start();
+
             WorldManager = new WorldController();
             WorldManager.Start();
 
@@ -183,6 +188,7 @@ namespace IMS_Library
                 WebServer.Stop();
                 ServerManager.Stop();
                 WorldManager.Stop();
+                VersionManager.Stop();
                 PortManager.Dispose();
                 CurrentSettings.SaveConfiguration();
                 if(exitCode != 0)

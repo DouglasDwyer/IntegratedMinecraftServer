@@ -1,0 +1,44 @@
+﻿@using IMS_Library
+
+@inject PopupProvider PopupManager
+
+<style>
+    label {
+        font-weight:normal;
+    }
+</style>
+<label><b>Rename world?</b></label>
+<br />
+<input type="text" placeholder="World name..." onkeyup="if (event.keyCode === 13) { document.getElementById('RenameWorld').click(); }" class="form-control" style="width:200px" @bind="WorldNameInput" />
+<br />
+<br />
+<label></label>
+<div style="position:absolute;right:10px;bottom:10px;">
+    <button class="btn btn-primary" id="RenameWorld" @onclick="@(x => { DisplayData.CurrentWorld.Name = WorldNameInput; PopupManager.ClosePopup(); DisplayData.OnRenameOccur?.Invoke(); })">Rename</button>
+    <button class="btn btn-default" @onclick="x => PopupManager.ClosePopup()">Cancel</button>
+</div>
+
+@code {
+
+    [Parameter]
+    public RenameWorldDisplay DisplayData { get => LoadedDisplayData; set {
+            WorldNameInput = value.CurrentWorld.Name;
+            LoadedDisplayData = value;
+        }
+    }
+    private RenameWorldDisplay LoadedDisplayData;
+
+    protected string WorldNameInput { get; set; }
+
+    public class RenameWorldDisplay : PopupDisplay<RenameWorldDisplayView>
+    {
+        public World CurrentWorld;
+        public Action OnRenameOccur;
+
+        public RenameWorldDisplay(World world, Action rename)
+        {
+            CurrentWorld = world;
+            OnRenameOccur = rename;
+        }
+    }
+}

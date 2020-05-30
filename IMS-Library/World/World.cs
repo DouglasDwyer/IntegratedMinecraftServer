@@ -11,18 +11,32 @@ namespace IMS_Library
     {
         public Guid ID;
         public string Name;
-        public WorldType WorldEdition;
+        public WorldType Edition;
         public List<IBackupPolicy> BackupPolicies = new List<IBackupPolicy>();
         public List<BackupInformation> Backups = new List<BackupInformation>();
 
         public string FolderPath { get => Constants.ExecutionPath + Constants.WorldFolderLocation + "/" + ID; }
-        public string WorldPath { get {
+        public string WorldPath {
+            get {
                 string toReturn = FolderPath + "/world";
                 if (!Directory.Exists(toReturn))
                 {
                     Directory.CreateDirectory(toReturn);
                 }
                 return toReturn;
+            }
+        }
+        public string IconPath {
+            get { 
+                if(Edition == WorldType.Java)
+                {
+                    return WorldPath + "/icon.png";
+                }
+                else if(Edition == WorldType.Bedrock)
+                {
+                    return WorldPath + "/world_icon.jpeg";
+                }
+                throw new InvalidOperationException();
             }
         }
 

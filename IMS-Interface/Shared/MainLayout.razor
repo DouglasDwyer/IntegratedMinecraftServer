@@ -4,8 +4,50 @@
 
 @inject IJSRuntime JSRuntime
 @inject IHttpContextAccessor Context
+@inject PopupProvider PopupManager
 
     <CascadingValue Value="@SelectedServer" Name="CurrentServer">
+
+        <style>
+            button, select {
+                outline: none !important;
+            }
+
+            .popup-background {
+                float: left;
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                top: 0px;
+                left: 0px;
+                right: 0px;
+                bottom: 0px;
+                z-index: 599;
+                background-color: rgba(0,0,0,0.5);
+                display: flex;
+            }
+        </style>
+        @{ 
+            PopupManager.OnPopupChange = StateHasChanged;
+        }
+        @if (PopupManager.CurrentPopupFragment != null)
+        {
+            <div class="popup-background">
+                <div class="world-card" style="
+                margin: auto;
+                width: 350px;
+                height: 200px;
+                display:block;
+                padding: 10px;
+                position:relative;
+                height:unset;
+                overflow:auto;
+            ">
+                    @PopupManager.CurrentPopupFragment
+                </div>
+            </div>
+        }
+
         <NavMenu />
         <div class="main">
 
@@ -16,7 +58,8 @@
                     </div>
 
                     <div style="left:62px; right:8px; position:absolute; width:400px; top: 50%; margin-top:-15px; margin-left:calc(100% - 405px); margin-right:0">
-                        @if(IMS.Instance.ServerManager.Servers.Count > 0) {
+                        @if (IMS.Instance.ServerManager.Servers.Count > 0)
+                        {
                             <select style="width:250px" class="btn btn-default dropdown-toggle">
                                 @{
                                     bool firstServer = true;

@@ -21,6 +21,7 @@ namespace IMS_Library
         public abstract bool SupportsOps { get; }
         public abstract bool SupportsIPs { get; }
         public abstract bool SupportsKicking { get; }
+        public abstract World.WorldType SupportedEdition { get; }
 
         public ServerProxy(Guid guid) {
             ID = guid;

@@ -3,7 +3,7 @@
         type="IMSSettings">
         <ManagementPort>
             <Port>8080</Port>
-            <AttemptUPnPForwarding>False</AttemptUPnPForwarding>
+            <AttemptUPnPForwarding>True</AttemptUPnPForwarding>
         </ManagementPort>
         <RunIMSOnStartup>False</RunIMSOnStartup>
         <PluginPaths

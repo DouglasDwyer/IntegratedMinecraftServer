@@ -45,6 +45,8 @@ namespace IMS_Library
 
         public override bool SupportsKicking => true;
 
+        public override World.WorldType SupportedEdition => World.WorldType.Java;
+
         private Process ServerProcess;
 
         //Stores UUIDs if online or names if offline
@@ -396,7 +398,7 @@ namespace IMS_Library
             {
                 world = new World(Guid.NewGuid());
                 world.Name = CurrentConfiguration.ServerName + " World";
-                world.WorldEdition = World.WorldType.Java;
+                world.Edition = World.WorldType.Java;
                 ServerPreferences.WorldID = world.ID;
                 IMS.Instance.WorldManager.AddWorldToRegistry(world);
             }
@@ -439,14 +441,9 @@ namespace IMS_Library
 
             ServerProcess = new Process();
             ServerProcess.StartInfo = new ProcessStartInfo();
-            if (ServerPreferences.UseJITCompiler)
-            {
-                ServerProcess.StartInfo.FileName = Constants.ExecutionPath + Constants.GraalVMJavaFilePath;
-            }
-            else
-            {
-                ServerProcess.StartInfo.FileName = "java.exe";
-            }
+
+            ServerProcess.StartInfo.FileName = Constants.ExecutionPath + Constants.JavaExecutableLocation;
+
             ServerProcess.StartInfo.Arguments = "-Xms" + ServerPreferences.MinimumMemoryMB + "M -Xmx" + ServerPreferences.MaximumMemoryMB + "M " + ServerPreferences.JavaArguments + " -jar \"" + (ServerPreferences.GetServerFolderLocation() + "/server.jar").Replace("/", "\\") + "\" nogui";
             ServerProcess.StartInfo.WorkingDirectory = ServerPreferences.GetServerFolderLocation();
             ServerProcess.StartInfo.LoadUserProfile = false;

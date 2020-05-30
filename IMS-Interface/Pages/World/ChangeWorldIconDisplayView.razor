@@ -1,0 +1,76 @@
+﻿@using IMS_Library
+@using Blazor.FileReader
+@using System.IO
+
+@inject PopupProvider PopupManager
+@inject IFileReaderService FileUploader
+
+<style>
+    label {
+        font-weight: normal;
+    }
+</style>
+<label><b>Change world icon?</b></label>
+<br />
+<label>The world icon should be a 64x64 pixel image.</label>
+<br />
+<br />
+<label></label>
+<div style="position:absolute;right:10px;bottom:10px;">
+    <label class="btn btn-primary" style="padding:5px">
+        Upload icon
+        <input class="btn btn-primary" style="display:none" type="file" @ref="WorldIconUpload" @onchange="UploadIcon" accept="@AcceptedFileTypes" disabled="@IsUploading" />
+    </label>
+    <button class="btn btn-danger" @onclick="DeleteIcon" disabled="@IsUploading">Clear icon</button>
+    <button class="btn btn-default" @onclick="x => PopupManager.ClosePopup()" disabled="@IsUploading">Cancel</button>
+</div>
+
+@code {
+
+    //TODO: Add server restart if server is using world icon as server icon
+    //TODO: Add ability to format images of improper scale
+
+    [Parameter]
+    public ChangeWorldIconDisplay DisplayData { get; set; }
+
+    protected ElementReference WorldIconUpload { get; set; }
+    protected bool IsUploading = false;
+
+    protected string AcceptedFileTypes { get => DisplayData.CurrentWorld.Edition == World.WorldType.Java ? ".png" : ".jpg,.jpeg"; }
+
+    protected void DeleteIcon()
+    {
+        IsUploading = true;
+        File.Delete(DisplayData.CurrentWorld.IconPath);
+        PopupManager.ClosePopup();
+        DisplayData.OnDeleteOccur?.Invoke();
+    }
+
+    protected async Task UploadIcon()
+    {
+        IsUploading = true;
+        string destinationFile = DisplayData.CurrentWorld.IconPath;
+        File.Delete(destinationFile);
+        using (Stream uploadStream = await (await FileUploader.CreateReference(WorldIconUpload).EnumerateFilesAsync()).Single().CreateMemoryStreamAsync(1024 * 1024))
+        using(Stream fileStream = File.Create(destinationFile))
+        {
+            await uploadStream.CopyToAsync(fileStream);
+        }
+        PopupManager.ClosePopup();
+        DisplayData.OnDeleteOccur?.Invoke();
+    }
+
+    public class ChangeWorldIconDisplay : PopupDisplay<ChangeWorldIconDisplayView>
+    {
+        public World CurrentWorld;
+        public string CurrentServerName;
+        public Action OnDeleteOccur;
+
+        public ChangeWorldIconDisplay(World world, string server, Action delete)
+        {
+            CurrentWorld = world;
+            CurrentServerName = server;
+            OnDeleteOccur = delete;
+        }
+    }
+}

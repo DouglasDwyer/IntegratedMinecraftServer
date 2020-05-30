@@ -84,8 +84,8 @@
                 <th>
                     @if (CurrentlyEditingName == backup)
                     {
-                        <input @bind="CurrentlyEditingNameText" class="form-control" style="display:inline-block; font-weight:normal; width:200px" />
-                        <button class="btn btn-success" @onclick="x => { backup.Name = CurrentlyEditingNameText; SetCurrentlyEditingNameOf(null); }">Confirm</button>
+                        <input @bind="CurrentlyEditingNameText" onkeyup="if (event.keyCode === 13) { document.getElementById('SetBackupName').click(); }" class="form-control" style="display:inline-block; font-weight:normal; width:200px" />
+                        <button class="btn btn-success" id="SetBackupName" @onclick="x => { backup.Name = CurrentlyEditingNameText; SetCurrentlyEditingNameOf(null); }">Confirm</button>
                     }
                     else
                     {
@@ -142,7 +142,18 @@
     {
         if (CurrentTask is null)
         {
-            CurrentTask = Downloader.DownloadServerWorldAsync(Navigator, IMS.AsThreadSafe(() => IMS.Instance.ServerManager.GetServer(CurrentServerID)));
+            CurrentTask = new Task(() => { });
+            IMS.AsThreadSafe(() => {
+                ServerProxy serverWorld = IMS.Instance.WorldManager.GetServerOfWorld(CurrentWorld);
+                if (serverWorld is null)
+                {
+                    CurrentTask = Downloader.ZipAndDownloadFolderAsync(Navigator, CurrentWorld.WorldPath);
+                }
+                else
+                {
+                    CurrentTask = Downloader.DownloadServerWorldAsync(Navigator, serverWorld);
+                }
+            });
         }
     }
 

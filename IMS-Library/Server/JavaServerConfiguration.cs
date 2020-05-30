@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IMS_Library.HTMLToMOTD;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,8 +12,6 @@ namespace IMS_Library
     [XmlRoot(Namespace = "IMS_Service")]
     public class JavaServerConfiguration : ServerConfiguration
     {
-        //public bool Enabled = true;
-        public bool UseJITCompiler = false;
         public int MinimumMemoryMB = 512;
         public int MaximumMemoryMB = 1024;
         public string JavaArguments = "-XX:+AggressiveOpts -XX:+UnlockExperimentalVMOptions";

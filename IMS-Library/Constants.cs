@@ -17,7 +17,10 @@ namespace IMS_Library
         public const string ConfigurationFilePath = DataLocation + "/imssettings.xml";
         public const string ServerFolderLocation = DataLocation + "/Server";
         public const string WorldFolderLocation = DataLocation + "/World";
-        public const string GraalVMJavaFilePath = "/GraalVM/java.exe";
+        public const string BinariesFolderLocation = DataLocation + "/Binaries";
+        public const string ServerBinariesFolderLocation = BinariesFolderLocation + "/servers/";
+        public const string JavaExecutableLocation = BinariesFolderLocation + "/Java/bin/java.exe";
+        public const string GraalVMExecutableLocation = BinariesFolderLocation + "/GraalVM/java.exe";
         public static readonly string ExecutionPath = new FileInfo(Assembly.GetEntryAssembly().Location).Directory.ToString();
 
         public const int CheckToEnsureNATConnectedInterval = 60000; //ms

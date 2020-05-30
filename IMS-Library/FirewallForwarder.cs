@@ -14,7 +14,7 @@ namespace IMS_Library
             Process process = new Process();
             process.StartInfo = new ProcessStartInfo();
             process.StartInfo.FileName = "cmd.exe";
-            process.StartInfo.Arguments = "/C netsh advfirewall firewall add rule name=\"IMS E" + name + "\" dir=in protocol=tcp program=" + path + " profile=any action=allow";
+            process.StartInfo.Arguments = "/C netsh advfirewall firewall add rule name=\"IMS E" + name + "\" dir=in protocol=tcp program=" + path.Replace("/","\\") + " profile=any action=allow";
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.CreateNoWindow = true;
             process.Start();

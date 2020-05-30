@@ -3,6 +3,8 @@
 @using System.Reflection
 @using IMS_Library
 
+@inject NavigationManager Navigator
+
 <style>
     .tab-ul {
         list-style-type: none;
@@ -52,21 +54,20 @@
         background: rgba(200, 200, 200, 0.25);
     }
 </style>
-
-<h3>Manage @IMS.AsThreadSafe(() => IMS.Instance.WorldManager.GetWorldByID(WorldID).Name)</h3>
+@{ 
+    World loadedWorld = IMS.AsThreadSafe(() => IMS.Instance.WorldManager.GetWorldByID(WorldID));
+}
+<h3>Manage @loadedWorld.Name</h3>
+<label style="color:gray; font-weight:normal">@loadedWorld.Edition | @loadedWorld.ID </label>
 @{
     bool shouldRenderWorldSize = WorldSize is null ? false : WorldSize.IsCompletedSuccessfully;
     if (shouldRenderWorldSize)
     {
-        <label style="color:gray; font-weight:normal">Current world size: @(WorldSize.Result / 1000000)MB</label>
+        <label style="color:gray; font-weight:normal">| Current world size: @(WorldSize.Result / 1000000)MB</label>
     }
     if (TotalSize != null && TotalSize.IsCompletedSuccessfully)
     {
-        if(shouldRenderWorldSize)
-        {
-            <label style="color:gray"> | </label>
-        }
-        <label style="color:gray; font-weight:normal">Total world/backup size: @(TotalSize.Result / 1000000)MB</label>
+        <label style="color:gray; font-weight:normal">| Total world/backup size: @(TotalSize.Result / 1000000)MB</label>
     }
 }
 <br />
@@ -87,9 +88,12 @@
                                 <button class="@(display == SelectedView ? "nav-link-active" : "nav-link")" @onclick="x => SelectedView = display">@display.Name</button>
                             </li>
                         }
-                        <li style="display:inline; position:static; float:right">
-                            <button class="nav-link" onclick="window.location='/AllWorlds'">All worlds</button>
-                        </li>
+                    <li style="display:inline; position:static; float:right">
+                        <a class="nav-link" style="padding:5px" href="AllWorlds">
+                            All Worlds
+                        </a>
+                        <!--@onclick="@(x => Navigator.NavigateTo("/AllWorlds", true))"-->
+                    </li>
                     </ul>
                 </div>
             </th>

@@ -5,14 +5,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace IMS_Interface.Data
 {
     public class FileCache
     {
-        protected ConcurrentDictionary<string, DateTime> CachedFiles = new ConcurrentDictionary<string, DateTime>();
+        private ConcurrentDictionary<string, CachedFile> CachedFiles = new ConcurrentDictionary<string, CachedFile>();
 
-        private const int CacheTime = 30; //s
+        private static readonly TimeSpan CacheTime = TimeSpan.FromSeconds(30); //s
 
         public FileCache()
         {
@@ -25,16 +26,23 @@ namespace IMS_Interface.Data
 
         public string CacheFile(string file)
         {
+            RemoveUsedFiles();
             lock(this)
             {
-                string fileName = Path.GetFileName(file);
-                string finalName = "/Cache/" + fileName;
-                if (!CachedFiles.ContainsKey(fileName))
+                file = Path.GetFullPath(file);
+                string extension = Path.GetExtension(file);
+                if (CachedFiles.ContainsKey(file))
                 {
-                    File.Copy(file, Constants.ExecutionPath + "/wwwroot/Cache/" + fileName);
+                    CachedFile cached = CachedFiles[file];
+                    cached.CreationTime = DateTime.Now;
+                    return "/Cache/" + cached.AssociatedID + extension;
                 }
-                CachedFiles[fileName] = DateTime.Now.AddSeconds(30);
-                return finalName;
+                else
+                {
+                    CachedFile cached = CachedFiles[file] = new CachedFile();
+                    File.Copy(file, Constants.ExecutionPath + "/wwwroot/Cache/" + cached.AssociatedID + extension);
+                    return "/Cache/" + cached.AssociatedID + extension;
+                }
             }
         }
 
@@ -43,14 +51,30 @@ namespace IMS_Interface.Data
             lock(this)
             {
                 foreach (string file in Directory.GetFiles(Constants.ExecutionPath + "/wwwroot/Cache")) {
-                    string fileName = Path.GetFileName(file);
-                    if(!CachedFiles.ContainsKey(fileName) || CachedFiles[fileName] < DateTime.Now)
+                    Guid fileID = Guid.Parse(Path.GetFileNameWithoutExtension(file));
+                    KeyValuePair<string, CachedFile> cached = CachedFiles.Where(x => x.Value.AssociatedID == fileID).FirstOrDefault();
+                    if(cached.Value is null || cached.Value.CreationTime + CacheTime < DateTime.Now)
                     {
-                        File.Delete(fileName);
-                        DateTime bad;
-                        CachedFiles.TryRemove(fileName, out bad);
+                        File.Delete(file);
+                        CachedFile bad;
+                        try
+                        {
+                            CachedFiles.TryRemove(cached.Key, out bad);
+                        } catch { }
                     }
                 }
+            }
+        }
+
+        private sealed class CachedFile
+        {
+            public Guid AssociatedID;
+            public DateTime CreationTime;
+
+            public CachedFile()
+            {
+                AssociatedID = Guid.NewGuid();
+                CreationTime = DateTime.Now;
             }
         }
     }

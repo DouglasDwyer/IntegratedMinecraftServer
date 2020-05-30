@@ -13,14 +13,14 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+    <script src="/blazorinputfile/inputfile.js"></script>
     <script>
         function callOnLoad() {
             $('[onload]').trigger('onload');
         }
 
         function executeInputEvent(parent, elementId) {
-	        parent.querySelector('#' + elementId).dispatchEvent(new Event('input', { bubbles: true, cancelable: true,}));
+            parent.querySelector('#' + elementId).dispatchEvent(new Event('input', { bubbles: true, cancelable: true, }));
         }
 
         function setButtonFormattingsForMOTDDisplay(parent) {
@@ -136,6 +136,9 @@
                  if(e.target.className != 'color-box' && e.target.id != 'foreColorButton'){
                      $('.color-box').attr("hidden",true);
                  }
+            });
+            $('[keepSelectedIndexAtZero]').change(function (e) {
+                e.currentTarget.selectedIndex = 0;
             });
         }
     </script>

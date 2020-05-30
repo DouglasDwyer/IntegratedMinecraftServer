@@ -21,7 +21,6 @@
     public ServerPreferences()
     {
         PreferenceLayout.Add(new MOTDDisplay("MessageOfTheDay", "Message of the day", "This setting determines what text appears on clients' server selection screen."));
-        PreferenceLayout.Add(new BooleanDisplay("UseJITCompiler", "Use JIT optimization", "Experimental: this setting determines whether IMS runs the server using the GraalVM JIT Java runtime.", "Yes", "No"));
         PreferenceLayout.Add(new IntegerDisplay("MinimumMemoryMB", "Minimum memory", "This setting determines the minimum amount of RAM in MB that Java reserves for the server.", 0, int.MaxValue));
         PreferenceLayout.Add(new IntegerDisplay("MaximumMemoryMB", "Maximum memory", "This setting determines the maximum amount of RAM in MB that Java will use for the server.", 0, int.MaxValue));
         PreferenceLayout.Add(new StringDisplay("JavaArguments", "JVM arguments", "This setting determines what command-line arguments are passed to the Java/GraalVM runtime."));
