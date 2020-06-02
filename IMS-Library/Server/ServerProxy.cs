@@ -29,6 +29,7 @@ namespace IMS_Library
 
         public abstract void Start();
         public abstract void Stop();
+        public abstract void StopAndWait();
         public abstract void Restart();
         public abstract MinecraftPlayer GetPlayerInformationByUsername(string username);
         public abstract MinecraftPlayer GetPlayerInformationByUUID(string uuid);

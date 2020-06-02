@@ -1,5 +1,6 @@
 ﻿@using IMS_Library
 @using System.IO
+@using System.Threading 
 @using Blazor.FileReader
 
 @page "/AllWorlds"
@@ -33,7 +34,7 @@
 </style>
 
 <h3>Manage Worlds</h3>
-<label class="btn btn-primary" style="padding:5px" disabled="@IsExecutingTask">
+<label class="btn btn-primary" style="padding:6px" disabled="@IsExecutingTask">
     @if (CurrentWorldUpload != null)
     {
         @("Uploading... (" + Math.Round((double)CurrentWorldUpload.UploadedSize / CurrentWorldUpload.TotalSize * 100) + "%)")
@@ -44,6 +45,7 @@
     }
     <input @ref="NewWorldInput" type="file" class="btn btn-primary" style="display:none" multiple webkitdirectory mozdirectory @onchange="BeginWorldUpload" disabled="@IsExecutingTask" />
 </label>
+<button class="btn btn-primary" disabled="@IsExecutingTask" @onclick="OnCreateNewWorld">Generate new world</button>
 <br />
 <label style="margin-top:2px;font-weight:normal; color:gray;">Java worlds are usually located at
     <button style="background-color:transparent; border:none" onclick="navigator.clipboard.writeText('%AppData%\\.minecraft\\saves')">
@@ -119,6 +121,45 @@
         {
             return world.Edition == World.WorldType.Java ? "/img/grass_block.png" : "/img/bedrock.png";
         }
+    }
+
+    protected void OnCreateNewWorld()
+    {
+        ServerProxy server = IMS.AsThreadSafe(() => IMS.Instance.ServerManager.GetServer(CurrentServerID));
+        PopupManager.ShowPopup(new CreateNewWorldPopupDisplayView.CreateNewWorldPopupDisplay(server.SupportedEdition, (name, seed, parameters) => {
+            StateHasChanged();
+            Task.Run(() => {
+                World world = new World(Guid.NewGuid());
+                world.Name = name;
+                world.Edition = server.CurrentConfiguration.Edition;
+                bool startServer = false;
+                IMS.AsThreadSafe(() =>
+                {
+                    IMS.Instance.WorldManager.AddWorldToRegistry(world);
+                    if(server.State != ServerProxy.ServerState.Disabled)
+                    {
+                        server.Stop();
+                        startServer = true;
+                    }
+                    server.CurrentConfiguration.WorldID = world.ID;
+                    if(server.CurrentConfiguration is JavaServerConfiguration)
+                    {
+                        (server.CurrentConfiguration as JavaServerConfiguration).LevelSeed = seed;
+                        (server.CurrentConfiguration as JavaServerConfiguration).LevelType = parameters;
+                    }
+                });
+                if (startServer)
+                {
+                    while(server.State != ServerProxy.ServerState.Disabled) { Thread.Sleep(1); }
+                    server.Start();
+                }
+                InvokeAsync(() =>
+                {
+                    PopupManager.ClosePopup();
+                    StateHasChanged();
+                });
+            });
+        }));
     }
 
     protected void BeginWorldUpload()

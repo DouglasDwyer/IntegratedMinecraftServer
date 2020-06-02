@@ -210,3 +210,13 @@ D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\Razo
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\Razor\Pages\World\ChangeWorldIconDisplayView.razor.g.cs
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\World\ChangingWorldDisplayView.razor.g.cs
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\Razor\Pages\World\ChangingWorldDisplayView.razor.g.cs
+D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\RazorDeclaration\Shared\Preferences\MinecraftVersionDisplayView.razor.g.cs
+D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\Razor\Shared\Preferences\MinecraftVersionDisplayView.razor.g.cs
+D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\RazorDeclaration\Shared\Preferences\SelectServerVersionDisplayView.razor.g.cs
+D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\Razor\Shared\Preferences\SelectServerVersionDisplayView.razor.g.cs
+D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\RazorDeclaration\Shared\InformationPopupDisplayView.razor.g.cs
+D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\Razor\Shared\InformationPopupDisplayView.razor.g.cs
+D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\LoadingPopupDisplayView.razor.g.cs
+D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\World\CreateNewWorldPopupDisplayView.razor.g.cs
+D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\Razor\Pages\LoadingPopupDisplayView.razor.g.cs
+D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\Razor\Pages\World\CreateNewWorldPopupDisplayView.razor.g.cs

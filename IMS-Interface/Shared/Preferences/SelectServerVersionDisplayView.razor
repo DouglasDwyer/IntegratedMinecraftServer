@@ -1,0 +1,147 @@
+﻿@using IMS_Library
+@using System.Reflection
+
+@inject PopupProvider PopupManager
+
+<style>
+    label {
+        font-weight: normal;
+    }
+</style>
+<label><b>Select @DisplayData.Edition server version</b></label>
+<label></label>
+@{ 
+    Information = IMS.Instance.VersionManager.AvailableServerVersions.Values
+        .Where(x => x.Edition == DisplayData.Edition && (ShowSnapshots || x.VersionType != ServerVersionInformation.ReleaseType.Snapshot))
+        .OrderByDescending(x => x.ReleaseTime);
+}
+<select disabled="@IsWorking" size="8" style="display:inherit;width:100%" @onchange="x => SelectedVersion = Information.ElementAt(int.Parse((string)x.Value))">
+    @for (int x = 0; x < Information.Count(); x++)
+    {
+        int i = x;
+        ServerVersionInformation info = Information.ElementAt(i);
+        <option value="@i" selected="@(info == SelectedVersion)">
+            @info.Name
+            @if (info.PhysicalLocation != null)
+            {
+                @("\U0001F4BE")
+            }
+        </option>
+    }
+</select>
+<input id="showsnapshotscheckbox" type="checkbox" @bind-checked="ShowSnapshots" @bind-checked:event="onchange"/>
+<label for="showsnapshotscheckbox">Show snapshots</label>
+<br />
+<br />
+<label></label>
+<div style="position:absolute;right:10px;bottom:10px;">
+    <button class="btn btn-primary" disabled="@IsWorking" @onclick="x => BeginVersionDownloadAndSet(SelectedVersion.Version)">
+        @if(IsWorking)
+        {
+            @("Downloading...")
+        }
+        else
+        {            
+            if(SelectedVersion.PhysicalLocation is null)
+            {
+                @("Select/download")
+            }
+            else
+            {
+                @("Select")
+            }
+        }
+    </button>
+    <button class="btn btn-default" disabled="@IsWorking" @onclick="x => BeginVersionDownloadAndSet(null)">Use latest</button>
+    <button class="btn btn-default" disabled="@IsWorking" @onclick="x => PopupManager.ClosePopup()">Cancel</button>
+</div>
+
+@code {
+
+    [Parameter]
+    public SelectServerVersionDisplay DisplayData { get; set; }
+
+    protected bool IsWorking => CurrentTask != null;
+    protected Task CurrentTask = null;
+
+    protected IOrderedEnumerable<ServerVersionInformation> Information;
+    protected ServerVersionInformation SelectedVersion;
+    protected bool ShowSnapshots { get => Snapshots; set { Snapshots = value; EnsureSnapshotNotSelected(); } }
+    private bool Snapshots;
+
+    protected override void OnInitialized()
+    {
+        ShowSnapshots = !string.IsNullOrEmpty(DisplayData.CurrentServerVersion) && IMS.Instance.VersionManager.AvailableServerVersions[DisplayData.CurrentServerVersion].VersionType == ServerVersionInformation.ReleaseType.Snapshot;
+        SelectedVersion = IMS.Instance.VersionManager.GetVersionInformationFromID(DisplayData.CurrentServerVersion);
+    }
+
+    protected void EnsureSnapshotNotSelected()
+    {
+        if(!ShowSnapshots && SelectedVersion != null && SelectedVersion.VersionType == ServerVersionInformation.ReleaseType.Snapshot)
+        {
+            SelectedVersion = IMS.Instance.VersionManager.GetVersionInformationFromID(DisplayData.CurrentServerVersion);
+            StateHasChanged();
+        }
+    }
+
+    protected bool IsVersionDownloaded(string version)
+    {
+        if(string.IsNullOrEmpty(version))
+        {
+            return IMS.Instance.VersionManager.LatestRelease.PhysicalLocation != null;
+        }
+        else
+        {
+            return IMS.Instance.VersionManager.AvailableServerVersions[version].PhysicalLocation != null;
+        }
+    }
+
+    protected void BeginVersionDownloadAndSet(string version)
+    {
+        CurrentTask = DownloadVersionAndSetAsync(version);
+    }
+
+    protected async Task DownloadVersionAndSetAsync(string version)
+    {
+        ServerVersionInformation information = IMS.Instance.VersionManager.AvailableServerVersions.ContainsKey(version ?? "") ? IMS.Instance.VersionManager.AvailableServerVersions[version] : IMS.Instance.VersionManager.LatestRelease;
+        if(information.PhysicalLocation is null)
+        {
+            try
+            {
+                await information.DownloadServerBinaryAsync();
+            }
+            catch(Exception e)
+            {
+                Logger.WriteWarning("Unable to download server binary for " + SelectedVersion.Name + "!\n" + e);
+                PopupManager.ShowPopup(new InformationPopupDisplay("IMS was unable to download the server binary.  Check your internet connection or consult the IMS log for more details.", "Downloading error"));
+                return;
+            }
+        }
+        SetServerVersion(version);
+        PopupManager.ClosePopup();
+        DisplayData.OnUserFinish?.Invoke();
+    }
+
+    protected void SetServerVersion(string version)
+    {
+        DisplayData.FieldToChange.SetValue(DisplayData.Configuration, version);
+    }
+
+    public class SelectServerVersionDisplay : PopupDisplay<SelectServerVersionDisplayView>
+    {
+        public string CurrentServerVersion;
+        public World.WorldType Edition;
+        public Action OnUserFinish;
+        public IMSConfiguration Configuration;
+        public FieldInfo FieldToChange;
+
+        public SelectServerVersionDisplay(string serverVersion, World.WorldType edition, IMSConfiguration configuration, FieldInfo fieldToChange, Action finish)
+        {
+            CurrentServerVersion = serverVersion;
+            Edition = edition;
+            OnUserFinish = finish;
+            Configuration = configuration;
+            FieldToChange = fieldToChange;
+        }
+    }
+}

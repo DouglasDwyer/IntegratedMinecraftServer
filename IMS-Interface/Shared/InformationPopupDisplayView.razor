@@ -1,0 +1,15 @@
+﻿@inject PopupProvider PopupManager
+
+<label><b>@DisplayData.Title</b></label>
+<label>@DisplayData.Information</label>
+<br />
+<br />
+<label></label>
+<div style="position:absolute;right:10px;bottom:10px;">
+    <button class="btn btn-primary" @onclick="x => PopupManager.ClosePopup()">@DisplayData.ButtonText</button>
+</div>
+
+@code {
+    [Parameter]
+    public InformationPopupDisplay DisplayData { get; set; }
+}

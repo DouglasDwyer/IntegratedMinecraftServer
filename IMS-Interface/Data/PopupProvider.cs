@@ -14,28 +14,34 @@ namespace IMS_Interface.Data
 
         public void ShowPopup<T>(PopupDisplay<T> display) where T : ComponentBase
         {
-            if(display is null)
+            lock (this)
             {
-                CurrentPopupFragment = null;
-                return;
-            }
-            Type component = display.GetComponentType();
-            CurrentPopupFragment = builder =>
-            {
-                builder.OpenComponent(0, component);
-                if(component.GetProperty("DisplayData") != null)
+                if (display is null)
                 {
-                    builder.AddAttribute(0, "DisplayData", display);
+                    CurrentPopupFragment = null;
+                    return;
                 }
-                builder.CloseComponent();
-            };
-            OnPopupChange?.Invoke();
+                Type component = display.GetComponentType();
+                CurrentPopupFragment = builder =>
+                {
+                    builder.OpenComponent(0, component);
+                    if (component.GetProperty("DisplayData") != null)
+                    {
+                        builder.AddAttribute(0, "DisplayData", display);
+                    }
+                    builder.CloseComponent();
+                };
+                OnPopupChange?.Invoke();
+            }
         }
 
         public void ClosePopup()
         {
-            CurrentPopupFragment = null;
-            OnPopupChange?.Invoke();
+            lock(this)
+            {
+                CurrentPopupFragment = null;
+                OnPopupChange?.Invoke();
+            }
         }
     }
 }

@@ -80,7 +80,7 @@ namespace IMS_Library
                 }
                 else
                 {
-                    server.Stop();
+                    server.StopAndWait();
                 }
             }
             if(makeBackupOfCurrentWorld)

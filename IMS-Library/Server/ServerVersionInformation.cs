@@ -41,7 +41,18 @@ namespace IMS_Library
                 {
                     Directory.CreateDirectory(path);
                 }
-                await client.DownloadFileTaskAsync(DownloadURL, DefaultLocation);
+                try
+                {
+                    await client.DownloadFileTaskAsync(DownloadURL, DefaultLocation);
+                }
+                catch
+                {
+                    if(File.Exists(DefaultLocation))
+                    {
+                        File.Delete(DefaultLocation);
+                    }
+                    throw;
+                }                
             }
         }
 

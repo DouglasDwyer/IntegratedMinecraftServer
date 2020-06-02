@@ -39,7 +39,7 @@
                 }
                 else
                 {
-                    server.Stop();
+                    server.StopAndWait();
                     server.CurrentConfiguration.WorldID = Guid.Empty;
                 }
             }

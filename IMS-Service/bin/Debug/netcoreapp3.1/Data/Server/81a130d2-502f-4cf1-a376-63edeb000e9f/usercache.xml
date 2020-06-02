@@ -12,7 +12,7 @@
                 type="String">127.0.0.1</IP>
             <IsWhitelisted>True</IsWhitelisted>
             <PermissionLevel>4</PermissionLevel>
-            <LastConnectionEvent>5/30/2020 3:41:47 PM</LastConnectionEvent>
+            <LastConnectionEvent>6/2/2020 5:52:22 PM</LastConnectionEvent>
         </ArrayElement>
         <ArrayElement
             type="MinecraftPlayer">

@@ -10,17 +10,18 @@ namespace IMS_Library
 {
     public class PortForwarder : IDisposable
     {
-        private NatDevice upnpDevice;
-        private bool failedToFindCapableDevice = false;
-        private Timer deviceReconnectTimer;
-        private List<int> ports = new List<int>();
+        public bool ConnectedToPortForwardableDevice => UPnPDevice != null;
+
+        private NatDevice UPnPDevice;
+        private Timer DeviceReconnectTimer;
+        private List<int> Ports = new List<int>();
         
         public PortForwarder()
         {
-            deviceReconnectTimer = new Timer();
-            deviceReconnectTimer.Interval = Constants.CheckToEnsureNATConnectedInterval;
-            deviceReconnectTimer.Elapsed += CheckConnection;
-            deviceReconnectTimer.Start();
+            DeviceReconnectTimer = new Timer();
+            DeviceReconnectTimer.Interval = Constants.CheckToEnsureNATConnectedInterval;
+            DeviceReconnectTimer.Elapsed += CheckConnection;
+            DeviceReconnectTimer.Start();
         }
 
         public void Initialize()
@@ -35,30 +36,29 @@ namespace IMS_Library
                 NatDiscoverer discoverer = new NatDiscoverer();
                 try
                 {
-                    upnpDevice = discoverer.DiscoverDeviceAsync(PortMapper.Upnp, new CancellationTokenSource(2000)).Result;
-                    failedToFindCapableDevice = false;
-                    Logger.WriteInfo("Successfully connected to UPnP capable device with IP " + upnpDevice.GetExternalIPAsync().Result);
+                    UPnPDevice = null;
+                    UPnPDevice = discoverer.DiscoverDeviceAsync(PortMapper.Upnp, new CancellationTokenSource(2000)).Result;
+                    Logger.WriteInfo("Successfully connected to UPnP capable device with IP " + UPnPDevice.GetExternalIPAsync().Result);
                 }
                 catch (Exception)
                 {
-                    if (!failedToFindCapableDevice)
+                    if (UPnPDevice is null)
                     {
                         Logger.WriteWarning("Failed to find UPnP capable device to port forward with.");
                     }
-                    failedToFindCapableDevice = true;
                 }
             }
         }
 
         public void ForwardPort(int port)
         {
-            ports.Add(port);
+            Ports.Add(port);
             AttemptToForwardPortInternally(port);
         }
 
         public void RemovePort(int port)
         {
-            ports.Remove(port);
+            Ports.Remove(port);
             AttemptToRemovePortInternally(port);
         }
 
@@ -66,7 +66,7 @@ namespace IMS_Library
         {
             try
             {
-                upnpDevice.CreatePortMapAsync(new Mapping(Protocol.Tcp, port, port, 30, "")).Wait();
+                UPnPDevice.CreatePortMapAsync(new Mapping(Protocol.Tcp, port, port, 30, "")).Wait();
                 Logger.WriteInfo("Successfully forwarded port " + port);
             }
             catch
@@ -79,7 +79,7 @@ namespace IMS_Library
         {
             try
             {
-                upnpDevice.DeletePortMapAsync(upnpDevice.GetSpecificMappingAsync(Protocol.Tcp, port).Result).Wait();
+                UPnPDevice.DeletePortMapAsync(UPnPDevice.GetSpecificMappingAsync(Protocol.Tcp, port).Result).Wait();
                 Logger.WriteInfo("Successfully removed forwarded port " + port);
             }
             catch
@@ -90,12 +90,12 @@ namespace IMS_Library
 
         protected void CheckConnection(object sender, EventArgs args)
         {
-            if(failedToFindCapableDevice)
+            if(UPnPDevice is null)
             {
                 FindUPnPDevice();
-                if(!failedToFindCapableDevice)
+                if(UPnPDevice != null)
                 {
-                    foreach(int port in ports)
+                    foreach(int port in Ports)
                     {
                         AttemptToForwardPortInternally(port);
                     }
@@ -105,16 +105,15 @@ namespace IMS_Library
             {
                 try
                 {
-                    upnpDevice.GetExternalIPAsync().Wait();
+                    UPnPDevice.GetExternalIPAsync().Wait();
                 }
                 catch
                 {
                     Logger.WriteWarning("Lost connection to UPnP router.");
-                    failedToFindCapableDevice = true;
                     FindUPnPDevice();
-                    if (!failedToFindCapableDevice)
+                    if (UPnPDevice != null)
                     {
-                        foreach (int port in ports)
+                        foreach (int port in Ports)
                         {
                             AttemptToForwardPortInternally(port);
                         }
@@ -125,7 +124,7 @@ namespace IMS_Library
 
         public void Dispose()
         {
-            deviceReconnectTimer.Stop();
+            DeviceReconnectTimer.Stop();
             
         }
     }

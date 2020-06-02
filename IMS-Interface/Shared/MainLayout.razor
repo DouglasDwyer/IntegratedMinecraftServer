@@ -26,6 +26,17 @@
                 background-color: rgba(0,0,0,0.5);
                 display: flex;
             }
+
+            .world-card {
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                width: 200px;
+                height: 250px;
+                border-radius: 5px;
+                display: inline-grid;
+                margin: 5px;
+                image-rendering: pixelated;
+                background-color: white;
+            }
         </style>
         @{ 
             PopupManager.OnPopupChange = StateHasChanged;
@@ -35,8 +46,7 @@
             <div class="popup-background">
                 <div class="world-card" style="
                 margin: auto;
-                width: 350px;
-                height: 200px;
+                width: unset;
                 display:block;
                 padding: 10px;
                 position:relative;

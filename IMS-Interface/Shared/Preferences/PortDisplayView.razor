@@ -16,6 +16,11 @@
        @bind="PortValue" />
 <br />
 <MultiToggle Options="Options" SelectedIndex="@ForwardPort" OnSelectionChange="@(x => ForwardPort = x)"></MultiToggle>
+@if(CurrentPort.AttemptUPnPForwarding && !IMS.Instance.PortManager.ConnectedToPortForwardableDevice)
+{
+    <label class="label label-warning" style="font-size:14px; align-content:center" data-toggle="tooltip" data-placement="right" data-title="IMS is not currently connected to a UPnP-enabled router.">⚠</label>
+}
+<br />
 
 @code {
     private static readonly string[] Options = new[] { "Forward", "Don't forward" };

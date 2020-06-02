@@ -106,6 +106,7 @@ namespace IMS_Library
             {
                 return;
             }
+            OnlineUsers.Clear();
             if(State != ServerState.Stopping)
             {
                 if (State == ServerState.Running)
@@ -391,85 +392,96 @@ namespace IMS_Library
         {
             if (State != ServerState.Disabled)
             {
-                throw new Exception("Cannot stop a server that isn't running!");
+                throw new Exception("Cannot start a server that's already running!");
             }
-            World world = IMS.Instance.WorldManager.GetWorldByID(CurrentConfiguration.WorldID);
-            if (world is null)
+            try
             {
-                world = new World(Guid.NewGuid());
-                world.Name = CurrentConfiguration.ServerName + " World";
-                world.Edition = World.WorldType.Java;
-                ServerPreferences.WorldID = world.ID;
-                IMS.Instance.WorldManager.AddWorldToRegistry(world);
-            }
-            JunctionPoint.Create(WorldLocation, world.WorldPath, true);
-            if (File.Exists(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log"))
-            {
-                File.Copy(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log", ServerPreferences.GetServerFolderLocation() + "/logs/" + File.GetCreationTime(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log").ToString("yyyy-dd-M--HH-mm-ss") + ".loge", true);
-                File.Delete(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log");
-            }
-            if (File.Exists(ServerPreferences.GetServerFolderLocation() + "/usercache.xml"))
-            {
-                foreach (MinecraftPlayer player in RoyalSerializer.XMLToObject<MinecraftPlayer[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/usercache.xml")))
+                World world = IMS.Instance.WorldManager.GetWorldByID(CurrentConfiguration.WorldID);
+                if (world is null)
                 {
-                    if(ServerPreferences.OnlineMode) {
-                        AllUsers[player.UUID] = player;
-                    }
-                    else
-                    {
-                        AllUsers[player.Username] = player;
-                    }                    
+                    world = new World(Guid.NewGuid());
+                    world.Name = CurrentConfiguration.ServerName + " World";
+                    world.Edition = World.WorldType.Java;
+                    ServerPreferences.WorldID = world.ID;
+                    IMS.Instance.WorldManager.AddWorldToRegistry(world);
                 }
+                JunctionPoint.Create(WorldLocation, world.WorldPath, true);
+                if (File.Exists(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log"))
+                {
+                    if (File.GetAttributes(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log") != FileAttributes.Hidden)
+                    {
+                        File.Copy(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log", ServerPreferences.GetServerFolderLocation() + "/logs/" + File.GetCreationTime(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log").ToString("yyyy-dd-M--HH-mm-ss") + ".loge", true);
+                    }
+                    File.Delete(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log");
+                }
+                if (File.Exists(ServerPreferences.GetServerFolderLocation() + "/usercache.xml"))
+                {
+                    foreach (MinecraftPlayer player in RoyalSerializer.XMLToObject<MinecraftPlayer[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/usercache.xml")))
+                    {
+                        if (ServerPreferences.OnlineMode)
+                        {
+                            AllUsers[player.UUID] = player;
+                        }
+                        else
+                        {
+                            AllUsers[player.Username] = player;
+                        }
+                    }
+                }
+
+                GetLogFiles();
+
+                MinecraftConfigurationWriter.WriteServerPropertiesFile("server.properties", ServerPreferences);
+                MinecraftConfigurationWriter.WriteEULA("eula.txt", ServerPreferences);
+
+                ReloadWhitelistJSON();
+                ReloadOpJSON();
+                ReloadBanJSON();
+                ReloadBanIPJSON();
+
+                ServerProcess = new Process();
+                ServerProcess.StartInfo = new ProcessStartInfo();
+
+                ServerProcess.StartInfo.FileName = Constants.ExecutionPath + Constants.JavaExecutableLocation;
+
+                ServerProcess.StartInfo.Arguments = "-Xms" + ServerPreferences.MinimumMemoryMB
+                    + "M -Xmx" + ServerPreferences.MaximumMemoryMB
+                    + "M " + ServerPreferences.JavaArguments
+                    + " -jar \"" + (string.IsNullOrEmpty(ServerPreferences.ServerVersion)
+                        ? IMS.Instance.VersionManager.LatestRelease.PhysicalLocation : IMS.Instance.VersionManager.AvailableServerVersions[ServerPreferences.ServerVersion].PhysicalLocation).Replace("/", "\\")
+                    + "\" nogui";
+
+                ServerProcess.StartInfo.WorkingDirectory = ServerPreferences.GetServerFolderLocation();
+                ServerProcess.StartInfo.LoadUserProfile = false;
+                ServerProcess.StartInfo.UseShellExecute = false;
+                ServerProcess.StartInfo.CreateNoWindow = true;
+
+                ServerProcess.StartInfo.RedirectStandardInput = true;
+                ServerProcess.StartInfo.RedirectStandardOutput = true;
+                ServerProcess.StartInfo.RedirectStandardError = true;
+
+                ServerProcess.OutputDataReceived += IMS.AsThreadSafeDataEvent(OnServerConsoleDataReceived);
+                ServerProcess.ErrorDataReceived += IMS.AsThreadSafeDataEvent(OnServerConsoleDataReceived);
+
+                ServerProcess.EnableRaisingEvents = true;
+
+                Process local = ServerProcess;
+                ServerProcess.Exited += IMS.AsThreadSafeEvent(() => OnServerProcessDie(local));
+
+                IMS.Instance.FirewallManager.CreateFirewallExecutableException("Server" + ID, ServerProcess.StartInfo.FileName);
+                ServerProcess.Start();
+
+                State = ServerState.Starting;
+
+                ServerProcess.BeginOutputReadLine();
+                ServerProcess.BeginErrorReadLine();
+                ChildProcessTracker.AddProcess(ServerProcess);
             }
-            if (!VerifyJavaVersion())
+            catch(Exception e)
             {
-                Logger.WriteError("This computer does not have the proper Java runtime installed.  Please install the latest version of Java in order to run Minecraft");
-                //todo: use packaged java version to ensure compatability
-                ServerPreferences.IsEnabled = false;
-                return;
+                Logger.WriteWarning("Server " + ID + " was unable to start.\n" + e);
+                CurrentConfiguration.IsEnabled = false;
             }
-
-            GetLogFiles();
-
-            MinecraftConfigurationWriter.WriteServerPropertiesFile("server.properties", ServerPreferences);
-            MinecraftConfigurationWriter.WriteEULA("eula.txt", ServerPreferences);
-
-            ReloadWhitelistJSON();
-            ReloadOpJSON();
-            ReloadBanJSON();
-            ReloadBanIPJSON();
-
-            ServerProcess = new Process();
-            ServerProcess.StartInfo = new ProcessStartInfo();
-
-            ServerProcess.StartInfo.FileName = Constants.ExecutionPath + Constants.JavaExecutableLocation;
-
-            ServerProcess.StartInfo.Arguments = "-Xms" + ServerPreferences.MinimumMemoryMB + "M -Xmx" + ServerPreferences.MaximumMemoryMB + "M " + ServerPreferences.JavaArguments + " -jar \"" + (ServerPreferences.GetServerFolderLocation() + "/server.jar").Replace("/", "\\") + "\" nogui";
-            ServerProcess.StartInfo.WorkingDirectory = ServerPreferences.GetServerFolderLocation();
-            ServerProcess.StartInfo.LoadUserProfile = false;
-            ServerProcess.StartInfo.UseShellExecute = false;
-            ServerProcess.StartInfo.CreateNoWindow = true;
-
-            ServerProcess.StartInfo.RedirectStandardInput = true;
-            ServerProcess.StartInfo.RedirectStandardOutput = true;
-            ServerProcess.StartInfo.RedirectStandardError = true;
-
-            ServerProcess.OutputDataReceived += IMS.AsThreadSafeDataEvent(OnServerConsoleDataReceived);
-            ServerProcess.ErrorDataReceived += IMS.AsThreadSafeDataEvent(OnServerConsoleDataReceived);
-
-            ServerProcess.EnableRaisingEvents = true;
-
-            Process local = ServerProcess;
-            ServerProcess.Exited += IMS.AsThreadSafeEvent(() => OnServerProcessDie(local));
-
-            IMS.Instance.FirewallManager.CreateFirewallExecutableException("Server" + ID, ServerProcess.StartInfo.FileName);
-            ServerProcess.Start();
-
-            State = ServerState.Starting;
-
-            ServerProcess.BeginOutputReadLine();
-            ServerProcess.BeginErrorReadLine();
-            ChildProcessTracker.AddProcess(ServerProcess);
         }
 
         protected void OnServerConsoleDataReceived(object sender, DataReceivedEventArgs args)
@@ -717,19 +729,39 @@ namespace IMS_Library
 
         public override void Stop()
         {
-            if(State == ServerState.Disabled) { return; }
+            StopWithoutBlocking();
+        }
+
+        public override void StopAndWait()
+        {
+            StopWithoutBlocking().Wait();
+        }
+
+        private async Task StopWithoutBlocking()
+        {
+            if (State == ServerState.Disabled) { return; }
             State = ServerState.Stopping;
             ServerProcess.EnableRaisingEvents = false;
             SendUncheckedConsoleCommand("stop");
             OnlineUsers.Clear();
             File.WriteAllText(ServerPreferences.GetServerFolderLocation() + "/usercache.xml", RoyalSerializer.ObjectToXML(AllUsers.Values.ToArray()));
-            while(!ServerProcess.HasExited) { Thread.Sleep(5); }
-            if(File.Exists(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log"))
+            IMS.Instance.FirewallManager.RemoveFirewallExecutableException("Server" + ID);
+            await Task.Run(() => { while (!ServerProcess.HasExited) { Thread.Sleep(1); } });
+            if (File.Exists(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log"))
             {
                 File.Copy(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log", ServerPreferences.GetServerFolderLocation() + "/logs/" + File.GetCreationTime(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log").ToString("yyyy-dd-M--HH-mm-ss") + ".log");
-                File.Delete(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log");
+                try
+                {
+                    //Set an attribute because sometimes Windows thinks that the MC server is still using the file even when the process has exited
+                    //We check for this attribute to identify whether a logfile was backed up properly or not
+                    File.SetAttributes(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log", FileAttributes.Hidden);
+                    File.Delete(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log");
+                }
+                catch (Exception e)
+                {
+                    Logger.WriteWarning("Couldn't delete logfile; it seems to still be in use by other process?\n" + e);
+                }
             }
-            IMS.Instance.FirewallManager.RemoveFirewallExecutableException("Server" + ID);
             ServerProcess = null;
             State = ServerState.Disabled;
         }

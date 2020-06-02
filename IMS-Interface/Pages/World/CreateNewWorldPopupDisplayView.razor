@@ -1,0 +1,73 @@
+﻿@using IMS_Library
+
+@inject PopupProvider PopupManager
+
+<style>
+    label {
+        font-weight:normal;
+    }
+</style>
+<label><b>Create new world</b></label>
+<br />
+<label>This will cause the server to generate a new world using the following settings.<br />The old world will not be overwritten.</label>
+<br />
+<br />
+<label>World name</label>
+<input class="form-control" style="width:200px" @bind="WorldName" placeholder="New world" />
+<br />
+<label>Seed</label>
+<input class="form-control" style="width:200px" @bind="Seed" placeholder="Default" />
+<br />
+<label>World type</label>
+<br />
+<MultiToggle Options="@WorldOptions.Keys.ToArray()" OnSelectionChange="OnSelection"></MultiToggle>
+<br />
+<br />
+<label></label>
+<div style="position:absolute;right:10px;bottom:10px;">
+    <button class="btn btn-primary" @onclick="@(x => { PopupManager.ShowPopup(new LoadingPopupDisplay("Creating world...")); DisplayData.OnUserSubmit?.Invoke(WorldName, Seed, LevelType); })">Create</button>
+    <button class="btn btn-default" @onclick="x => PopupManager.ClosePopup()">Cancel</button>
+</div>
+
+@code {
+
+    public string WorldName { get; set; }
+    public string Seed { get; set; }
+    public string LevelType { get; set; } = "default";
+
+    protected void OnSelection(int selection)
+    {
+        LevelType = WorldOptions.ElementAt(selection).Value;
+    }
+
+    protected Dictionary<string, string> WorldOptions
+    {
+        get
+        {
+            if (DisplayData.Edition == World.WorldType.Java)
+            {
+                return new Dictionary<string, string> { { "Default", "default" }, { "Flat", "flat" }, { "Large biomes", "largeBiomes" }, { "Amplified", "amplified" }, { "Buffet", "buffet" } };
+            }
+            else
+            {
+                return new Dictionary<string, string> { { "Default", "DEFAULT" }, { "Flat", "FLAT" }, { "Legacy", "LEGACY" } };
+            }
+        }
+    }
+
+    [Parameter]
+    public CreateNewWorldPopupDisplay DisplayData { get; set; }
+
+    public class CreateNewWorldPopupDisplay : PopupDisplay<CreateNewWorldPopupDisplayView>
+    {
+
+        public World.WorldType Edition;
+        public Action<string, string, string> OnUserSubmit;
+
+        public CreateNewWorldPopupDisplay(World.WorldType edition, Action<string, string, string> onUserSubmit)
+        {
+            Edition = edition;
+            OnUserSubmit = onUserSubmit;
+        }
+    }
+}

@@ -9,6 +9,7 @@ namespace IMS_Library
     {
         public Guid ID;
         public string ServerName;
+        public World.WorldType Edition;
         public bool IsEnabled;
         public Guid WorldID;
 

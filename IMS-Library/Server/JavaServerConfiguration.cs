@@ -12,6 +12,7 @@ namespace IMS_Library
     [XmlRoot(Namespace = "IMS_Service")]
     public class JavaServerConfiguration : ServerConfiguration
     {
+        public string ServerVersion = null;
         public int MinimumMemoryMB = 512;
         public int MaximumMemoryMB = 1024;
         public string JavaArguments = "-XX:+AggressiveOpts -XX:+UnlockExperimentalVMOptions";

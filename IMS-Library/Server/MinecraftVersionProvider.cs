@@ -8,8 +8,8 @@ namespace IMS_Library
 {
     public class MinecraftVersionProvider : IMSConfiguration
     {
-        public ServerVersionInformation LastestRelease => AvailableServerVersions.ContainsKey(LatestReleaseID) ? AvailableServerVersions[LatestReleaseID] : null;
-        public ServerVersionInformation LastestSnapshot => AvailableServerVersions.ContainsKey(LatestSnapshotID) ? AvailableServerVersions[LatestSnapshotID] : null;
+        public ServerVersionInformation LatestRelease => AvailableServerVersions.ContainsKey(LatestReleaseID) ? AvailableServerVersions[LatestReleaseID] : null;
+        public ServerVersionInformation LatestSnapshot => AvailableServerVersions.ContainsKey(LatestSnapshotID) ? AvailableServerVersions[LatestSnapshotID] : null;
         public ConcurrentDictionary<string, ServerVersionInformation> AvailableServerVersions = new ConcurrentDictionary<string, ServerVersionInformation>();
         public string LatestReleaseID;
         public string LatestSnapshotID;
@@ -22,6 +22,11 @@ namespace IMS_Library
         public void Stop()
         {
             this.SaveConfiguration();
+        }
+
+        public ServerVersionInformation GetVersionInformationFromID(string id)
+        {
+            return string.IsNullOrEmpty(id) ? LatestRelease : AvailableServerVersions[id];
         }
 
         public override string GetDefaultFilePath()
@@ -79,6 +84,10 @@ namespace IMS_Library
                     name += metadata.id;
                     AvailableServerVersions[metadata.id] = new ServerVersionInformation(name, metadata.id, DateTime.Parse(versionData.releaseTime), World.WorldType.Java, releaseType, versionData.downloads.server.url);
                 }
+            }
+            if(LatestRelease.PhysicalLocation is null)
+            {
+                await LatestRelease.DownloadServerBinaryAsync();
             }
         }
     }

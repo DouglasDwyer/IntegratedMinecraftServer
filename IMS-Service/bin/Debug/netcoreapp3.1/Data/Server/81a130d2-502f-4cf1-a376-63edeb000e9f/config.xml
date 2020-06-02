@@ -1,6 +1,8 @@
 <RoyalXML>
     <Root
         type="JavaServerConfiguration">
+        <ServerVersion
+            type="String">1.15.2</ServerVersion>
         <MinimumMemoryMB>512</MinimumMemoryMB>
         <MaximumMemoryMB>1024</MaximumMemoryMB>
         <JavaArguments
@@ -24,15 +26,15 @@
         <LevelName
             type="String">world</LevelName>
         <LevelSeed
-            type="String"></LevelSeed>
+            type="String">69420</LevelSeed>
         <LevelType
-            type="String">default</LevelType>
+            type="String">largeBiomes</LevelType>
         <MaxBuildHeight>256</MaxBuildHeight>
         <MaxPlayers>20</MaxPlayers>
         <MaxTickTime>60000</MaxTickTime>
         <MaxWorldSize>29999984</MaxWorldSize>
         <MessageOfTheDay
-            type="String">&lt;b style=""&gt;&lt;font color="#000000"&gt;Why&lt;/font&gt;&lt;font color="#ff55ff"&gt; &lt;/font&gt;&lt;font color="#ffffff"&gt;&lt;i&gt;&lt;u&gt;a&lt;strike&gt;m&lt;/strike&gt;&lt;/u&gt;&lt;/i&gt;&lt;/font&gt;&lt;font color="#ff55ff"&gt; &lt;/font&gt;&lt;font color="#00aa00"&gt;I like&lt;/font&gt;&lt;font color="#ff55ff"&gt; this&lt;/font&gt;&lt;font color="#0000aa"&gt;?&amp;nbsp; &lt;/font&gt;&lt;i style=""&gt;&lt;u style=""&gt;&lt;font color="#0000aa"&gt;T&lt;/font&gt;&lt;font color="#ff55ff"&gt;his&lt;/font&gt;&lt;/u&gt;&lt;/i&gt; &lt;u style=""&gt;&lt;strike style=""&gt;&lt;font color="#ff55ff"&gt;has &lt;/font&gt;&lt;font color="#55ff55"&gt;been&lt;/font&gt;&lt;/strike&gt;&lt;/u&gt;&lt;font color="#55ff55"&gt; &lt;/font&gt;&lt;/b&gt;&lt;sup style=""&gt;&lt;font color="#55ff55"&gt;a&lt;/font&gt;&lt;/sup&gt;&lt;b style=""&gt;&lt;font color="#55ff55"&gt; random&lt;/font&gt;&lt;font color="#ff55ff"&gt;.&lt;/font&gt;&lt;/b&gt;</MessageOfTheDay>
+            type="String">&lt;b style=""&gt;&lt;font color="#000000"&gt;Why&lt;/font&gt;&lt;font color="#ff55ff"&gt; &lt;/font&gt;&lt;i style=""&gt;&lt;u style=""&gt;&lt;font color="#ff5555"&gt;a&lt;strike style=""&gt;m&lt;/strike&gt;&lt;/font&gt;&lt;/u&gt;&lt;/i&gt;&lt;font color="#ff55ff"&gt; &lt;/font&gt;&lt;font color="#00aa00"&gt;I like&lt;/font&gt;&lt;font color="#ff55ff"&gt; this&lt;/font&gt;&lt;font color="#0000aa"&gt;?&amp;nbsp; &lt;/font&gt;&lt;i style=""&gt;&lt;u style=""&gt;&lt;font color="#0000aa"&gt;T&lt;/font&gt;&lt;font color="#ff55ff"&gt;his&lt;/font&gt;&lt;/u&gt;&lt;/i&gt; &lt;u style=""&gt;&lt;strike style=""&gt;&lt;font color="#ff55ff"&gt;has &lt;/font&gt;&lt;font color="#55ff55"&gt;been&lt;/font&gt;&lt;/strike&gt;&lt;/u&gt;&lt;font color="#55ff55"&gt; &lt;/font&gt;&lt;/b&gt;&lt;sup style=""&gt;&lt;font color="#55ff55"&gt;a&lt;/font&gt;&lt;/sup&gt;&lt;b style=""&gt;&lt;font color="#55ff55"&gt; random&lt;/font&gt;&lt;font color="#ff55ff"&gt;.&lt;/font&gt;&lt;/b&gt;</MessageOfTheDay>
         <NetworkCompressionThreshold>256</NetworkCompressionThreshold>
         <OnlineMode>True</OnlineMode>
         <DefaultOpPermissionLevel>4</DefaultOpPermissionLevel>
@@ -71,6 +73,7 @@
         <ID>81a130d2-502f-4cf1-a376-63edeb000e9f</ID>
         <ServerName
             type="String">Test Server X</ServerName>
+        <Edition>Java</Edition>
         <IsEnabled>True</IsEnabled>
         <WorldID>8d39b1f0-2e8d-4a11-9f40-b25b9b7f54f3</WorldID>
     </Root>
