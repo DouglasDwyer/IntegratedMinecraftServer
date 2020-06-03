@@ -26,9 +26,9 @@
         <LevelName
             type="String">world</LevelName>
         <LevelSeed
-            type="String">69420</LevelSeed>
+            type="String"></LevelSeed>
         <LevelType
-            type="String">largeBiomes</LevelType>
+            type="String">default</LevelType>
         <MaxBuildHeight>256</MaxBuildHeight>
         <MaxPlayers>20</MaxPlayers>
         <MaxTickTime>60000</MaxTickTime>
@@ -75,7 +75,7 @@
             type="String">Test Server X</ServerName>
         <Edition>Java</Edition>
         <IsEnabled>True</IsEnabled>
-        <WorldID>8d39b1f0-2e8d-4a11-9f40-b25b9b7f54f3</WorldID>
+        <WorldID>15a2dc85-30ca-49a1-98b9-1b029db93113</WorldID>
     </Root>
     <Types>
         <TypeInfo

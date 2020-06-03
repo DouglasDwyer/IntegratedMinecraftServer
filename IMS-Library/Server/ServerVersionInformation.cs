@@ -43,6 +43,14 @@ namespace IMS_Library
                 }
                 try
                 {
+                    lock (DownloadURL)
+                    {
+                        if (PhysicalLocation != null)
+                        {
+                            return;
+                        }
+                        File.WriteAllBytes(DefaultLocation, new byte[0]);
+                    }
                     await client.DownloadFileTaskAsync(DownloadURL, DefaultLocation);
                 }
                 catch

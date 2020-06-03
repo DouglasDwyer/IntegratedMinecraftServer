@@ -18,12 +18,12 @@
 
     public IMSSettings GetCurrentPreferences()
     {
-        return IMS.AsThreadSafe(() => IMS.Instance.CurrentSettings);
+        return IMS.Instance.CurrentSettings;
     }
 
     public void ApplySettings(IMSConfiguration configuration)
     {
         Editor.ErrorText = "Settings applied successfully at " + DateTime.Now + ".";
-        IMS.AsThreadSafe(() => IMS.Instance.ChangeSettings((IMSSettings)configuration));
+        IMS.Instance.ChangeSettings((IMSSettings)configuration);
     }
 }

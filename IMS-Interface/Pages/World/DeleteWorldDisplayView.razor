@@ -27,28 +27,32 @@
     [Parameter]
     public DeleteWorldDisplay DisplayData { get; set; }
 
-    protected void Delete()
+    protected async void Delete()
     {
-        IMS.AsThreadSafe(() => {
-            ServerProxy server = IMS.Instance.WorldManager.GetServerOfWorld(DisplayData.CurrentWorld);
-            if(server != null)
+        PopupManager.ShowPopup(new LoadingPopupDisplay("Deleting world..."));
+        ServerProxy server = IMS.Instance.WorldManager.GetServerOfWorld(DisplayData.CurrentWorld);
+        if (server != null)
+        {
+            if (server.State == ServerProxy.ServerState.Disabled)
             {
-                if(server.State == ServerProxy.ServerState.Disabled)
+                server = null;
+            }
+            else
+            {
+                await server.StopAsync();
+                server.CurrentConfiguration.WorldID = Guid.Empty;
+                if(server.CurrentConfiguration is JavaServerConfiguration config)
                 {
-                    server = null;
-                }
-                else
-                {
-                    server.StopAndWait();
-                    server.CurrentConfiguration.WorldID = Guid.Empty;
+                    config.LevelSeed = "";
+                    config.LevelType = "default";
                 }
             }
-            IMS.Instance.WorldManager.DeleteWorldAsync(DisplayData.CurrentWorld);
-            if(server != null)
-            {
-                server.Start();
-            }
-        });
+        }
+        await IMS.Instance.WorldManager.DeleteWorldAsync(DisplayData.CurrentWorld);
+        if (server != null)
+        {
+            server.StartAsync();
+        }
         PopupManager.ClosePopup();
         DisplayData.OnDeleteOccur?.Invoke();
     }

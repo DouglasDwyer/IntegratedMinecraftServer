@@ -24,20 +24,16 @@
     {
         if(firstRender)
         {
-            await Task.Run(() => {
-                IMS.AsThreadSafe(() => {
-                    if (DisplayData.CurrentServer.State == ServerProxy.ServerState.Disabled)
-                    {
-                        DisplayData.CurrentServer.CurrentConfiguration.WorldID = DisplayData.CurrentWorld.ID;
-                    }
-                    else
-                    {
-                        DisplayData.CurrentServer.StopAndWait();
-                        DisplayData.CurrentServer.CurrentConfiguration.WorldID = DisplayData.CurrentWorld.ID;
-                        DisplayData.CurrentServer.Start();
-                    }
-                });
-            });
+            if (DisplayData.CurrentServer.State == ServerProxy.ServerState.Disabled)
+            {
+                DisplayData.CurrentServer.CurrentConfiguration.WorldID = DisplayData.CurrentWorld.ID;
+            }
+            else
+            {
+                await DisplayData.CurrentServer.StopAsync();
+                DisplayData.CurrentServer.CurrentConfiguration.WorldID = DisplayData.CurrentWorld.ID;
+                DisplayData.CurrentServer.StartAsync();
+            }
             PopupManager.ClosePopup();
             DisplayData.OnChangeFinish?.Invoke();
         }

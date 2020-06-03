@@ -104,21 +104,19 @@
     protected NavigationManager Navigator { get; set; }
     public Guid SelectedServer {
         get {
-            return IMS.AsThreadSafe(() => {
-                if (CurrentServer == Guid.Empty)
+            if (CurrentServer == Guid.Empty)
+            {
+                IList<ServerProxy> servers = IMS.Instance.ServerManager.Servers;
+                if (servers.Count > 0)
                 {
-                    IList<ServerProxy> servers = IMS.Instance.ServerManager.Servers;
-                    if (servers.Count > 0)
-                    {
-                        return CurrentServer = servers[0].ID;
-                    }
-                    else
-                    {
-                        return Guid.Empty;
-                    }
+                    return CurrentServer = servers[0].ID;
                 }
-                return CurrentServer;
-            });
+                else
+                {
+                    return Guid.Empty;
+                }
+            }
+            return CurrentServer;
         } set {
             CurrentServer = value;
         }

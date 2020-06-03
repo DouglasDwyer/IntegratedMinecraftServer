@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -7,6 +8,12 @@ namespace IMS_Library
 {
     public static class Extensions
     {
+        public static bool Remove<K, V>(this ConcurrentDictionary<K,V> dictionary, K key)
+        {
+            V value;
+            return dictionary.TryRemove(key, out value);
+        }
+
         public static void CopyFolder(string sourceDirectory, string targetDirectory)
         {
             var diSource = new DirectoryInfo(sourceDirectory);

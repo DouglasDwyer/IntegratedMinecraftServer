@@ -40,7 +40,7 @@ namespace IMS_Interface.Data
             RemoveUsedFilesAsync();
             string id = Guid.NewGuid().ToString();
             QueuedFiles[id] = DateTime.MaxValue;
-            await Task.Run(async () => await IMS.AsThreadSafe(() => server.BackupToZipFileAsync(Constants.ExecutionPath + "/wwwroot/Download/" + id + ".zip")));
+            await server.BackupToZipFileAsync(Constants.ExecutionPath + "/wwwroot/Download/" + id + ".zip");
             QueuedFiles[id] = DateTime.Now;
             navigator.NavigateTo("/Download/" + id + ".zip", true);
         }

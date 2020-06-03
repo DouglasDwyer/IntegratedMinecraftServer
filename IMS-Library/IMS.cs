@@ -30,9 +30,7 @@ namespace IMS_Library
         public PluginController PluginManager { get; protected set; }
         public MinecraftVersionProvider VersionManager { get; protected set; }
 
-        private Thread MainThread;
         private int exitCode = 0;
-        private ConcurrentQueue<Action> passedEvents = new ConcurrentQueue<Action>();
 
         public IMS()
         {
@@ -42,67 +40,6 @@ namespace IMS_Library
             CanStop = true;
 
             Instance = this;
-        }
-
-        public EventHandler ThreadSafeEvent(Action action)
-        {
-            return (a, b) => { passedEvents.Enqueue(action); };
-        }
-
-        public EventHandler ThreadSafeEvent(Action<object, EventArgs> action)
-        {
-            return (a, b) => { passedEvents.Enqueue(() => { action(a, b); }); };
-        }
-
-        public DataReceivedEventHandler ThreadSafeDataEvent(Action<object, DataReceivedEventArgs> action)
-        {
-            return (a, b) => { passedEvents.Enqueue(() => { action(a, b); }); };
-        }
-
-        public static EventHandler AsThreadSafeEvent(Action action)
-        {
-            return Instance.ThreadSafeEvent(action);
-        }
-
-        public static EventHandler AsThreadSafeEvent(Action<object, EventArgs> action)
-        {
-            return Instance.ThreadSafeEvent(action);
-        }
-
-        public void ThreadSafe(Action action)
-        {
-            if (Thread.CurrentThread == MainThread)
-            {
-                action();
-            }
-            else
-            {
-                bool done = false;
-                passedEvents.Enqueue(() => { action(); done = true; });
-                while (!done) { Thread.Sleep(5); }
-            }
-        }
-
-        public static void AsThreadSafe(Action action)
-        {
-            Instance.ThreadSafe(action);
-        }
-
-        public T ThreadSafe<T>(Func<T> action)
-        {
-            T returnValue = default;
-            ThreadSafe(() => { returnValue = action(); });
-            return returnValue;
-        }
-
-        public static T AsThreadSafe<T>(Func<T> action)
-        {
-            return Instance.ThreadSafe(action);
-        }
-
-        public static DataReceivedEventHandler AsThreadSafeDataEvent(Action<object, DataReceivedEventArgs> action)
-        {
-            return Instance.ThreadSafeDataEvent(action);
         }
 
         public void SimulateService()
@@ -126,6 +63,7 @@ namespace IMS_Library
         protected void Execute()
         {
             Logger.WriteInfo("Starting IMS...");
+
             CurrentSettings = new IMSSettings().FromConfiguration();
             Logger.WriteInfo("IMS settings configuration loaded.");
             Logger.WriteInfo("Attempting to find suitable UPnP router for port forwarding...");
@@ -134,7 +72,7 @@ namespace IMS_Library
             PluginManager.Initialize();
 
             PortManager = new PortForwarder();
-            PortManager.Initialize();
+            PortManager.Start();
 
             FirewallManager = new FirewallForwarder();
 
@@ -151,83 +89,61 @@ namespace IMS_Library
             WebServer.Start();
 
             PluginManager.Start();
-
-            while(true)
-            {
-                Thread.Sleep(5);
-                if(passedEvents.Count > 0)
-                {
-                    Action action = null;
-                    while(passedEvents.TryDequeue(out action))
-                    {
-                        try
-                        {
-                            action();
-                        }
-                        catch(Exception e)
-                        {
-                            Logger.WriteError("An error occured during event processing:\n" + e);
-                        }
-                    }
-                }
-            }
         }
 
         protected override void OnStart(string[] args)
         {
-            MainThread = new Thread(Execute);
-            MainThread.IsBackground = false;
-            MainThread.Start();
+            Execute();
         }
 
         protected override void OnStop()
         {
-            IMS.AsThreadSafe(() =>
+            PluginManager.Stop();
+            WebServer.Stop();
+            ServerManager.Stop();
+            WorldManager.Stop();
+            VersionManager.Stop();
+            PortManager.Dispose();
+            CurrentSettings.SaveConfiguration();
+            if (exitCode != 0)
             {
-                PluginManager.Stop();
-                WebServer.Stop();
-                ServerManager.Stop();
-                WorldManager.Stop();
-                VersionManager.Stop();
-                PortManager.Dispose();
-                CurrentSettings.SaveConfiguration();
-                if(exitCode != 0)
-                {
-                    Logger.FinishLog();
-                }
-                Environment.Exit(exitCode);
-            });
+                Logger.FinishLog();
+            }
+            Environment.Exit(exitCode);
         }
 
         public void ChangeSettings(IMSSettings newSettings)
         {
-            if (CurrentSettings.ManagementPort.AttemptUPnPForwarding)
+            lock (CurrentSettings)
             {
-                PortManager.RemovePort(CurrentSettings.ManagementPort.Port);
-            }
-            if (newSettings.ManagementPort.AttemptUPnPForwarding)
-            {
-                PortManager.ForwardPort(newSettings.ManagementPort.Port);
-            }
-            if (CurrentSettings.ManagementPort.Port != newSettings.ManagementPort.Port)
-            {
-                WebServer.Stop();
-                WebServer.Port = newSettings.ManagementPort;
-                WebServer.Start();
-            }
-            if(CurrentSettings.RunIMSOnStartup != newSettings.RunIMSOnStartup)
-            {
-                if (newSettings.RunIMSOnStartup)
+                if (CurrentSettings.ManagementPort.AttemptUPnPForwarding)
                 {
-                    //set service to run on computer start
+                    PortManager.RemovePort(CurrentSettings.ManagementPort.Port);
                 }
-                else
+                if (newSettings.ManagementPort.AttemptUPnPForwarding)
                 {
-                    //set service to not run on computer start
+                    PortManager.ForwardPort(newSettings.ManagementPort.Port);
                 }
+                if (CurrentSettings.ManagementPort.Port != newSettings.ManagementPort.Port)
+                {
+                    WebServer.Stop();
+                    WebServer.Port = newSettings.ManagementPort;
+                    WebServer.Start();
+                }
+                if (CurrentSettings.RunIMSOnStartup != newSettings.RunIMSOnStartup)
+                {
+                    if (newSettings.RunIMSOnStartup)
+                    {
+                        //set service to run on computer start
+                    }
+                    else
+                    {
+                        //set service to not run on computer start
+                    }
+                }
+                CurrentSettings = newSettings;
+                CurrentSettings.SaveConfiguration();
             }
-            CurrentSettings = newSettings;
-            CurrentSettings.SaveConfiguration();
         }
     }
 }

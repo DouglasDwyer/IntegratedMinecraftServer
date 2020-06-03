@@ -7,5 +7,5 @@
     [CascadingParameter(Name = "CurrentServer")]
     public Guid CurrentServerID { get; set; }
 
-    public ServerProxy CurrentServer => IMS.AsThreadSafe(() => IMS.Instance.ServerManager.GetServer(CurrentServerID));
+    public ServerProxy CurrentServer => IMS.Instance.ServerManager.GetServer(CurrentServerID);
 }

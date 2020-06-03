@@ -32,7 +32,7 @@
     }
 </style>
 @{
-    IEnumerable<BanInformation> players = IMS.AsThreadSafe(() => CurrentServer.GetAllBans());
+    IEnumerable<BanInformation> players = CurrentServer.GetAllBans();
     if (players.Count() == 0)
     {
         <label style="padding-top:3px; font-weight:normal"><i>There are currently no banned players.</i></label>
@@ -78,7 +78,7 @@
     </thead>
     <tbody>
         @{
-            List<BanIPTag> banIPs = IMS.AsThreadSafe(() => CurrentServer.GetAllBannedIPs());
+            List<BanIPTag> banIPs = CurrentServer.GetAllBannedIPs();
 
         }
         @foreach (BanInformation info in players)
@@ -193,46 +193,46 @@
 
     protected void BanPlayer(string name)
     {
-        IMS.AsThreadSafe(() => CurrentServer.BanPlayer(name, ""));
+        CurrentServer.BanPlayer(name, "");
     }
 
     protected void UnbanPlayer(string name)
     {
-        IMS.AsThreadSafe(() => CurrentServer.UnbanPlayer(name));
+        CurrentServer.UnbanPlayer(name);
     }
 
     protected void BanIP(string ip)
     {
-        IMS.AsThreadSafe(() => CurrentServer.BanIP(ip, ""));
+        CurrentServer.BanIP(ip, "");
     }
 
     protected void UnbanIP(string ip)
     {
-        IMS.AsThreadSafe(() => CurrentServer.UnbanIP(ip));
+        CurrentServer.UnbanIP(ip);
     }
 
     protected void WhitelistPlayer(string name)
     {
-        IMS.AsThreadSafe(() => CurrentServer.WhitelistPlayer(name));
+        CurrentServer.WhitelistPlayer(name);
     }
 
     protected void UnwhitelistPlayer(string name)
     {
-        IMS.AsThreadSafe(() => CurrentServer.RemoveWhitelistPlayer(name));
+        CurrentServer.RemoveWhitelistPlayer(name);
     }
 
     protected void OpPlayer(string name)
     {
-        IMS.AsThreadSafe(() => CurrentServer.OpPlayer(name));
+        CurrentServer.OpPlayer(name);
     }
 
     protected void DeopPlayer(string name)
     {
-        IMS.AsThreadSafe(() => CurrentServer.DeopPlayer(name));
+        CurrentServer.DeopPlayer(name);
     }
 
     protected void KickPlayer(string name)
     {
-        IMS.AsThreadSafe(() => CurrentServer.KickPlayer(name, ""));
+        CurrentServer.KickPlayer(name, "");
     }
 }

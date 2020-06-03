@@ -29,7 +29,7 @@
 </select>
 <hr />
 @{
-    IBackupPolicy[] policies = IMS.AsThreadSafe(() => CurrentWorld.BackupPolicies.ToArray());
+    IBackupPolicy[] policies = CurrentWorld.BackupPolicies.ToArray();
 }
 
 @if (policies.Length > 0)
@@ -77,16 +77,16 @@ else
     protected void OnUserAddPolicy(int selectionIndex)
     {
         IBackupPolicy policy = (IBackupPolicy)Activator.CreateInstance(Provider.BackupPolicyDisplayBinding.Keys.ElementAt(selectionIndex - 1));
-        IMS.AsThreadSafe(() => CurrentWorld.BackupPolicies.Add(policy));
+        CurrentWorld.BackupPolicies.Add(policy);
     }
 
     protected void DeleteBackupPolicy(IBackupPolicy policy)
     {
-        IMS.AsThreadSafe(() => CurrentWorld.BackupPolicies.Remove(policy));
+        CurrentWorld.BackupPolicies.Remove(policy);
     }
 
     public void Dispose()
     {
-        IMS.AsThreadSafe(() => CurrentWorld.SaveConfiguration());
+        CurrentWorld.SaveConfiguration();
     }
 }

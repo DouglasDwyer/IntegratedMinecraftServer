@@ -11,7 +11,7 @@ namespace IMS_Library
 
         public void Update(World world)
         {
-            foreach(BackupInformation backup in world.Backups.ToArray())
+            foreach(BackupInformation backup in world.Backups.Values)
             {
                 if(backup.Name == BackupName && backup.Date + BackupRemovalTime < DateTime.Now)
                 {

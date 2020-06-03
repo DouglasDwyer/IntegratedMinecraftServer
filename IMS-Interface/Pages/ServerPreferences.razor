@@ -65,7 +65,7 @@
 
     public ServerConfiguration GetCurrentPreferences()
     {
-        return IMS.AsThreadSafe(() => IMS.Instance.ServerManager.GetServer(CurrentServer).CurrentConfiguration);
+        return IMS.Instance.ServerManager.GetServer(CurrentServer).CurrentConfiguration;
     }
 
     protected void ApplySettings(IMSConfiguration configuration)
@@ -85,18 +85,18 @@
         else
         {
             Editor.ErrorText = "Restarting server...";
-            UpdateSettingsTask = Task.Run(() => IMS.AsThreadSafe(() =>
+            UpdateSettingsTask = Task.Run(async () =>
             {
-                toRestart.StopAndWait();
+                await toRestart.StopAsync();
                 toRestart.CurrentConfiguration = (ServerConfiguration)configuration;
-                toRestart.Start();
+                toRestart.StartAsync();
                 InvokeAsync(() =>
                 {
                     Editor.ErrorText = "Settings applied successfully at " + DateTime.Now + ".";
                     Editor.NotifyStateChanged(true);
+                    UpdateSettingsTask = null;
                 });
-                UpdateSettingsTask = null;
-            }));
+            });
         }
     }
 }

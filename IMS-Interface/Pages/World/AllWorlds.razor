@@ -58,10 +58,10 @@
 <hr />
 <div style="padding:2px">
     @{ 
-        IList<ServerProxy> loadedServers = IMS.AsThreadSafe(() => IMS.Instance.ServerManager.Servers);
+        IList<ServerProxy> loadedServers = IMS.Instance.ServerManager.Servers;
         ServerProxy selectedServer = loadedServers.Where(x => x.ID == CurrentServerID).First();
     }
-    @foreach (World world in IMS.AsThreadSafe(() => IMS.Instance.WorldManager.LoadedWorlds).OrderBy(x => x.Name))
+    @foreach (World world in IMS.Instance.WorldManager.LoadedWorlds.OrderBy(x => x.Name))
     {
         <div class="world-card">
             <img src="@GetRelativeWorldIcon(world)" style="width:200px; height:200px" />
@@ -125,33 +125,30 @@
 
     protected void OnCreateNewWorld()
     {
-        ServerProxy server = IMS.AsThreadSafe(() => IMS.Instance.ServerManager.GetServer(CurrentServerID));
+        ServerProxy server = IMS.Instance.ServerManager.GetServer(CurrentServerID);
         PopupManager.ShowPopup(new CreateNewWorldPopupDisplayView.CreateNewWorldPopupDisplay(server.SupportedEdition, (name, seed, parameters) => {
             StateHasChanged();
-            Task.Run(() => {
+            Task.Run(async () => {
                 World world = new World(Guid.NewGuid());
                 world.Name = name;
                 world.Edition = server.CurrentConfiguration.Edition;
+                IMS.Instance.WorldManager.AddWorldToRegistry(world);
                 bool startServer = false;
-                IMS.AsThreadSafe(() =>
+                if(server.State == ServerProxy.ServerState.Disabled)
                 {
-                    IMS.Instance.WorldManager.AddWorldToRegistry(world);
-                    if(server.State != ServerProxy.ServerState.Disabled)
-                    {
-                        server.Stop();
-                        startServer = true;
-                    }
-                    server.CurrentConfiguration.WorldID = world.ID;
-                    if(server.CurrentConfiguration is JavaServerConfiguration)
-                    {
-                        (server.CurrentConfiguration as JavaServerConfiguration).LevelSeed = seed;
-                        (server.CurrentConfiguration as JavaServerConfiguration).LevelType = parameters;
-                    }
-                });
+                    await server.StopAsync();
+                    startServer = true;
+                }
+                server.CurrentConfiguration.WorldID = world.ID;
+                if (server.CurrentConfiguration is JavaServerConfiguration)
+                {
+                    (server.CurrentConfiguration as JavaServerConfiguration).LevelSeed = seed;
+                    (server.CurrentConfiguration as JavaServerConfiguration).LevelType = parameters;
+                }
                 if (startServer)
                 {
                     while(server.State != ServerProxy.ServerState.Disabled) { Thread.Sleep(1); }
-                    server.Start();
+                    server.StartAsync();
                 }
                 InvokeAsync(() =>
                 {
@@ -217,7 +214,7 @@
                         i++;
                     }
                     CurrentWorldUpload = null;
-                    IMS.AsThreadSafe(() => IMS.Instance.WorldManager.AddWorldToRegistry(world));
+                    IMS.Instance.WorldManager.AddWorldToRegistry(world);
                     world.SaveConfiguration();
                     CurrentTask = null;
                     InvokeAsync(StateHasChanged);
@@ -249,7 +246,7 @@
                 PopupManager.ShowPopup(new ChangeWorldIconDisplayView.ChangeWorldIconDisplay(world, mountedServer is null ? null : mountedServer.CurrentConfiguration.ServerName, StateHasChanged));
                 break;
             case "Set as server world":
-                PopupManager.ShowPopup(new ChangingWorldDisplayView.ChangingWorldDisplay(world, IMS.AsThreadSafe(() => IMS.Instance.ServerManager.GetServer(CurrentServerID)), StateHasChanged));
+                PopupManager.ShowPopup(new ChangingWorldDisplayView.ChangingWorldDisplay(world, IMS.Instance.ServerManager.GetServer(CurrentServerID), StateHasChanged));
                 break;
             default:
                 throw new InvalidOperationException();

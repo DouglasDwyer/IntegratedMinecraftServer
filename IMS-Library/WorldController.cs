@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,14 +11,14 @@ namespace IMS_Library
     public class WorldController
     {
         public IList<World> LoadedWorlds { get => Worlds.Values.ToList(); }
-        protected Dictionary<Guid, World> Worlds = new Dictionary<Guid, World>();
+        protected ConcurrentDictionary<Guid, World> Worlds = new ConcurrentDictionary<Guid, World>();
 
         protected Timer DoUpdateTimer = new Timer();
 
         public void Start()
         {
             LoadWorldsFromDisk();
-            DoUpdateTimer.Elapsed += (x, y) => IMS.AsThreadSafe(Update);
+            DoUpdateTimer.Elapsed += (x, y) => Update();
             DoUpdateTimer.Interval = 60 * 1000;
             DoUpdateTimer.Enabled = true;
         }
@@ -84,7 +85,8 @@ namespace IMS_Library
 
         public void AddWorldToRegistry(World world)
         {
-            Worlds.Add(world.ID, world);
+            Worlds[world.ID] = world;
+            world.SaveConfiguration();
         }
 
         public async Task DeleteWorldAsync(World world)
