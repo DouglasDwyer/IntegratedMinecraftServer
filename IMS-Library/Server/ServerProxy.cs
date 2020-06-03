@@ -27,10 +27,9 @@ namespace IMS_Library
             ID = guid;
         }
 
-        public abstract void Start();
-        public abstract void Stop();
-        public abstract void StopAndWait();
-        public abstract void Restart();
+        public abstract Task StartAsync();
+        public abstract Task StopAsync();
+        public abstract Task RestartAsync();
         public abstract MinecraftPlayer GetPlayerInformationByUsername(string username);
         public abstract MinecraftPlayer GetPlayerInformationByUUID(string uuid);
         public abstract IEnumerable<MinecraftPlayer> GetOnlinePlayers();

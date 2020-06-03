@@ -12,9 +12,12 @@ namespace IMS_Library
         public IList<IMSPluginBase> LoadedPlugins { get => Plugins.AsReadOnly(); }
         private List<IMSPluginBase> Plugins = new List<IMSPluginBase>();
 
+        protected object Locker = new object();
+
         public void Initialize()
         {
-            foreach(string plugin in IMS.Instance.CurrentSettings.PluginPaths)
+            lock (Locker)
+            foreach (string plugin in IMS.Instance.CurrentSettings.PluginPaths)
             {
                 try
                 {
@@ -32,6 +35,7 @@ namespace IMS_Library
 
         public void Start()
         {
+            lock(Locker)
             foreach(IMSPluginBase plugin in Plugins)
             {
                 plugin.Start();
@@ -40,7 +44,8 @@ namespace IMS_Library
 
         public void UnloadPlugin(IMSPluginBase plugin)
         {
-            if(Plugins.Contains(plugin))
+            lock (Locker)
+            if (Plugins.Contains(plugin))
             {
                 plugin.Stop();
                 Plugins.Remove(plugin);
@@ -53,20 +58,24 @@ namespace IMS_Library
 
         public void LoadPlugin(string path)
         {
-            AssemblyLoadContext context = new AssemblyLoadContext(null, true);
-            Assembly pluginAssembly = context.LoadFromAssemblyPath(path);
-            try
+            lock (Locker)
             {
-                Plugins.Add((IMSPluginBase)Activator.CreateInstance(pluginAssembly.GetTypes().Where(x => x.BaseType == typeof(IMSPluginBase)).Single()));
-            }
-            finally
-            {
-                context.Unload(); //start context unload now so the assembly disappears once the plugin is gc'd
+                AssemblyLoadContext context = new AssemblyLoadContext(null, true);
+                Assembly pluginAssembly = context.LoadFromAssemblyPath(path);
+                try
+                {
+                    Plugins.Add((IMSPluginBase)Activator.CreateInstance(pluginAssembly.GetTypes().Where(x => x.BaseType == typeof(IMSPluginBase)).Single()));
+                }
+                finally
+                {
+                    context.Unload(); //start context unload now so the assembly disappears once the plugin is gc'd
+                }
             }
         }
 
         public void Stop()
         {
+            lock(Locker)
             foreach(IMSPluginBase plugin in Plugins.ToArray())
             {
                 UnloadPlugin(plugin);

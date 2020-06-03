@@ -55,7 +55,7 @@
     }
 </style>
 @{ 
-    World loadedWorld = IMS.AsThreadSafe(() => IMS.Instance.WorldManager.GetWorldByID(WorldID));
+    World loadedWorld = IMS.Instance.WorldManager.GetWorldByID(WorldID);
 }
 <h3>Manage @loadedWorld.Name</h3>
 <label style="color:gray; font-weight:normal">@loadedWorld.Edition | @loadedWorld.ID </label>
@@ -146,8 +146,8 @@
         {
             UpdateTimer.Enabled = true;
             //TODO: Make these update dynamically when stuff happens, not just load once at page beginning
-            WorldSize = IMS.AsThreadSafe(() => IMS.Instance.WorldManager.GetWorldByID(WorldID).GetWorldSizeAsync());
-            TotalSize = IMS.AsThreadSafe(() => IMS.Instance.WorldManager.GetWorldByID(WorldID).GetTotalSizeAsync());
+            WorldSize = IMS.Instance.WorldManager.GetWorldByID(WorldID).GetWorldSizeAsync();
+            TotalSize = IMS.Instance.WorldManager.GetWorldByID(WorldID).GetTotalSizeAsync();
         }
     }
 }

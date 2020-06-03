@@ -1,5 +1,6 @@
 ﻿using KinglyStudios.Knetworking;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace IMS_Library
     public class ServerController
     {
         public IList<ServerProxy> Servers { get { return LoadedServers.Values.ToList().AsReadOnly(); } }
-        protected Dictionary<Guid, ServerProxy> LoadedServers = new Dictionary<Guid, ServerProxy>();
+        protected ConcurrentDictionary<Guid, ServerProxy> LoadedServers = new ConcurrentDictionary<Guid, ServerProxy>();
 
         protected List<int> UsedPorts = new List<int>();
 
@@ -32,8 +33,7 @@ namespace IMS_Library
             {
                 if (server.State != ServerProxy.ServerState.Disabled)
                 {
-                    server.Stop();
-                    while (server.State == ServerProxy.ServerState.Stopping) { Thread.Sleep(5); }
+                    server.StopAsync().Wait();
                     RemoveForwardedPorts(server.CurrentConfiguration.GetPortsToForward());
                 }
                 server.CurrentConfiguration.SaveConfiguration();
@@ -61,7 +61,7 @@ namespace IMS_Library
                     {
                         UsedPorts.AddRange(ports);
                         ForwardPorts(configuration.GetPortsToForward());
-                        loadedServer.Start();
+                        loadedServer.StartAsync();
                     }
                 }
             }

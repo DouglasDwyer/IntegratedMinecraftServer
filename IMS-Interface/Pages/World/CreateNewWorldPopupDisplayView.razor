@@ -23,6 +23,7 @@
 <MultiToggle Options="@WorldOptions.Keys.ToArray()" OnSelectionChange="OnSelection"></MultiToggle>
 <br />
 <br />
+<br />
 <label></label>
 <div style="position:absolute;right:10px;bottom:10px;">
     <button class="btn btn-primary" @onclick="@(x => { PopupManager.ShowPopup(new LoadingPopupDisplay("Creating world...")); DisplayData.OnUserSubmit?.Invoke(WorldName, Seed, LevelType); })">Create</button>

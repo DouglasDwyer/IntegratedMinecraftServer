@@ -57,7 +57,7 @@
 <hr />
 
 @{
-    List<BackupInformation> backups = IMS.AsThreadSafe(() => CurrentWorld.Backups.ToList());
+    List<BackupInformation> backups = CurrentWorld.Backups.Values.ToList();
     backups.Sort((x, y) => DateTime.Compare(y.Date, x.Date));
     if (backups.Count() == 0)
     {
@@ -134,16 +134,18 @@
 
 @code {
     protected static Task CurrentTask = null;
+    protected static object Locker = new object();
+
     protected BackupInformation CurrentlyEditingName;
     protected string CurrentlyEditingNameText;
     protected string NewBackupName;
 
     protected void DownloadCurrentWorld()
     {
-        if (CurrentTask is null)
+        lock (Locker)
         {
-            CurrentTask = new Task(() => { });
-            IMS.AsThreadSafe(() => {
+            if (CurrentTask is null)
+            {
                 ServerProxy serverWorld = IMS.Instance.WorldManager.GetServerOfWorld(CurrentWorld);
                 if (serverWorld is null)
                 {
@@ -153,30 +155,36 @@
                 {
                     CurrentTask = Downloader.DownloadServerWorldAsync(Navigator, serverWorld);
                 }
-            });
+            }
         }
     }
 
     protected void CreateNewBackup()
     {
-        string backup = NewBackupName;
-        if(string.IsNullOrEmpty(backup))
+        lock(Locker)
         {
-            backup = "New backup";
+            if(CurrentTask is null)
+            {
+
+                string backup = NewBackupName;
+                if (string.IsNullOrEmpty(backup))
+                {
+                    backup = "New backup";
+                }
+                CurrentTask = CurrentWorld.MakeBackupAsync(backup);
+                NewBackupName = "";
+            }
         }
-        Task.Run(() =>
-        {
-            CurrentTask = new Task(() => { });
-            CurrentTask = IMS.AsThreadSafe(() => CurrentWorld.MakeBackupAsync(backup));
-        });
-        NewBackupName = "";
     }
 
     protected void DownloadWorldAsync(Guid guid)
     {
-        if(CurrentTask is null)
+        lock (Locker)
         {
-            CurrentTask = Downloader.ZipAndDownloadFolderAsync(Navigator, CurrentWorld.GetPathOfBackup(guid));
+            if (CurrentTask is null)
+            {
+                CurrentTask = Downloader.ZipAndDownloadFolderAsync(Navigator, CurrentWorld.GetPathOfBackup(guid));
+            }
         }
     }
 
@@ -191,22 +199,23 @@
 
     protected void RestoreWorldAsync(Guid guid)
     {
-        if (CurrentTask is null)
+        lock (Locker)
         {
-            Task.Run(() =>
+            if (CurrentTask is null)
             {
-                CurrentTask = new Task(() => { });
-                CurrentTask = IMS.AsThreadSafe(() => CurrentWorld.RestoreFromBackupAsync(guid));
-            });
+                CurrentTask = CurrentWorld.RestoreFromBackupAsync(guid);
+            }
         }
     }
 
     protected void DeleteWorldAsync(Guid guid)
     {
-        if (CurrentTask is null)
+        lock (Locker)
         {
-            CurrentTask = new Task(() => { });
-            Task.Run(() => CurrentTask = IMS.AsThreadSafe(() => CurrentWorld.DeleteBackupAsync(guid)));
+            if (CurrentTask is null)
+            {
+                CurrentTask = CurrentWorld.DeleteBackupAsync(guid);
+            }
         }
     }
 

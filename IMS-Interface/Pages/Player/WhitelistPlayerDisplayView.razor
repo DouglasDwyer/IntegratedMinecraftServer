@@ -40,7 +40,7 @@
 </div>
 <hr />
 @{
-    IEnumerable<MinecraftPlayer> players = IMS.AsThreadSafe(() => CurrentServer.GetAllWhitelistedPlayers());
+    IEnumerable<MinecraftPlayer> players = CurrentServer.GetAllWhitelistedPlayers();
     if (players.Count() == 0)
     {
         <label style="padding-top:3px; font-weight:normal"><i>There are currently no whitelisted players.</i></label>
@@ -80,9 +80,9 @@
     </thead>
     <tbody>
         @{
-            IEnumerable<MinecraftPlayer> onlinePlayers = IMS.AsThreadSafe(() => CurrentServer.GetOnlinePlayers());
-            List<BanInformation> banPlayers = IMS.AsThreadSafe(() => CurrentServer.GetAllBans());
-            List<BanIPTag> banIPs = IMS.AsThreadSafe(() => CurrentServer.GetAllBannedIPs());
+            IEnumerable<MinecraftPlayer> onlinePlayers = CurrentServer.GetOnlinePlayers();
+            List<BanInformation> banPlayers = CurrentServer.GetAllBans();
+            List<BanIPTag> banIPs = CurrentServer.GetAllBannedIPs();
         }
         @foreach (MinecraftPlayer player in players)
         {
@@ -180,7 +180,7 @@
 
     protected void ToggleWhitelist(int onOrOff)
     {
-        IMS.AsThreadSafe(() => CurrentServer.WhitelistEnabled = onOrOff == 0);
+        CurrentServer.WhitelistEnabled = onOrOff == 0;
     }
 
     protected override void OnAfterRender(bool firstRender)
@@ -211,52 +211,52 @@
 
     protected void BanPlayer(string name)
     {
-        IMS.AsThreadSafe(() => CurrentServer.BanPlayer(name, ""));
+        CurrentServer.BanPlayer(name, "");
     }
 
     protected void AddUserToWhitelistButtonClick()
     {
-        IMS.AsThreadSafe(() => CurrentServer.WhitelistPlayer(CurrentAddUserText));
+        CurrentServer.WhitelistPlayer(CurrentAddUserText);
         CurrentAddUserText = "";
     }
 
     protected void UnbanPlayer(string name)
     {
-        IMS.AsThreadSafe(() => CurrentServer.UnbanPlayer(name));
+        CurrentServer.UnbanPlayer(name);
     }
 
     protected void BanIP(string ip)
     {
-        IMS.AsThreadSafe(() => CurrentServer.BanIP(ip, ""));
+        CurrentServer.BanIP(ip, "");
     }
 
     protected void UnbanIP(string ip)
     {
-        IMS.AsThreadSafe(() => CurrentServer.UnbanIP(ip));
+        CurrentServer.UnbanIP(ip);
     }
 
     protected void WhitelistPlayer(string name)
     {
-        IMS.AsThreadSafe(() => CurrentServer.WhitelistPlayer(name));
+        CurrentServer.WhitelistPlayer(name);
     }
 
     protected void UnwhitelistPlayer(string name)
     {
-        IMS.AsThreadSafe(() => CurrentServer.RemoveWhitelistPlayer(name));
+        CurrentServer.RemoveWhitelistPlayer(name);
     }
 
     protected void OpPlayer(string name)
     {
-        IMS.AsThreadSafe(() => CurrentServer.OpPlayer(name));
+        CurrentServer.OpPlayer(name);
     }
 
     protected void DeopPlayer(string name)
     {
-        IMS.AsThreadSafe(() => CurrentServer.DeopPlayer(name));
+        CurrentServer.DeopPlayer(name);
     }
 
     protected void KickPlayer(string name)
     {
-        IMS.AsThreadSafe(() => CurrentServer.KickPlayer(name, ""));
+        CurrentServer.KickPlayer(name, "");
     }
 }

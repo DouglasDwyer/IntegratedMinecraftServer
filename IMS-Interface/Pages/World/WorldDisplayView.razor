@@ -6,5 +6,5 @@
 
     [Parameter]
     public Guid CurrentWorldID { get; set; }
-    public World CurrentWorld => IMS.AsThreadSafe(() => IMS.Instance.WorldManager.GetWorldByID(CurrentWorldID));
+    public World CurrentWorld => IMS.Instance.WorldManager.GetWorldByID(CurrentWorldID);
 }

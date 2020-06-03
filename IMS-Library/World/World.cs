@@ -1,6 +1,7 @@
 ﻿using KinglyStudios.Knetworking;
 using System;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -12,8 +13,8 @@ namespace IMS_Library
         public Guid ID;
         public string Name;
         public WorldType Edition;
-        public List<IBackupPolicy> BackupPolicies = new List<IBackupPolicy>();
-        public List<BackupInformation> Backups = new List<BackupInformation>();
+        public SynchronizedCollection<IBackupPolicy> BackupPolicies = new SynchronizedCollection<IBackupPolicy>();
+        public ConcurrentDictionary<Guid, BackupInformation> Backups = new ConcurrentDictionary<Guid, BackupInformation>();
 
         public string FolderPath { get => Constants.ExecutionPath + Constants.WorldFolderLocation + "/" + ID; }
         public string WorldPath {
@@ -50,13 +51,11 @@ namespace IMS_Library
         public async Task<Guid> MakeBackupAsync(string backupName = "Automatic backup")
         {
             Guid backupID = Guid.NewGuid();
+            Backups[backupID] = new BackupInformation { Name = backupName, Date = DateTime.Now, ID = backupID };
             ServerProxy server = IMS.Instance.WorldManager.GetServerOfWorld(this);
-            Backups.Add(new BackupInformation { Name = backupName, Date = DateTime.Now, ID = backupID });
-            if (server is null || server.State == ServerProxy.ServerState.Disabled) {
-                await Task.Run(() =>
-                {
-                    Extensions.CopyFolder(WorldPath, FolderPath + "/" + backupID);
-                });
+            if (server is null || server.State == ServerProxy.ServerState.Disabled)
+            {
+                Extensions.CopyFolder(WorldPath, FolderPath + "/" + backupID);
             }
             else
             {
@@ -67,23 +66,23 @@ namespace IMS_Library
 
         public async Task RestoreFromBackupAsync(Guid backupID, bool makeBackupOfCurrentWorld = true, string currentWorldBackupName = "Overwritten world backup")
         {
-            if(Backups.FindIndex(x => x.ID == backupID) < 0)
+            if (!Backups.ContainsKey(backupID))
             {
                 throw new ArgumentException("Backup ID did not match any known backup.", "backupID");
             }
             ServerProxy server = IMS.Instance.WorldManager.GetServerOfWorld(this);
-            if(server != null)
+            if (server != null)
             {
-                if(server.State == ServerProxy.ServerState.Disabled)
+                if (server.State == ServerProxy.ServerState.Disabled)
                 {
                     server = null;
                 }
                 else
                 {
-                    server.StopAndWait();
+                    await server.StopAsync();
                 }
             }
-            if(makeBackupOfCurrentWorld)
+            if (makeBackupOfCurrentWorld)
             {
                 await MakeBackupAsync(currentWorldBackupName);
             }
@@ -92,12 +91,12 @@ namespace IMS_Library
                 Directory.Delete(WorldPath, true);
                 Extensions.CopyFolder(FolderPath + "/" + backupID, WorldPath);
             });
-            IMS.AsThreadSafe(() => server?.Start());
+            await server?.StartAsync();
         }
 
         public string GetPathOfBackup(BackupInformation backup)
         {
-            if (Backups.Contains(backup))
+            if (Backups.ContainsKey(backup.ID))
             {
                 return FolderPath + "/" + backup.ID;
             }
@@ -111,11 +110,9 @@ namespace IMS_Library
 
         public async Task DeleteBackupAsync(Guid backupID)
         {
-            BackupInformation info = Backups.Find(x => x.ID == backupID);
-            if(info != null)
+            if (Backups.Remove(backupID))
             {
-                Backups.Remove(info);
-                await Task.Run(() => Directory.Delete(FolderPath + "/" + info.ID, true));
+                await Task.Run(() => Directory.Delete(FolderPath + "/" + backupID, true));
             }
         }
 

@@ -82,7 +82,10 @@ namespace IMS_Library
                             break;
                     }
                     name += metadata.id;
-                    AvailableServerVersions[metadata.id] = new ServerVersionInformation(name, metadata.id, DateTime.Parse(versionData.releaseTime), World.WorldType.Java, releaseType, versionData.downloads.server.url);
+                    lock (this)
+                    {
+                        AvailableServerVersions[metadata.id] = new ServerVersionInformation(name, metadata.id, DateTime.Parse(versionData.releaseTime), World.WorldType.Java, releaseType, versionData.downloads.server.url);
+                    }
                 }
             }
             if(LatestRelease.PhysicalLocation is null)

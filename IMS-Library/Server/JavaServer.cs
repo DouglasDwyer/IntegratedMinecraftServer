@@ -66,6 +66,8 @@ namespace IMS_Library
         protected bool HasCompletedAutomaticSave = true;
         protected string WorldLocation { get => ServerPreferences.GetServerFolderLocation() + "/" + ServerPreferences.LevelName; }
 
+        protected object Locker = new object();
+
         public JavaServer(Guid id, JavaServerConfiguration configuration) : base(id)
         {
             ServerPreferences = configuration;
@@ -87,17 +89,23 @@ namespace IMS_Library
 
         public override IEnumerable<MinecraftPlayer> GetOnlinePlayers()
         {
-            return OnlineUsers.Values;
+            lock (Locker)
+            {
+                return OnlineUsers.Values;
+            }
         }
 
         public override string GetConsoleText()
         {
-            string toReturn = string.Concat(ConsoleText.ToArray());
-            if (toReturn.EndsWith("\n"))
+            lock (Locker)
             {
-                toReturn = toReturn.Remove(toReturn.Length - 1);
+                string toReturn = string.Concat(ConsoleText.ToArray());
+                if (toReturn.EndsWith("\n"))
+                {
+                    toReturn = toReturn.Remove(toReturn.Length - 1);
+                }
+                return toReturn;
             }
-            return toReturn;
         }
 
         public void OnServerProcessDie(Process process)
@@ -106,56 +114,65 @@ namespace IMS_Library
             {
                 return;
             }
-            OnlineUsers.Clear();
-            if(State != ServerState.Stopping)
+            lock (Locker)
             {
-                if (State == ServerState.Running)
+                OnlineUsers.Clear();
+                if (State != ServerState.Stopping)
                 {
-                    Logger.WriteError("Server " + ID + " crashed.  Attempting restart...");
-                    State = ServerState.Disabled;
-                    Start();
+                    if (State == ServerState.Running)
+                    {
+                        Logger.WriteError("Server " + ID + " crashed.  Attempting restart...");
+                        State = ServerState.Disabled;
+                        StartAsync();
+                    }
+                    else
+                    {
+                        Logger.WriteError("Server " + ID + " crashed on startup.");
+                        State = ServerState.Disabled;
+                        ServerPreferences.IsEnabled = false;
+                    }
                 }
                 else
                 {
-                    Logger.WriteError("Server " + ID + " crashed on startup.");
                     State = ServerState.Disabled;
-                    ServerPreferences.IsEnabled = false;
                 }
-            }
-            else
-            {
-                State = ServerState.Disabled;
             }
         }
 
         public override void OpPlayer(string name)
         {
-            if(State == ServerState.Disabled)
+            lock (Locker)
             {
-                List<OpTag> tags = JsonConvert.DeserializeObject<OpTag[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/ops.json")).ToList();
-                if(ServerPreferences.OnlineMode)
+                if (State == ServerState.Disabled)
                 {
-                    tags.Add(new OpTag { name = name, bypassesPlayerLimit = false, level = ServerPreferences.DefaultOpPermissionLevel, uuid = MojangInteropUtility.GetUUIDFromUsername(name) });
+                    List<OpTag> tags = JsonConvert.DeserializeObject<OpTag[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/ops.json")).ToList();
+                    if (ServerPreferences.OnlineMode)
+                    {
+                        tags.Add(new OpTag { name = name, bypassesPlayerLimit = false, level = ServerPreferences.DefaultOpPermissionLevel, uuid = MojangInteropUtility.GetUUIDFromUsername(name) });
+                    }
+                    else
+                    {
+                        tags.Add(new OpTag { name = name, bypassesPlayerLimit = false, level = ServerPreferences.DefaultOpPermissionLevel });
+                    }
+                    File.WriteAllText(ServerPreferences.GetServerFolderLocation() + "/ops.json", JsonConvert.SerializeObject(tags.ToArray()));
                 }
                 else
                 {
-                    tags.Add(new OpTag { name = name, bypassesPlayerLimit = false, level = ServerPreferences.DefaultOpPermissionLevel });
+                    SendUncheckedConsoleCommand("op " + name);
                 }
-                File.WriteAllText(ServerPreferences.GetServerFolderLocation() + "/ops.json", JsonConvert.SerializeObject(tags.ToArray()));
-            }
-            else
-            {
-                SendUncheckedConsoleCommand("op " + name);
             }
         }
 
         public override async Task BackupToLocationAsync(string location)
         {
-            if(!HasCompletedAutomaticSave)
+            lock (Locker)
             {
-                return;
+                if (!HasCompletedAutomaticSave)
+                {
+                    return;
+                }
+                HasCompletedAutomaticSave = false;
             }
-            HasCompletedAutomaticSave = false;
             if(AutomaticSavingPlayerEnabled)
             {
                 SendUncheckedConsoleCommand("save-off");
@@ -167,22 +184,23 @@ namespace IMS_Library
             }
             await Task.Run(() => {
                 Extensions.CopyFolder(WorldLocation, location);
-                IMS.AsThreadSafe(() => {
-                    if (AutomaticSavingPlayerEnabled)
-                    {
-                        SendUncheckedConsoleCommand("save-on");
-                    }
-                });
+                if (AutomaticSavingPlayerEnabled)
+                {
+                    SendUncheckedConsoleCommand("save-on");
+                }
             });
         }
 
         public override async Task BackupToZipFileAsync(string file)
         {
-            if (!HasCompletedAutomaticSave)
+            lock (Locker)
             {
-                return;
+                if (!HasCompletedAutomaticSave)
+                {
+                    return;
+                }
+                HasCompletedAutomaticSave = false;
             }
-            HasCompletedAutomaticSave = false;
             if (AutomaticSavingPlayerEnabled)
             {
                 SendUncheckedConsoleCommand("save-off");
@@ -197,19 +215,17 @@ namespace IMS_Library
                 Extensions.CopyFolder(WorldLocation, location);
                 ZipFile.CreateFromDirectory(location, file);
                 Directory.Delete(location, true);
-                IMS.AsThreadSafe(() => {
-                    if (AutomaticSavingPlayerEnabled)
-                    {
-                        SendUncheckedConsoleCommand("save-on");
-                    }
-                });
+                if (AutomaticSavingPlayerEnabled)
+                {
+                    SendUncheckedConsoleCommand("save-on");
+                }
             });
         }
 
-        public override void Restart()
+        public override async Task RestartAsync()
         {
-            Stop();
-            Start();
+            await StopAsync();
+            await StartAsync();
         }
 
         public override void SendConsoleCommand(string command)
@@ -217,7 +233,7 @@ namespace IMS_Library
             if (command == "stop")
             {
                 ServerPreferences.IsEnabled = false;
-                Stop();
+                StopAsync();
             }
             else
             {
@@ -227,498 +243,531 @@ namespace IMS_Library
 
         protected void SendUncheckedConsoleCommand(string command)
         {
-            ServerProcess.StandardInput.WriteLine(command);
+            lock (ServerProcess)
+            {
+                ServerProcess.StandardInput.WriteLine(command);
+            }
         }
 
         protected void ReloadWhitelistJSON()
         {
-            Whitelist.Clear();
-            foreach (MinecraftPlayer player in AllUsers.Values)
-            {
-                player.IsWhitelisted = false;
-            }
-            if (File.Exists(ServerPreferences.GetServerFolderLocation() + "/ops.json"))
-            {
-                WhitelistTag[] tags = JsonConvert.DeserializeObject<WhitelistTag[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/whitelist.json"));
-                foreach (WhitelistTag tag in tags)
+            lock (Locker) {
+                Whitelist.Clear();
+                foreach (MinecraftPlayer player in AllUsers.Values)
                 {
-                    MinecraftPlayer player = GetPlayerByIdentifier(tag.name, tag.uuid);
-                    if(player is null)
+                    player.IsWhitelisted = false;
+                }
+                if (File.Exists(ServerPreferences.GetServerFolderLocation() + "/ops.json"))
+                {
+                    WhitelistTag[] tags = JsonConvert.DeserializeObject<WhitelistTag[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/whitelist.json"));
+                    foreach (WhitelistTag tag in tags)
                     {
-                        player = new MinecraftPlayer();
-                        player.Username = tag.name;
-                        player.UUID = tag.uuid;
-                        AddPlayerToAllPlayersList(player);
+                        MinecraftPlayer player = GetPlayerByIdentifier(tag.name, tag.uuid);
+                        if (player is null)
+                        {
+                            player = new MinecraftPlayer();
+                            player.Username = tag.name;
+                            player.UUID = tag.uuid;
+                            AddPlayerToAllPlayersList(player);
+                        }
+                        player.IsWhitelisted = true;
                     }
-                    player.IsWhitelisted = true;
                 }
             }
         }
 
         protected void AddPlayerToAllPlayersList(MinecraftPlayer player)
         {
-            if(ServerPreferences.OnlineMode)
+            lock (Locker)
             {
-                AllUsers[player.UUID] = player;
-            }
-            else
-            {
-                AllUsers[player.Username] = player;
+                if (ServerPreferences.OnlineMode)
+                {
+                    AllUsers[player.UUID] = player;
+                }
+                else
+                {
+                    AllUsers[player.Username] = player;
+                }
             }
         }
 
         protected void ReloadOpJSON()
         {
-            OpList.Clear();
-            foreach(MinecraftPlayer player in AllUsers.Values)
+            lock (Locker)
             {
-                player.PermissionLevel = 0;
-            }
-            if (File.Exists(ServerPreferences.GetServerFolderLocation() + "/ops.json"))
-            {
-                OpTag[] tags = JsonConvert.DeserializeObject<OpTag[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/ops.json"));
-                foreach(OpTag tag in tags)
+                OpList.Clear();
+                foreach (MinecraftPlayer player in AllUsers.Values)
                 {
-                    MinecraftPlayer player = GetPlayerByIdentifier(tag.name, tag.uuid);
-                    if(player is null)
+                    player.PermissionLevel = 0;
+                }
+                if (File.Exists(ServerPreferences.GetServerFolderLocation() + "/ops.json"))
+                {
+                    OpTag[] tags = JsonConvert.DeserializeObject<OpTag[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/ops.json"));
+                    foreach (OpTag tag in tags)
                     {
-                        player = new MinecraftPlayer();
-                        player.Username = tag.name;
-                        player.UUID = tag.uuid;
-                        AddPlayerToAllPlayersList(player);
+                        MinecraftPlayer player = GetPlayerByIdentifier(tag.name, tag.uuid);
+                        if (player is null)
+                        {
+                            player = new MinecraftPlayer();
+                            player.Username = tag.name;
+                            player.UUID = tag.uuid;
+                            AddPlayerToAllPlayersList(player);
+                        }
+                        player.PermissionLevel = tag.level;
                     }
-                    player.PermissionLevel = tag.level;
                 }
             }
         }
 
         protected MinecraftPlayer GetPlayerByIdentifier(string name, string uuid)
         {
-            if (ServerPreferences.OnlineMode)
+            lock (Locker)
             {
-                if (AllUsers.ContainsKey(uuid))
+                if (ServerPreferences.OnlineMode)
                 {
-                    return AllUsers[uuid];
+                    if (AllUsers.ContainsKey(uuid))
+                    {
+                        return AllUsers[uuid];
+                    }
                 }
-            }
-            else
-            {
-                if (AllUsers.ContainsKey(name))
+                else
                 {
-                    return AllUsers[name];
+                    if (AllUsers.ContainsKey(name))
+                    {
+                        return AllUsers[name];
+                    }
                 }
+                return null;
             }
-            return null;
         }
 
         protected MinecraftPlayer GetPlayerOrDefaultByIdentifier(string name, string uuid)
         {
-            MinecraftPlayer toReturn = GetPlayerByIdentifier(name, uuid);
-            if(toReturn is null)
+            lock (Locker)
             {
-                toReturn = new MinecraftPlayer();
-                toReturn.Username = name;
-                toReturn.UUID = uuid;
-                if(ServerPreferences.OnlineMode)
+                MinecraftPlayer toReturn = GetPlayerByIdentifier(name, uuid);
+                if (toReturn is null)
                 {
-                    toReturn.IsWhitelisted = Whitelist.FindIndex(x => x.uuid == uuid) >= 0;
+                    toReturn = new MinecraftPlayer();
+                    toReturn.Username = name;
+                    toReturn.UUID = uuid;
+                    if (ServerPreferences.OnlineMode)
+                    {
+                        toReturn.IsWhitelisted = Whitelist.FindIndex(x => x.uuid == uuid) >= 0;
+                    }
+                    else
+                    {
+                        toReturn.IsWhitelisted = Whitelist.FindIndex(x => x.uuid == uuid) >= 0;
+                    }
+                    OpTag? op = null;
+                    if (ServerPreferences.OnlineMode)
+                    {
+                        op = OpList.Find(x => x.uuid == uuid);
+                    }
+                    else
+                    {
+                        op = OpList.Find(x => x.name == name);
+                    }
+                    if (op != null)
+                    {
+                        toReturn.PermissionLevel = op.Value.level;
+                    }
                 }
-                else
-                {
-                    toReturn.IsWhitelisted = Whitelist.FindIndex(x => x.uuid == uuid) >= 0;
-                }
-                OpTag? op = null;
-                if (ServerPreferences.OnlineMode)
-                {
-                    op = OpList.Find(x => x.uuid == uuid);
-                }
-                else
-                {
-                    op = OpList.Find(x => x.name == name);
-                }
-                if (op != null)
-                {
-                    toReturn.PermissionLevel = op.Value.level;
-                }
+                return toReturn;
             }
-            return toReturn;
         }
 
         protected void ReloadBanJSON()
         {
-            BanList.Clear();
-            if (File.Exists(ServerPreferences.GetServerFolderLocation() + "/ops.json"))
+            lock (Locker)
             {
-                BanTag[] tags = JsonConvert.DeserializeObject<BanTag[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/banned-players.json"));
-                foreach (BanTag tag in tags)
+                BanList.Clear();
+                if (File.Exists(ServerPreferences.GetServerFolderLocation() + "/ops.json"))
                 {
-                    BanInformation information = new BanInformation();
-                    information.Reason = tag.reason;
-                    information.BanSource = tag.source;
-                    information.CreatedDate = tag.created;
-                    information.ExpirationDate = tag.expires;
-                    information.Player = GetPlayerByIdentifier(tag.name, tag.uuid);
-                    if(information.Player is null)
+                    BanTag[] tags = JsonConvert.DeserializeObject<BanTag[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/banned-players.json"));
+                    foreach (BanTag tag in tags)
                     {
-                        information.Player = new MinecraftPlayer();
-                        information.Player.Username = tag.name;
-                        information.Player.UUID = tag.uuid;
-                        AddPlayerToAllPlayersList(information.Player);
+                        BanInformation information = new BanInformation();
+                        information.Reason = tag.reason;
+                        information.BanSource = tag.source;
+                        information.CreatedDate = tag.created;
+                        information.ExpirationDate = tag.expires;
+                        information.Player = GetPlayerByIdentifier(tag.name, tag.uuid);
+                        if (information.Player is null)
+                        {
+                            information.Player = new MinecraftPlayer();
+                            information.Player.Username = tag.name;
+                            information.Player.UUID = tag.uuid;
+                            AddPlayerToAllPlayersList(information.Player);
+                        }
+                        BanList.Add(information);
                     }
-                    BanList.Add(information);
                 }
             }
         }
 
         protected void ReloadBanIPJSON()
         {
+            lock(Locker) {
             BanIPList.Clear();
-            if (File.Exists(ServerPreferences.GetServerFolderLocation() + "/ops.json"))
-            {
-                BanIPTag[] tags = JsonConvert.DeserializeObject<BanIPTag[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/banned-ips.json"));
-                foreach (BanIPTag tag in tags)
+                if (File.Exists(ServerPreferences.GetServerFolderLocation() + "/ops.json"))
                 {
-                    BanIPList[tag.ip] = tag;
+                    BanIPTag[] tags = JsonConvert.DeserializeObject<BanIPTag[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/banned-ips.json"));
+                    foreach (BanIPTag tag in tags)
+                    {
+                        BanIPList[tag.ip] = tag;
+                    }
                 }
             }
         }
 
         public int GetOperatorStatusOfPlayerByUUID(string uuid)
         {
-            return AllUsers[uuid].PermissionLevel;
+            lock (Locker)
+            {
+                return AllUsers[uuid].PermissionLevel;
+            }
         }
 
-        public override void Start()
+        public override async Task StartAsync()
         {
-            if (State != ServerState.Disabled)
+            lock (Locker)
             {
-                throw new Exception("Cannot start a server that's already running!");
-            }
-            try
-            {
-                World world = IMS.Instance.WorldManager.GetWorldByID(CurrentConfiguration.WorldID);
-                if (world is null)
+                if (State != ServerState.Disabled)
                 {
-                    world = new World(Guid.NewGuid());
-                    world.Name = CurrentConfiguration.ServerName + " World";
-                    world.Edition = World.WorldType.Java;
-                    ServerPreferences.WorldID = world.ID;
-                    IMS.Instance.WorldManager.AddWorldToRegistry(world);
+                    throw new Exception("Cannot start a server that's already running!");
                 }
-                JunctionPoint.Create(WorldLocation, world.WorldPath, true);
-                if (File.Exists(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log"))
+                try
                 {
-                    if (File.GetAttributes(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log") != FileAttributes.Hidden)
+                    World world = IMS.Instance.WorldManager.GetWorldByID(CurrentConfiguration.WorldID);
+                    if (world is null)
                     {
-                        File.Copy(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log", ServerPreferences.GetServerFolderLocation() + "/logs/" + File.GetCreationTime(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log").ToString("yyyy-dd-M--HH-mm-ss") + ".loge", true);
+                        world = new World(Guid.NewGuid());
+                        world.Name = CurrentConfiguration.ServerName + " World";
+                        world.Edition = World.WorldType.Java;
+                        ServerPreferences.WorldID = world.ID;
+                        IMS.Instance.WorldManager.AddWorldToRegistry(world);
                     }
-                    File.Delete(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log");
-                }
-                if (File.Exists(ServerPreferences.GetServerFolderLocation() + "/usercache.xml"))
-                {
-                    foreach (MinecraftPlayer player in RoyalSerializer.XMLToObject<MinecraftPlayer[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/usercache.xml")))
+                    JunctionPoint.Create(WorldLocation, world.WorldPath, true);
+                    if (File.Exists(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log"))
                     {
-                        if (ServerPreferences.OnlineMode)
+                        if (File.GetAttributes(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log") != FileAttributes.Hidden)
                         {
-                            AllUsers[player.UUID] = player;
+                            File.Copy(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log", ServerPreferences.GetServerFolderLocation() + "/logs/" + File.GetCreationTime(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log").ToString("yyyy-dd-M--HH-mm-ss") + ".loge", true);
                         }
-                        else
+                        File.Delete(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log");
+                    }
+                    if (File.Exists(ServerPreferences.GetServerFolderLocation() + "/usercache.xml"))
+                    {
+                        foreach (MinecraftPlayer player in RoyalSerializer.XMLToObject<MinecraftPlayer[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/usercache.xml")))
                         {
-                            AllUsers[player.Username] = player;
+                            if (ServerPreferences.OnlineMode)
+                            {
+                                AllUsers[player.UUID] = player;
+                            }
+                            else
+                            {
+                                AllUsers[player.Username] = player;
+                            }
                         }
                     }
+
+                    GetLogFiles();
+
+                    MinecraftConfigurationWriter.WriteServerPropertiesFile("server.properties", ServerPreferences);
+                    MinecraftConfigurationWriter.WriteEULA("eula.txt", ServerPreferences);
+
+                    ReloadWhitelistJSON();
+                    ReloadOpJSON();
+                    ReloadBanJSON();
+                    ReloadBanIPJSON();
+
+                    ServerProcess = new Process();
+                    ServerProcess.StartInfo = new ProcessStartInfo();
+
+                    ServerProcess.StartInfo.FileName = Constants.ExecutionPath + Constants.JavaExecutableLocation;
+
+                    ServerProcess.StartInfo.Arguments = "-Xms" + ServerPreferences.MinimumMemoryMB
+                        + "M -Xmx" + ServerPreferences.MaximumMemoryMB
+                        + "M " + ServerPreferences.JavaArguments
+                        + " -jar \"" + (string.IsNullOrEmpty(ServerPreferences.ServerVersion)
+                            ? IMS.Instance.VersionManager.LatestRelease.PhysicalLocation : IMS.Instance.VersionManager.AvailableServerVersions[ServerPreferences.ServerVersion].PhysicalLocation).Replace("/", "\\")
+                        + "\" nogui";
+
+                    ServerProcess.StartInfo.WorkingDirectory = ServerPreferences.GetServerFolderLocation();
+                    ServerProcess.StartInfo.LoadUserProfile = false;
+                    ServerProcess.StartInfo.UseShellExecute = false;
+                    ServerProcess.StartInfo.CreateNoWindow = true;
+
+                    ServerProcess.StartInfo.RedirectStandardInput = true;
+                    ServerProcess.StartInfo.RedirectStandardOutput = true;
+                    ServerProcess.StartInfo.RedirectStandardError = true;
+
+                    ServerProcess.OutputDataReceived += OnServerConsoleDataReceived;
+                    ServerProcess.ErrorDataReceived += OnServerConsoleDataReceived;
+
+                    ServerProcess.EnableRaisingEvents = true;
+
+                    Process local = ServerProcess;
+                    ServerProcess.Exited += (x, y) => OnServerProcessDie(local);
+
+                    IMS.Instance.FirewallManager.CreateFirewallExecutableException("Server" + ID, ServerProcess.StartInfo.FileName);
+                    ServerProcess.Start();
+
+                    State = ServerState.Starting;
+
+                    ServerProcess.BeginOutputReadLine();
+                    ServerProcess.BeginErrorReadLine();
+                    ChildProcessTracker.AddProcess(ServerProcess);
                 }
-
-                GetLogFiles();
-
-                MinecraftConfigurationWriter.WriteServerPropertiesFile("server.properties", ServerPreferences);
-                MinecraftConfigurationWriter.WriteEULA("eula.txt", ServerPreferences);
-
-                ReloadWhitelistJSON();
-                ReloadOpJSON();
-                ReloadBanJSON();
-                ReloadBanIPJSON();
-
-                ServerProcess = new Process();
-                ServerProcess.StartInfo = new ProcessStartInfo();
-
-                ServerProcess.StartInfo.FileName = Constants.ExecutionPath + Constants.JavaExecutableLocation;
-
-                ServerProcess.StartInfo.Arguments = "-Xms" + ServerPreferences.MinimumMemoryMB
-                    + "M -Xmx" + ServerPreferences.MaximumMemoryMB
-                    + "M " + ServerPreferences.JavaArguments
-                    + " -jar \"" + (string.IsNullOrEmpty(ServerPreferences.ServerVersion)
-                        ? IMS.Instance.VersionManager.LatestRelease.PhysicalLocation : IMS.Instance.VersionManager.AvailableServerVersions[ServerPreferences.ServerVersion].PhysicalLocation).Replace("/", "\\")
-                    + "\" nogui";
-
-                ServerProcess.StartInfo.WorkingDirectory = ServerPreferences.GetServerFolderLocation();
-                ServerProcess.StartInfo.LoadUserProfile = false;
-                ServerProcess.StartInfo.UseShellExecute = false;
-                ServerProcess.StartInfo.CreateNoWindow = true;
-
-                ServerProcess.StartInfo.RedirectStandardInput = true;
-                ServerProcess.StartInfo.RedirectStandardOutput = true;
-                ServerProcess.StartInfo.RedirectStandardError = true;
-
-                ServerProcess.OutputDataReceived += IMS.AsThreadSafeDataEvent(OnServerConsoleDataReceived);
-                ServerProcess.ErrorDataReceived += IMS.AsThreadSafeDataEvent(OnServerConsoleDataReceived);
-
-                ServerProcess.EnableRaisingEvents = true;
-
-                Process local = ServerProcess;
-                ServerProcess.Exited += IMS.AsThreadSafeEvent(() => OnServerProcessDie(local));
-
-                IMS.Instance.FirewallManager.CreateFirewallExecutableException("Server" + ID, ServerProcess.StartInfo.FileName);
-                ServerProcess.Start();
-
-                State = ServerState.Starting;
-
-                ServerProcess.BeginOutputReadLine();
-                ServerProcess.BeginErrorReadLine();
-                ChildProcessTracker.AddProcess(ServerProcess);
+                catch (Exception e)
+                {
+                    Logger.WriteWarning("Server " + ID + " was unable to start.\n" + e);
+                    CurrentConfiguration.IsEnabled = false;
+                }
             }
-            catch(Exception e)
-            {
-                Logger.WriteWarning("Server " + ID + " was unable to start.\n" + e);
-                CurrentConfiguration.IsEnabled = false;
-            }
+            while (State == ServerState.Starting) { await Task.Delay(1); }
         }
 
         protected void OnServerConsoleDataReceived(object sender, DataReceivedEventArgs args)
         {
-            if(args.Data is null)
+            lock (Locker)
             {
-                return;
-            }
-
-            ConsoleText.Add(args.Data + "\n");
-            while(ConsoleText.Count > 100)
-            {
-                ConsoleText.RemoveAt(0);
-            }
-
-            string data = StripServerLogOfTimestamp(args.Data);
-            if(data.StartsWith("[Server thread/INFO]: "))
-            {
-                data = data.Substring("Server thread/INFO]: ".Length + 1);
-                Match regexMatch = null;
-                //Manage server starting
-                if (State == ServerState.Starting && data.StartsWith("Done"))
+                if (args.Data is null)
                 {
-                    State = ServerState.Running;
+                    return;
                 }
-                //Manage players joining
-                else if (CheckRegexMatch(data, "^([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+)\\[\\/([0123456789.)]+):[0123456789]+] logged in with entity id [0123456789]+", out regexMatch))
+
+                ConsoleText.Add(args.Data + "\n");
+                while (ConsoleText.Count > 100)
                 {
-                    MinecraftPlayer loggingInPlayer = null;
-                    string playerName = regexMatch.Groups[1].Value;
-                    string uuid = null;
-                    try
+                    ConsoleText.RemoveAt(0);
+                }
+
+                string data = StripServerLogOfTimestamp(args.Data);
+                if (data.StartsWith("[Server thread/INFO]: "))
+                {
+                    data = data.Substring("Server thread/INFO]: ".Length + 1);
+                    Match regexMatch = null;
+                    //Manage server starting
+                    if (State == ServerState.Starting && data.StartsWith("Done"))
                     {
-                        uuid = (string)UUIDCache[playerName];
-                    } catch { }
-                    if (ServerPreferences.OnlineMode)
-                    {
-                        if (AllUsers.ContainsKey(uuid))
-                        {
-                            loggingInPlayer = AllUsers[uuid];
-                        }
+                        State = ServerState.Running;
                     }
-                    else
+                    //Manage players joining
+                    else if (CheckRegexMatch(data, "^([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+)\\[\\/([0123456789.)]+):[0123456789]+] logged in with entity id [0123456789]+", out regexMatch))
                     {
-                        if(AllUsers.ContainsKey(playerName))
+                        MinecraftPlayer loggingInPlayer = null;
+                        string playerName = regexMatch.Groups[1].Value;
+                        string uuid = null;
+                        try
                         {
-                            loggingInPlayer = AllUsers[playerName];
+                            uuid = (string)UUIDCache[playerName];
                         }
-                    }
-                    if(loggingInPlayer is null)
-                    {
-                        loggingInPlayer.Username = playerName;
-                        loggingInPlayer.UUID = uuid;
+                        catch { }
                         if (ServerPreferences.OnlineMode)
                         {
-                            AllUsers[loggingInPlayer.UUID] = loggingInPlayer;
+                            if (AllUsers.ContainsKey(uuid))
+                            {
+                                loggingInPlayer = AllUsers[uuid];
+                            }
                         }
                         else
                         {
-                            AllUsers[loggingInPlayer.Username] = loggingInPlayer;
+                            if (AllUsers.ContainsKey(playerName))
+                            {
+                                loggingInPlayer = AllUsers[playerName];
+                            }
+                        }
+                        if (loggingInPlayer is null)
+                        {
+                            loggingInPlayer.Username = playerName;
+                            loggingInPlayer.UUID = uuid;
+                            if (ServerPreferences.OnlineMode)
+                            {
+                                AllUsers[loggingInPlayer.UUID] = loggingInPlayer;
+                            }
+                            else
+                            {
+                                AllUsers[loggingInPlayer.Username] = loggingInPlayer;
+                            }
+                        }
+                        loggingInPlayer.IP = regexMatch.Groups[2].Value;
+                        loggingInPlayer.LastConnectionEvent = DateTime.Now;
+                        if (ServerPreferences.OnlineMode)
+                        {
+                            OnlineUsers[loggingInPlayer.UUID] = loggingInPlayer;
+                        }
+                        else
+                        {
+                            OnlineUsers[loggingInPlayer.Username] = loggingInPlayer;
                         }
                     }
-                    loggingInPlayer.IP = regexMatch.Groups[2].Value;
-                    loggingInPlayer.LastConnectionEvent = DateTime.Now;
-                    if (ServerPreferences.OnlineMode)
+                    //Manage players leaving
+                    else if (CheckRegexMatch(data, "^([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+) left the game$", out regexMatch))
                     {
-                        OnlineUsers[loggingInPlayer.UUID] = loggingInPlayer;
+                        MinecraftPlayer leavingPlayer = GetPlayerInformationByUsername(regexMatch.Groups[1].Value);
+                        leavingPlayer.LastConnectionEvent = DateTime.Now;
+                        if (ServerPreferences.OnlineMode)
+                        {
+                            OnlineUsers.Remove(leavingPlayer.UUID);
+                        }
+                        else
+                        {
+                            OnlineUsers.Remove(leavingPlayer.Username);
+                        }
                     }
-                    else
+                    //Manage players using /op
+                    else if (CheckRegexMatch(data, "^\\[[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+: Made ([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+) a server operator]$", out regexMatch))
                     {
-                        OnlineUsers[loggingInPlayer.Username] = loggingInPlayer;
+                        ReloadOpJSON();
                     }
-                }
-                //Manage players leaving
-                else if (CheckRegexMatch(data, "^([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+) left the game$", out regexMatch))
-                {
-                    MinecraftPlayer leavingPlayer = GetPlayerInformationByUsername(regexMatch.Groups[1].Value);
-                    leavingPlayer.LastConnectionEvent = DateTime.Now;
-                    if(ServerPreferences.OnlineMode)
+                    //Manage players using /ban
+                    else if (CheckRegexMatch(data, "^\\[([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+): Banned ([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+): (.*)(?=\\])]$", out regexMatch))
                     {
-                        OnlineUsers.Remove(leavingPlayer.UUID);
+                        ReloadBanJSON();
                     }
-                    else
+                    //Manage players using /ban-ip
+                    else if (CheckRegexMatch(data, "^\\[([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+): Banned IP ([0123456789.]+): (.*)(?=\\])]$", out regexMatch))
                     {
-                        OnlineUsers.Remove(leavingPlayer.Username);
-                    }                    
-                }
-                //Manage players using /op
-                else if (CheckRegexMatch(data, "^\\[[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+: Made ([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+) a server operator]$", out regexMatch))
-                {
-                    ReloadOpJSON();
-                }
-                //Manage players using /ban
-                else if(CheckRegexMatch(data, "^\\[([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+): Banned ([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+): (.*)(?=\\])]$", out regexMatch))
-                {
-                    ReloadBanJSON();
-                }
-                //Manage players using /ban-ip
-                else if (CheckRegexMatch(data, "^\\[([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+): Banned IP ([0123456789.]+): (.*)(?=\\])]$", out regexMatch))
-                {
-                    ReloadBanIPJSON();
-                }
-                //Manage players using /pardon
-                else if (CheckRegexMatch(data, "^\\[([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+): Unbanned ([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+)]$", out regexMatch))
-                {
-                    ReloadBanJSON();
-                }
-                //Manage players using /pardon-ip
-                else if (CheckRegexMatch(data, "^\\[([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+): Unbanned IP ([0123456789.]+)]$", out regexMatch))
-                {
-                    ReloadBanIPJSON();
-                }
-                //Manage players using /deop
-                else if (CheckRegexMatch(data, "^\\[[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+: Made ([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+) no longer a server operator]$", out regexMatch))
-                {
-                    ReloadOpJSON();
-                }
-                //Manage players using /whitelist reload
-                else if (CheckRegexMatch(data, "^\\[[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+: Reloaded the whitelist]$", out regexMatch))
-                {
-                    ReloadWhitelistJSON();
-                }
-                //Manage players using /whitelist add
-                else if(CheckRegexMatch(data, "^\\[[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+: Added ([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+) to the whitelist]$", out regexMatch))
-                {
-                    ReloadWhitelistJSON();
-                }
-                //Manage players using /whitelist remove
-                else if (CheckRegexMatch(data, "^\\[[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+: Removed ([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+) from the whitelist]$", out regexMatch))
-                {
-                    ReloadWhitelistJSON();
-                }
-                //Manage players using /whitelist on
-                else if (CheckRegexMatch(data, "^\\[[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+: Whitelist is now turned on]$", out regexMatch))
-                {
-                    ServerPreferences.UseWhitelist = true;
-                }
-                //Manage players using /whitelist off
-                else if (CheckRegexMatch(data, "^\\[[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+: Whitelist is now turned off]$", out regexMatch))
-                {
-                    ServerPreferences.UseWhitelist = false;
-                }
-                //Manage SERVER
-                //Manage server using /op
-                else if (CheckRegexMatch(data, "^Made ([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+) a server operator$", out regexMatch))
-                {
-                    ReloadOpJSON();
-                }
-                //Manage server using /ban
-                else if (CheckRegexMatch(data, "^Banned ([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+): (.*)$", out regexMatch))
-                {
-                    ReloadBanJSON();
-                }
-                //Manage server using /ban-ip
-                else if (CheckRegexMatch(data, "^Banned IP ([0123456789.]+): (.*)$", out regexMatch))
-                {
-                    ReloadBanIPJSON();
-                }
-                //Manage server using /pardon
-                else if (CheckRegexMatch(data, "^Unbanned ([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+)$", out regexMatch))
-                {
-                    ReloadBanJSON();
-                }
-                //Manage server using /pardon-ip
-                else if (CheckRegexMatch(data, "^Unbanned IP ([0123456789.]+)$", out regexMatch))
-                {
-                    ReloadBanIPJSON();
-                }
-                //Manage server using /deop
-                else if (CheckRegexMatch(data, "^Made ([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+) no longer a server operator$", out regexMatch))
-                {
-                    ReloadOpJSON();
-                }
-                //Manage server using /whitelist reload
-                else if (CheckRegexMatch(data, "^Reloaded the whitelist$", out regexMatch))
-                {
-                    ReloadWhitelistJSON();
-                }
-                //Manage server using /whitelist add
-                else if (CheckRegexMatch(data, "^Added ([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+) to the whitelist$", out regexMatch))
-                {
-                    ReloadWhitelistJSON();
-                }
-                //Manage server using /whitelist remove
-                else if (CheckRegexMatch(data, "^Removed ([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+) from the whitelist$", out regexMatch))
-                {
-                    ReloadWhitelistJSON();
-                }
-                //Manage server using /whitelist on
-                else if (CheckRegexMatch(data, "^Whitelist is now turned on$", out regexMatch))
-                {
-                    ServerPreferences.UseWhitelist = true;
-                }
-                //Manage server using /whitelist off
-                else if (CheckRegexMatch(data, "^[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+: Whitelist is now turned off$", out regexMatch))
-                {
-                    ServerPreferences.UseWhitelist = false;
-                }
-                //Manage server using /save on
-                else if (CheckRegexMatch(data, "^Automatic saving is now enabled$", out regexMatch))
-                {
-                    AutomaticSavingPlayerEnabled = true;
-                }
-                //Manage server using /save off
-                else if (CheckRegexMatch(data, "^Automatic saving is now disabled$", out regexMatch))
-                {
-                    if(HasCompletedAutomaticSave)
+                        ReloadBanIPJSON();
+                    }
+                    //Manage players using /pardon
+                    else if (CheckRegexMatch(data, "^\\[([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+): Unbanned ([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+)]$", out regexMatch))
+                    {
+                        ReloadBanJSON();
+                    }
+                    //Manage players using /pardon-ip
+                    else if (CheckRegexMatch(data, "^\\[([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+): Unbanned IP ([0123456789.]+)]$", out regexMatch))
+                    {
+                        ReloadBanIPJSON();
+                    }
+                    //Manage players using /deop
+                    else if (CheckRegexMatch(data, "^\\[[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+: Made ([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+) no longer a server operator]$", out regexMatch))
+                    {
+                        ReloadOpJSON();
+                    }
+                    //Manage players using /whitelist reload
+                    else if (CheckRegexMatch(data, "^\\[[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+: Reloaded the whitelist]$", out regexMatch))
+                    {
+                        ReloadWhitelistJSON();
+                    }
+                    //Manage players using /whitelist add
+                    else if (CheckRegexMatch(data, "^\\[[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+: Added ([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+) to the whitelist]$", out regexMatch))
+                    {
+                        ReloadWhitelistJSON();
+                    }
+                    //Manage players using /whitelist remove
+                    else if (CheckRegexMatch(data, "^\\[[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+: Removed ([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+) from the whitelist]$", out regexMatch))
+                    {
+                        ReloadWhitelistJSON();
+                    }
+                    //Manage players using /whitelist on
+                    else if (CheckRegexMatch(data, "^\\[[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+: Whitelist is now turned on]$", out regexMatch))
+                    {
+                        ServerPreferences.UseWhitelist = true;
+                    }
+                    //Manage players using /whitelist off
+                    else if (CheckRegexMatch(data, "^\\[[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+: Whitelist is now turned off]$", out regexMatch))
+                    {
+                        ServerPreferences.UseWhitelist = false;
+                    }
+                    //Manage SERVER
+                    //Manage server using /op
+                    else if (CheckRegexMatch(data, "^Made ([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+) a server operator$", out regexMatch))
+                    {
+                        ReloadOpJSON();
+                    }
+                    //Manage server using /ban
+                    else if (CheckRegexMatch(data, "^Banned ([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+): (.*)$", out regexMatch))
+                    {
+                        ReloadBanJSON();
+                    }
+                    //Manage server using /ban-ip
+                    else if (CheckRegexMatch(data, "^Banned IP ([0123456789.]+): (.*)$", out regexMatch))
+                    {
+                        ReloadBanIPJSON();
+                    }
+                    //Manage server using /pardon
+                    else if (CheckRegexMatch(data, "^Unbanned ([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+)$", out regexMatch))
+                    {
+                        ReloadBanJSON();
+                    }
+                    //Manage server using /pardon-ip
+                    else if (CheckRegexMatch(data, "^Unbanned IP ([0123456789.]+)$", out regexMatch))
+                    {
+                        ReloadBanIPJSON();
+                    }
+                    //Manage server using /deop
+                    else if (CheckRegexMatch(data, "^Made ([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+) no longer a server operator$", out regexMatch))
+                    {
+                        ReloadOpJSON();
+                    }
+                    //Manage server using /whitelist reload
+                    else if (CheckRegexMatch(data, "^Reloaded the whitelist$", out regexMatch))
+                    {
+                        ReloadWhitelistJSON();
+                    }
+                    //Manage server using /whitelist add
+                    else if (CheckRegexMatch(data, "^Added ([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+) to the whitelist$", out regexMatch))
+                    {
+                        ReloadWhitelistJSON();
+                    }
+                    //Manage server using /whitelist remove
+                    else if (CheckRegexMatch(data, "^Removed ([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+) from the whitelist$", out regexMatch))
+                    {
+                        ReloadWhitelistJSON();
+                    }
+                    //Manage server using /whitelist on
+                    else if (CheckRegexMatch(data, "^Whitelist is now turned on$", out regexMatch))
+                    {
+                        ServerPreferences.UseWhitelist = true;
+                    }
+                    //Manage server using /whitelist off
+                    else if (CheckRegexMatch(data, "^[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+: Whitelist is now turned off$", out regexMatch))
+                    {
+                        ServerPreferences.UseWhitelist = false;
+                    }
+                    //Manage server using /save on
+                    else if (CheckRegexMatch(data, "^Automatic saving is now enabled$", out regexMatch))
+                    {
+                        AutomaticSavingPlayerEnabled = true;
+                    }
+                    //Manage server using /save off
+                    else if (CheckRegexMatch(data, "^Automatic saving is now disabled$", out regexMatch))
+                    {
+                        if (HasCompletedAutomaticSave)
+                        {
+                            AutomaticSavingPlayerEnabled = false;
+                        }
+                    }
+                    else if (data == "Saved the game")
+                    {
+                        HasCompletedAutomaticSave = true;
+                    }
+                    //end
+                    //Manage players stopping the server
+                    else if (CheckRegexMatch(data, "^\\[[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+: Stopping the server]$", out regexMatch))
+                    {
+                        OnlineUsers.Clear();
+                        ServerPreferences.IsEnabled = false;
+                        State = ServerState.Stopping;
+                    }
+                    //Manage players using /save on
+                    else if (CheckRegexMatch(data, "^\\[[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+: Automatic saving is now enabled]$", out regexMatch))
+                    {
+                        AutomaticSavingPlayerEnabled = true;
+                    }
+                    //Manage players using /save off
+                    else if (CheckRegexMatch(data, "^\\[[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+: Automatic saving is now disabled]$", out regexMatch))
                     {
                         AutomaticSavingPlayerEnabled = false;
                     }
                 }
-                else if(data == "Saved the game")
+                else if (data.StartsWith("[User Authenticator #"))
                 {
-                    HasCompletedAutomaticSave = true;
+                    UUIDCache.Add(data.Substring(data.IndexOf("UUID of player ") + "UUID of player ".Length, data.IndexOf(" is ") - (data.IndexOf("UUID of player ") + "UUID of player ".Length)), data.Substring(data.IndexOf(" is ") + 4), new CacheItemPolicy() { AbsoluteExpiration = DateTimeOffset.Now.AddSeconds(20) });
                 }
-                //end
-                //Manage players stopping the server
-                else if (CheckRegexMatch(data, "^\\[[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+: Stopping the server]$", out regexMatch))
-                {
-                    OnlineUsers.Clear();
-                    ServerPreferences.IsEnabled = false;
-                    State = ServerState.Stopping;
-                }
-                //Manage players using /save on
-                else if (CheckRegexMatch(data, "^\\[[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+: Automatic saving is now enabled]$", out regexMatch))
-                {
-                    AutomaticSavingPlayerEnabled = true;
-                }
-                //Manage players using /save off
-                else if (CheckRegexMatch(data, "^\\[[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_]+: Automatic saving is now disabled]$", out regexMatch))
-                {
-                    AutomaticSavingPlayerEnabled = false;
-                }
-            }
-            else if (data.StartsWith("[User Authenticator #"))
-            {
-                UUIDCache.Add(data.Substring(data.IndexOf("UUID of player ") + "UUID of player ".Length, data.IndexOf(" is ") - (data.IndexOf("UUID of player ") + "UUID of player ".Length)), data.Substring(data.IndexOf(" is ") + 4), new CacheItemPolicy() { AbsoluteExpiration = DateTimeOffset.Now.AddSeconds(20) });
             }
         }
 
@@ -727,20 +776,13 @@ namespace IMS_Library
             return logLine.Substring(11);
         }
 
-        public override void Stop()
+        public override async Task StopAsync()
         {
-            StopWithoutBlocking();
-        }
-
-        public override void StopAndWait()
-        {
-            StopWithoutBlocking().Wait();
-        }
-
-        private async Task StopWithoutBlocking()
-        {
-            if (State == ServerState.Disabled) { return; }
-            State = ServerState.Stopping;
+            lock (Locker)
+            {
+                if (State == ServerState.Disabled || State == ServerState.Stopping) { return; }
+                State = ServerState.Stopping;
+            }
             ServerProcess.EnableRaisingEvents = false;
             SendUncheckedConsoleCommand("stop");
             OnlineUsers.Clear();
@@ -762,8 +804,8 @@ namespace IMS_Library
                     Logger.WriteWarning("Couldn't delete logfile; it seems to still be in use by other process?\n" + e);
                 }
             }
-            ServerProcess = null;
             State = ServerState.Disabled;
+            ServerProcess = null;
         }
 
         private bool CheckRegexMatch(string input, string pattern, out Match match)
@@ -773,52 +815,33 @@ namespace IMS_Library
             return match.Success;
         }
 
-        private bool VerifyJavaVersion()
-        {
-            try
-            {
-                ProcessStartInfo psi = new ProcessStartInfo();
-                psi.FileName = "java.exe";
-                psi.Arguments = " -version";
-                psi.RedirectStandardError = true;
-                psi.UseShellExecute = false;
-                psi.CreateNoWindow = true;
-
-                Process pr = Process.Start(psi);
-                string strOutput = pr.StandardError.ReadLine().Split(' ')[2].Replace("\"", "");
-
-                return strOutput.StartsWith("1.8.");
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
         public override void BanPlayer(string name, string reason)
         {
-            if (State == ServerState.Disabled)
+            lock (Locker)
             {
-                List<BanTag> tags = JsonConvert.DeserializeObject<BanTag[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/banned-players.json")).ToList();
-                if (ServerPreferences.OnlineMode)
+                if (State == ServerState.Disabled)
                 {
-                    tags.Add(new BanTag { name = name, uuid = MojangInteropUtility.GetUUIDFromUsername(name), source = "Server", reason = string.IsNullOrEmpty(reason) ? "Banned by an operator." : reason, expires = "forever", created = DateTime.Now.ToString() });
+                    List<BanTag> tags = JsonConvert.DeserializeObject<BanTag[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/banned-players.json")).ToList();
+                    if (ServerPreferences.OnlineMode)
+                    {
+                        tags.Add(new BanTag { name = name, uuid = MojangInteropUtility.GetUUIDFromUsername(name), source = "Server", reason = string.IsNullOrEmpty(reason) ? "Banned by an operator." : reason, expires = "forever", created = DateTime.Now.ToString() });
+                    }
+                    else
+                    {
+                        tags.Add(new BanTag { name = name, source = "Server", reason = string.IsNullOrEmpty(reason) ? "Banned by an operator." : reason, expires = "forever", created = DateTime.Now.ToString() });
+                    }
+                    File.WriteAllText(ServerPreferences.GetServerFolderLocation() + "/banned-players.json", JsonConvert.SerializeObject(tags.ToArray()));
                 }
                 else
                 {
-                    tags.Add(new BanTag { name = name, source = "Server", reason = string.IsNullOrEmpty(reason) ? "Banned by an operator." : reason, expires = "forever", created = DateTime.Now.ToString() });
-                }
-                File.WriteAllText(ServerPreferences.GetServerFolderLocation() + "/banned-players.json", JsonConvert.SerializeObject(tags.ToArray()));
-            }
-            else
-            {
-                if (string.IsNullOrEmpty(reason))
-                {
-                    SendUncheckedConsoleCommand("ban " + name);
-                }
-                else
-                {
-                    SendUncheckedConsoleCommand("ban " + name + " " + reason);
+                    if (string.IsNullOrEmpty(reason))
+                    {
+                        SendUncheckedConsoleCommand("ban " + name);
+                    }
+                    else
+                    {
+                        SendUncheckedConsoleCommand("ban " + name + " " + reason);
+                    }
                 }
             }
         }
@@ -827,9 +850,12 @@ namespace IMS_Library
         {
             if (State == ServerState.Disabled)
             {
-                List<BanIPTag> tags = JsonConvert.DeserializeObject<BanIPTag[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/banned-ips.json")).ToList();
-                tags.Add(new BanIPTag { ip = ip, created = DateTime.Now.ToString(), expires = "forever", reason = string.IsNullOrEmpty(reason) ? "Banned by an operator." : reason, source = "Server" });
-                File.WriteAllText(ServerPreferences.GetServerFolderLocation() + "/banned-ips.json", JsonConvert.SerializeObject(tags.ToArray()));
+                lock (Locker)
+                {
+                    List<BanIPTag> tags = JsonConvert.DeserializeObject<BanIPTag[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/banned-ips.json")).ToList();
+                    tags.Add(new BanIPTag { ip = ip, created = DateTime.Now.ToString(), expires = "forever", reason = string.IsNullOrEmpty(reason) ? "Banned by an operator." : reason, source = "Server" });
+                    File.WriteAllText(ServerPreferences.GetServerFolderLocation() + "/banned-ips.json", JsonConvert.SerializeObject(tags.ToArray()));
+                }
             }
             else
             {
@@ -848,13 +874,16 @@ namespace IMS_Library
         {
             if (State == ServerState.Disabled)
             {
-                List<BanTag> tags = JsonConvert.DeserializeObject<BanTag[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/banned-players.json")).ToList();
-                int position = tags.FindIndex(x => x.name == name);
-                if (position >= 0)
+                lock (Locker)
                 {
-                    tags.RemoveAt(position);
+                    List<BanTag> tags = JsonConvert.DeserializeObject<BanTag[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/banned-players.json")).ToList();
+                    int position = tags.FindIndex(x => x.name == name);
+                    if (position >= 0)
+                    {
+                        tags.RemoveAt(position);
+                    }
+                    File.WriteAllText(ServerPreferences.GetServerFolderLocation() + "/banned-players.json", JsonConvert.SerializeObject(tags.ToArray()));
                 }
-                File.WriteAllText(ServerPreferences.GetServerFolderLocation() + "/banned-players.json", JsonConvert.SerializeObject(tags.ToArray()));
             }
             else
             {
@@ -866,13 +895,16 @@ namespace IMS_Library
         {
             if (State == ServerState.Disabled)
             {
-                List<BanIPTag> tags = JsonConvert.DeserializeObject<BanIPTag[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/banned-ips.json")).ToList();
-                int position = tags.FindIndex(x => x.ip == ip);
-                if (position >= 0)
+                lock (Locker)
                 {
-                    tags.RemoveAt(position);
+                    List<BanIPTag> tags = JsonConvert.DeserializeObject<BanIPTag[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/banned-ips.json")).ToList();
+                    int position = tags.FindIndex(x => x.ip == ip);
+                    if (position >= 0)
+                    {
+                        tags.RemoveAt(position);
+                    }
+                    File.WriteAllText(ServerPreferences.GetServerFolderLocation() + "/banned-ips.json", JsonConvert.SerializeObject(tags.ToArray()));
                 }
-                File.WriteAllText(ServerPreferences.GetServerFolderLocation() + "/banned-ips.json", JsonConvert.SerializeObject(tags.ToArray()));
             }
             else
             {
@@ -884,13 +916,16 @@ namespace IMS_Library
         {
             if (State == ServerState.Disabled)
             {
-                List<OpTag> tags = JsonConvert.DeserializeObject<OpTag[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/ops.json")).ToList();
-                int position = tags.FindIndex(x => x.name == name);
-                if(position >= 0)
+                lock (Locker)
                 {
-                    tags.RemoveAt(position);
+                    List<OpTag> tags = JsonConvert.DeserializeObject<OpTag[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/ops.json")).ToList();
+                    int position = tags.FindIndex(x => x.name == name);
+                    if (position >= 0)
+                    {
+                        tags.RemoveAt(position);
+                    }
+                    File.WriteAllText(ServerPreferences.GetServerFolderLocation() + "/ops.json", JsonConvert.SerializeObject(tags.ToArray()));
                 }
-                File.WriteAllText(ServerPreferences.GetServerFolderLocation() + "/ops.json", JsonConvert.SerializeObject(tags.ToArray()));
             }
             else
             {
@@ -902,16 +937,19 @@ namespace IMS_Library
         {
             if (State == ServerState.Disabled)
             {
-                List<WhitelistTag> tags = JsonConvert.DeserializeObject<WhitelistTag[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/whitelist.json")).ToList();
-                if (ServerPreferences.OnlineMode)
+                lock (Locker)
                 {
-                    tags.Add(new WhitelistTag { name = name, uuid = MojangInteropUtility.GetUUIDFromUsername(name) });
+                    List<WhitelistTag> tags = JsonConvert.DeserializeObject<WhitelistTag[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/whitelist.json")).ToList();
+                    if (ServerPreferences.OnlineMode)
+                    {
+                        tags.Add(new WhitelistTag { name = name, uuid = MojangInteropUtility.GetUUIDFromUsername(name) });
+                    }
+                    else
+                    {
+                        tags.Add(new WhitelistTag { name = name });
+                    }
+                    File.WriteAllText(ServerPreferences.GetServerFolderLocation() + "/whitelist.json", JsonConvert.SerializeObject(tags.ToArray()));
                 }
-                else
-                {
-                    tags.Add(new WhitelistTag { name = name });
-                }
-                File.WriteAllText(ServerPreferences.GetServerFolderLocation() + "/whitelist.json", JsonConvert.SerializeObject(tags.ToArray()));
             }
             else
             {
@@ -923,13 +961,16 @@ namespace IMS_Library
         {
             if (State == ServerState.Disabled)
             {
-                List<WhitelistTag> tags = JsonConvert.DeserializeObject<WhitelistTag[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/whitelist.json")).ToList();
-                int position = tags.FindIndex(x => x.name == name);
-                if (position >= 0)
+                lock (Locker)
                 {
-                    tags.RemoveAt(position);
+                    List<WhitelistTag> tags = JsonConvert.DeserializeObject<WhitelistTag[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/whitelist.json")).ToList();
+                    int position = tags.FindIndex(x => x.name == name);
+                    if (position >= 0)
+                    {
+                        tags.RemoveAt(position);
+                    }
+                    File.WriteAllText(ServerPreferences.GetServerFolderLocation() + "/whitelist.json", JsonConvert.SerializeObject(tags.ToArray()));
                 }
-                File.WriteAllText(ServerPreferences.GetServerFolderLocation() + "/whitelist.json", JsonConvert.SerializeObject(tags.ToArray()));
             }
             else
             {
@@ -939,22 +980,34 @@ namespace IMS_Library
 
         public override IEnumerable<MinecraftPlayer> GetAllPlayers()
         {
-            return from x in AllUsers.Values where x.LastConnectionEvent != default select x;
+            lock (Locker)
+            {
+                return from x in AllUsers.Values where x.LastConnectionEvent != default select x;
+            }
         }
 
         public override IEnumerable<MinecraftPlayer> GetAllOps()
         {
-            return from x in AllUsers.Values where x.PermissionLevel > 0 select x;
+            lock (Locker)
+            {
+                return from x in AllUsers.Values where x.PermissionLevel > 0 select x;
+            }
         }
 
         public override List<BanInformation> GetAllBans()
         {
-            return BanList;
+            lock (Locker)
+            {
+                return BanList;
+            }
         }
 
         public override List<BanIPTag> GetAllBannedIPs()
         {
-            return BanIPList.Values.ToList();
+            lock (Locker)
+            {
+                return BanIPList.Values.ToList();
+            }
         }
 
         public override void ReloadServerPermissions()
@@ -990,59 +1043,68 @@ namespace IMS_Library
 
         public override IEnumerable<MinecraftPlayer> GetAllWhitelistedPlayers()
         {
-            return from x in AllUsers.Values where x.IsWhitelisted select x;
+            lock (Locker)
+            {
+                return from x in AllUsers.Values where x.IsWhitelisted select x;
+            }
         }
 
         public override MinecraftPlayer GetPlayerInformationByUsername(string username)
         {
-            if(ServerPreferences.OnlineMode)
+            lock (Locker)
             {
-                foreach(MinecraftPlayer player in AllUsers.Values)
+                if (ServerPreferences.OnlineMode)
                 {
-                    if(player.Username == username)
+                    foreach (MinecraftPlayer player in AllUsers.Values)
                     {
-                        return player;
+                        if (player.Username == username)
+                        {
+                            return player;
+                        }
                     }
-                }
-                return null;
-            }
-            else
-            {
-                if (AllUsers.ContainsKey(username))
-                {
-                    return AllUsers[username];
+                    return null;
                 }
                 else
                 {
-                    return null;
+                    if (AllUsers.ContainsKey(username))
+                    {
+                        return AllUsers[username];
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 }
             }
         }
 
         public override MinecraftPlayer GetPlayerInformationByUUID(string uuid)
         {
-            if (ServerPreferences.OnlineMode)
+            lock (Locker)
             {
-                if (AllUsers.ContainsKey(uuid))
+                if (ServerPreferences.OnlineMode)
                 {
-                    return AllUsers[uuid];
+                    if (AllUsers.ContainsKey(uuid))
+                    {
+                        return AllUsers[uuid];
+                    }
+                    else
+                    {
+                        return null;
+                    }
+
                 }
                 else
                 {
+                    foreach (MinecraftPlayer player in AllUsers.Values)
+                    {
+                        if (player.UUID == uuid)
+                        {
+                            return player;
+                        }
+                    }
                     return null;
                 }
-                
-            }
-            else
-            {
-                foreach (MinecraftPlayer player in AllUsers.Values)
-                {
-                    if (player.UUID == uuid)
-                    {
-                        return player;
-                    }
-                }
-                return null;
             }
         }
     }
