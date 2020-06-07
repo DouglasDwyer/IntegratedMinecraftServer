@@ -4,9 +4,12 @@
 @using Blazor.FileReader
 
 @page "/AllWorlds"
+@implements IDisposable
+
 @inject FileCache Cache
 @inject IFileReaderService FileReader
 @inject PopupProvider PopupManager
+@inject ServerProvider ServerSelector
 <!--Card styling taken from W3-->
 <style>
     .world-card {
@@ -107,9 +110,23 @@
     protected ElementReference NewWorldInput;
     protected WorldUpload CurrentWorldUpload = null;
 
-    [CascadingParameter(Name = "CurrentServer")]
-    protected Guid CurrentServerID { get; set; }
+    protected Guid CurrentServerID => ServerSelector.CurrentServerID;
     protected int WorldSelection { get => 0; set { return; } }
+
+    protected override void OnInitialized()
+    {
+        ServerSelector.OnServerSelectionChange += OnServerChange;
+    }
+
+    public void Dispose()
+    {
+        ServerSelector.OnServerSelectionChange -= OnServerChange;
+    }
+
+    protected void OnServerChange(object sender, EventArgs data)
+    {
+        StateHasChanged();
+    }
 
     protected string GetRelativeWorldIcon(World world)
     {
@@ -119,7 +136,7 @@
         }
         else
         {
-            return world.Edition == World.WorldType.Java ? "/img/grass_block.png" : "/img/bedrock.png";
+            return world.Edition == MinecraftEdition.Java ? "/img/grass_block.png" : "/img/bedrock.png";
         }
     }
 
@@ -134,20 +151,24 @@
                 world.Edition = server.CurrentConfiguration.Edition;
                 IMS.Instance.WorldManager.AddWorldToRegistry(world);
                 bool startServer = false;
-                if(server.State == ServerProxy.ServerState.Disabled)
+                if(server.State != ServerProxy.ServerState.Disabled)
                 {
                     await server.StopAsync();
                     startServer = true;
                 }
                 server.CurrentConfiguration.WorldID = world.ID;
-                if (server.CurrentConfiguration is JavaServerConfiguration)
+                if (server.CurrentConfiguration is JavaServerConfiguration jConfig)
                 {
-                    (server.CurrentConfiguration as JavaServerConfiguration).LevelSeed = seed;
-                    (server.CurrentConfiguration as JavaServerConfiguration).LevelType = parameters;
+                    jConfig.LevelSeed = seed;
+                    jConfig.LevelType = parameters;
+                }
+                else if(server.CurrentConfiguration is BedrockServerConfiguration bConfig)
+                {
+                    bConfig.LevelSeed = seed;
+                    bConfig.LevelType = parameters;
                 }
                 if (startServer)
                 {
-                    while(server.State != ServerProxy.ServerState.Disabled) { Thread.Sleep(1); }
                     server.StartAsync();
                 }
                 InvokeAsync(() =>
@@ -187,11 +208,11 @@
                     world.Name = fileInfo.First().WebkitRelativePath.Remove(fileInfo.First().WebkitRelativePath.IndexOf("/"));
                     if (fileInfo.Where(x => x.Name == "levelname.txt").Count() > 0)
                     {
-                        world.Edition = World.WorldType.Bedrock;
+                        world.Edition = MinecraftEdition.Bedrock;
                     }
                     else
                     {
-                        world.Edition = World.WorldType.Java;
+                        world.Edition = MinecraftEdition.Java;
                     }
                     Directory.CreateDirectory(world.WorldPath);
                     int i = 0;

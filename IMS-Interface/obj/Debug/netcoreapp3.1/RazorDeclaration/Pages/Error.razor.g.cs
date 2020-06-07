@@ -97,6 +97,20 @@ using IMS_Interface.Pages.Player;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 13 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\_Imports.razor"
+using IMS_Interface.Shared.Popup;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 14 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\_Imports.razor"
+using IMS_Interface.Pages.Popup;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/error")]
     public partial class Error : Microsoft.AspNetCore.Components.ComponentBase
     {

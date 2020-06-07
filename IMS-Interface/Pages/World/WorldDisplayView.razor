@@ -1,8 +1,9 @@
 ﻿@using IMS_Library
 
+@inject ServerProvider ServerSelector
+
 @code {
-    [CascadingParameter(Name = "CurrentServer")]
-    public Guid CurrentServerID { get; set; }
+    public Guid CurrentServerID => ServerSelector.CurrentServerID;
 
     [Parameter]
     public Guid CurrentWorldID { get; set; }

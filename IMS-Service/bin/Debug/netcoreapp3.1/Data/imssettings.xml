@@ -14,18 +14,86 @@
                 ranksize0="0" />
         </PluginPaths>
         <Username
-            type="String"></Username>
+            type="String">Chef</Username>
         <PasswordHash
-            type="null" />
+            type="Byte[]"
+            ranksize0="64">
+            <ArrayElement>212</ArrayElement>
+            <ArrayElement>101</ArrayElement>
+            <ArrayElement>159</ArrayElement>
+            <ArrayElement>187</ArrayElement>
+            <ArrayElement>47</ArrayElement>
+            <ArrayElement>230</ArrayElement>
+            <ArrayElement>155</ArrayElement>
+            <ArrayElement>2</ArrayElement>
+            <ArrayElement>121</ArrayElement>
+            <ArrayElement>200</ArrayElement>
+            <ArrayElement>120</ArrayElement>
+            <ArrayElement>236</ArrayElement>
+            <ArrayElement>69</ArrayElement>
+            <ArrayElement>254</ArrayElement>
+            <ArrayElement>207</ArrayElement>
+            <ArrayElement>15</ArrayElement>
+            <ArrayElement>255</ArrayElement>
+            <ArrayElement>27</ArrayElement>
+            <ArrayElement>74</ArrayElement>
+            <ArrayElement>155</ArrayElement>
+            <ArrayElement>101</ArrayElement>
+            <ArrayElement>55</ArrayElement>
+            <ArrayElement>127</ArrayElement>
+            <ArrayElement>244</ArrayElement>
+            <ArrayElement>117</ArrayElement>
+            <ArrayElement>4</ArrayElement>
+            <ArrayElement>165</ArrayElement>
+            <ArrayElement>44</ArrayElement>
+            <ArrayElement>207</ArrayElement>
+            <ArrayElement>239</ArrayElement>
+            <ArrayElement>32</ArrayElement>
+            <ArrayElement>105</ArrayElement>
+            <ArrayElement>231</ArrayElement>
+            <ArrayElement>115</ArrayElement>
+            <ArrayElement>67</ArrayElement>
+            <ArrayElement>179</ArrayElement>
+            <ArrayElement>220</ArrayElement>
+            <ArrayElement>153</ArrayElement>
+            <ArrayElement>221</ArrayElement>
+            <ArrayElement>19</ArrayElement>
+            <ArrayElement>164</ArrayElement>
+            <ArrayElement>154</ArrayElement>
+            <ArrayElement>238</ArrayElement>
+            <ArrayElement>93</ArrayElement>
+            <ArrayElement>227</ArrayElement>
+            <ArrayElement>123</ArrayElement>
+            <ArrayElement>252</ArrayElement>
+            <ArrayElement>161</ArrayElement>
+            <ArrayElement>218</ArrayElement>
+            <ArrayElement>67</ArrayElement>
+            <ArrayElement>33</ArrayElement>
+            <ArrayElement>89</ArrayElement>
+            <ArrayElement>226</ArrayElement>
+            <ArrayElement>121</ArrayElement>
+            <ArrayElement>75</ArrayElement>
+            <ArrayElement>6</ArrayElement>
+            <ArrayElement>116</ArrayElement>
+            <ArrayElement>162</ArrayElement>
+            <ArrayElement>52</ArrayElement>
+            <ArrayElement>88</ArrayElement>
+            <ArrayElement>82</ArrayElement>
+            <ArrayElement>245</ArrayElement>
+            <ArrayElement>123</ArrayElement>
+            <ArrayElement>120</ArrayElement>
+        </PasswordHash>
     </Root>
     <Types>
         <TypeInfo
-            type="IMS_Library.IMSSettings, IMS-Library, Version=0.0.1.0, Culture=neutral, PublicKeyToken=null">IMSSettings</TypeInfo>
+            type="IMS_Library.IMSSettings, IMS-Library, Version=0.0.2.0, Culture=neutral, PublicKeyToken=null">IMSSettings</TypeInfo>
         <TypeInfo
             type="System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">List`1</TypeInfo>
         <TypeInfo
             type="System.String[], System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">String[]</TypeInfo>
         <TypeInfo
             type="System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">String</TypeInfo>
+        <TypeInfo
+            type="System.Byte[], System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">Byte[]</TypeInfo>
     </Types>
 </RoyalXML>

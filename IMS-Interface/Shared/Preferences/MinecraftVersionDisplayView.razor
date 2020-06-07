@@ -22,11 +22,11 @@
         }
     }
 
-    public World.WorldType CurrentEdition
+    public MinecraftEdition CurrentEdition
     {
         get
         {
-            return (World.WorldType)DisplayData.ParentDisplay.CurrentConfiguration.GetType()
+            return (MinecraftEdition)DisplayData.ParentDisplay.CurrentConfiguration.GetType()
                 .GetField("Edition", BindingFlags.Public | BindingFlags.Instance)
                 .GetValue(DisplayData.ParentDisplay.CurrentConfiguration);
         }

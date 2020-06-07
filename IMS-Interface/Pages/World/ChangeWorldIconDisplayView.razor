@@ -36,7 +36,7 @@
     protected ElementReference WorldIconUpload { get; set; }
     protected bool IsUploading = false;
 
-    protected string AcceptedFileTypes { get => DisplayData.CurrentWorld.Edition == World.WorldType.Java ? ".png" : ".jpg,.jpeg"; }
+    protected string AcceptedFileTypes { get => DisplayData.CurrentWorld.Edition == MinecraftEdition.Java ? ".png" : ".jpg,.jpeg"; }
 
     protected void DeleteIcon()
     {

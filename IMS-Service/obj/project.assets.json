@@ -2,19 +2,6 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "Blazored.LocalStorage/2.1.5": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNetCore.Components": "3.1.2",
-          "Microsoft.AspNetCore.Components.Web": "3.1.2"
-        },
-        "compile": {
-          "lib/netstandard2.0/Blazored.LocalStorage.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Blazored.LocalStorage.dll": {}
-        }
-      },
       "Cloudcrate.AspNetCore.Blazor.Browser.Storage/3.0.0": {
         "type": "package",
         "dependencies": {
@@ -1601,18 +1588,6 @@
     }
   },
   "libraries": {
-    "Blazored.LocalStorage/2.1.5": {
-      "sha512": "/gqhAXbGOwgom2R/oh4YCh2QOR6Sf0JIHBvNShWiSfvaFjJYCGJgM4onj/Upt/a8q9SBdq4R0zglNH9MM7nqlQ==",
-      "type": "package",
-      "path": "blazored.localstorage/2.1.5",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "blazored.localstorage.2.1.5.nupkg.sha512",
-        "blazored.localstorage.nuspec",
-        "lib/netstandard2.0/Blazored.LocalStorage.dll"
-      ]
-    },
     "Cloudcrate.AspNetCore.Blazor.Browser.Storage/3.0.0": {
       "sha512": "HWfaNORTZoykBX7pUD4bux94kQzsJNmPu4Sp04qU+PWEF/haMEYNHfWKDi3hxhLRP5tGICnhW2RKPZQS4y38iQ==",
       "type": "package",
@@ -4500,7 +4475,6 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "Blazored.LocalStorage >= 2.1.5",
       "IMS-DevelopmentKit >= 0.0.1",
       "IMS-Interface >= 1.0.0",
       "Microsoft.Windows.Compatibility >= 3.1.0"
@@ -4556,10 +4530,6 @@
     "frameworks": {
       "netcoreapp3.1": {
         "dependencies": {
-          "Blazored.LocalStorage": {
-            "target": "Package",
-            "version": "[2.1.5, )"
-          },
           "Microsoft.Windows.Compatibility": {
             "target": "Package",
             "version": "[3.1.0, )"

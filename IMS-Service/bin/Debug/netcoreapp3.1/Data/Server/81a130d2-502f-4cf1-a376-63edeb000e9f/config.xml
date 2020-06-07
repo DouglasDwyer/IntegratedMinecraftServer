@@ -79,7 +79,7 @@
     </Root>
     <Types>
         <TypeInfo
-            type="IMS_Library.JavaServerConfiguration, IMS-Library, Version=0.0.1.0, Culture=neutral, PublicKeyToken=null">JavaServerConfiguration</TypeInfo>
+            type="IMS_Library.JavaServerConfiguration, IMS-Library, Version=0.0.2.0, Culture=neutral, PublicKeyToken=null">JavaServerConfiguration</TypeInfo>
         <TypeInfo
             type="System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">String</TypeInfo>
     </Types>

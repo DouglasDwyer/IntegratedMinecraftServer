@@ -12,7 +12,7 @@
                 type="String">127.0.0.1</IP>
             <IsWhitelisted>True</IsWhitelisted>
             <PermissionLevel>4</PermissionLevel>
-            <LastConnectionEvent>6/3/2020 9:05:45 AM</LastConnectionEvent>
+            <LastConnectionEvent>6/4/2020 8:13:40 PM</LastConnectionEvent>
         </ArrayElement>
         <ArrayElement
             type="MinecraftPlayer">
@@ -29,9 +29,9 @@
     </Root>
     <Types>
         <TypeInfo
-            type="IMS_Library.MinecraftPlayer[], IMS-Library, Version=0.0.1.0, Culture=neutral, PublicKeyToken=null">MinecraftPlayer[]</TypeInfo>
+            type="IMS_Library.MinecraftPlayer[], IMS-Library, Version=0.0.2.0, Culture=neutral, PublicKeyToken=null">MinecraftPlayer[]</TypeInfo>
         <TypeInfo
-            type="IMS_Library.MinecraftPlayer, IMS-Library, Version=0.0.1.0, Culture=neutral, PublicKeyToken=null">MinecraftPlayer</TypeInfo>
+            type="IMS_Library.MinecraftPlayer, IMS-Library, Version=0.0.2.0, Culture=neutral, PublicKeyToken=null">MinecraftPlayer</TypeInfo>
         <TypeInfo
             type="System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">String</TypeInfo>
     </Types>

@@ -1,10 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "+N2rlXo20obiYJR3LCP01z0jWPG0kxhJ/xenFq8KZcZq72wteqisnvqciqdQ+TyUMQh2zqnFkXr06lqCLy1Jhw==",
+  "dgSpecHash": "c8bFzb2QUXSbE4ku/Rv6uYI1w+3wEUfFLRTZ/yVOXpi2HyIuU/1NaIDGPh0rLw9c/MGKOXxqjXp4zB5IlVUsCw==",
   "success": true,
   "projectFilePath": "D:\\Projects\\IntegratedMinecraftServer\\IMS-Service\\IMS-Service.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Douglas\\.nuget\\packages\\blazored.localstorage\\2.1.5\\blazored.localstorage.2.1.5.nupkg.sha512",
     "C:\\Users\\Douglas\\.nuget\\packages\\cloudcrate.aspnetcore.blazor.browser.storage\\3.0.0\\cloudcrate.aspnetcore.blazor.browser.storage.3.0.0.nupkg.sha512",
     "C:\\Users\\Douglas\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\Douglas\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

@@ -5,6 +5,7 @@ using System.Text;
 
 namespace IMS_Library
 {
+    [Serializable]
     public class BedrockServerConfiguration : ServerConfiguration
     {
         [ServerProperty("gamemode")]
@@ -14,7 +15,7 @@ namespace IMS_Library
         [ServerProperty("level-type")]
         public string LevelType = "DEFAULT";
         [ServerProperty("server-name")]
-        public new string ServerName = "Dedicated Server";
+        public string ServerDisplayName = "Dedicated Server";
         [ServerProperty("max-players")]
         public int MaxPlayers = 10;
         [ServerProperty("server-port")]
@@ -44,8 +45,13 @@ namespace IMS_Library
         [ServerProperty("texturepack-required")]
         public bool TexturePackRequired = false;
 
-        public BedrockServerConfiguration() { }
-        public BedrockServerConfiguration(Guid id) : base(id) { }
+        public BedrockServerConfiguration() {
+            Edition = MinecraftEdition.Bedrock;
+        }
+        public BedrockServerConfiguration(Guid id) : base(id)
+        {
+            Edition = MinecraftEdition.Bedrock;
+        }
 
         public override int[] GetUsedPorts()
         {
@@ -71,7 +77,7 @@ namespace IMS_Library
 
         public override ServerProxy CreateServer()
         {
-            throw new NotImplementedException();
+            return new BedrockServer(ID, this);
         }
     }
 }

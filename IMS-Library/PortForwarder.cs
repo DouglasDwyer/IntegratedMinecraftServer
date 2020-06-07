@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using Timer = System.Timers.Timer;
 using Open.Nat;
+using System.Diagnostics;
 
 namespace IMS_Library
 {
@@ -56,8 +58,11 @@ namespace IMS_Library
         {
             lock (Locker)
             {
+                SynchronizationContext context = SynchronizationContext.Current;
+                SynchronizationContext.SetSynchronizationContext(null);
                 Ports.Add(port);
                 AttemptToForwardPortInternally(port);
+                SynchronizationContext.SetSynchronizationContext(context);
             }
         }
 
@@ -65,8 +70,11 @@ namespace IMS_Library
         {
             lock (Locker)
             {
+                SynchronizationContext context = SynchronizationContext.Current;
+                SynchronizationContext.SetSynchronizationContext(null);
                 Ports.Remove(port);
                 AttemptToRemovePortInternally(port);
+                SynchronizationContext.SetSynchronizationContext(context);
             }
         }
 
@@ -74,12 +82,12 @@ namespace IMS_Library
         {
             try
             {
-                UPnPDevice.CreatePortMapAsync(new Mapping(Protocol.Tcp, port, port, 30, "")).Wait();
+                UPnPDevice.CreatePortMapAsync(new Mapping(Protocol.Tcp, port, port, 30, ""));
                 Logger.WriteInfo("Successfully forwarded port " + port);
             }
-            catch
+            catch(Exception e)
             {
-                Logger.WriteWarning("Failed to forward port " + port);
+                Logger.WriteWarning("Failed to forward port " + port + ".\n" + e);
             }
         }
 
@@ -90,9 +98,9 @@ namespace IMS_Library
                 UPnPDevice.DeletePortMapAsync(UPnPDevice.GetSpecificMappingAsync(Protocol.Tcp, port).Result).Wait();
                 Logger.WriteInfo("Successfully removed forwarded port " + port);
             }
-            catch
+            catch(Exception e)
             {
-                Logger.WriteWarning("Failed to removed forwarded port " + port);
+                Logger.WriteWarning("Failed to remove forwarded port " + port + ".\n" + e);
             }
         }
 

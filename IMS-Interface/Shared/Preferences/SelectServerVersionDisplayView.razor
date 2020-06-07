@@ -130,12 +130,12 @@
     public class SelectServerVersionDisplay : PopupDisplay<SelectServerVersionDisplayView>
     {
         public string CurrentServerVersion;
-        public World.WorldType Edition;
+        public MinecraftEdition Edition;
         public Action OnUserFinish;
         public IMSConfiguration Configuration;
         public FieldInfo FieldToChange;
 
-        public SelectServerVersionDisplay(string serverVersion, World.WorldType edition, IMSConfiguration configuration, FieldInfo fieldToChange, Action finish)
+        public SelectServerVersionDisplay(string serverVersion, MinecraftEdition edition, IMSConfiguration configuration, FieldInfo fieldToChange, Action finish)
         {
             CurrentServerVersion = serverVersion;
             Edition = edition;

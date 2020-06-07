@@ -81,8 +81,8 @@
     <tbody>
         @{
             IEnumerable<MinecraftPlayer> onlinePlayers = CurrentServer.GetOnlinePlayers();
-            List<BanInformation> banPlayers = CurrentServer.GetAllBans();
-            List<BanIPTag> banIPs = CurrentServer.GetAllBannedIPs();
+            List<BanInformation> banPlayers = renderBans ? CurrentServer.GetAllBans() : null;
+            List<BanIPTag> banIPs = renderBans ? CurrentServer.GetAllBannedIPs() : null;
         }
         @foreach (MinecraftPlayer player in players)
         {

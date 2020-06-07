@@ -40,6 +40,7 @@ namespace IMS_Interface
             services.AddSingleton<DownloadManager>();
             services.AddSingleton<FileCache>();
             services.AddScoped<PopupProvider>();
+            services.AddScoped<ServerProvider>();
             services.AddFileReaderService();
             services.AddHttpContextAccessor();
         }

@@ -13,16 +13,16 @@ namespace IMS_Library
         public string Name;
         public string Version;
         public DateTime ReleaseTime;
-        public World.WorldType Edition;
+        public MinecraftEdition Edition;
         public ReleaseType VersionType;
         public string DownloadURL;
 
-        private string DefaultLocation => Constants.ExecutionPath + Constants.ServerBinariesFolderLocation + "/" + Edition + "-" + Version + (Edition == World.WorldType.Java ? ".jar" : ".exe");
+        private string DefaultLocation => Constants.ExecutionPath + Constants.ServerBinariesFolderLocation + "/" + Edition + "-" + Version + (Edition == MinecraftEdition.Java ? ".jar" : ".exe");
         public string PhysicalLocation => File.Exists(DefaultLocation) ? DefaultLocation : null;
 
         public ServerVersionInformation() { }
 
-        public ServerVersionInformation(string name, string version, DateTime releaseTime, World.WorldType edition, ReleaseType versionType, string downloadUrl)
+        public ServerVersionInformation(string name, string version, DateTime releaseTime, MinecraftEdition edition, ReleaseType versionType, string downloadUrl)
         {
             Name = name;
             Version = version;

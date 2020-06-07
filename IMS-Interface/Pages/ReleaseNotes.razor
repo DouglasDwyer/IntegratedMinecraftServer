@@ -1,0 +1,35 @@
+﻿@using System.Reflection
+@using IMS_Library
+
+@page "/ReleaseNotes"
+
+<style>
+    .header-label {
+        font-weight:normal;
+        margin-top:5px;
+    }
+</style>
+
+<h3>Release Notes</h3>
+<label style="font-weight:normal"><i>IMS Alpha v@(Assembly.GetAssembly(typeof(IMS)).GetName().Version)</i></label>
+<br />
+<br />
+<div style="max-width:500px">
+    <label class="header-label"><b>Features</b></label>
+    <ul>
+        <li>Added the ability to create new server worlds.</li>
+        <li>Added this release notes page.</li>
+    </ul>
+    <label class="header-label"><b>Bugfixes</b></label>
+    <ul>
+        <li>Fixed the issue of the "deleting world" popup not appearing until after the world is deleted.</li>
+    </ul>
+    <label class="header-label"><b>Maintenance</b></label>
+    <ul>
+        <li>Converted the IMS API to be completely asynchronous/thread-safe, allowing for more concise and versatile programming.</li>
+    </ul>
+</div>
+
+@code {
+
+}

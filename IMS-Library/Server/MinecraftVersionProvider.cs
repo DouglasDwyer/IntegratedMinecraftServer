@@ -84,7 +84,7 @@ namespace IMS_Library
                     name += metadata.id;
                     lock (this)
                     {
-                        AvailableServerVersions[metadata.id] = new ServerVersionInformation(name, metadata.id, DateTime.Parse(versionData.releaseTime), World.WorldType.Java, releaseType, versionData.downloads.server.url);
+                        AvailableServerVersions[metadata.id] = new ServerVersionInformation(name, metadata.id, DateTime.Parse(versionData.releaseTime), MinecraftEdition.Java, releaseType, versionData.downloads.server.url);
                     }
                 }
             }

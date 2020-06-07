@@ -1,6 +1,8 @@
 ﻿@using System.Reflection
+@using IMS_Library 
 
 @page "/ManagePlayers"
+@inject ServerProvider ServerSelector
 
 <style>
     .tab-ul {
@@ -65,9 +67,12 @@
                         padding-left: unset;">
                         @foreach (PlayerDisplay display in Provider.PlayerManagerDisplays)
                         {
-                            <li style="display:inline; position:static">
-                                <button class="@(display == SelectedView ? "nav-link-active" : "nav-link")" @onclick="x => SelectedView = display">@display.Name</button>
-                            </li>
+                            if (display.ShouldDisplayFor(ServerSelector.CurrentServer))
+                            {
+                                <li style="display:inline; position:static">
+                                    <button class="@(display == SelectedView ? "nav-link-active" : "nav-link")" @onclick="x => SelectedView = display">@display.Name</button>
+                                </li>
+                            }
                         }
                     </ul>
                 </div>

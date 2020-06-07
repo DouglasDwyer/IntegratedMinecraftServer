@@ -1,11 +1,11 @@
 ﻿@using IMS_Library
+@inject ServerProvider ServerSelector
 
 @code{
     [Parameter]
     public PlayerDisplay DisplayData { get; set; }
 
-    [CascadingParameter(Name = "CurrentServer")]
-    public Guid CurrentServerID { get; set; }
+    public Guid CurrentServerID => ServerSelector.CurrentServerID;
 
-    public ServerProxy CurrentServer => IMS.Instance.ServerManager.GetServer(CurrentServerID);
+    public ServerProxy CurrentServer => ServerSelector.CurrentServer;
 }

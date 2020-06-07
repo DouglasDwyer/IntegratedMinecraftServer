@@ -216,7 +216,13 @@ D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\Razo
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\Razor\Shared\Preferences\SelectServerVersionDisplayView.razor.g.cs
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\RazorDeclaration\Shared\InformationPopupDisplayView.razor.g.cs
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\Razor\Shared\InformationPopupDisplayView.razor.g.cs
-D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\LoadingPopupDisplayView.razor.g.cs
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\World\CreateNewWorldPopupDisplayView.razor.g.cs
-D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\Razor\Pages\LoadingPopupDisplayView.razor.g.cs
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\Razor\Pages\World\CreateNewWorldPopupDisplayView.razor.g.cs
+D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\IMSManagement.razor.g.cs
+D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\Razor\Pages\IMSManagement.razor.g.cs
+D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\ReleaseNotes.razor.g.cs
+D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\Razor\Pages\ReleaseNotes.razor.g.cs
+D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Popup\ChangeUsernameAndPasswordDisplayView.razor.g.cs
+D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\RazorDeclaration\Shared\Popup\LoadingPopupDisplayView.razor.g.cs
+D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\Razor\Pages\Popup\ChangeUsernameAndPasswordDisplayView.razor.g.cs
+D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\Razor\Shared\Popup\LoadingPopupDisplayView.razor.g.cs

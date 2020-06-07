@@ -186,6 +186,18 @@ namespace IMS_Library
             EFileAttributes dwFlagsAndAttributes,
             IntPtr hTemplateFile);
 
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
+        private static extern bool CreateHardLink(
+            string lpFileName,
+            string lpExistingFileName,
+            IntPtr lpSecurityAttributes
+        );
+
+        public static void CreateHardLink(string targetFile, string linkFile)
+        {
+            CreateHardLink(linkFile, targetFile, IntPtr.Zero);
+        }
+
         /// <summary>
         /// Creates a junction point from the specified directory to the specified target directory.
         /// </summary>

@@ -1,6 +1,7 @@
 ﻿@using IMS_Library;
 
 @page "/ServerPreferences"
+@inject ServerProvider ServerSelector
 
 <h3>Server Preferences</h3>
 
@@ -8,13 +9,10 @@
 <PreferenceEditor FieldDisplays="PreferenceLayout" StartingConfiguration="GetCurrentPreferences()" OnApply="ApplySettings" ApplyText="@ApplyText" @ref="Editor"></PreferenceEditor>
 
 @code {
-    [CascadingParameter(Name = "CurrentServer")]
-    public Guid CurrentServer { get; set; }
-
     public PreferenceEditor Editor;
     public List<PreferenceDisplay> PreferenceLayout = new List<PreferenceDisplay>();
 
-    protected string ApplyText { get => IMS.Instance.ServerManager.GetServer(CurrentServer).State == ServerProxy.ServerState.Disabled ? "Apply" : "Apply and Restart"; }
+    protected string ApplyText { get => ServerSelector.CurrentServer.State == ServerProxy.ServerState.Disabled ? "Apply" : "Apply and Restart"; }
 
     protected Task UpdateSettingsTask = null;
 
@@ -65,13 +63,13 @@
 
     public ServerConfiguration GetCurrentPreferences()
     {
-        return IMS.Instance.ServerManager.GetServer(CurrentServer).CurrentConfiguration;
+        return ServerSelector.CurrentServer.CurrentConfiguration;
     }
 
     protected void ApplySettings(IMSConfiguration configuration)
     {
         if(UpdateSettingsTask != null) { return; }
-        ServerProxy toRestart = IMS.Instance.ServerManager.GetServer(CurrentServer);
+        ServerProxy toRestart = ServerSelector.CurrentServer;
         ServerConfiguration serverConfig = configuration as ServerConfiguration;
         serverConfig.ID = toRestart.CurrentConfiguration.ID;
         serverConfig.IsEnabled = toRestart.CurrentConfiguration.IsEnabled;

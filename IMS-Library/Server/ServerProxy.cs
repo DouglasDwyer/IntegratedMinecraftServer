@@ -21,7 +21,7 @@ namespace IMS_Library
         public abstract bool SupportsOps { get; }
         public abstract bool SupportsIPs { get; }
         public abstract bool SupportsKicking { get; }
-        public abstract World.WorldType SupportedEdition { get; }
+        public abstract MinecraftEdition SupportedEdition { get; }
 
         public ServerProxy(Guid guid) {
             ID = guid;
@@ -49,6 +49,7 @@ namespace IMS_Library
         public abstract void UnbanIP(string ip);
         public abstract void SendConsoleCommand(string command);
         public abstract string GetConsoleText();
+        public abstract void ReloadServerWhitelist();
         public abstract void ReloadServerPermissions();
         public abstract List<LogFileInformation> GetLogFiles();
         public abstract string GetLogFile(string name);

@@ -1,0 +1,28 @@
+﻿@using System.Reflection
+@using IMS_Library
+
+@page "/IMSManagement"
+@inject PopupProvider PopupManager
+
+<h3>IMS Management</h3>
+<label style="font-weight:normal;"><i>Integrated Minecraft Server v@(Assembly.GetAssembly(typeof(IMS)).GetName().Version)</i></label>
+<br />
+<br />
+<a>Check for updates</a>
+<br />
+<a href="IMSPreferences">Configure IMS</a>
+<br />
+<a>Manage plugins</a>
+<br />
+<a href="IMSManagement" @onclick="@(x => PopupManager.ShowPopup(new ChangeUsernameAndPasswordDisplay()))">Change username/password</a>
+<br />
+<a href="ReleaseNotes">Release notes</a>
+<br />
+<a>View logfiles</a>
+<br />
+<a href="https://github.com/DouglasDwyer/IntegratedMinecraftServer/issues/new">Report a bug</a>
+<br />
+
+@code {
+
+}

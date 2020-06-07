@@ -7,7 +7,7 @@
 @using System.Threading.Tasks;
 @using Microsoft.AspNetCore.Http;
 @inject IJSRuntime JSRuntime
-@inject IHttpContextAccessor Context;
+@inject IHttpContextAccessor Context
 
 <div>
     <div class="jumbotron" style="padding: 15px 20px 15px 20px; position: absolute; width: 400px; height: 310px; vertical-align: middle; margin: auto; top: 0px; right: 0px; bottom: 0px; left: 0px;">
@@ -37,22 +37,31 @@
 
     public string ErrorText;
 
-    public string Username;
-    public string Password;
+    public string Username = "";
+    public string Password = "";
 
-    private static string realusername = "admin", realpassword = "chef";
+    private static string RealUsername => IMS.Instance.CurrentSettings.Username;
+    private static byte[] RealPassword => IMS.Instance.CurrentSettings.PasswordHash;
+
+    public static ILocalCredentialsResetter CredentialsResetter;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if(HasValidLoginCookie(JSRuntime, Context))
         {
-            Navigator.NavigateTo("/");
+            Navigator.NavigateTo("/", true);
         }
     }
 
+    public static bool IsLoginRequired => !(RealUsername is null && RealPassword is null);
+
     public async Task AttemptLoginAsync()
     {
-        if (Username == realusername && Password == realpassword)
+        if(!IsLoginRequired)
+        {
+            Navigator.NavigateTo("/");
+        }
+        if (Username == RealUsername && Enumerable.SequenceEqual(Encryption.HashBytes(Encoding.UTF8.GetBytes(Password)), RealPassword))
         {
             await WriteLoginCookie(JSRuntime, Context);
             Navigator.NavigateTo("/");
@@ -65,21 +74,33 @@
 
     public void RequestLoginReset()
     {
-        ErrorText = "This feature has not been implemented yet.";
+        if(CredentialsResetter is null)
+        {
+            ErrorText = "Couldn't make a local credential reset request.";
+        }
+        else
+        {
+            CredentialsResetter.ResetCredentialsAsync();
+            ErrorText = "A reset request was made on the host computer.";
+        }
     }
 
     public static bool HasValidLoginCookie(IJSRuntime runtime, IHttpContextAccessor context)
     {
-        string toCompare = ByteArrayToString(Encryption.HashBytes(Encoding.ASCII.GetBytes(realusername + context.HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString() + realpassword)));
+        if(RealUsername is null && RealPassword is null)
+        {
+            return true;
+        }
+        string toCompare = ByteArrayToString(Encryption.HashBytes(Concat(Encoding.ASCII.GetBytes(RealUsername + context.HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString()), RealPassword)));
         return toCompare == context.HttpContext.Request.Cookies["LoginKey"];
     }
 
     public static async Task WriteLoginCookie(IJSRuntime runtime, IHttpContextAccessor context)
     {
-        await runtime.InvokeVoidAsync("setCookie", "LoginKey", ByteArrayToString(Encryption.HashBytes(Encoding.ASCII.GetBytes(realusername + context.HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString() + realpassword))), 36500);
+        await runtime.InvokeVoidAsync("setCookie", "LoginKey", ByteArrayToString(Encryption.HashBytes(Concat(Encoding.ASCII.GetBytes(RealUsername + context.HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString()), RealPassword))), 36500);
     }
 
-    public static async Task DeleteLoginCookie(IJSRuntime runtime, IHttpContextAccessor context)
+    public static async Task DeleteLoginCookie(IJSRuntime runtime)
     {
         await runtime.InvokeVoidAsync("deleteCookie", "LoginKey");
     }
@@ -90,5 +111,20 @@
         foreach (byte b in ba)
             hex.AppendFormat("{0:x2}", b);
         return hex.ToString();
+    }
+
+    private static T[] Concat<T>(T[] x, T[] y)
+    {
+        if (x == null) x = new T[0];
+        if (y == null) y = new T[0];
+        int oldLen = x.Length;
+        Array.Resize<T>(ref x, x.Length + y.Length);
+        Array.Copy(y, 0, x, oldLen, y.Length);
+        return x;
+    }
+
+    public interface ILocalCredentialsResetter
+    {
+        Task ResetCredentialsAsync();
     }
 }

@@ -45,7 +45,7 @@
     {
         get
         {
-            if (DisplayData.Edition == World.WorldType.Java)
+            if (DisplayData.Edition == MinecraftEdition.Java)
             {
                 return new Dictionary<string, string> { { "Default", "default" }, { "Flat", "flat" }, { "Large biomes", "largeBiomes" }, { "Amplified", "amplified" }, { "Buffet", "buffet" } };
             }
@@ -62,10 +62,10 @@
     public class CreateNewWorldPopupDisplay : PopupDisplay<CreateNewWorldPopupDisplayView>
     {
 
-        public World.WorldType Edition;
+        public MinecraftEdition Edition;
         public Action<string, string, string> OnUserSubmit;
 
-        public CreateNewWorldPopupDisplay(World.WorldType edition, Action<string, string, string> onUserSubmit)
+        public CreateNewWorldPopupDisplay(MinecraftEdition edition, Action<string, string, string> onUserSubmit)
         {
             Edition = edition;
             OnUserSubmit = onUserSubmit;

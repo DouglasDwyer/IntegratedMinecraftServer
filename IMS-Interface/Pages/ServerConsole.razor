@@ -4,6 +4,7 @@
 @layout MainLayout
 
 @inject IJSRuntime JSRuntime
+@inject ServerProvider ServerSelector
 
 <br />
 <br />
@@ -25,9 +26,6 @@
 <Timer UpdateScope=this Interval=250 @ref="LoadTimer" Tick="UpdateText" UseSynchronousTick=false UpdateComponentOnTick=false></Timer>
 
 @code {
-    [CascadingParameter(Name = "CurrentServer")]
-    public Guid CurrentServer { get; set; }
-
     public Timer LoadTimer { get; set; }
 
     public string CommandText { get; set; }
@@ -48,7 +46,7 @@
 
     protected void SendCommand()
     {
-        IMS.Instance.ServerManager.GetServer(CurrentServer).SendConsoleCommand(CommandText);
+        ServerSelector.CurrentServer.SendConsoleCommand(CommandText);
         CommandText = "";
     }
 
@@ -56,7 +54,7 @@
     {
         get
         {
-            return IMS.Instance.ServerManager.GetServer(CurrentServer).GetConsoleText();
+            return ServerSelector.CurrentServer.GetConsoleText();
         }
     }
 }

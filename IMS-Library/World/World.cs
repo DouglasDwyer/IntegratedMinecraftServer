@@ -12,7 +12,7 @@ namespace IMS_Library
     {
         public Guid ID;
         public string Name;
-        public WorldType Edition;
+        public MinecraftEdition Edition;
         public SynchronizedCollection<IBackupPolicy> BackupPolicies = new SynchronizedCollection<IBackupPolicy>();
         public ConcurrentDictionary<Guid, BackupInformation> Backups = new ConcurrentDictionary<Guid, BackupInformation>();
 
@@ -29,11 +29,11 @@ namespace IMS_Library
         }
         public string IconPath {
             get { 
-                if(Edition == WorldType.Java)
+                if(Edition == MinecraftEdition.Java)
                 {
                     return WorldPath + "/icon.png";
                 }
-                else if(Edition == WorldType.Bedrock)
+                else if(Edition == MinecraftEdition.Bedrock)
                 {
                     return WorldPath + "/world_icon.jpeg";
                 }
@@ -166,7 +166,5 @@ namespace IMS_Library
             }
             return size;
         }
-
-        public enum WorldType { Java, Bedrock }
     }
 }
