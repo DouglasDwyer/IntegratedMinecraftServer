@@ -1,11 +1,15 @@
-﻿@using System.Reflection;
+﻿@namespace IMS_Interface
+
+@using System.Reflection;
 
 @implements IDisposable
 
 @code {
     [Parameter]
-    public double Interval {
-        get {
+    public double Interval
+    {
+        get
+        {
             return InternalTimer.Interval;
         }
         set

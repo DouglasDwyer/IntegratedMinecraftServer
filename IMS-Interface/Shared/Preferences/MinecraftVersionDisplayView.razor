@@ -1,15 +1,22 @@
-﻿@using IMS_Library 
+﻿@namespace IMS_Interface.Preferences
+
+@using IMS_Library
 @using System.Reflection
 
 @inherits PreferenceDisplayView
 @inject PopupProvider PopupManager
 
-<label>@DisplayData.DisplayName:</label><br />
-<label><i>@(string.IsNullOrEmpty(CurrentVersion) ? "Using latest version" : "Using " + IMS.Instance.VersionManager.AvailableServerVersions[CurrentVersion].Name)</i></label><br />
+<label>@DisplayData.DisplayName:</label>
+<br />
+<label><i>@(string.IsNullOrEmpty(CurrentVersion) ? "Using latest version" : "Using " + IMS.Instance.VersionManager.AvailableServerVersions[CurrentVersion].Name)</i></label>
+<br />
 <button class="btn btn-primary" data-toggle="tooltip"
-    data-placement="right"
-    data-title="@DisplayData.Description" style="display:inline-block; margin:5px 0px"
-    @onclick="x => PopupManager.ShowPopup(new SelectServerVersionDisplayView.SelectServerVersionDisplay(CurrentVersion, CurrentEdition, DisplayData.ParentDisplay.CurrentConfiguration, DisplayData.ParentDisplay.CurrentConfiguration.GetType().GetField(DisplayData.FieldName, BindingFlags.Public | BindingFlags.Instance), StateHasChanged))">Change version</button><br />
+        data-placement="right"
+        data-title="@DisplayData.Description" style="display:inline-block; margin:5px 0px"
+        @onclick="x => PopupManager.ShowPopup(new SelectServerVersionDisplayView.SelectServerVersionDisplay(CurrentVersion, CurrentEdition, DisplayData.ParentDisplay.CurrentConfiguration, DisplayData.ParentDisplay.CurrentConfiguration.GetType().GetField(DisplayData.FieldName, BindingFlags.Public | BindingFlags.Instance), StateHasChanged))">
+    Change version
+</button>
+<br />
 
 @code {
     public string CurrentVersion
@@ -32,7 +39,8 @@
         }
     }
 
-    public class MinecraftVersionDisplay : PreferenceDisplay {
+    public class MinecraftVersionDisplay : PreferenceDisplay
+    {
         public MinecraftVersionDisplay(string name, string display, string description) : base(name, display, description)
         {
 

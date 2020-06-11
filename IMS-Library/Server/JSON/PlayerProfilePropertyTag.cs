@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace IMS_Library
 {
-    public struct PlayerProfilePropertyTag
+    internal struct PlayerProfilePropertyTag
     {
         public string name;
         public string value;

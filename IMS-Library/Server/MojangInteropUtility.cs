@@ -9,22 +9,43 @@ using System.Threading.Tasks;
 
 namespace IMS_Library
 {
+    /// <summary>
+    /// This class provides methods for interacting with the Mojang web API.
+    /// </summary>
     public static class MojangInteropUtility
     {
-        public static MemoryCache SkinLinkCache = new MemoryCache("IMS", null, true);
-
+        /// <summary>
+        /// Retrieves a JSON structure describing all existing versions of Minecraft.
+        /// </summary>
+        /// <returns>A <see cref="Task"/> object that that represents the current state of the download operation.</returns>
+        /// <exception cref="WebException">
+        /// Thrown if the web API request times out.
+        /// </exception>
         public static async Task<VersionInformationTag> GetAllJavaVersionInformation()
         {
             WebClientWithTimeout mojangRequest = new WebClientWithTimeout(1000);
             return await Task.Run(() => JsonConvert.DeserializeObject<VersionInformationTag>(mojangRequest.DownloadString("https://launchermeta.mojang.com/mc/game/version_manifest.json")));
         }
 
+        /// <summary>
+        /// Retrieves a JSON structure describing data about a single version of Minecraft.
+        /// </summary>
+        /// <param name="version">The version to download additional information about.</param>
+        /// <returns>A <see cref="Task"/> object that represents the current state of the download operation.</returns>
+        /// <exception cref="WebException">
+        /// Thrown if the web API request times out.
+        /// </exception>
         public static async Task<VersionDataTag> GetVersionInformation(VersionMetadataTag version)
         {
             WebClientWithTimeout mojangRequest = new WebClientWithTimeout(1000);
             return await Task.Run(() => JsonConvert.DeserializeObject<VersionDataTag>(mojangRequest.DownloadString(version.url)));
         }
 
+        /// <summary>
+        /// Gets the UUID of a Minecraft: Java Edition player from their username.
+        /// </summary>
+        /// <param name="username">The username of the player to get information about.</param>
+        /// <returns>A string that represents the player's UUID.</returns>
         public static string GetUUIDFromUsername(string username)
         {
             try
@@ -40,6 +61,11 @@ namespace IMS_Library
             }
         }
 
+        /// <summary>
+        /// Gets the username of a Minecraft: Java Edition player from their UUID.
+        /// </summary>
+        /// <param name="uuid">The UUID of the player to get information about.</param>
+        /// <returns>A string representing the player's username.</returns>
         public static string GetUsernameFromUUID(string uuid)
         {
             try
@@ -55,42 +81,7 @@ namespace IMS_Library
             }
         }
 
-        [Obsolete("This method is blocking and takes extremely long.")]
-        public static string GetLinkToPlayerSkin(string uuid)
-        {
-            return "https://crafatar.com/avatars/" + uuid;
-
-            //https://sessionserver.mojang.com/session/minecraft/profile/
-            if (uuid is null)
-            {
-                return null;
-            }
-            string cachedLink = (string)SkinLinkCache.Get(uuid);
-            if(cachedLink != null)
-            {
-                if(cachedLink == "")
-                {
-                    cachedLink = null;
-                }
-                return cachedLink;
-            }
-            try
-            {
-                WebClientWithTimeout mojangRequest = new WebClientWithTimeout(250);
-                PlayerProfileTag tag = JsonConvert.DeserializeObject<PlayerProfileTag>(mojangRequest.DownloadString("https://sessionserver.mojang.com/session/minecraft/profile/" + uuid.Replace("-","")));
-                string toReturn = tag.properties[0].GetDecodedValueTag().textures.SKIN.url;
-                SkinLinkCache.Add(uuid, toReturn, new CacheItemPolicy { AbsoluteExpiration = DateTimeOffset.Now.AddSeconds(10 * 60) });
-                return toReturn;
-            }
-            catch
-            {
-                Logger.WriteWarning("Could not get player " + uuid + "'s profile from Mojang servers!");
-                SkinLinkCache.Add(uuid, "", new CacheItemPolicy { AbsoluteExpiration = DateTimeOffset.Now.AddSeconds(61) });
-                return null;
-            }
-        }
-
-        protected class WebClientWithTimeout : WebClient
+        private class WebClientWithTimeout : WebClient
         {
             public int Timeout;
 

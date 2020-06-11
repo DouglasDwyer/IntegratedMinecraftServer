@@ -67,42 +67,28 @@ using IMS_Interface;
 #nullable disable
 #nullable restore
 #line 9 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\_Imports.razor"
-using IMS_Interface.Shared;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 10 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\_Imports.razor"
-using IMS_Interface.Shared.Preferences;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 11 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\_Imports.razor"
 using IMS_Interface.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
+#line 10 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\_Imports.razor"
+using IMS_Interface.Player;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 11 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\_Imports.razor"
+using IMS_Interface.World;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 12 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\_Imports.razor"
-using IMS_Interface.Pages.Player;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 13 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\_Imports.razor"
-using IMS_Interface.Shared.Popup;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 14 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\_Imports.razor"
-using IMS_Interface.Pages.Popup;
+using IMS_Interface.Preferences;
 
 #line default
 #line hidden

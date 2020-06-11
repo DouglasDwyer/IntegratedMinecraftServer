@@ -1,10 +1,10 @@
-﻿using IMS_Interface.Shared.Preferences;
+﻿using IMS_Interface.Preferences;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace IMS_Interface.Pages
+namespace IMS_Interface
 {
     public class HardcoreDisplay : PreferenceDisplay
     {

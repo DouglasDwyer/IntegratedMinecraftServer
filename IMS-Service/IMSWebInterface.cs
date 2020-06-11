@@ -7,6 +7,9 @@ namespace IMS_Service
 {
     public class IMSWebInterface : WebInterface
     {
+        /// <summary>
+        /// Starts the Blazor webserver.
+        /// </summary>
         public override void Start()
         {
             if(Port.AttemptUPnPForwarding)
@@ -17,6 +20,9 @@ namespace IMS_Service
             IMS_Interface.Program.Start(Port.Port);
         }
 
+        /// <summary>
+        /// Stops the Blazor webserver.
+        /// </summary>
         public override void Stop()
         {
             IMS_Interface.Program.Stop();

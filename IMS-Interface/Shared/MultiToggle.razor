@@ -1,8 +1,9 @@
-﻿
+﻿@namespace IMS_Interface
+
 <div style="display:inline-block">
     <div class="btn-group btn-group-toggle" data-toggle="buttons">
         @{
-            for(int i = 0; i < Options.Length; i++)
+            for (int i = 0; i < Options.Length; i++)
             {
                 int index = i;
                 <label class="btn btn-primary @(index == SelectedIndex ? "active" : "")" @onclick="@(() => { OnClicked(index); })">

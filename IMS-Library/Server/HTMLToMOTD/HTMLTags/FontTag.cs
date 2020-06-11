@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace IMS_Library.HTMLToMOTD
 {
-    public class FontTag : HTMLStyledNodePart
+    internal class FontTag : HTMLStyledNodePart
     {
         public override void ApplyModifiers(ref string finalOutput, string nodeData, HTMLActiveModifiers modifiers)
         {

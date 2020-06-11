@@ -6,34 +6,65 @@ using System.Threading.Tasks;
 
 namespace IMS_Library
 {
+    /// <summary>
+    /// This class acts as a manager for Minecraft versions.  It keeps track of Minecraft versions and updates version data automatically.
+    /// </summary>
     public class MinecraftVersionProvider : IMSConfiguration
     {
+        /// <summary>
+        /// The latest version of Minecraft: Java Edition to be made available as an official release.
+        /// </summary>
         public ServerVersionInformation LatestRelease => AvailableServerVersions.ContainsKey(LatestReleaseID) ? AvailableServerVersions[LatestReleaseID] : null;
+        /// <summary>
+        /// The latest version of Minecraft: Java Edition to be made available as a prerelease snapshot.
+        /// </summary>
         public ServerVersionInformation LatestSnapshot => AvailableServerVersions.ContainsKey(LatestSnapshotID) ? AvailableServerVersions[LatestSnapshotID] : null;
+        /// <summary>
+        /// This dictionary contains information about every version of Minecraft, indexed by version code.
+        /// </summary>
         public ConcurrentDictionary<string, ServerVersionInformation> AvailableServerVersions = new ConcurrentDictionary<string, ServerVersionInformation>();
-        public string LatestReleaseID;
-        public string LatestSnapshotID;
+        private string LatestReleaseID;
+        private string LatestSnapshotID;
 
+        /// <summary>
+        /// Begins the <see cref="MinecraftVersionProvider"/> instance, beginning an update timer and updating version data.
+        /// </summary>
         public void Start()
         {
             UpdateAllServerVersionsAsync();
         }
 
+        /// <summary>
+        /// Stops the <see cref="MinecraftVersionProvider"/> instance, saving all version data to disk.
+        /// </summary>
         public void Stop()
         {
             this.SaveConfiguration();
         }
 
+        /// <summary>
+        /// Gets information about a certain Minecraft version from its version code.
+        /// </summary>
+        /// <param name="id">The version code of the version to get information about.</param>
+        /// <returns>A <see cref="ServerVersionInformation"/> object that contains data about the server version, or null if no version was found.</returns>
         public ServerVersionInformation GetVersionInformationFromID(string id)
         {
             return string.IsNullOrEmpty(id) ? LatestRelease : AvailableServerVersions[id];
         }
 
+        /// <summary>
+        /// Retrieves the location of the version provider's settings file.
+        /// </summary>
+        /// <returns>An absolute path representing this instance's configuration file.</returns>
         public override string GetDefaultFilePath()
         {
             return Constants.ExecutionPath + Constants.DataLocation + "/versioninformation.xml";
         }
 
+        /// <summary>
+        /// Downloads updates about all server versions.
+        /// </summary>
+        /// <returns>A <see cref="Task"/> object representing the state of the current update operation.</returns>
         public async Task UpdateAllServerVersionsAsync()
         {
             VersionInformationTag versionInfo = await MojangInteropUtility.GetAllJavaVersionInformation();

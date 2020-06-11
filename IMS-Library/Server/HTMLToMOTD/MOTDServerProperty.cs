@@ -4,15 +4,19 @@ using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
+using IMS_Library.HTMLToMOTD;
 
-namespace IMS_Library.HTMLToMOTD
+namespace IMS_Library
 {
+    /// <summary>
+    /// Represents a property that is formatted in HTML which should be converted to Minecraft formatting codes upon being written to a <c>server.properties</c> file.
+    /// </summary>
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
-    public class MOTDServerProperty : ServerProperty
+    public sealed class MOTDServerProperty : ServerProperty
     {
-        protected static readonly Dictionary<string, Type> HTMLFormattingTags = new Dictionary<string, Type>();
+        private static readonly Dictionary<string, Type> HTMLFormattingTags = new Dictionary<string, Type>();
 
-        protected Stack<HTMLNodePart> NodeParts = new Stack<HTMLNodePart>();
+        private Stack<HTMLNodePart> NodeParts = new Stack<HTMLNodePart>();
 
         static MOTDServerProperty()
         {
@@ -25,10 +29,20 @@ namespace IMS_Library.HTMLToMOTD
             HTMLFormattingTags["sup"] = typeof(SupTag);
         }
 
+        /// <summary>
+        /// Constructs a new <see cref="MOTDServerProperty"/> instance bound to the specified <c>server.properties</c> name.
+        /// </summary>
+        /// <param name="propertyName">The name of the property to write to the server properties file.</param>
         public MOTDServerProperty(string propertyName) : base(propertyName)
         {
         }
 
+        /// <summary>
+        /// Obtains the line of text which should be written to the server properties file.
+        /// </summary>
+        /// <param name="configuration">The current server configuration which holds the data to be written.</param>
+        /// <param name="field">The field that this attribute is bound to.</param>
+        /// <returns>A <see cref="string"/> which should be written to the server properties file.</returns>
         public override string GetData(ServerConfiguration configuration, FieldInfo field)
         {
             string[] data = Regex.Split((string)field.GetValue(configuration), @"(?=<)|(?<=>)");

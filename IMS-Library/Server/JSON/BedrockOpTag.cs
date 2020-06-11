@@ -4,7 +4,7 @@ using System.Text;
 
 namespace IMS_Library
 {
-    public struct BedrockOpTag
+    internal struct BedrockOpTag
     {
         public string permission;
         public string xuid;

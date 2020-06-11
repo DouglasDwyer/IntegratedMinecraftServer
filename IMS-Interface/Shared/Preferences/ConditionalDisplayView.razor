@@ -1,8 +1,9 @@
-﻿@inherits PreferenceDisplayView
+﻿@namespace IMS_Interface.Preferences
+@inherits PreferenceDisplayView
 
 @{
     ConditionalDisplay display = (DisplayData as ConditionalDisplay);
-    if (display.Condition())
+    if (display.Condition(DisplayData.ParentDisplay.CurrentConfiguration))
     {
 
         display.InternalDisplay.ParentDisplay = display.ParentDisplay;

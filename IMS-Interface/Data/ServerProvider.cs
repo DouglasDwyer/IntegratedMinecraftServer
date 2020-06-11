@@ -29,7 +29,7 @@ namespace IMS_Interface.Data
             set
             {
                 ServerID = value;
-                OnServerSelectionChange?.Invoke(this, new EventArgs());
+                OnServerSelectionChange?.Invoke();
             }
         }
         public ServerProxy CurrentServer
@@ -37,6 +37,6 @@ namespace IMS_Interface.Data
             get => IMS.Instance.ServerManager.GetServer(CurrentServerID);
             set => CurrentServerID = value.ID;
         }
-        public event EventHandler OnServerSelectionChange;
+        public event Action OnServerSelectionChange;
     }
 }

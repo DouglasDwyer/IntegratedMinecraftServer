@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IMS-Service</name>
+    </assembly>
+    <members>
+        <member name="M:IMS_Service.CredentialResetter.ResetCredentialsAsync">
+            <summary>
+            Prompts the user of the local machine to reset the IMS admin console credentials.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:IMS_Service.IMSWebInterface.Start">
+            <summary>
+            Starts the Blazor webserver.
+            </summary>
+        </member>
+        <member name="M:IMS_Service.IMSWebInterface.Stop">
+            <summary>
+            Stops the Blazor webserver.
+            </summary>
+        </member>
+        <member name="F:WindowManager.MsgBoxStyle.OkOnly">
+            <summary>
+            OK button only (default). This member is equivalent to the Visual Basic constant <see langword="vbOKOnly" />.</summary>
+        </member>
+        <member name="F:WindowManager.MsgBoxStyle.OkCancel">
+            <summary>
+            OK and Cancel buttons. This member is equivalent to the Visual Basic constant <see langword="vbOKCancel" />.</summary>
+        </member>
+        <member name="F:WindowManager.MsgBoxStyle.AbortRetryIgnore">
+            <summary>
+            Abort, Retry, and Ignore buttons. This member is equivalent to the Visual Basic constant <see langword="vbAbortRetryIgnore" />.</summary>
+        </member>
+        <member name="F:WindowManager.MsgBoxStyle.YesNoCancel">
+            <summary>
+            Yes, No, and Cancel buttons. This member is equivalent to the Visual Basic constant <see langword="vbYesNoCancel" />.</summary>
+        </member>
+        <member name="F:WindowManager.MsgBoxStyle.YesNo">
+            <summary>
+            Yes and No buttons. This member is equivalent to the Visual Basic constant <see langword="vbYesNo" />.</summary>
+        </member>
+        <member name="F:WindowManager.MsgBoxStyle.RetryCancel">
+            <summary>
+            Retry and Cancel buttons. This member is equivalent to the Visual Basic constant <see langword="vbRetryCancel" />.</summary>
+        </member>
+        <member name="F:WindowManager.MsgBoxStyle.Critical">
+            <summary>Critical message. This member is equivalent to the Visual Basic constant <see langword="vbCritical" />.</summary>
+        </member>
+        <member name="F:WindowManager.MsgBoxStyle.Question">
+            <summary>Warning query. This member is equivalent to the Visual Basic constant <see langword="vbQuestion" />.</summary>
+        </member>
+        <member name="F:WindowManager.MsgBoxStyle.Exclamation">
+            <summary>Warning message. This member is equivalent to the Visual Basic constant <see langword="vbExclamation" />.</summary>
+        </member>
+        <member name="F:WindowManager.MsgBoxStyle.Information">
+            <summary>Information message. This member is equivalent to the Visual Basic constant <see langword="vbInformation" />.</summary>
+        </member>
+        <member name="F:WindowManager.MsgBoxStyle.DefaultButton1">
+            <summary>First button is default. This member is equivalent to the Visual Basic constant <see langword="vbDefaultButton1" />.</summary>
+        </member>
+        <member name="F:WindowManager.MsgBoxStyle.DefaultButton2">
+            <summary>Second button is default. This member is equivalent to the Visual Basic constant <see langword="vbDefaultButton2" />.</summary>
+        </member>
+        <member name="F:WindowManager.MsgBoxStyle.DefaultButton3">
+            <summary>Third button is default. This member is equivalent to the Visual Basic constant <see langword="vbDefaultButton3" />.</summary>
+        </member>
+        <member name="F:WindowManager.MsgBoxStyle.ApplicationModal">
+            <summary>Application modal message box. This member is equivalent to the Visual Basic constant <see langword="vbApplicationModal" />.</summary>
+        </member>
+        <member name="F:WindowManager.MsgBoxStyle.SystemModal">
+            <summary>System modal message box. This member is equivalent to the Visual Basic constant <see langword="vbSystemModal" />.</summary>
+        </member>
+        <member name="F:WindowManager.MsgBoxStyle.MsgBoxHelp">
+            <summary>Help text. This member is equivalent to the Visual Basic constant <see langword="vbMsgBoxHelp" />.</summary>
+        </member>
+        <member name="F:WindowManager.MsgBoxStyle.MsgBoxRight">
+            <summary>Right-aligned text. This member is equivalent to the Visual Basic constant <see langword="vbMsgBoxRight" />.</summary>
+        </member>
+        <member name="F:WindowManager.MsgBoxStyle.MsgBoxRtlReading">
+            <summary>Right-to-left reading text (Hebrew and Arabic systems). This member is equivalent to the Visual Basic constant <see langword="vbMsgBoxRtlReading" />.</summary>
+        </member>
+        <member name="F:WindowManager.MsgBoxStyle.MsgBoxSetForeground">
+            <summary>Foreground message box window. This member is equivalent to the Visual Basic constant <see langword="vbMsgBoxSetForeground" />.</summary>
+        </member>
+    </members>
+</doc>

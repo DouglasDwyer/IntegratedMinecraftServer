@@ -1,8 +1,9 @@
-﻿@page "/"
+﻿@namespace IMS_Interface
+
+@page "/"
 @using System.IO
 @inject NavigationManager manager
 @inject DownloadManager downloader
-
 Welcome
 Welcome
 Welcome
@@ -17,7 +18,7 @@ Aedd
 
 <button @onclick="Yeet">Click for yeet</button>
 
-@code { 
+@code {
     protected void Yeet()
     {
         downloader.ZipAndDownloadFolderAsync(manager, "C:/Users/Douglas/Documents/AP EXAM 2020");

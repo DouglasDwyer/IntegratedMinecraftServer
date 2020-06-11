@@ -1,4 +1,6 @@
-﻿@page "/WorldManager/{WorldID:guid}"
+﻿@namespace IMS_Interface.World
+
+@page "/WorldManager/{WorldID:guid}"
 
 @using System.Reflection
 @using IMS_Library
@@ -54,7 +56,7 @@
         background: rgba(200, 200, 200, 0.25);
     }
 </style>
-@{ 
+@{
     World loadedWorld = IMS.Instance.WorldManager.GetWorldByID(WorldID);
 }
 <h3>Manage @loadedWorld.Name</h3>
@@ -88,12 +90,12 @@
                                 <button class="@(display == SelectedView ? "nav-link-active" : "nav-link")" @onclick="x => SelectedView = display">@display.Name</button>
                             </li>
                         }
-                    <li style="display:inline; position:static; float:right">
-                        <a class="nav-link" style="padding:5px" href="AllWorlds">
-                            All Worlds
-                        </a>
-                        <!--@onclick="@(x => Navigator.NavigateTo("/AllWorlds", true))"-->
-                    </li>
+                        <li style="display:inline; position:static; float:right">
+                            <a class="nav-link" style="padding:5px" href="AllWorlds">
+                                All Worlds
+                            </a>
+                            <!--@onclick="@(x => Navigator.NavigateTo("/AllWorlds", true))"-->
+                        </li>
                     </ul>
                 </div>
             </th>

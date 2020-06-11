@@ -193,6 +193,11 @@ namespace IMS_Library
             IntPtr lpSecurityAttributes
         );
 
+        /// <summary>
+        /// Creates a file hard link.
+        /// </summary>
+        /// <param name="targetFile">The file that the link should point to.</param>
+        /// <param name="linkFile">The full path of the new, link file.</param>
         public static void CreateHardLink(string targetFile, string linkFile)
         {
             CreateHardLink(linkFile, targetFile, IntPtr.Zero);

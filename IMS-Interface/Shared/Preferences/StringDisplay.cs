@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace IMS_Interface.Shared.Preferences
+namespace IMS_Interface.Preferences
 {
     public class StringDisplay : PreferenceDisplay
     {

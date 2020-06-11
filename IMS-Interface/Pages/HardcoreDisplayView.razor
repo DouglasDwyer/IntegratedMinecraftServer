@@ -1,4 +1,6 @@
-﻿@inherits PreferenceDisplayView
+﻿@namespace IMS_Interface
+
+@inherits PreferenceDisplayView
 @using System.Reflection
 
 <label>@DisplayData.DisplayName</label>
@@ -27,7 +29,7 @@
         {
             if (value >= 0 && value < (DisplayData as HardcoreDisplay).Values.Length)
             {
-                if(value == (DisplayData as HardcoreDisplay).Values.Length - 1)
+                if (value == (DisplayData as HardcoreDisplay).Values.Length - 1)
                 {
                     DisplayData.ParentDisplay.CurrentConfiguration.GetType()
                         .GetField((DisplayData as HardcoreDisplay).HardcoreFieldName, BindingFlags.Public | BindingFlags.Instance)
@@ -38,7 +40,7 @@
                     DisplayData.ParentDisplay.CurrentConfiguration.GetType()
                         .GetField((DisplayData as HardcoreDisplay).HardcoreFieldName, BindingFlags.Public | BindingFlags.Instance)
                         .SetValue(DisplayData.ParentDisplay.CurrentConfiguration, false);
-                        DisplayData.ParentDisplay.CurrentConfiguration.GetType().GetField(DisplayData.FieldName, BindingFlags.Public | BindingFlags.Instance).SetValue(DisplayData.ParentDisplay.CurrentConfiguration, value);
+                    DisplayData.ParentDisplay.CurrentConfiguration.GetType().GetField(DisplayData.FieldName, BindingFlags.Public | BindingFlags.Instance).SetValue(DisplayData.ParentDisplay.CurrentConfiguration, value);
                 }
             }
             DisplayData.ParentDisplay.NotifyStateChanged();

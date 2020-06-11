@@ -1,4 +1,6 @@
-﻿@using IMS_Library
+﻿@namespace IMS_Interface.World
+
+@using IMS_Library
 @using Blazor.FileReader
 @using System.IO
 
@@ -22,7 +24,7 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if(firstRender)
+        if (firstRender)
         {
             if (DisplayData.CurrentServer.State == ServerProxy.ServerState.Disabled)
             {

@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Linq;
 
 namespace IMS_Interface.Data
 {
@@ -56,10 +55,9 @@ namespace IMS_Interface.Data
                     if(cached.Value is null || cached.Value.CreationTime + CacheTime < DateTime.Now)
                     {
                         File.Delete(file);
-                        CachedFile bad;
                         try
                         {
-                            CachedFiles.TryRemove(cached.Key, out bad);
+                            CachedFiles.TryRemove(cached.Key, out CachedFile bad);
                         } catch { }
                     }
                 }

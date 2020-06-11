@@ -1,4 +1,6 @@
-﻿@using IMS_Library
+﻿@namespace IMS_Interface.World
+
+@using IMS_Library
 @using Blazor.FileReader
 @using System.IO
 
@@ -52,7 +54,7 @@
         string destinationFile = DisplayData.CurrentWorld.IconPath;
         File.Delete(destinationFile);
         using (Stream uploadStream = await (await FileUploader.CreateReference(WorldIconUpload).EnumerateFilesAsync()).Single().CreateMemoryStreamAsync(1024 * 1024))
-        using(Stream fileStream = File.Create(destinationFile))
+        using (Stream fileStream = File.Create(destinationFile))
         {
             await uploadStream.CopyToAsync(fileStream);
         }

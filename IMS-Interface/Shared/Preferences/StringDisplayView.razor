@@ -1,4 +1,6 @@
-﻿@using System.Reflection
+﻿@namespace IMS_Interface.Preferences
+
+@using System.Reflection
 
 @inherits PreferenceDisplayView
 
@@ -14,13 +16,16 @@
 <br />
 
 @code {
-    public string DataValue {
-        get {
+    public string DataValue
+    {
+        get
+        {
             return (string)DisplayData.ParentDisplay.CurrentConfiguration.GetType()
                 .GetField(DisplayData.FieldName, BindingFlags.Public | BindingFlags.Instance)
                 .GetValue(DisplayData.ParentDisplay.CurrentConfiguration);
         }
-        set {
+        set
+        {
             DisplayData.ParentDisplay.CurrentConfiguration.GetType().GetField(DisplayData.FieldName, BindingFlags.Public | BindingFlags.Instance).SetValue(DisplayData.ParentDisplay.CurrentConfiguration, value);
         }
     }

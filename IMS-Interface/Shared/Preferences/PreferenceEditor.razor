@@ -1,4 +1,6 @@
-﻿@using IMS_Library
+﻿@namespace IMS_Interface.Preferences
+
+@using IMS_Library
 @using System.Reflection;
 
 <style>
@@ -51,10 +53,7 @@
     {
         set
         {
-            if (CurrentConfiguration is null)
-            {
-                CurrentConfiguration = value;
-            }
+            CurrentConfiguration = value;
         }
     }
 

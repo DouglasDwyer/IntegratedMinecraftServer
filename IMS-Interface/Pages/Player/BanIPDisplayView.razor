@@ -1,4 +1,6 @@
-﻿@using IMS_Library
+﻿@namespace IMS_Interface.Player
+
+@using IMS_Library
 
 @inherits PlayerDisplayView
 
@@ -31,9 +33,9 @@
         color: #23527c;
     }
 </style>
-@{ 
+@{
     IEnumerable<BanIPTag> bannedIPs = CurrentServer.GetAllBannedIPs();
-    if(bannedIPs.Count() == 0)
+    if (bannedIPs.Count() == 0)
     {
         <label style="padding-top:3px; font-weight:normal"><i>There are currently no banned IPs.</i></label>
         return;

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace IMS_Library
 {
-    public struct BedrockWhitelistTag
+    internal struct BedrockWhitelistTag
     {
         public bool ignoresPlayerLimit;
         public string name;

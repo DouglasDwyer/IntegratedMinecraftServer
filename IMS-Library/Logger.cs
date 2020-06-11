@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace IMS_Library
 {
+    /// <summary>
+    /// This class is used for keeping IMS logs and debugging.
+    /// </summary>
     public static class Logger
     {
         private static StreamWriter logWriter;
@@ -21,6 +24,10 @@ namespace IMS_Library
             logWriter.AutoFlush = true;
         }
 
+        /// <summary>
+        /// Writes the <paramref name="information"/> string to the IMS log under the "info" category.
+        /// </summary>
+        /// <param name="information">The information to write to the log.</param>
         public static void WriteInfo(string information)
         {
             lock (logWriter)
@@ -30,6 +37,10 @@ namespace IMS_Library
             }
         }
 
+        /// <summary>
+        /// Writes the <paramref name="warning"/> string to the IMS log under the "warning" category.
+        /// </summary>
+        /// <param name="warning">The warning to write to the log.</param>
         public static void WriteWarning(string warning)
         {
             lock (logWriter)
@@ -39,6 +50,10 @@ namespace IMS_Library
             }
         }
 
+        /// <summary>
+        /// Writes the <paramref name="error"/> string to the IMS log under the "error" category.
+        /// </summary>
+        /// <param name="error">The error to write to the log.</param>
         public static void WriteError(string error)
         {
             lock (logWriter)
@@ -48,6 +63,9 @@ namespace IMS_Library
             }
         }
 
+        /// <summary>
+        /// Stops all logging and marks the log as successful (differentiating it from a crashed/incomplete log).
+        /// </summary>
         public static void FinishLog()
         {
             lock (logWriter)

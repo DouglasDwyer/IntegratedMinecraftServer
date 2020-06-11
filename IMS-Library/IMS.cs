@@ -17,18 +17,48 @@ using System.Xml.Serialization;
 
 namespace IMS_Library
 {
-    public partial class IMS : ServiceBase
+    /// <summary>
+    /// Represents the core Windows service which maintains Minecraft servers in the background.
+    /// </summary>
+    public sealed partial class IMS : ServiceBase
     {
-        public static IMS Instance { get; protected set; }
+        /// <summary>
+        /// Returns the currently running instance of IMS.
+        /// </summary>
+        public static IMS Instance { get; private set; }
 
-        public IMSSettings CurrentSettings { get; protected set; }
-        public PortForwarder PortManager { get; protected set; }
-        public FirewallForwarder FirewallManager { get; protected set; }
-        public WorldController WorldManager { get; protected set; }
+        /// <summary>
+        /// Returns the currently active configuration for IMS.  To set the currently active configuration, use <see cref="ChangeSettings(IMSSettings)"/>.
+        /// </summary>
+        public IMSSettings CurrentSettings { get; private set; }
+        /// <summary>
+        /// Returns the current port manager, which can be used to forward/remove forwarded ports from UPnP routers.  Services are in charge of adding/removing their own ports.
+        /// </summary>
+        public PortForwarder PortManager { get; private set; }
+        /// <summary>
+        /// Returns the current firewall manager, which can be used to bypass the Windows firewall.  Services are in charge of adding/removing their own firewall exceptions.
+        /// </summary>
+        public FirewallController FirewallManager { get; private set; }
+        /// <summary>
+        /// Returns the current world manager, which is used to regulate the storage and backup of Minecraft worlds.
+        /// </summary>
+        public WorldController WorldManager { get; private set; }
+        /// <summary>
+        /// Returns the current web interface manager, which runs the administrator console for user configuration of IMS.
+        /// </summary>
         public WebInterface WebServer { get; set; }
-        public ServerController ServerManager { get; protected set; }
-        public PluginController PluginManager { get; protected set; }
-        public MinecraftVersionProvider VersionManager { get; protected set; }
+        /// <summary>
+        /// Returns the current server manager, which regulates all loaded Minecraft server configurations.
+        /// </summary>
+        public ServerController ServerManager { get; private set; }
+        /// <summary>
+        /// Returns the current plugin manager, which regulates user-defined IMS plugins.
+        /// </summary>
+        public PluginController PluginManager { get; private set; }
+        /// <summary>
+        /// Returns the version provider, which can be used to fetch data about Minecraft server versions or download them off the internet.
+        /// </summary>
+        public MinecraftVersionProvider VersionManager { get; private set; }
 
         private int exitCode = 0;
 
@@ -49,18 +79,25 @@ namespace IMS_Library
             OnStop();
         }
 
+        /// <summary>
+        /// Restarts the IMS Windows service.
+        /// </summary>
         public void Restart()
         {
             
         }
 
+        /// <summary>
+        /// Stops the IMS Windows service, shutting down with the specified error code.
+        /// </summary>
+        /// <param name="error">The error code to return.</param>
         public void Stop(int error)
         {
             exitCode = error;
             Stop();
         }
 
-        protected void Execute()
+        private void Execute()
         {
             Logger.WriteInfo("Starting IMS...");
 
@@ -74,7 +111,7 @@ namespace IMS_Library
             PortManager = new PortForwarder();
             PortManager.Start();
 
-            FirewallManager = new FirewallForwarder();
+            FirewallManager = new FirewallController();
 
             VersionManager = new MinecraftVersionProvider().FromConfiguration();
             VersionManager.Start();
@@ -103,7 +140,7 @@ namespace IMS_Library
             ServerManager.Stop();
             WorldManager.Stop();
             VersionManager.Stop();
-            PortManager.Dispose();
+            PortManager.Stop();
             CurrentSettings.SaveConfiguration();
             if (exitCode != 0)
             {
@@ -112,6 +149,10 @@ namespace IMS_Library
             Environment.Exit(exitCode);
         }
 
+        /// <summary>
+        /// Updates <see cref="CurrentSettings"/>, making changes to other services (like forwarding ports) as necessary.
+        /// </summary>
+        /// <param name="newSettings">The settings to apply.</param>
         public void ChangeSettings(IMSSettings newSettings)
         {
             lock (CurrentSettings)

@@ -10,13 +10,22 @@ using System.Threading.Tasks;
 
 namespace IMS_Library
 {
-    public class ServerController
+    /// <summary>
+    /// Acts as a manager for the user's Minecraft servers, loading them from disk, starting them, and forwarding ports appropriately.
+    /// </summary>
+    public sealed class ServerController
     {
+        /// <summary>
+        /// A list containing all currently loaded servers.
+        /// </summary>
         public IList<ServerProxy> Servers { get { return LoadedServers.Values.ToList().AsReadOnly(); } }
-        protected ConcurrentDictionary<Guid, ServerProxy> LoadedServers = new ConcurrentDictionary<Guid, ServerProxy>();
+        private ConcurrentDictionary<Guid, ServerProxy> LoadedServers = new ConcurrentDictionary<Guid, ServerProxy>();
 
-        protected List<int> UsedPorts = new List<int>();
+        private List<int> UsedPorts = new List<int>();
 
+        /// <summary>
+        /// Begins the <see cref="ServerController"/> instance, loading and starting Minecraft servers.
+        /// </summary>
         public void Start()
         {
             Logger.WriteInfo("Loading servers from disk...");
@@ -26,6 +35,9 @@ namespace IMS_Library
             Logger.WriteInfo("All servers started.");
         }
 
+        /// <summary>
+        /// Stops the <see cref="ServerController"/> instance, stopping and saving all servers.
+        /// </summary>
         public void Stop()
         {
             Logger.WriteInfo("Shutting down all servers...");
@@ -41,7 +53,7 @@ namespace IMS_Library
             Logger.WriteInfo("All servers shut down.");
         }
 
-        public void StartAllEnabledServers()
+        private void StartAllEnabledServers()
         {
             foreach(ServerProxy loadedServer in LoadedServers.Values)
             {
@@ -67,7 +79,7 @@ namespace IMS_Library
             }
         }
 
-        protected void ForwardPorts(int[] ports)
+        private void ForwardPorts(int[] ports)
         {
             foreach(int port in ports)
             {
@@ -75,7 +87,7 @@ namespace IMS_Library
             }
         }
 
-        protected void RemoveForwardedPorts(int[] ports)
+        private void RemoveForwardedPorts(int[] ports)
         {
             foreach (int port in ports)
             {
@@ -83,7 +95,7 @@ namespace IMS_Library
             }
         }
 
-        public void LoadServersFromDisk()
+        private void LoadServersFromDisk()
         {
             if(!Directory.Exists(Constants.ExecutionPath + Constants.ServerFolderLocation))
             {
@@ -119,9 +131,14 @@ namespace IMS_Library
             }
         }
 
+        /// <summary>
+        /// Retrieves a server by its ID.
+        /// </summary>
+        /// <param name="server">The ID of the server to retrieve.</param>
+        /// <returns>The <see cref="ServerProxy"/> associated with this ID, or null if no server is found.</returns>
         public ServerProxy GetServer(Guid server)
         {
-            return LoadedServers[server];
+            return LoadedServers.ContainsKey(server) ? LoadedServers[server] : null;
         }
     }
 }

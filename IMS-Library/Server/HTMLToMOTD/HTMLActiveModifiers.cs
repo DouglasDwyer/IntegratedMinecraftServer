@@ -4,7 +4,7 @@ using System.Text;
 
 namespace IMS_Library.HTMLToMOTD
 {
-    public class HTMLActiveModifiers
+    internal class HTMLActiveModifiers
     {
         public bool Bold, Italic, Underline, Strikethrough, Obfuscated;
         public string Color;

@@ -1,10 +1,12 @@
-﻿@using IMS_Library
+﻿@namespace IMS_Interface.World
+
+@using IMS_Library
 
 @inject PopupProvider PopupManager
 
 <style>
     label {
-        font-weight:normal;
+        font-weight: normal;
     }
 </style>
 <label><b>Rename world?</b></label>
@@ -21,7 +23,10 @@
 @code {
 
     [Parameter]
-    public RenameWorldDisplay DisplayData { get => LoadedDisplayData; set {
+    public RenameWorldDisplay DisplayData
+    {
+        get => LoadedDisplayData; set
+        {
             WorldNameInput = value.CurrentWorld.Name;
             LoadedDisplayData = value;
         }

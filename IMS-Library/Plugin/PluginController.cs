@@ -12,7 +12,7 @@ namespace IMS_Library
         public IList<IMSPluginBase> LoadedPlugins { get => Plugins.AsReadOnly(); }
         private List<IMSPluginBase> Plugins = new List<IMSPluginBase>();
 
-        protected object Locker = new object();
+        private object Locker = new object();
 
         public void Initialize()
         {

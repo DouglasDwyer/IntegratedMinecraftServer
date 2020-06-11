@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace IMS_Library
 {
     [Serializable]
-    public struct OpTag
+    internal struct OpTag
     {
         public string uuid;
         public string name;

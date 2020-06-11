@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace IMS_Library
 {
     [Serializable]
-    public struct BanTag
+    internal struct BanTag
     {
         public string uuid;
         public string name;

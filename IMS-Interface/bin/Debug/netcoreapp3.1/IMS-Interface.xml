@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IMS-Interface</name>
+    </assembly>
+    <members>
+        <member name="T:IMS_Interface.Provider">
+            <summary>
+            The <see cref="T:IMS_Interface.Provider"/> class provides various lists of displays to use when rendering parts of the IMS web interface.  It allows for plugin extensibility, as plugins can add their own displays to be rendered for many situations.
+            </summary>
+        </member>
+        <member name="F:IMS_Interface.Provider.ServerPreferenceDisplayBinding">
+            <summary>
+            This is a list which binds types to server preference displays.
+            When <see cref="T:IMS_Interface.ServerPreferences"/> attempts to display server settings, it searches this list and chooses the binding whose <see cref="F:IMS_Interface.Preferences.ConfigurationPreferenceDisplayBinding.PreferenceType"/> most directly matches the type of the settings to display.
+            </summary>
+        </member>
+        <member name="T:IMS_Interface.Preferences.ConfigurationPreferenceDisplayBinding">
+            <summary>
+            Represents the relationship between a <see cref="T:IMS_Interface.ServerPreferences"/> type and the display layout that goes with it.
+            </summary>
+        </member>
+        <member name="F:IMS_Interface.Preferences.ConfigurationPreferenceDisplayBinding.PreferenceType">
+            <summary>
+            The <see cref="T:IMS_Interface.ServerPreferences"/> type that this instance refers to.
+            </summary>
+        </member>
+        <member name="F:IMS_Interface.Preferences.ConfigurationPreferenceDisplayBinding.Layout">
+            <summary>
+            The display layout to use when rendering the settings display for configurations of <see cref="F:IMS_Interface.Preferences.ConfigurationPreferenceDisplayBinding.PreferenceType"/>.
+            </summary>
+        </member>
+        <member name="M:IMS_Interface.Preferences.ConfigurationPreferenceDisplayBinding.#ctor(System.Type,System.Func{System.Collections.Generic.List{IMS_Interface.Preferences.PreferenceDisplay}})">
+            <summary>
+            Creates a new <see cref="T:IMS_Interface.Preferences.ConfigurationPreferenceDisplayBinding"/> instance with the specified type and generator of preference editor elements.
+            </summary>
+            <param name="preferenceType">The server configuration type that results in <paramref name="layout"/> being rendered.</param>
+            <param name="layout">A function which generates the layout to render.</param>
+        </member>
+    </members>
+</doc>

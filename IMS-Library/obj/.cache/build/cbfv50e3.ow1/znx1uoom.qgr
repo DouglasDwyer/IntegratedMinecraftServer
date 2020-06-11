@@ -1,0 +1,264 @@
+
+<div id="sidetoggle">
+  <div>
+    <div class="sidefilter">
+      <form class="toc-filter">
+        <span class="glyphicon glyphicon-filter filter-icon"></span>
+        <span class="glyphicon glyphicon-remove clear-icon" id="toc_filter_clear"></span>
+        <input type="text" id="toc_filter_input" placeholder="Enter here to filter..." onkeypress="if(event.keyCode==13) {return false;}">
+      </form>
+    </div>
+    <div class="sidetoc">
+      <div class="toc" id="toc">
+          
+          <ul class="nav level1">
+                <li>
+                    <span class="expand-stub"></span>
+                    <a href="IMS_Library.html" name="" title="IMS_Library">IMS_Library</a>
+                    
+                    <ul class="nav level2">
+                          <li>
+                              <a href="IMS_Library.BackupAfterTimeIntervalPolicy.html" name="" title="BackupAfterTimeIntervalPolicy">BackupAfterTimeIntervalPolicy</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.BackupInformation.html" name="" title="BackupInformation">BackupInformation</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.BanInformation.html" name="" title="BanInformation">BanInformation</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.BanIPTag.html" name="" title="BanIPTag">BanIPTag</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.BanTag.html" name="" title="BanTag">BanTag</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.BedrockOpTag.html" name="" title="BedrockOpTag">BedrockOpTag</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.BedrockServer.html" name="" title="BedrockServer">BedrockServer</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.BedrockServer.BackupState.html" name="" title="BedrockServer.BackupState">BedrockServer.BackupState</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.BedrockServerConfiguration.html" name="" title="BedrockServerConfiguration">BedrockServerConfiguration</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.BedrockWhitelistTag.html" name="" title="BedrockWhitelistTag">BedrockWhitelistTag</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.ChildProcessTracker.html" name="" title="ChildProcessTracker">ChildProcessTracker</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.Constants.html" name="" title="Constants">Constants</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.Encryption.html" name="" title="Encryption">Encryption</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.Extensions.html" name="" title="Extensions">Extensions</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.FirewallForwarder.html" name="" title="FirewallForwarder">FirewallForwarder</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.IBackupPolicy.html" name="" title="IBackupPolicy">IBackupPolicy</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.IMS.html" name="" title="IMS">IMS</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.IMSConfiguration.html" name="" title="IMSConfiguration">IMSConfiguration</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.IMSConfigurationUtility.html" name="" title="IMSConfigurationUtility">IMSConfigurationUtility</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.IMSPluginBase.html" name="" title="IMSPluginBase">IMSPluginBase</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.IMSSettings.html" name="" title="IMSSettings">IMSSettings</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.IO_COUNTERS.html" name="" title="IO_COUNTERS">IO_COUNTERS</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.JavaServer.html" name="" title="JavaServer">JavaServer</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.JavaServerConfiguration.html" name="" title="JavaServerConfiguration">JavaServerConfiguration</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.JOBOBJECT_BASIC_LIMIT_INFORMATION.html" name="" title="JOBOBJECT_BASIC_LIMIT_INFORMATION">JOBOBJECT_BASIC_LIMIT_INFORMATION</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.JOBOBJECT_EXTENDED_LIMIT_INFORMATION.html" name="" title="JOBOBJECT_EXTENDED_LIMIT_INFORMATION">JOBOBJECT_EXTENDED_LIMIT_INFORMATION</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.JobObjectInfoType.html" name="" title="JobObjectInfoType">JobObjectInfoType</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.JOBOBJECTLIMIT.html" name="" title="JOBOBJECTLIMIT">JOBOBJECTLIMIT</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.JunctionPoint.html" name="" title="JunctionPoint">JunctionPoint</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.LastestVersionsTag.html" name="" title="LastestVersionsTag">LastestVersionsTag</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.LogFileInformation.html" name="" title="LogFileInformation">LogFileInformation</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.Logger.html" name="" title="Logger">Logger</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.MinecraftConfigurationWriter.html" name="" title="MinecraftConfigurationWriter">MinecraftConfigurationWriter</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.MinecraftEdition.html" name="" title="MinecraftEdition">MinecraftEdition</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.MinecraftPlayer.html" name="" title="MinecraftPlayer">MinecraftPlayer</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.MinecraftVersionProvider.html" name="" title="MinecraftVersionProvider">MinecraftVersionProvider</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.MojangInteropUtility.html" name="" title="MojangInteropUtility">MojangInteropUtility</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.MojangInteropUtility.WebClientWithTimeout.html" name="" title="MojangInteropUtility.WebClientWithTimeout">MojangInteropUtility.WebClientWithTimeout</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.NameTimelineTag.html" name="" title="NameTimelineTag">NameTimelineTag</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.OpTag.html" name="" title="OpTag">OpTag</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.PlayerIDPairTag.html" name="" title="PlayerIDPairTag">PlayerIDPairTag</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.PlayerProfilePropertyTag.html" name="" title="PlayerProfilePropertyTag">PlayerProfilePropertyTag</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.PlayerProfileTag.html" name="" title="PlayerProfileTag">PlayerProfileTag</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.PlayerProfileTextureDataTag.html" name="" title="PlayerProfileTextureDataTag">PlayerProfileTextureDataTag</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.PlayerProfileURLTag.html" name="" title="PlayerProfileURLTag">PlayerProfileURLTag</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.PlayerProfileValueTag.html" name="" title="PlayerProfileValueTag">PlayerProfileValueTag</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.PluginController.html" name="" title="PluginController">PluginController</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.PortForwarder.html" name="" title="PortForwarder">PortForwarder</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.RemoveBackupAfterTimeIntervalPolicy.html" name="" title="RemoveBackupAfterTimeIntervalPolicy">RemoveBackupAfterTimeIntervalPolicy</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.ServerConfiguration.html" name="" title="ServerConfiguration">ServerConfiguration</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.ServerController.html" name="" title="ServerController">ServerController</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.ServerDownloadTag.html" name="" title="ServerDownloadTag">ServerDownloadTag</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.ServerProperty.html" name="" title="ServerProperty">ServerProperty</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.ServerProxy.html" name="" title="ServerProxy">ServerProxy</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.ServerProxy.ServerState.html" name="" title="ServerProxy.ServerState">ServerProxy.ServerState</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.ServerVersionInformation.html" name="" title="ServerVersionInformation">ServerVersionInformation</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.ServerVersionInformation.ReleaseType.html" name="" title="ServerVersionInformation.ReleaseType">ServerVersionInformation.ReleaseType</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.VersionDataTag.html" name="" title="VersionDataTag">VersionDataTag</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.VersionDownloadTag.html" name="" title="VersionDownloadTag">VersionDownloadTag</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.VersionInformationTag.html" name="" title="VersionInformationTag">VersionInformationTag</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.VersionMetadataTag.html" name="" title="VersionMetadataTag">VersionMetadataTag</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.WebInterface.html" name="" title="WebInterface">WebInterface</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.WebPort.html" name="" title="WebPort">WebPort</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.WhitelistTag.html" name="" title="WhitelistTag">WhitelistTag</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.World.html" name="" title="World">World</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.WorldController.html" name="" title="WorldController">WorldController</a>
+                          </li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="expand-stub"></span>
+                    <a href="IMS_Library.HTMLToMOTD.html" name="" title="IMS_Library.HTMLToMOTD">IMS_Library.HTMLToMOTD</a>
+                    
+                    <ul class="nav level2">
+                          <li>
+                              <a href="IMS_Library.HTMLToMOTD.BTag.html" name="" title="BTag">BTag</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.HTMLToMOTD.DivTag.html" name="" title="DivTag">DivTag</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.HTMLToMOTD.FontTag.html" name="" title="FontTag">FontTag</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.HTMLToMOTD.HTMLActiveModifiers.html" name="" title="HTMLActiveModifiers">HTMLActiveModifiers</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.HTMLToMOTD.HTMLNodePart.html" name="" title="HTMLNodePart">HTMLNodePart</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.HTMLToMOTD.HTMLStyledNodePart.html" name="" title="HTMLStyledNodePart">HTMLStyledNodePart</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.HTMLToMOTD.ITag.html" name="" title="ITag">ITag</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.HTMLToMOTD.MOTDServerProperty.html" name="" title="MOTDServerProperty">MOTDServerProperty</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.HTMLToMOTD.StrikeTag.html" name="" title="StrikeTag">StrikeTag</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.HTMLToMOTD.SupTag.html" name="" title="SupTag">SupTag</a>
+                          </li>
+                          <li>
+                              <a href="IMS_Library.HTMLToMOTD.UTag.html" name="" title="UTag">UTag</a>
+                          </li>
+                    </ul>
+                </li>
+          </ul>
+      </div>
+    </div>
+  </div>
+</div>

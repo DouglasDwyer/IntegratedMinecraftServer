@@ -1,5 +1,7 @@
-﻿@using System.Reflection
-@using IMS_Library 
+﻿@namespace IMS_Interface.Player
+
+@using System.Reflection
+@using IMS_Library
 
 @page "/ManagePlayers"
 @inject ServerProvider ServerSelector
@@ -101,7 +103,8 @@
 
 @code {
     protected Timer UpdateTimer;
-    protected PlayerDisplay SelectedView;
+    protected PlayerDisplay SelectedView { get => View.ShouldDisplayFor(ServerSelector.CurrentServer) ? View : View = Provider.PlayerManagerDisplays.First(); set => View = value; }
+    protected PlayerDisplay View;
 
     static ManagePlayers()
     {

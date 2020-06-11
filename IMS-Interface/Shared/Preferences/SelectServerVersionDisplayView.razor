@@ -1,4 +1,6 @@
-﻿@using IMS_Library
+﻿@namespace IMS_Interface.Preferences
+
+@using IMS_Library
 @using System.Reflection
 
 @inject PopupProvider PopupManager
@@ -10,7 +12,7 @@
 </style>
 <label style="width:300px;"><b>Select @DisplayData.Edition server version</b></label>
 <label></label>
-@{ 
+@{
     Information = IMS.Instance.VersionManager.AvailableServerVersions.Values
         .Where(x => x.Edition == DisplayData.Edition && (ShowSnapshots || x.VersionType != ServerVersionInformation.ReleaseType.Snapshot))
         .OrderByDescending(x => x.ReleaseTime);
@@ -29,20 +31,20 @@
         </option>
     }
 </select>
-<input id="showsnapshotscheckbox" type="checkbox" @bind-checked="ShowSnapshots" @bind-checked:event="onchange"/>
+<input id="showsnapshotscheckbox" type="checkbox" @bind-checked="ShowSnapshots" @bind-checked:event="onchange" />
 <label for="showsnapshotscheckbox">Show snapshots</label>
 <br />
 <br />
 <label></label>
 <div style="position:absolute;right:10px;bottom:10px;">
     <button class="btn btn-primary" disabled="@IsWorking" @onclick="x => BeginVersionDownloadAndSet(SelectedVersion.Version)">
-        @if(IsWorking)
+        @if (IsWorking)
         {
             @("Downloading...")
         }
         else
-        {            
-            if(SelectedVersion.PhysicalLocation is null)
+        {
+            if (SelectedVersion.PhysicalLocation is null)
             {
                 @("Select/download")
             }
@@ -77,7 +79,7 @@
 
     protected void EnsureSnapshotNotSelected()
     {
-        if(!ShowSnapshots && SelectedVersion != null && SelectedVersion.VersionType == ServerVersionInformation.ReleaseType.Snapshot)
+        if (!ShowSnapshots && SelectedVersion != null && SelectedVersion.VersionType == ServerVersionInformation.ReleaseType.Snapshot)
         {
             SelectedVersion = IMS.Instance.VersionManager.GetVersionInformationFromID(DisplayData.CurrentServerVersion);
             StateHasChanged();
@@ -86,7 +88,7 @@
 
     protected bool IsVersionDownloaded(string version)
     {
-        if(string.IsNullOrEmpty(version))
+        if (string.IsNullOrEmpty(version))
         {
             return IMS.Instance.VersionManager.LatestRelease.PhysicalLocation != null;
         }
@@ -104,13 +106,13 @@
     protected async Task DownloadVersionAndSetAsync(string version)
     {
         ServerVersionInformation information = IMS.Instance.VersionManager.AvailableServerVersions.ContainsKey(version ?? "") ? IMS.Instance.VersionManager.AvailableServerVersions[version] : IMS.Instance.VersionManager.LatestRelease;
-        if(information.PhysicalLocation is null)
+        if (information.PhysicalLocation is null)
         {
             try
             {
                 await information.DownloadServerBinaryAsync();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Logger.WriteWarning("Unable to download server binary for " + SelectedVersion.Name + "!\n" + e);
                 PopupManager.ShowPopup(new InformationPopupDisplay("IMS was unable to download the server binary.  Check your internet connection or consult the IMS log for more details.", "Downloading error"));

@@ -99,3 +99,5 @@ D:\Projects\IntegratedMinecraftServer\IMS-Service\obj\Debug\netcoreapp3.1\IMS-Se
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\Blazor.FileReader.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\obj\Debug\netcoreapp3.1\IMS-Service.csproj.CoreCompileInputs.cache
+D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\IMS-Interface.xml
+D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\IMS-Library.xml

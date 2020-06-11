@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IMS_Library
 {
-    public struct PlayerProfileTag
+    internal struct PlayerProfileTag
     {
         public string id;
         public string name;

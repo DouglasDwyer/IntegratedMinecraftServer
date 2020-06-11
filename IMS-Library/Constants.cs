@@ -8,25 +8,61 @@ using System.Threading.Tasks;
 
 namespace IMS_Library
 {
+    /// <summary>
+    /// This class contains constant data that is necessary for program operation, like the paths to various IMS files.
+    /// </summary>
     public static class Constants
     {
+        /// <summary>
+        /// This is the name of the IMS Windows service.
+        /// </summary>
         public const string ServiceName = "IMS";
-        public const string WebsiteLocation = "/Web";
+        /// <summary>
+        /// This is the folder, relative to the IMS root directory, that contains data necessary for IMS's operation.
+        /// </summary>
         public const string DataLocation = "/Data";
+        /// <summary>
+        /// This is the folder, relative to the IMS root directory, which contains IMS logfiles.
+        /// </summary>
         public const string LogLocation = DataLocation + "/Log";
+        /// <summary>
+        /// This is the path, relative to the IMS root directory, of the IMS settings file.
+        /// </summary>
         public const string ConfigurationFilePath = DataLocation + "/imssettings.xml";
+        /// <summary>
+        /// This is the folder, relative to the IMS root directory, which contains Minecraft server data.
+        /// </summary>
         public const string ServerFolderLocation = DataLocation + "/Server";
+        /// <summary>
+        /// This is the folder, relative to the IMS root directory, which contains Minecraft world data.
+        /// </summary>
         public const string WorldFolderLocation = DataLocation + "/World";
+        /// <summary>
+        /// This is the folder, relative to the IMS root directory, which contains executable assemblies that IMS uses (like the JRE).
+        /// </summary>
         public const string BinariesFolderLocation = DataLocation + "/Binaries";
+        /// <summary>
+        /// This is the folder, relative to the IMS root directory, which contains Minecraft server executables.
+        /// </summary>
         public const string ServerBinariesFolderLocation = BinariesFolderLocation + "/Servers";
+        /// <summary>
+        /// This is the path, relative to the IMS root directory, of the bundled Java runtime environment.
+        /// </summary>
         public const string JavaExecutableLocation = BinariesFolderLocation + "/Java/bin/java.exe";
-        public const string GraalVMExecutableLocation = BinariesFolderLocation + "/GraalVM/java.exe";
+        /// <summary>
+        /// This is the path of the current IMS root directory.
+        /// </summary>
         public static readonly string ExecutionPath = new FileInfo(Assembly.GetEntryAssembly().Location).Directory.ToString();
 
+        /// <summary>
+        /// This is how often the <see cref="PortForwarder"/> will check to see whether IMS is still connected to a UPnP router.
+        /// </summary>
         public const int CheckToEnsureNATConnectedInterval = 60000; //ms
-        public const int ComponentRestartClearTime = 10; //s
-        public const int InternalServerCommunicationPort = 43891;
+        //public const int ComponentRestartClearTime = 10; //s
 
+        /// <summary>
+        /// This is a dictionary which can be used to convert hex color codes (in the format "#rrggbb") to Minecraft formatting letter codes.
+        /// </summary>
         public static readonly Dictionary<string, string> MinecraftColorsHexAndFormattingCodes = new Dictionary<string, string>();
 
         static Constants()

@@ -1,4 +1,6 @@
-﻿@page "/Login"
+﻿@namespace IMS_Interface
+
+@page "/Login"
 @layout EmptyLayout
 
 @using System;
@@ -20,7 +22,7 @@
         <br />
         <label style="font-size:medium">Password</label>
         <br />
-        <input class="form-control" type="password" @bind="Password" onkeyup="if (event.keyCode === 13) { document.getElementById('LoginButton').click(); }"/>
+        <input class="form-control" type="password" @bind="Password" onkeyup="if (event.keyCode === 13) { document.getElementById('LoginButton').click(); }" />
         <br />
         <button class="btn btn-primary" id="LoginButton" type="submit" @onclick="AttemptLoginAsync">Login</button>
         <button class="btn btn-primary" style="margin-left:10px; background-color:transparent; color:#23527c" @onclick="RequestLoginReset">Reset username/password</button>
@@ -47,7 +49,7 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if(HasValidLoginCookie(JSRuntime, Context))
+        if (HasValidLoginCookie(JSRuntime, Context))
         {
             Navigator.NavigateTo("/", true);
         }
@@ -57,7 +59,7 @@
 
     public async Task AttemptLoginAsync()
     {
-        if(!IsLoginRequired)
+        if (!IsLoginRequired)
         {
             Navigator.NavigateTo("/");
         }
@@ -74,7 +76,7 @@
 
     public void RequestLoginReset()
     {
-        if(CredentialsResetter is null)
+        if (CredentialsResetter is null)
         {
             ErrorText = "Couldn't make a local credential reset request.";
         }
@@ -87,7 +89,7 @@
 
     public static bool HasValidLoginCookie(IJSRuntime runtime, IHttpContextAccessor context)
     {
-        if(RealUsername is null && RealPassword is null)
+        if (RealUsername is null && RealPassword is null)
         {
             return true;
         }

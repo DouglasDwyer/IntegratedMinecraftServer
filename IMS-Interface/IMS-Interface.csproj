@@ -5,6 +5,10 @@
     <RootNamespace>IMS_Interface</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\Projects\IntegratedMinecraftServer\IMS-Interface\IMS-Interface.xml</DocumentationFile>
+  </PropertyGroup>
+
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="XCOPY &quot;$(ProjectDir)wwwroot&quot; &quot;$(TargetDir)wwwroot&quot; /S /Y" />
   </Target>

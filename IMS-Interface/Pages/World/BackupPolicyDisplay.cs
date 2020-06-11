@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace IMS_Interface.Pages.World
+namespace IMS_Interface.World
 {
     public class BackupPolicyDisplay
     {

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace IMS_Library.HTMLToMOTD
 {
-    public class DivTag : HTMLStyledNodePart
+    internal class DivTag : HTMLStyledNodePart
     {
         public override void ApplyModifiers(ref string finalOutput, string nodeData, HTMLActiveModifiers modifiers)
         {

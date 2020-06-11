@@ -1,13 +1,15 @@
-﻿@using IMS_Library
+﻿@namespace IMS_Interface.World
+
+@using IMS_Library
 
 @inherits BackupPolicyDisplayView
 
 <style>
     .form-control {
-        display:inline-block;
-        width:200px;
-        margin-left:2px;
-        margin-right:2px;
+        display: inline-block;
+        width: 200px;
+        margin-left: 2px;
+        margin-right: 2px;
     }
 </style>
 <div style="display:inline-block">
@@ -20,9 +22,12 @@
 
 @code {
     public BackupAfterTimeIntervalPolicy Policy { get => (BackupAfterTimeIntervalPolicy)BackupPolicy; }
-    protected string CurrentBackupTime { get => Math.Floor(Policy.BackupInterval.TotalHours).ToString(); set {
+    protected string CurrentBackupTime
+    {
+        get => Math.Floor(Policy.BackupInterval.TotalHours).ToString(); set
+        {
             int totalValue;
-            if(int.TryParse(value, out totalValue))
+            if (int.TryParse(value, out totalValue))
             {
                 Policy.BackupInterval = new TimeSpan(totalValue, 0, 0);
             }

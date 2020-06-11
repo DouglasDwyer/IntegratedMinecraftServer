@@ -1,4 +1,6 @@
 ﻿@inherits LayoutComponentBase
+@namespace IMS_Interface
+
 @using IMS_Library;
 @using Microsoft.AspNetCore.Http;
 
@@ -7,43 +9,43 @@
 @inject PopupProvider PopupManager
 @inject ServerProvider ServerSelector
 
-        <style>
-            button, select {
-                outline: none !important;
-            }
+<style>
+    button, select {
+        outline: none !important;
+    }
 
-            .popup-background {
-                float: left;
-                position: fixed;
-                width: 100%;
-                height: 100%;
-                top: 0px;
-                left: 0px;
-                right: 0px;
-                bottom: 0px;
-                z-index: 599;
-                background-color: rgba(0,0,0,0.5);
-                display: flex;
-            }
+    .popup-background {
+        float: left;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        z-index: 599;
+        background-color: rgba(0,0,0,0.5);
+        display: flex;
+    }
 
-            .world-card {
-                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-                width: 200px;
-                height: 250px;
-                border-radius: 5px;
-                display: inline-grid;
-                margin: 5px;
-                image-rendering: pixelated;
-                background-color: white;
-            }
-        </style>
-        @{ 
-            PopupManager.OnPopupChange = StateHasChanged;
-        }
-        @if (PopupManager.CurrentPopupFragment != null)
-        {
-            <div class="popup-background">
-                <div class="world-card" style="
+    .world-card {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        width: 200px;
+        height: 250px;
+        border-radius: 5px;
+        display: inline-grid;
+        margin: 5px;
+        image-rendering: pixelated;
+        background-color: white;
+    }
+</style>
+@{
+    PopupManager.OnPopupChange = StateHasChanged;
+}
+@if (PopupManager.CurrentPopupFragment != null)
+{
+    <div class="popup-background">
+        <div class="world-card" style="
                 margin: auto;
                 width: unset;
                 display:block;
@@ -52,44 +54,44 @@
                 height:unset;
                 overflow:auto;
             ">
-                    @PopupManager.CurrentPopupFragment
-                </div>
-            </div>
-        }
+            @PopupManager.CurrentPopupFragment
+        </div>
+    </div>
+}
 
-        <NavMenu />
-        <div class="main">
+<NavMenu />
+<div class="main">
 
-            <div class="navbar navbar-inverse navbar-fixed-top" style="z-index:300">
-                <div>
-                    <div class="navbar-header">
-                        <a class="navbar-brand" style="padding:15px 0px" href="/">Integrated Minecraft Server</a>
-                    </div>
-
-                    <div style="top:10px; right:8px; position:absolute;">
-                        @if (IMS.Instance.ServerManager.Servers.Count > 0)
-                        {
-                            <select style="width:250px" class="btn btn-default dropdown-toggle" @bind="CurrentServerBoxText">
-                                @foreach (ServerProxy proxy in IMS.Instance.ServerManager.Servers)
-                                {
-                                    <option value="@proxy.ID">@proxy.CurrentConfiguration.ServerName</option>
-                                }
-                                <option value="NEW">Create new server...</option>
-                            </select>
-                        }
-                        @if (IMS_Interface.Pages.Login.IsLoginRequired)
-                        {
-                            <button style="background-color:transparent; margin-left:10px; border-style:none; color:white" @onclick="LogoutAsync">Sign Out</button>
-                        }
-                    </div>
-                </div>
+    <div class="navbar navbar-inverse navbar-fixed-top" style="z-index:300">
+        <div>
+            <div class="navbar-header">
+                <a class="navbar-brand" style="padding:15px 0px" href="/">Integrated Minecraft Server</a>
             </div>
 
-            <div class="px-4" style="margin-left:80px; margin-top:74px; margin-right:10px">
-                @Body
-                <br />
+            <div style="top:10px; right:8px; position:absolute;">
+                @if (IMS.Instance.ServerManager.Servers.Count > 0)
+                {
+                    <select style="width:250px" class="btn btn-default dropdown-toggle" @bind="CurrentServerBoxText">
+                        @foreach (ServerProxy proxy in IMS.Instance.ServerManager.Servers)
+                        {
+                            <option value="@proxy.ID">@proxy.CurrentConfiguration.ServerName</option>
+                        }
+                        <option value="NEW">Create new server...</option>
+                    </select>
+                }
+                @if (Login.IsLoginRequired)
+                {
+                    <button style="background-color:transparent; margin-left:10px; border-style:none; color:white" @onclick="LogoutAsync">Sign Out</button>
+                }
             </div>
         </div>
+    </div>
+
+    <div class="px-4" style="margin-left:80px; margin-top:74px; margin-right:10px">
+        @Body
+        <br />
+    </div>
+</div>
 @code {
     [Inject]
     protected NavigationManager Navigator { get; set; }
@@ -102,7 +104,7 @@
         }
         set
         {
-            if(value == "NEW")
+            if (value == "NEW")
             {
                 Navigator.NavigateTo("/CreateNewServer", false);
             }
@@ -115,10 +117,9 @@
 
     protected override void OnInitialized()
     {
-        if (Navigator.ToBaseRelativePath(Navigator.Uri) != "Login" && !Pages.Login.HasValidLoginCookie(JSRuntime, Context))
+        if (Navigator.ToBaseRelativePath(Navigator.Uri) != "Login" && !Login.HasValidLoginCookie(JSRuntime, Context))
         {
             Navigator.NavigateTo("/Login", true);
-            throw new NavigationException("/Login");
         }
         NavigateToNewServerPage();
     }
@@ -128,7 +129,6 @@
         if (IMS.Instance.ServerManager.Servers.Count == 0 && Navigator.ToBaseRelativePath(Navigator.Uri) != "CreateNewServer")
         {
             Navigator.NavigateTo("/CreateNewServer", true);
-            throw new NavigationException("/CreateNewServer");
         }
     }
 
@@ -139,8 +139,7 @@
 
     protected async Task LogoutAsync()
     {
-        await Pages.Login.DeleteLoginCookie(JSRuntime);
+        await Login.DeleteLoginCookie(JSRuntime);
         Navigator.NavigateTo("/Login", true);
-        throw new NavigationException("/Login");
     }
 }

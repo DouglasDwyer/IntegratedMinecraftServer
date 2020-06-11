@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace IMS_Library
 {
     [Serializable]
-    public struct WhitelistTag
+    internal struct WhitelistTag
     {
         public string name;
         public string uuid;

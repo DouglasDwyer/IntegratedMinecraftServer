@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IMS_Library
 {
-    public struct NameTimelineTag
+    internal struct NameTimelineTag
     {
         public string name;
         public long changedToAt;

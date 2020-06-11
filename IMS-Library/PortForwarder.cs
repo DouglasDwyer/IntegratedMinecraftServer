@@ -10,30 +10,42 @@ using System.Diagnostics;
 
 namespace IMS_Library
 {
-    public class PortForwarder : IDisposable
+    /// <summary>
+    /// This is a manager class used to regulate interactions with a UPnP router.  It can be used to automatically forward ports.
+    /// </summary>
+    public sealed class PortForwarder
     {
+        /// <summary>
+        /// This returns whether the <see cref="PortForwarder"/> object is currently connected to a UPnP capable router.
+        /// </summary>
         public bool ConnectedToPortForwardableDevice => UPnPDevice != null;
 
-        protected object Locker = new object();
+        private object Locker = new object();
 
         private NatDevice UPnPDevice;
         private Timer DeviceReconnectTimer;
         private List<int> Ports = new List<int>();
         
+        /// <summary>
+        /// Creates a new <see cref="PortForwarder"/> instance.
+        /// </summary>
         public PortForwarder()
         {
             DeviceReconnectTimer = new Timer();
             DeviceReconnectTimer.Interval = Constants.CheckToEnsureNATConnectedInterval;
             DeviceReconnectTimer.Elapsed += CheckConnection;
-            DeviceReconnectTimer.Start();
         }
 
+        /// <summary>
+        /// Begins the <see cref="PortForwarder"/> instance, attempting to find a UPnP capable router and starting network connection monitoring.
+        /// </summary>
         public void Start()
         {
             FindUPnPDevice();
+            DeviceReconnectTimer.Start();
         }
 
-        protected void FindUPnPDevice()
+        private void FindUPnPDevice()
         {
             lock (Locker)
             {
@@ -54,6 +66,10 @@ namespace IMS_Library
             }
         }
 
+        /// <summary>
+        /// Adds the specified port to a list of ports to forward, and attempts to forward the port.  If disconnected or not currently connected to a UPnP router, the port will be "remembered" and forwarded when possible.
+        /// </summary>
+        /// <param name="port">The port number to forward.</param>
         public void ForwardPort(int port)
         {
             lock (Locker)
@@ -66,6 +82,10 @@ namespace IMS_Library
             }
         }
 
+        /// <summary>
+        /// Removes the specified port from the port forwarding list.
+        /// </summary>
+        /// <param name="port">The port to remove.</param>
         public void RemovePort(int port)
         {
             lock (Locker)
@@ -78,7 +98,7 @@ namespace IMS_Library
             }
         }
 
-        protected void AttemptToForwardPortInternally(int port)
+        private void AttemptToForwardPortInternally(int port)
         {
             try
             {
@@ -91,7 +111,7 @@ namespace IMS_Library
             }
         }
 
-        protected void AttemptToRemovePortInternally(int port)
+        private void AttemptToRemovePortInternally(int port)
         {
             try
             {
@@ -104,7 +124,7 @@ namespace IMS_Library
             }
         }
 
-        protected void CheckConnection(object sender, EventArgs args)
+        private void CheckConnection(object sender, EventArgs args)
         {
             lock(Locker) {
                 if (UPnPDevice is null)
@@ -140,10 +160,17 @@ namespace IMS_Library
             }
         }
 
-        public void Dispose()
+        /// <summary>
+        /// Stops the port forwarding instance, removing all forwarded ports and stopping network connection monitoring.
+        /// </summary>
+        public void Stop()
         {
             lock (this)
             {
+                foreach(int port in Ports)
+                {
+                    RemovePort(port);
+                }
                 DeviceReconnectTimer.Stop();
             }
         }

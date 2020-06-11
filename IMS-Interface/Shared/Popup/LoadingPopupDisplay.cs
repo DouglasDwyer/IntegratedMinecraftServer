@@ -4,9 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using IMS_Interface.Pages.Popup;
 
-namespace IMS_Interface.Shared.Popup
+namespace IMS_Interface
 {
     public class LoadingPopupDisplay : PopupDisplay<LoadingPopupDisplayView>
     {

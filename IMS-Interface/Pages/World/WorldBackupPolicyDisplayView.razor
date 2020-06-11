@@ -1,11 +1,13 @@
-﻿@using IMS_Library
+﻿@namespace IMS_Interface.World
+
+@using IMS_Library
 
 @inherits WorldDisplayView
 @implements IDisposable
 
 <style>
     label {
-        font-weight:normal;
+        font-weight: normal;
     }
 
     .linkbutton {
@@ -13,7 +15,7 @@
         border: none;
         padding: 0 !important;
         color: #23527c;
-        vertical-align:middle;
+        vertical-align: middle;
     }
 </style>
 <select style="width:250px; margin-top:10px" class="btn btn-default dropdown-toggle" @bind="AddPolicyDropdownValue">

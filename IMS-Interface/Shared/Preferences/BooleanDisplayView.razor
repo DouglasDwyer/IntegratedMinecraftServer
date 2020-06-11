@@ -1,4 +1,6 @@
-﻿@inherits PreferenceDisplayView
+﻿@namespace IMS_Interface.Preferences
+
+@inherits PreferenceDisplayView
 @using System.Reflection
 
 <label>@DisplayData.DisplayName</label>
@@ -24,7 +26,7 @@
         }
         set
         {
-            if(value == 0 || value == 1)
+            if (value == 0 || value == 1)
             {
                 DisplayData.ParentDisplay.CurrentConfiguration.GetType().GetField(DisplayData.FieldName, BindingFlags.Public | BindingFlags.Instance).SetValue(DisplayData.ParentDisplay.CurrentConfiguration, value == 0);
             }
@@ -32,7 +34,8 @@
         }
     }
 
-    protected string[] GetOptions() {
+    protected string[] GetOptions()
+    {
         return new[] { (DisplayData as BooleanDisplay).WhenTrue, (DisplayData as BooleanDisplay).WhenFalse };
     }
 }

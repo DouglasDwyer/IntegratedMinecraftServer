@@ -5,6 +5,9 @@ using System.Security.Cryptography;
 
 namespace IMS_Library
 {
+    /// <summary>
+    /// This static class contains methods for encrypting data using both symmetric and assymetric algorithms.
+    /// </summary>
     public static class Encryption
     {
         private static SHA512 EncryptionProvider = SHA512.Create();
@@ -13,7 +16,7 @@ namespace IMS_Library
         /// Retrieves a securely-generated list of bytes for use in cryptographic operations.
         /// </summary>
         /// <param name="size">The size of the byte array to return.</param>
-        /// <returns></returns>
+        /// <returns>A byte array containing a series of randomized bytes.</returns>
         public static byte[] GetRandomBytes(byte size)
         {
             byte[] randValues = new byte[size];
@@ -25,7 +28,7 @@ namespace IMS_Library
         /// Hashes a series of bytes using the SHA512 encryption algorithm.
         /// </summary>
         /// <param name="toEncrypt">The series of bytes to encrypt.</param>
-        /// <returns></returns>
+        /// <returns>An SHA512-hashed byte array.</returns>
         public static byte[] HashBytes(byte[] toEncrypt)
         {
             return EncryptionProvider.ComputeHash(toEncrypt);
@@ -36,7 +39,7 @@ namespace IMS_Library
         /// </summary>
         /// <param name="toEncrypt">The series of bytes to encrypt.</param>
         /// <param name="nonce">The random sequence to append.</param>
-        /// <returns></returns>
+        /// <returns>An SHA512-hashed byte array.</returns>
         public static byte[] HashBytes(byte[] toEncrypt, byte[] nonce)
         {
             List<byte> encrypted = new List<byte>(toEncrypt);

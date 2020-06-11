@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IMS_Library
 {
-    public struct PlayerProfileValueTag
+    internal struct PlayerProfileValueTag
     {
         public long timestamp;
         public string profileId;

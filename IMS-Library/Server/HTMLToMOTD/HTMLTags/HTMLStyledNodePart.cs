@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace IMS_Library.HTMLToMOTD
 {
-    public abstract class HTMLStyledNodePart : HTMLNodePart
+    internal abstract class HTMLStyledNodePart : HTMLNodePart
     {
         protected List<Action<HTMLActiveModifiers>> StylingDataRemovalActions = new List<Action<HTMLActiveModifiers>>();
 

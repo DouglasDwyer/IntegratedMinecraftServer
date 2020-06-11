@@ -1,4 +1,6 @@
-﻿@using IMS_Library
+﻿@namespace IMS_Interface.World
+
+@using IMS_Library
 @using System.IO
 @using System.Threading 
 @using Blazor.FileReader
@@ -115,17 +117,12 @@
 
     protected override void OnInitialized()
     {
-        ServerSelector.OnServerSelectionChange += OnServerChange;
+        ServerSelector.OnServerSelectionChange += StateHasChanged;
     }
 
     public void Dispose()
     {
-        ServerSelector.OnServerSelectionChange -= OnServerChange;
-    }
-
-    protected void OnServerChange(object sender, EventArgs data)
-    {
-        StateHasChanged();
+        ServerSelector.OnServerSelectionChange -= StateHasChanged;
     }
 
     protected string GetRelativeWorldIcon(World world)

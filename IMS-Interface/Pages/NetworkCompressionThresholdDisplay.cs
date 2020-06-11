@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using IMS_Interface.Shared.Preferences;
+using IMS_Interface.Preferences;
 
-namespace IMS_Interface.Pages
+namespace IMS_Interface
 {
     public class NetworkCompressionThresholdDisplay : PreferenceDisplay
     {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IMS_Library
 {
-    public struct PlayerProfileTextureDataTag
+    internal struct PlayerProfileTextureDataTag
     {
         public PlayerProfileURLTag SKIN;
         public PlayerProfileURLTag CAPE;

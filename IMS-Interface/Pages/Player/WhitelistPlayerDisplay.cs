@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace IMS_Interface.Pages.Player
+namespace IMS_Interface.Player
 {
     public class WhitelistPlayerDisplay : PlayerDisplay
     {

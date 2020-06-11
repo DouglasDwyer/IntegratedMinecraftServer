@@ -18,5 +18,6 @@
   </metadata>
   <files>
     <file src="D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Debug\netcoreapp3.1\IMS-Library.dll" target="lib\netcoreapp3.1\IMS-Library.dll" />
+    <file src="D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Debug\netcoreapp3.1\IMS-Library.xml" target="lib\netcoreapp3.1\IMS-Library.xml" />
   </files>
 </package>

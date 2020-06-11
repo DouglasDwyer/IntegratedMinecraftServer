@@ -1,4 +1,6 @@
-﻿@using IMS_Library
+﻿@namespace IMS_Interface.World
+
+@using IMS_Library
 
 @inherits WorldDisplayView
 @inject NavigationManager Navigator
@@ -161,9 +163,9 @@
 
     protected void CreateNewBackup()
     {
-        lock(Locker)
+        lock (Locker)
         {
-            if(CurrentTask is null)
+            if (CurrentTask is null)
             {
 
                 string backup = NewBackupName;

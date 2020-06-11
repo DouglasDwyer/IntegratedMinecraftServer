@@ -1,4 +1,6 @@
-﻿@using IMS_Library
+﻿@namespace IMS_Interface.World
+
+@using IMS_Library
 
 @inject PopupProvider PopupManager
 
@@ -41,7 +43,7 @@
             {
                 await server.StopAsync();
                 server.CurrentConfiguration.WorldID = Guid.Empty;
-                if(server.CurrentConfiguration is JavaServerConfiguration config)
+                if (server.CurrentConfiguration is JavaServerConfiguration config)
                 {
                     config.LevelSeed = "";
                     config.LevelType = "default";
