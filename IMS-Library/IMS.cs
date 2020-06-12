@@ -59,6 +59,10 @@ namespace IMS_Library
         /// Returns the version provider, which can be used to fetch data about Minecraft server versions or download them off the internet.
         /// </summary>
         public MinecraftVersionProvider VersionManager { get; private set; }
+        /// <summary>
+        /// Returns the update manager, which is used to download/install the latest version of IMS from the internet.
+        /// </summary>
+        public UpdateController UpdateManager { get; private set; }
 
         private int exitCode = 0;
 
@@ -68,7 +72,6 @@ namespace IMS_Library
             CanPauseAndContinue = false;
             CanShutdown = true;
             CanStop = true;
-
             Instance = this;
         }
 
@@ -91,10 +94,10 @@ namespace IMS_Library
         /// Stops the IMS Windows service, shutting down with the specified error code.
         /// </summary>
         /// <param name="error">The error code to return.</param>
-        public void Stop(int error)
+        public void Stop(int error = 0)
         {
             exitCode = error;
-            Stop();
+            base.Stop();
         }
 
         private void Execute()
@@ -108,10 +111,14 @@ namespace IMS_Library
             PluginManager = new PluginController();
             PluginManager.Initialize();
 
+            FirewallManager = new FirewallController();
+            FirewallManager.CreateFirewallExecutableException("MainService", Constants.ExecutionPath + "/IMS-Service.exe");
+
             PortManager = new PortForwarder();
             PortManager.Start();
 
-            FirewallManager = new FirewallController();
+            UpdateManager = new UpdateController();
+            UpdateManager.Start();
 
             VersionManager = new MinecraftVersionProvider().FromConfiguration();
             VersionManager.Start();
@@ -140,7 +147,9 @@ namespace IMS_Library
             ServerManager.Stop();
             WorldManager.Stop();
             VersionManager.Stop();
+            UpdateManager.Stop();
             PortManager.Stop();
+            FirewallManager.RemoveFirewallExecutableException("MainService");
             CurrentSettings.SaveConfiguration();
             if (exitCode != 0)
             {

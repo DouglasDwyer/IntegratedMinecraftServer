@@ -1,0 +1,37 @@
+﻿@namespace IMS_Interface.Preferences
+
+@inherits PreferenceDisplayView
+@using System.Reflection;
+
+<label>@DisplayData.DisplayName</label>
+<br />
+<input class="form-control"
+       style="margin-top:5px;margin-bottom:5px; width:150px; display:unset"
+       data-toggle="tooltip"
+       data-placement="right"
+       data-title="@DisplayData.Description"
+       type="number"
+       min="@((DisplayData as DoubleDisplay).Minimum)"
+       max="@((DisplayData as DoubleDisplay).Maximum)"
+       @bind="Value" />
+<br />
+
+@code {
+    public virtual string Value
+    {
+        get
+        {
+            return DisplayData.ParentDisplay.CurrentConfiguration.GetType().GetField(DisplayData.FieldName, BindingFlags.Public | BindingFlags.Instance).GetValue(DisplayData.ParentDisplay.CurrentConfiguration).ToString();
+        }
+        set
+        {
+            double val;
+            if (double.TryParse((string)value, out val) && val >= (DisplayData as DoubleDisplay).Minimum && val <= (DisplayData as DoubleDisplay).Maximum)
+            {
+                DisplayData.ParentDisplay.CurrentConfiguration.GetType().GetField(DisplayData.FieldName, BindingFlags.Public | BindingFlags.Instance).SetValue(DisplayData.ParentDisplay.CurrentConfiguration, val);
+            }
+
+            DisplayData.ParentDisplay.NotifyStateChanged();
+        }
+    }
+}

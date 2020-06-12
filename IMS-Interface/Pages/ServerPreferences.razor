@@ -9,7 +9,7 @@
 <h3>Server Preferences</h3>
 
 <br />
-<PreferenceEditor FieldDisplays="PreferenceLayout" StartingConfiguration="GetCurrentPreferences()" OnApply="ApplySettings" ApplyText="@ApplyText" @ref="Editor"></PreferenceEditor>
+<PreferenceEditor FieldDisplays="PreferenceLayout" StartingConfiguration="PreferenceConfiguration" OnApply="ApplySettings" ApplyText="@ApplyText" @ref="Editor"></PreferenceEditor>
 
 @code {
     public PreferenceEditor Editor;
@@ -18,6 +18,7 @@
     protected string ApplyText { get => ServerSelector.CurrentServer.State == ServerProxy.ServerState.Disabled ? "Apply" : "Apply and Restart"; }
 
     protected Task UpdateSettingsTask = null;
+    protected IMSConfiguration PreferenceConfiguration { get; set; }
 
     static ServerPreferences()
     {
@@ -53,6 +54,7 @@
             layout.Add(new NetworkCompressionThresholdDisplay("NetworkCompressionThreshold", "Network compression threshold", "This setting controls how many bytes a packet must be for the server to compress it."));
             layout.Add(new BooleanDisplay("OnlineMode", "Online mode", "This setting determines whether the server attempts to authenticate users with Mojang's services.  If set to false, clients can claim that their username is anything they want, resulting in people able to log in as other users.  Only set this to false if you are certain of what it does.", "Yes", "No"));
             layout.Add(new ConditionalDisplay(new BooleanDisplay("PreventProxyConnections", "Prevent proxy connections", "This setting ensures that users log into the server using the same IP address as their Mojang session.", "Yes", "No"), config => ((JavaServerConfiguration)config).OnlineMode));
+            layout.Add(new PlayerIdleTimeoutDisplay("PlayerIdleTimeout", "Player idle timeout", "This setting determines how many minutes a player may be idle before the server kicks them."));
             layout.Add(new MultiToggleDisplay("DefaultOpPermissionLevel", "Default op permission level", "This setting determines which commands ops may use by default.  Enabling a setting like \"singleplayer commands\" also causes inheritance of the bypass spawn protection option.", new[] { "Bypass spawn protection", "Singleplayer commands", "Multiplayer exclusive commands", "Server console commands" }) { IndexOffset = 1 });
             layout.Add(new BooleanDisplay("EnablePVP", "Enable PVP", "This setting determines whether players can attack/kill one another.", "Yes", "No"));
             layout.Add(new StringDisplay("ResourcePack", "Resource pack URL", "This setting controls what resource pack the server sends to the client"));
@@ -73,7 +75,24 @@
         layoutGenerator = () =>
         {
             List<PreferenceDisplay> layout = new List<PreferenceDisplay>();
+            layout.Add(new StringDisplay("ServerDisplayName", "Server display name", "This setting determines the name of the server that appears on players' title screens."));
+            layout.Add(new BooleanDisplay("AllowCheats", "Allow cheats", "This setting determines whether server operators can use commands in-game.", "Yes", "No"));
             layout.Add(new MultiToggleDisplay("Gamemode", "Gamemode", "This setting determines the default gamemode that new players spawn with.", new[] { "Survival", "Creative", "Adventure", "Spectator" }));
+            layout.Add(new MultiToggleDisplay("Difficulty", "Difficulty", "This setting controls the difficulty of the server.", new[] { "Peaceful", "Easy", "Normal", "Hard" }));
+            layout.Add(new IntegerDisplay("MaxPlayers", "Maximum player count", "This setting determines the maximum number of players that can be on the server at once.", 0, int.MaxValue));
+            layout.Add(new BooleanDisplay("OnlineMode", "Online mode", "This setting determines whether the server attempts to authenticate users with Mojang's services.  If set to false, clients can claim that their username is anything they want, resulting in people able to log in as other users.  Only set this to false if you are certain of what it does.", "Yes", "No"));
+            layout.Add(new IntegerDisplay("ViewDistance", "Player view distance", "This setting determines the distance (in chunks) that the server will load for any one client.", 0, int.MaxValue));
+            layout.Add(new PlayerIdleTimeoutDisplay("PlayerIdleTimeout", "Player idle timeout", "This setting determines how many minutes a player may be idle before the server kicks them."));
+            layout.Add(new MaximumThreadDisplay("MaximumThreads", "Maximum server threads", "This setting determines the maximum number of worker threads that the server will allocate."));
+            layout.Add(new IntegerDisplay("TickDistance", "Player tick distance", "This setting determines the distance (in chunks) that the server will tick for any one client.", 0, int.MaxValue));
+            layout.Add(new BooleanDisplay("TexturePackRequired", "Texture pack required", "This setting determines whether players must download a texture pack in order to join the server.", "Yes", "No"));
+            layout.Add(new BooleanDisplay("ContentLogging", "Content logging", "This setting determines whether the server will log content errors to a file.", "Enabled", "Disabled"));
+            layout.Add(new NetworkCompressionThresholdDisplay("NetworkCompressionThreshold", "Network compression threshold", "This setting controls how many bytes a packet must be for the server to compress it."));
+            layout.Add(new BooleanDisplay("ServerAuthoritativeMovement", "Server authoritative movement", "This setting determines whether the server will analyze player movement to prevent cheating.", "Enabled", "Disabled"));
+            layout.Add(new ConditionalDisplay(new IntegerDisplay("PlayerMovementScoreThreshold", "Abnormal player movement score threshold", "This setting determines the number of times that abnormal movement of a player can occur before it is reported.", 1, int.MaxValue), config => ((BedrockServerConfiguration)config).ServerAuthoritativeMovement));
+            layout.Add(new ConditionalDisplay(new DoubleDisplay("PlayerMovementDistanceThreshold", "Abnormal player movement distance threshold", "This setting determines the number of times that abnormal behavior of a client can occur before it is reported.", 0, double.MaxValue), config => ((BedrockServerConfiguration)config).ServerAuthoritativeMovement));
+            layout.Add(new ConditionalDisplay(new IntegerDisplay("PlayerMovementDurationThreshold", "Abnormal player movement duration threshold", "This setting determines the difference between server and player-calculated positions, in blocks, that must be exceeded before abnormal movement is detected.", 1, int.MaxValue), config => ((BedrockServerConfiguration)config).ServerAuthoritativeMovement));
+            layout.Add(new ConditionalDisplay(new BooleanDisplay("CorrectPlayerMovement", "Player movement correction", "This setting determines whether the server should correct players' position when their movement score exceeds the threshold.", "Enabled", "Disabled"), config => ((BedrockServerConfiguration)config).ServerAuthoritativeMovement));
             return layout;
         };
         Provider.ServerPreferenceDisplayBinding.Add(new ConfigurationPreferenceDisplayBinding(typeof(BedrockServerConfiguration), layoutGenerator));
@@ -82,12 +101,14 @@
     protected override void OnInitialized()
     {
         ServerSelector.OnServerSelectionChange += ChangeServerSelection;
-        SetPreferencesBasedOnPreferenceType(GetCurrentPreferences().GetType());
+        PreferenceConfiguration = ServerSelector.CurrentServer.CurrentConfiguration;
+        SetPreferencesBasedOnPreferenceType(PreferenceConfiguration.GetType());
     }
 
     private void ChangeServerSelection()
     {
-        SetPreferencesBasedOnPreferenceType(GetCurrentPreferences().GetType());
+        PreferenceConfiguration = ServerSelector.CurrentServer.CurrentConfiguration;
+        SetPreferencesBasedOnPreferenceType(PreferenceConfiguration.GetType());
         StateHasChanged();
     }
 
@@ -128,13 +149,9 @@
         }
     }
 
-    public ServerConfiguration GetCurrentPreferences()
-    {
-        return ServerSelector.CurrentServer.CurrentConfiguration;
-    }
-
     protected void ApplySettings(IMSConfiguration configuration)
     {
+        PreferenceConfiguration = configuration;
         if (UpdateSettingsTask != null) { return; }
         ServerProxy toRestart = ServerSelector.CurrentServer;
         ServerConfiguration serverConfig = configuration as ServerConfiguration;

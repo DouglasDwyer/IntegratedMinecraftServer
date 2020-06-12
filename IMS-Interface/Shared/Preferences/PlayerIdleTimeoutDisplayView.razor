@@ -1,0 +1,73 @@
+﻿@namespace IMS_Interface
+
+@inherits PreferenceDisplayView
+@using System.Reflection
+
+<label>@DisplayData.DisplayName</label>
+<br />
+<div data-toggle="tooltip"
+     data-placement="right"
+     data-title="@DisplayData.Description" style="display:inline-block; margin:5px 0px">
+    <MultiToggle Options="@(new string[] { "Don't kick idle players", "Kick idle players" })"
+                 SelectedIndex="SelectedItem"
+                 OnSelectionChange="@(x => SelectedItem = x)"></MultiToggle>
+</div>
+<br />
+@if (SelectedItem != 0)
+{
+    <input class="form-control"
+           style="margin-top:5px;margin-bottom:5px; width:150px; display:unset"
+           type="number"
+           min="1"
+           max="@int.MaxValue)"
+           @bind="Value" />
+    <br />
+}
+
+@code {
+    public string Value
+    {
+        get
+        {
+            return DisplayData.ParentDisplay.CurrentConfiguration.GetType().GetField(DisplayData.FieldName, BindingFlags.Public | BindingFlags.Instance).GetValue(DisplayData.ParentDisplay.CurrentConfiguration).ToString();
+        }
+        set
+        {
+            int val;
+            if (int.TryParse((string)value, out val))
+            {
+                DisplayData.ParentDisplay.CurrentConfiguration.GetType().GetField(DisplayData.FieldName, BindingFlags.Public | BindingFlags.Instance).SetValue(DisplayData.ParentDisplay.CurrentConfiguration, val);
+            }
+
+            DisplayData.ParentDisplay.NotifyStateChanged();
+        }
+    }
+
+    public int SelectedItem
+    {
+        get
+        {
+            int selection = (int)DisplayData.ParentDisplay.CurrentConfiguration.GetType().GetField(DisplayData.FieldName, BindingFlags.Public | BindingFlags.Instance).GetValue(DisplayData.ParentDisplay.CurrentConfiguration);
+            if (selection == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                return 1;
+            }
+        }
+        set
+        {
+            if(value == 0)
+            {
+                Value = "0";
+            }
+            else
+            {
+                Value = "1";
+            }
+            DisplayData.ParentDisplay.NotifyStateChanged();
+        }
+    }
+}

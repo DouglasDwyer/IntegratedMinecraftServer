@@ -242,6 +242,11 @@
             Returns the version provider, which can be used to fetch data about Minecraft server versions or download them off the internet.
             </summary>
         </member>
+        <member name="P:IMS_Library.IMS.UpdateManager">
+            <summary>
+            Returns the update manager, which is used to download/install the latest version of IMS from the internet.
+            </summary>
+        </member>
         <member name="M:IMS_Library.IMS.Restart">
             <summary>
             Restarts the IMS Windows service.
@@ -1065,7 +1070,7 @@
             Whether the server should log content errors to a file.
             </summary>
         </member>
-        <member name="F:IMS_Library.BedrockServerConfiguration.CompressionThreshold">
+        <member name="F:IMS_Library.BedrockServerConfiguration.NetworkCompressionThreshold">
             <summary>
             The threshold (in bytes) at which the server should start compressing messages.
             </summary>
@@ -1087,7 +1092,7 @@
         </member>
         <member name="F:IMS_Library.BedrockServerConfiguration.PlayerMovementDurationThreshold">
             <summary>
-            The duration of time, in milliseconds, the server and client positions can be out of sync (as defined by <see cref="F:IMS_Library.BedrockServerConfiguration.PlayerMovementDistanceThreshold"/>) the abnormal movement score is incremented.
+            The duration of time, in milliseconds, the server and client positions can be out of sync (as defined by <see cref="F:IMS_Library.BedrockServerConfiguration.PlayerMovementDistanceThreshold"/>) before the abnormal movement score is incremented.
             </summary>
         </member>
         <member name="F:IMS_Library.BedrockServerConfiguration.CorrectPlayerMovement">
@@ -2386,6 +2391,52 @@
             <summary>
             This server version corresponds to an alpha version of Minecraft.
             </summary>
+        </member>
+        <member name="T:IMS_Library.UpdateController">
+            <summary>
+            This controller is in charge of keeping IMS up-to-date by downloading IMS version information and update packages as necessary.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.UpdateController.CurrentVersion">
+            <summary>
+            The version of IMS that is currently running.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.UpdateController.UpdatesReadyForInstallation">
+            <summary>
+            Whether there are new IMS updates ready for installation.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.UpdateController.VersionDataURL">
+            <summary>
+            The URL which contains data about the latest version of IMS.  Fetching this URL should return a string that can be parsed into a <see cref="T:System.Version"/> object.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.UpdateController.LatestUpdateURL">
+            <summary>
+            The URL which contains a zipfile of the latest version of IMS.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.UpdateController.Start">
+            <summary>
+            Starts the controller, automatically checking to see whether updates are available.  If new updates have been downloaded, IMS may update and restart.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.UpdateController.Stop">
+            <summary>
+            Stops the controller.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.UpdateController.UpdateAndRestart">
+            <summary>
+            Causes IMS to shut down, copies the queued update files over the current IMS installation, and then starts IMS again.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.UpdateController.DownloadUpdatesAsync">
+            <summary>
+            Gets version data from the internet about the latest copy of IMS, and downloads the latest version if IMS is out-of-date.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object representing the current state of the download operation.</returns>
         </member>
         <member name="T:IMS_Library.WebInterface">
             <summary>

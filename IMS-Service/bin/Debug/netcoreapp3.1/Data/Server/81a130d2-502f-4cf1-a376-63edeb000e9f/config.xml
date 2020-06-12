@@ -34,7 +34,7 @@
         <MaxTickTime>60000</MaxTickTime>
         <MaxWorldSize>29999984</MaxWorldSize>
         <MessageOfTheDay
-            type="String">&lt;b style=""&gt;&lt;font color="#000000"&gt;Why&lt;/font&gt;&lt;font color="#ff55ff"&gt; &lt;/font&gt;&lt;i style=""&gt;&lt;u style=""&gt;&lt;font color="#ff5555"&gt;a&lt;strike style=""&gt;m&lt;/strike&gt;&lt;/font&gt;&lt;/u&gt;&lt;/i&gt;&lt;font color="#ff55ff"&gt; &lt;/font&gt;&lt;font color="#00aa00"&gt;I like&lt;/font&gt;&lt;font color="#ff55ff"&gt; this&lt;/font&gt;&lt;font color="#0000aa"&gt;?&amp;nbsp; &lt;/font&gt;&lt;i style=""&gt;&lt;u style=""&gt;&lt;font color="#0000aa"&gt;T&lt;/font&gt;&lt;font color="#ff55ff"&gt;his&lt;/font&gt;&lt;/u&gt;&lt;/i&gt; &lt;u style=""&gt;&lt;strike style=""&gt;&lt;font color="#ff55ff"&gt;has &lt;/font&gt;&lt;font color="#55ff55"&gt;been&lt;/font&gt;&lt;/strike&gt;&lt;/u&gt;&lt;font color="#55ff55"&gt; &lt;/font&gt;&lt;/b&gt;&lt;sup style=""&gt;&lt;font color="#55ff55"&gt;a&lt;/font&gt;&lt;/sup&gt;&lt;b style=""&gt;&lt;font color="#55ff55"&gt; random&lt;/font&gt;&lt;font color="#ff55ff"&gt;.&lt;/font&gt;&lt;/b&gt;</MessageOfTheDay>
+            type="String">Y&lt;b&gt;ou w&lt;/b&gt;ill be baked, and then there will be cake.</MessageOfTheDay>
         <NetworkCompressionThreshold>256</NetworkCompressionThreshold>
         <OnlineMode>True</OnlineMode>
         <DefaultOpPermissionLevel>4</DefaultOpPermissionLevel>

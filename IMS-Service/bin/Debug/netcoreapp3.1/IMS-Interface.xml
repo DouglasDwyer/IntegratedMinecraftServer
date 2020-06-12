@@ -4,6 +4,25 @@
         <name>IMS-Interface</name>
     </assembly>
     <members>
+        <member name="T:IMS_Interface.MaximumThreadDisplay">
+            <summary>
+            Represents a preference that determines the maximum number of worker threads that a Minecraft server can allocate.
+            </summary>
+        </member>
+        <member name="M:IMS_Interface.MaximumThreadDisplay.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Creates a new maximum threads preference display with the specified data.
+            </summary>
+            <param name="name">The name of the field to read/write on the <see cref="T:IMS_Library.IMSConfiguration"/> object.</param>
+            <param name="display">The name that should display on the admin console.</param>
+            <param name="description">The description that should appear in the hover-over tooltip.</param>
+        </member>
+        <member name="M:IMS_Interface.MaximumThreadDisplay.GetComponentType">
+            <summary>
+            Retrieves the displayview type for this preference display.
+            </summary>
+            <returns>The <see cref="T:System.Type"/> of <see cref="T:IMS_Interface.Preferences.PreferenceDisplayView"/> that this display corresponds to.</returns>
+        </member>
         <member name="T:IMS_Interface.Provider">
             <summary>
             The <see cref="T:IMS_Interface.Provider"/> class provides various lists of displays to use when rendering parts of the IMS web interface.  It allows for plugin extensibility, as plugins can add their own displays to be rendered for many situations.
@@ -36,6 +55,25 @@
             </summary>
             <param name="preferenceType">The server configuration type that results in <paramref name="layout"/> being rendered.</param>
             <param name="layout">A function which generates the layout to render.</param>
+        </member>
+        <member name="T:IMS_Interface.Preferences.PlayerIdleTimeoutDisplay">
+            <summary>
+            Represents a preference that determines number of minutes it should take for an idle client to be kicked from the server, if they should be kicked at all.
+            </summary>
+        </member>
+        <member name="M:IMS_Interface.Preferences.PlayerIdleTimeoutDisplay.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Creates a new idle timeout preference display with the specified data.
+            </summary>
+            <param name="name">The name of the field to read/write on the <see cref="T:IMS_Library.IMSConfiguration"/> object.</param>
+            <param name="display">The name that should display on the admin console.</param>
+            <param name="description">The description that should appear in the hover-over tooltip.</param>
+        </member>
+        <member name="M:IMS_Interface.Preferences.PlayerIdleTimeoutDisplay.GetComponentType">
+            <summary>
+            Retrieves the displayview type for this preference display.
+            </summary>
+            <returns>The <see cref="T:System.Type"/> of <see cref="T:IMS_Interface.Preferences.PreferenceDisplayView"/> that this display corresponds to.</returns>
         </member>
     </members>
 </doc>

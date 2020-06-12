@@ -110,7 +110,7 @@ namespace IMS_Library
         /// The threshold (in bytes) at which the server should start compressing messages.
         /// </summary>
         [ServerProperty("compression-threshold")]
-        public int CompressionThreshold = 1;
+        public int NetworkCompressionThreshold = 1;
         /// <summary>
         /// Whether the server should analyze client movement.  The server will only enforce correct movement if <see cref="CorrectPlayerMovement"/> is <c>true</c>.
         /// </summary>
@@ -127,7 +127,7 @@ namespace IMS_Library
         [ServerProperty("player-movement-distance-threshold")]
         public double PlayerMovementDistanceThreshold = 0.3;
         /// <summary>
-        /// The duration of time, in milliseconds, the server and client positions can be out of sync (as defined by <see cref="PlayerMovementDistanceThreshold"/>) the abnormal movement score is incremented.
+        /// The duration of time, in milliseconds, the server and client positions can be out of sync (as defined by <see cref="PlayerMovementDistanceThreshold"/>) before the abnormal movement score is incremented.
         /// </summary>
         [ServerProperty("player-movement-duration-threshold-in-ms")]
         public int PlayerMovementDurationThreshold = 500;
