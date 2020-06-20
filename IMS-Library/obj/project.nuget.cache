@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Msa4bEG6UJ8PVKyxLTjxUOFiS2+nl9vHrT4uD7h3IU/lIAsTxGBbRV4a1XDZLhiRiBxc7UnmgPY9ysmclg7HVw==",
+  "dgSpecHash": "zP3Pvw14PUufni9aZyF/8iUf2QodHgcTiTvyIg9rpRPmfJtBkweG1S1w+2K01iv8xSJUaCrg8qmlv5NXOFPoSg==",
   "success": true,
   "projectFilePath": "D:\\Projects\\IntegratedMinecraftServer\\IMS-Library\\IMS-Library.csproj",
   "expectedPackageFiles": [
@@ -65,6 +65,9 @@
     "C:\\Users\\Douglas\\.nuget\\packages\\system.text.encoding.codepages\\4.7.0\\system.text.encoding.codepages.4.7.0.nupkg.sha512",
     "C:\\Users\\Douglas\\.nuget\\packages\\system.threading.accesscontrol\\4.7.0\\system.threading.accesscontrol.4.7.0.nupkg.sha512",
     "C:\\Users\\Douglas\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512",
+    "C:\\Users\\Douglas\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\3.1.4\\microsoft.netcore.app.runtime.win-x64.3.1.4.nupkg.sha512",
+    "C:\\Users\\Douglas\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\3.1.4\\microsoft.windowsdesktop.app.runtime.win-x64.3.1.4.nupkg.sha512",
+    "C:\\Users\\Douglas\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\3.1.4\\microsoft.aspnetcore.app.runtime.win-x64.3.1.4.nupkg.sha512",
     "C:\\Users\\Douglas\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
   ],
   "logs": []

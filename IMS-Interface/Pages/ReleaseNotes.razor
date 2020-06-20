@@ -17,23 +17,21 @@
 <br />
 <br />
 <div style="max-width:500px">
+    <!--
     <label class="header-label"><b>Features</b></label>
     <ul>
         <li>This is the first IMS pre-release.</li>
         <li>Added the ability to start the IMS service by running the IMS-Service.exe executable.</li>
-    </ul>
+    </ul>-->
     <label class="header-label"><b>Bugfixes</b></label>
     <ul>
-        <li>Fixed issues with not having administrator privileges on startup.</li>
-        <li>Corrected a bug where JavaServer.ToString() threw an exception.</li>
-        <li>Fixed a minor error in Java player detection.</li>
-        <li>Fixed the positioning of the GUI components in the top right corner, including the info button/box and server selection menu.</li>
+        <li>Fixed a bug with Java server logging and files not having the correct creation date.</li>
     </ul>
-    <!--
     <label class="header-label"><b>Maintenance</b></label>
     <ul>
-        <li>Converted the IMS API to be completely asynchronous/thread-safe, allowing for more concise and versatile programming.</li>
-    </ul>-->
+        <li>Added logging support for Blazor errors and Windows shell output.</li>
+        <li>Embedded the .NET Core runtime into the IMS executable so that .NET is no longer required to run IMS.</li>
+    </ul>
 </div>
 
 @code {

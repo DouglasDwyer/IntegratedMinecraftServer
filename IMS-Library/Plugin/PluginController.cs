@@ -81,6 +81,7 @@ namespace IMS_Library
                     Thread.CurrentThread.Join(); //suspend the thread indefinitely to stop the CLR from shutting down
                 }
             }
+            Logger.WriteError("A fatal error occured, resulting in IMS shutting down!\n" + e.ExceptionObject);
         }
 
         /// <summary>

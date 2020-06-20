@@ -44,6 +44,10 @@ namespace IMS_Library
         /// </summary>
         public void Start()
         {
+            if(IMS.Instance.IsDevelopmentMode)
+            {
+                return;
+            }
             lock (Locker)
             {
                 if (UpdatesReadyForInstallation)
@@ -82,7 +86,7 @@ namespace IMS_Library
         {
             lock(Locker)
             {
-                UpdateCheckTimer.Stop();
+                UpdateCheckTimer.Enabled = false;
             }
         }
 

@@ -37,6 +37,7 @@ namespace IMS_Library
             UpdateAllServerVersionsAsync();
             AutomaticUpdateTimer.Interval = 10 * 60 * 1000;
             AutomaticUpdateTimer.Elapsed += (x, y) => UpdateAllServerVersionsAsync();
+            AutomaticUpdateTimer.Start();
         }
 
         /// <summary>
@@ -62,6 +63,7 @@ namespace IMS_Library
         public void Stop()
         {
             this.SaveConfiguration();
+            AutomaticUpdateTimer.Enabled = false;
         }
 
         /// <summary>

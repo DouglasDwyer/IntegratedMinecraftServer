@@ -120,6 +120,7 @@ namespace IMS_Library
         private bool AutomaticSavingPlayerEnabled = true;
         private bool HasCompletedAutomaticSave = true;
         private Timer LogManagementTimer;
+        private string LogFilePath = null;
 
         /// <summary>
         /// The location of the server JAR file that should be executed.
@@ -600,14 +601,12 @@ namespace IMS_Library
                         IMS.Instance.WorldManager.AddWorldToRegistry(world);
                     }
                     JunctionPoint.Create(WorldLocation, world.WorldPath, true);
-                    if (File.Exists(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log"))
-                    {
-                        if (File.GetAttributes(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log") != FileAttributes.Hidden)
-                        {
-                            File.Copy(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log", ServerPreferences.GetServerFolderLocation() + "/logs/" + File.GetCreationTime(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log").ToString("yyyy-dd-M--HH-mm-ss") + ".loge", true);
-                        }
-                        File.Delete(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log");
-                    }
+
+                    File.Delete(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log");
+                    LogFilePath = ServerPreferences.GetServerFolderLocation() + "/logs/" + DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss") + ".loge";
+                    File.WriteAllText(LogFilePath, "");
+                    JunctionPoint.CreateHardLink(LogFilePath, ServerPreferences.GetServerFolderLocation() + "/logs/latest.log");
+
                     if (File.Exists(ServerPreferences.GetServerFolderLocation() + "/usercache.xml"))
                     {
                         foreach (MinecraftPlayer player in RoyalSerializer.XMLToObject<MinecraftPlayer[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/usercache.xml")))
@@ -981,15 +980,13 @@ namespace IMS_Library
             IMS.Instance.FirewallManager.RemoveFirewallExecutableException("Server" + ID);
 
             while (!ServerProcess.HasExited) { await Task.Delay(1); }
-            if (File.Exists(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log"))
+            if (File.Exists(LogFilePath))
             {
-                File.Copy(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log", ServerPreferences.GetServerFolderLocation() + "/logs/" + File.GetCreationTime(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log").ToString("yyyy-dd-M--HH-mm-ss") + ".log");
                 try
                 {
-                    //Set an attribute because sometimes Windows thinks that the MC server is still using the file even when the process has exited
-                    //We check for this attribute to identify whether a logfile was backed up properly or not
-                    File.SetAttributes(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log", FileAttributes.Hidden);
                     File.Delete(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log");
+                    FileInfo info = new FileInfo(LogFilePath);
+                    info.MoveTo(info.DirectoryName + "/" + Path.GetFileNameWithoutExtension(LogFilePath) + ".log");
                 }
                 catch (Exception e)
                 {

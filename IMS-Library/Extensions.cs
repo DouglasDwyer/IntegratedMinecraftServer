@@ -84,5 +84,36 @@ namespace IMS_Library
                 CopyAll(diSourceSubDir, nextTargetSubDir);
             }
         }
+
+        /// <summary>
+        /// Executes a system shell command by internally invoking cmd.exe.
+        /// </summary>
+        /// <param name="command">The command to execute.</param>
+        /// <returns>An integer representing the command's output code.  If the errorlevel 0, then the command probably completed successfully.</returns>
+        public static int ExecuteShellCommand(string command)
+        {
+            return ExecuteShellCommand(command, out string error);
+        }
+
+        /// <summary>
+        /// Executes a system shell command by internally invoking cmd.exe.
+        /// </summary>
+        /// <param name="command">The command to execute.</param>
+        /// <param name="error">The output of the process's standard error.</param>
+        /// <returns>An integer representing the command's output code.  If the errorlevel 0, then the command probably completed successfully.</returns>
+        public static int ExecuteShellCommand(string command, out string error)
+        {
+            Process process = new Process();
+            process.StartInfo = new ProcessStartInfo();
+            process.StartInfo.FileName = "cmd.exe";
+            process.StartInfo.Arguments = "/C " + command;
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.CreateNoWindow = true;
+            process.StartInfo.RedirectStandardError = true;
+            process.Start();
+            process.WaitForExit();
+            error = process.StandardError.ReadToEnd();
+            return process.ExitCode;
+        }
     }
 }

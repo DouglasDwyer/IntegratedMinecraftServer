@@ -18,6 +18,9 @@ using Microsoft.AspNetCore.Components.Server;
 using Microsoft.AspNetCore.Authentication;
 using Cloudcrate.AspNetCore.Blazor.Browser.Storage;
 using Blazor.FileReader;
+using Microsoft.Extensions.Logging;
+using IMS_Library;
+using System.Diagnostics;
 
 namespace IMS_Interface
 {
@@ -43,6 +46,8 @@ namespace IMS_Interface
             services.AddScoped<ServerProvider>();
             services.AddFileReaderService();
             services.AddHttpContextAccessor();
+            services.AddLogging(builder => builder.AddDebug());
+            System.Diagnostics.Trace.Listeners.Add(new BlazorLogger());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,6 +71,19 @@ namespace IMS_Interface
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
+        }
+
+        private class BlazorLogger : TraceListener
+        {
+            public override void Write(string message)
+            {
+                WriteLine(message);
+            }
+
+            public override void WriteLine(string message)
+            {
+                Logger.WriteInfo(message);
+            }
         }
     }
 }
