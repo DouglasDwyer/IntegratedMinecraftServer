@@ -3,94 +3,85 @@
         type="IMSSettings">
         <ManagementPort>
             <Port>8080</Port>
-            <AttemptUPnPForwarding>True</AttemptUPnPForwarding>
+            <AttemptUPnPForwarding>False</AttemptUPnPForwarding>
         </ManagementPort>
         <RunIMSOnStartup>False</RunIMSOnStartup>
-        <PluginPaths
-            type="List`1">
-            <ICollectionData
-                data="ICollection"
-                type="String[]"
-                ranksize0="0" />
-        </PluginPaths>
+        <LogDeletionTimespan>02:24:00</LogDeletionTimespan>
+        <IMSAutoUpdateTime />
         <Username
-            type="String">Chef</Username>
+            type="String">Username</Username>
         <PasswordHash
             type="Byte[]"
             ranksize0="64">
-            <ArrayElement>212</ArrayElement>
-            <ArrayElement>101</ArrayElement>
-            <ArrayElement>159</ArrayElement>
-            <ArrayElement>187</ArrayElement>
-            <ArrayElement>47</ArrayElement>
-            <ArrayElement>230</ArrayElement>
-            <ArrayElement>155</ArrayElement>
-            <ArrayElement>2</ArrayElement>
-            <ArrayElement>121</ArrayElement>
-            <ArrayElement>200</ArrayElement>
-            <ArrayElement>120</ArrayElement>
-            <ArrayElement>236</ArrayElement>
-            <ArrayElement>69</ArrayElement>
-            <ArrayElement>254</ArrayElement>
             <ArrayElement>207</ArrayElement>
-            <ArrayElement>15</ArrayElement>
-            <ArrayElement>255</ArrayElement>
-            <ArrayElement>27</ArrayElement>
-            <ArrayElement>74</ArrayElement>
-            <ArrayElement>155</ArrayElement>
-            <ArrayElement>101</ArrayElement>
-            <ArrayElement>55</ArrayElement>
-            <ArrayElement>127</ArrayElement>
-            <ArrayElement>244</ArrayElement>
-            <ArrayElement>117</ArrayElement>
-            <ArrayElement>4</ArrayElement>
-            <ArrayElement>165</ArrayElement>
-            <ArrayElement>44</ArrayElement>
-            <ArrayElement>207</ArrayElement>
+            <ArrayElement>131</ArrayElement>
+            <ArrayElement>225</ArrayElement>
+            <ArrayElement>53</ArrayElement>
+            <ArrayElement>126</ArrayElement>
             <ArrayElement>239</ArrayElement>
+            <ArrayElement>184</ArrayElement>
+            <ArrayElement>189</ArrayElement>
+            <ArrayElement>241</ArrayElement>
+            <ArrayElement>84</ArrayElement>
+            <ArrayElement>40</ArrayElement>
+            <ArrayElement>80</ArrayElement>
+            <ArrayElement>214</ArrayElement>
+            <ArrayElement>109</ArrayElement>
+            <ArrayElement>128</ArrayElement>
+            <ArrayElement>7</ArrayElement>
+            <ArrayElement>214</ArrayElement>
             <ArrayElement>32</ArrayElement>
-            <ArrayElement>105</ArrayElement>
-            <ArrayElement>231</ArrayElement>
-            <ArrayElement>115</ArrayElement>
-            <ArrayElement>67</ArrayElement>
-            <ArrayElement>179</ArrayElement>
+            <ArrayElement>228</ArrayElement>
+            <ArrayElement>5</ArrayElement>
+            <ArrayElement>11</ArrayElement>
+            <ArrayElement>87</ArrayElement>
+            <ArrayElement>21</ArrayElement>
             <ArrayElement>220</ArrayElement>
-            <ArrayElement>153</ArrayElement>
-            <ArrayElement>221</ArrayElement>
-            <ArrayElement>19</ArrayElement>
-            <ArrayElement>164</ArrayElement>
-            <ArrayElement>154</ArrayElement>
-            <ArrayElement>238</ArrayElement>
-            <ArrayElement>93</ArrayElement>
-            <ArrayElement>227</ArrayElement>
-            <ArrayElement>123</ArrayElement>
-            <ArrayElement>252</ArrayElement>
-            <ArrayElement>161</ArrayElement>
-            <ArrayElement>218</ArrayElement>
-            <ArrayElement>67</ArrayElement>
+            <ArrayElement>131</ArrayElement>
+            <ArrayElement>244</ArrayElement>
+            <ArrayElement>169</ArrayElement>
             <ArrayElement>33</ArrayElement>
-            <ArrayElement>89</ArrayElement>
-            <ArrayElement>226</ArrayElement>
-            <ArrayElement>121</ArrayElement>
-            <ArrayElement>75</ArrayElement>
-            <ArrayElement>6</ArrayElement>
-            <ArrayElement>116</ArrayElement>
-            <ArrayElement>162</ArrayElement>
-            <ArrayElement>52</ArrayElement>
-            <ArrayElement>88</ArrayElement>
-            <ArrayElement>82</ArrayElement>
-            <ArrayElement>245</ArrayElement>
-            <ArrayElement>123</ArrayElement>
-            <ArrayElement>120</ArrayElement>
+            <ArrayElement>211</ArrayElement>
+            <ArrayElement>108</ArrayElement>
+            <ArrayElement>233</ArrayElement>
+            <ArrayElement>206</ArrayElement>
+            <ArrayElement>71</ArrayElement>
+            <ArrayElement>208</ArrayElement>
+            <ArrayElement>209</ArrayElement>
+            <ArrayElement>60</ArrayElement>
+            <ArrayElement>93</ArrayElement>
+            <ArrayElement>133</ArrayElement>
+            <ArrayElement>242</ArrayElement>
+            <ArrayElement>176</ArrayElement>
+            <ArrayElement>255</ArrayElement>
+            <ArrayElement>131</ArrayElement>
+            <ArrayElement>24</ArrayElement>
+            <ArrayElement>210</ArrayElement>
+            <ArrayElement>135</ArrayElement>
+            <ArrayElement>126</ArrayElement>
+            <ArrayElement>236</ArrayElement>
+            <ArrayElement>47</ArrayElement>
+            <ArrayElement>99</ArrayElement>
+            <ArrayElement>185</ArrayElement>
+            <ArrayElement>49</ArrayElement>
+            <ArrayElement>189</ArrayElement>
+            <ArrayElement>71</ArrayElement>
+            <ArrayElement>65</ArrayElement>
+            <ArrayElement>122</ArrayElement>
+            <ArrayElement>129</ArrayElement>
+            <ArrayElement>165</ArrayElement>
+            <ArrayElement>56</ArrayElement>
+            <ArrayElement>50</ArrayElement>
+            <ArrayElement>122</ArrayElement>
+            <ArrayElement>249</ArrayElement>
+            <ArrayElement>39</ArrayElement>
+            <ArrayElement>218</ArrayElement>
+            <ArrayElement>62</ArrayElement>
         </PasswordHash>
     </Root>
     <Types>
         <TypeInfo
-            type="IMS_Library.IMSSettings, IMS-Library, Version=0.0.2.0, Culture=neutral, PublicKeyToken=null">IMSSettings</TypeInfo>
-        <TypeInfo
-            type="System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">List`1</TypeInfo>
-        <TypeInfo
-            type="System.String[], System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">String[]</TypeInfo>
+            type="IMS_Library.IMSSettings, IMS-Library, Version=0.1.0.1, Culture=neutral, PublicKeyToken=null">IMSSettings</TypeInfo>
         <TypeInfo
             type="System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">String</TypeInfo>
         <TypeInfo

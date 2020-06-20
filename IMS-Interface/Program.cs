@@ -29,11 +29,6 @@ namespace IMS_Interface
         public static void Stop()
         {
             ServerHost.StopAsync();
-            try
-            {
-                ServerHost.WaitForShutdown();
-            }
-            catch { }
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

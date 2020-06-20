@@ -1,7 +1,11 @@
 ﻿using System;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
+using EnvDTE;
+using IMS_Library;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 using Task = System.Threading.Tasks.Task;
 
 namespace IMS_DevelopmentKit
@@ -24,6 +28,7 @@ namespace IMS_DevelopmentKit
     /// </para>
     /// </remarks>
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
+    [ProvideAutoLoad(UIContextGuids80.SolutionBuilding)]
     [Guid(IMS_DevelopmentKitPackage.PackageGuidString)]
     public sealed class IMS_DevelopmentKitPackage : AsyncPackage
     {
@@ -45,6 +50,7 @@ namespace IMS_DevelopmentKit
         {
             // When initialized asynchronously, the current thread may be a background thread at this point.
             // Do any initialization that requires the UI thread after switching to the UI thread.
+            Environment.SetEnvironmentVariable("IMSDKLocation", Path.GetDirectoryName(typeof(IMS_DevelopmentKitPackage).Assembly.Location));
             await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
         }
 

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "IMS-Service": {
+      "commandName": "Project",
+      "commandLineArgs": "-devmode"
+    }
+  }
+}

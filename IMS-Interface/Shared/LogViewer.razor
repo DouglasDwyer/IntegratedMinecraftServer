@@ -1,0 +1,83 @@
+﻿@namespace IMS_Interface
+
+@using IMS_Library
+@{
+    IEnumerable<LogFileInformation> files = LogManager.GetAllLogFiles().OrderByDescending(x => x.CreationDate);
+}
+@if (CurrentInformation is null)
+{
+    if (files.Count() == 0)
+    {
+        <label style="font-weight:normal; margin:10px; vertical-align:sub"><i>There are no logs to show here.</i></label>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <td>
+                        Date
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (LogFileInformation info in files)
+                {
+                    <tr>
+                        <th>
+                            <a href="javascript:;" @onclick="x => CurrentInformation = info">@info.Name</a>
+                        </th>
+                        <td>
+                            @info.CreationDate
+                        </td>
+                        <td>
+                            @if (!info.CleanExit)
+                            {
+                                @("Crash")
+                            }
+                        </td>
+                        <td>
+                            <a href="javascript:;" @onclick="x => LogManager.DeleteLogFile(info)">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
+else
+{
+    <div style="padding:10px">
+        <a href="javascript:;" @onclick="x => CurrentInformation = null">Back to list</a>
+        <br />
+        <br />
+        <label>@CurrentInformation.Value.Name</label>
+        <br />
+        <div style="display:table; width:100%;resize:none; height:100%; min-height:100%; max-height:100%; max-width:100%; min-width:100%; margin:0 auto">
+            <textarea id="ConsoleOutputBox" readonly rows="25" class="form-control" style="
+            width: 100%;
+            display: table-cell;
+            resize: none;
+            height: 100%;
+            min-height: 100%;
+            max-height: 100%;
+            max-width: 100%;
+            min-width: 100%;
+            font-family: TimesNewRoman,Times New Roman,Times,Baskerville,Georgia,serif;" value="@LogManager.GetLogFile(CurrentInformation.Value)"></textarea>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public ILogProvider LogManager { get; set; }
+
+    protected LogFileInformation? CurrentInformation = null;
+}

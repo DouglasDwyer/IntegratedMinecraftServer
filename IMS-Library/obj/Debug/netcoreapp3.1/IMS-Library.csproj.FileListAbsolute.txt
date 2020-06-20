@@ -1,6 +1,5 @@
 D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Debug\netcoreapp3.1\IMS-Library.deps.json
 D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Debug\netcoreapp3.1\IMS-Library.dll
-D:\Projects\IntegratedMinecraftServer\IMS-Library\obj\Debug\netcoreapp3.1\IMS-Library.csprojAssemblyReference.cache
 D:\Projects\IntegratedMinecraftServer\IMS-Library\obj\Debug\netcoreapp3.1\IMS-Library.AssemblyInfoInputs.cache
 D:\Projects\IntegratedMinecraftServer\IMS-Library\obj\Debug\netcoreapp3.1\IMS-Library.AssemblyInfo.cs
 D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Debug\netcoreapp3.1\KinglyNetworking.dll
@@ -18,5 +17,6 @@ D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Debug\netcoreapp3.1\Access
 D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Debug\netcoreapp3.1\System.Runtime.Serialization.Formatters.Soap.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Debug\netcoreapp3.1\RoyalXML.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Debug\netcoreapp3.1\RoyalXML.pdb
-D:\Projects\IntegratedMinecraftServer\IMS-Library\obj\Debug\netcoreapp3.1\IMS-Library.csproj.CoreCompileInputs.cache
 D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Debug\netcoreapp3.1\IMS-Library.xml
+D:\Projects\IntegratedMinecraftServer\IMS-Library\obj\Debug\netcoreapp3.1\IMS-Library.csprojAssemblyReference.cache
+D:\Projects\IntegratedMinecraftServer\IMS-Library\obj\Debug\netcoreapp3.1\IMS-Library.csproj.CoreCompileInputs.cache

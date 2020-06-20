@@ -1,0 +1,4 @@
+﻿IMS Plugin
+Creates a new project that can be used to develop IntegratedMinecraftServer extensions.
+D:\Projects\IntegratedMinecraftServer\IMS-Service\ims_icon.ico
+D:\Projects\IntegratedMinecraftServer\IMS-Service\ims_icon.ico

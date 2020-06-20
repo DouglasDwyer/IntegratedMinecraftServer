@@ -1,0 +1,26 @@
+﻿@page "/ServerManagement"
+
+@using IMS_Library
+
+@implements IDisposable
+@inject ServerProvider ServerSelector
+
+<div style="width:fit-content;height:fit-content;margin:auto">
+    @foreach (ServerProxy server in IMS.Instance.ServerManager.Servers)
+    {
+        <ServerOverviewWidget CurrentServer="server"></ServerOverviewWidget>
+        <br />
+    }
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+        ServerSelector.OnServerSelectionChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        ServerSelector.OnServerSelectionChange -= StateHasChanged;
+    }
+}

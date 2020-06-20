@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace IMS_Library
 {
@@ -26,12 +27,33 @@ namespace IMS_Library
         private string LatestReleaseID;
         private string LatestSnapshotID;
 
+        private Timer AutomaticUpdateTimer = new Timer();
+
         /// <summary>
         /// Begins the <see cref="MinecraftVersionProvider"/> instance, beginning an update timer and updating version data.
         /// </summary>
         public void Start()
         {
             UpdateAllServerVersionsAsync();
+            AutomaticUpdateTimer.Interval = 10 * 60 * 1000;
+            AutomaticUpdateTimer.Elapsed += (x, y) => UpdateAllServerVersionsAsync();
+        }
+
+        /// <summary>
+        /// This method attempts to restart any servers configured to "use the latest Minecraft version" that are running an outdated version.
+        /// </summary>
+        public void RestartUpdatedServers()
+        {
+            foreach (ServerProxy server in IMS.Instance.ServerManager.Servers)
+            {
+                if (server.State != ServerProxy.ServerState.Disabled && server.CurrentConfiguration is JavaServerConfiguration config)
+                {
+                    if (string.IsNullOrEmpty(config.ServerVersion) && server.ServerVersionID != LatestRelease.Version)
+                    {
+                        server.RestartAsync();
+                    }
+                }
+            }
         }
 
         /// <summary>

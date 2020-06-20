@@ -58,8 +58,10 @@
         </div>
     </div>
 }
-
-<NavMenu />
+@if (ServerSelector.CurrentServer != null)
+{
+    <NavMenu />
+}
 <div class="main">
 
     <div class="navbar navbar-inverse navbar-fixed-top" style="z-index:300">
@@ -68,10 +70,113 @@
                 <a class="navbar-brand" style="padding:15px 0px" href="/">Integrated Minecraft Server</a>
             </div>
 
-            <div style="top:10px; right:8px; position:absolute;">
+            <div style="right:8px; position:absolute; height:100%; width:fit-content; display:flex; align-items:center">
+                <a href="javascript:;" style="font-size: 40px; display:inline; text-decoration:none; line-height: 0px; color: white; vertical-align: middle; margin: 0px 10px 0px 10px; font-weight:normal;" @onclick="@(x => { JSRuntime.InvokeVoidAsync("toggleInfoBox"); IMS.Instance.UserMessageManager.NewMessagesForUser = false; })" id="infoButton">
+                    🛈
+                    @if (IMS.Instance.UserMessageManager.NewMessagesForUser)
+                    {
+                        <div style="position: absolute;float:right;width: 10px;height: 10px;background-color: red;border-radius: 5px;top: 23px;left: 33px;"></div>
+                    }
+                </a>
+                <div id="ShowUserInformation" style="position:absolute" hidden>
+                    <style>
+
+
+                        .info-box {
+                            right: 10px;
+                            top: 50px;
+                            position: fixed;
+                            background-color: #ddd;
+                            border: 1px solid #ccc;
+                            border-radius: 2px;
+                            width: 350px;
+                            height: 175px;
+                            padding: 0px 6px 0px 6px;
+                            z-index: 100;
+                            overflow-y: auto;
+                        }
+
+                            .info-box > button {
+                                border-radius: 5px;
+                                border: 1px solid #aaa;
+                            }
+
+                        .info-box-arrow {
+                            top: -8px;
+                            border-style: solid;
+                            position: absolute;
+                        }
+
+                        .bubble-top {
+                            border-color: transparent transparent #bbb transparent;
+                            border-width: 0px 8px 8px 8px;
+                            left: -8px;
+                        }
+
+                            .bubble-top:after {
+                                border-color: transparent transparent white transparent;
+                                border-style: solid;
+                                border-width: 0px 7px 7px 7px;
+                                top: 1px;
+                                content: "";
+                                position: absolute;
+                                left: -7px;
+                            }
+
+                        .user-message-box {
+                            background-color: white;
+                            border: 1px solid #bbb;
+                            box-shadow: rgba(0, 0, 0, 0.2) 2px 2px;
+                            width: 100%;
+                            margin: 5px 0px;
+                            padding: 4px;
+                        }
+                    </style>
+
+                    <div class="info-box">
+                        <!--div class="info-box-arrow bubble-top"></!-div>-->
+                        @if (IMS.Instance.UserMessageManager.Messages.Count > 0)
+                        {
+                            foreach (InformationItem item in IMS.Instance.UserMessageManager.Messages.OrderByDescending(x => x.LastSendTime))
+                            {
+                        <div class="user-message-box">
+                            <a href="javascript:;" @onclick="x => IMS.Instance.UserMessageManager.Messages.Remove(item)" style="float: right; color: white; background-color: gray; border-radius: 6px; height: 12px; width: 12px; text-align: center; text-decoration: none; line-height: 12px; padding-left:1px">×</a>
+                            <label style="font-weight:normal;color:darkgray; font-size:12px; line-height:1; display:block;">@item.LastSendTime<br /></label>
+                            <label style="font-weight:normal; margin-bottom:0px; margin-right:5px; line-height:1">
+                                @switch (item.Severity)
+                                {
+                                    case InformationItem.MessageType.Info:
+                                        <label style="color:darkgray">
+                                            🛈&#xFE0E;
+                                        </label>
+                                        break;
+                                    case InformationItem.MessageType.Warning:
+                                        <label style="color:darkgoldenrod">
+                                            ⚠&#xFE0E;
+                                        </label>
+                                        break;
+                                    case InformationItem.MessageType.Error:
+                                        <label style="color:darkred">
+                                            ⛔&#xFE0E;
+                                        </label>
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                @item.Message
+                            </label>
+                        </div>
+                            }
+                        }
+                        else
+                        {
+                            <label style="font-weight:normal;margin:5px">There are no new messages to show here.</label>
+                        }
+                    </div>
+                </div>
                 @if (IMS.Instance.ServerManager.Servers.Count > 0)
                 {
-                    <select style="width:250px" class="btn btn-default dropdown-toggle" @bind="CurrentServerBoxText">
+                    <select style="width:250px; display:inline" class="btn btn-default dropdown-toggle" @bind="CurrentServerBoxText">
                         @foreach (ServerProxy proxy in IMS.Instance.ServerManager.Servers)
                         {
                             <option value="@proxy.ID">@proxy.CurrentConfiguration.ServerName</option>
@@ -81,7 +186,7 @@
                 }
                 @if (Login.IsLoginRequired)
                 {
-                    <button style="background-color:transparent; margin-left:10px; border-style:none; color:white" @onclick="LogoutAsync">Sign Out</button>
+                    <button style="background-color:transparent; margin-left:10px; border-style:none; color:white; height:32px; display:inline" @onclick="LogoutAsync">Sign Out</button>
                 }
             </div>
         </div>
@@ -92,9 +197,16 @@
         <br />
     </div>
 </div>
+
+<Timer @ref="MainTimer" Interval="500" UpdateComponentOnTick="true" UpdateScope="this"></Timer>
+
 @code {
     [Inject]
     protected NavigationManager Navigator { get; set; }
+
+    protected Timer MainTimer;
+
+    protected bool ShowInformationBox = false;
 
     protected string CurrentServerBoxText
     {
@@ -135,6 +247,7 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await JSRuntime.InvokeVoidAsync("pageLoad");
+        MainTimer.Enabled = true;
     }
 
     protected async Task LogoutAsync()

@@ -20,7 +20,7 @@ namespace IMS_Library
         /// The difficulty of the Minecraft world.  0 = Peaceful, 1 = Easy, 2 = Normal, 3 = Hard
         /// </summary>
         [ServerProperty("difficulty")]
-        public int Difficulty = 0;
+        public int Difficulty = 1;
         /// <summary>
         /// The type of level to use when generating a new world.
         /// </summary>
@@ -36,11 +36,6 @@ namespace IMS_Library
         /// </summary>
         [ServerProperty("max-players")]
         public int MaxPlayers = 10;
-        /// <summary>
-        /// The IPv4 port that the server should use to communicate with players.
-        /// </summary>
-        [ServerProperty("server-port")]
-        public WebPort ServerPort = new WebPort(19132);
         /// <summary>
         /// The IPv6 port that the server should use to communicate with players.
         /// </summary>

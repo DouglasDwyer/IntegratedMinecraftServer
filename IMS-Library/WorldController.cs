@@ -37,7 +37,10 @@ namespace IMS_Library
         {
             foreach (ServerProxy server in IMS.Instance.ServerManager.Servers)
             {
-                Worlds[server.CurrentConfiguration.WorldID].RunBackupUpdates();
+                if (server.CurrentConfiguration.WorldID != default)
+                {
+                    Worlds[server.CurrentConfiguration.WorldID].RunBackupUpdates();
+                }
             }
         }
 
@@ -133,6 +136,14 @@ namespace IMS_Library
         public void Stop()
         {
             DoUpdateTimer.Enabled = false;
+            SaveConfigurations();
+        }
+
+        /// <summary>
+        /// Saves all world configuration settings disk.
+        /// </summary>
+        public void SaveConfigurations()
+        {
             foreach(World world in Worlds.Values)
             {
                 world.SaveConfiguration();

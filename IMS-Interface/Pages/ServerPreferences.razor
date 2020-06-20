@@ -1,5 +1,6 @@
 ﻿@namespace IMS_Interface
 
+@using System.IO 
 @using IMS_Library;
 
 @page "/ServerPreferences"
@@ -22,16 +23,20 @@
 
     static ServerPreferences()
     {
-        Func<List<PreferenceDisplay>> layoutGenerator = () =>
+        Func<List<PreferenceDisplay>> javaLayoutGenerator = () =>
         {
             List<PreferenceDisplay> layout = new List<PreferenceDisplay>();
 
             layout.Add(new MOTDDisplay("MessageOfTheDay", "Message of the day", "This setting determines what text appears on clients' server selection screen."));
+            layout.Add(new StringDisplay("ServerName", "Server name", "This setting determines the name of the server that will display in IMS."));
             layout.Add(new MinecraftVersionDisplayView.MinecraftVersionDisplay("ServerVersion", "Server version", "This setting determines what version of Minecraft the server runs."));
             layout.Add(new IntegerDisplay("MinimumMemoryMB", "Minimum memory", "This setting determines the minimum amount of RAM in MB that Java reserves for the server.", 0, int.MaxValue));
             layout.Add(new IntegerDisplay("MaximumMemoryMB", "Maximum memory", "This setting determines the maximum amount of RAM in MB that Java will use for the server.", 0, int.MaxValue));
             layout.Add(new StringDisplay("JavaArguments", "JVM arguments", "This setting determines what command-line arguments are passed to the Java/GraalVM runtime."));
 
+            layout.Add(new LogDeletionIntervalDisplay("LogDeletionInterval", "Server log deletion", "This setting determines whether IMS should delete server logfiles after they are a certain number of days old."));
+
+            layout.Add(new PortDisplay("ServerPort", "Server port", "This setting controls which port the server listens on."));
             layout.Add(new BooleanDisplay("AllowFlight", "Enable flight", "This setting determines whether the server kicks survival players for fly-hacking.", "Yes", "No"));
             layout.Add(new BooleanDisplay("AllowNether", "Enable Nether", "This setting determines whether players can enter the Nether.", "Yes", "No"));
             layout.Add(new BooleanDisplay("BroadcastConsoleToOps", "Broadcast console to ops", "This setting determines whether ops are notified of commands executed in the server console.", "Yes", "No"));
@@ -60,7 +65,6 @@
             layout.Add(new StringDisplay("ResourcePack", "Resource pack URL", "This setting controls what resource pack the server sends to the client"));
             layout.Add(new StringDisplay("ResourcePackSHA1", "Resource pack SHA1 hash", "This setting is used for verifying the resource pack's integrity by comparing it to the SHA1 hash client side."));
             layout.Add(new StringDisplay("ServerIP", "Bound server IP", "This setting determines whether the server listens on one IP address, or on all possible addresses."));
-            layout.Add(new PortDisplay("ServerPort", "Server port", "This setting controls which port the server listens on."));
             layout.Add(new BooleanDisplay("SnooperEnabled", "Snooper enabled", "This setting determines whether the server sends statistical data to Mojang.", "Yes", "No"));
             layout.Add(new BooleanDisplay("SpawnAnimals", "Spawn animals", "This setting determines whether passive mobs (like cows or sheep) can spawn.", "Yes", "No"));
             layout.Add(new BooleanDisplay("SpawnMonsters", "Spawn monsters", "This setting determines whether hostile mobs (like zombies or creepers) can spawn.", "Yes", "No"));
@@ -70,12 +74,16 @@
             layout.Add(new BooleanDisplay("EnforceWhitelist", "Enforce whitelist", "This setting determines whether the server will kick players who are online but not whitelisted when the whitelist is enabled.", "Yes", "No"));
             return layout;
         };
-        Provider.ServerPreferenceDisplayBinding.Add(new ConfigurationPreferenceDisplayBinding(typeof(JavaServerConfiguration), layoutGenerator));
+        Provider.ServerPreferenceDisplayBinding.Add(new ConfigurationPreferenceDisplayBinding(typeof(JavaServerConfiguration), javaLayoutGenerator));
 
-        layoutGenerator = () =>
+        Func<List<PreferenceDisplay>> bedrockLayoutGenerator = () =>
         {
             List<PreferenceDisplay> layout = new List<PreferenceDisplay>();
+            layout.Add(new StringDisplay("ServerName", "Server name", "This setting determines the name of the server that will display in IMS."));
             layout.Add(new StringDisplay("ServerDisplayName", "Server display name", "This setting determines the name of the server that appears on players' title screens."));
+            layout.Add(new PortDisplay("ServerPort", "Server port", "This setting controls which port the server listens on."));
+            layout.Add(new PortDisplay("ServerPortV6", "Server port IPv6", "This setting controls which IPv6 port the server listens on.  This may be the same as the IPv4 port."));
+            layout.Add(new LogDeletionIntervalDisplay("LogDeletionInterval", "Server log deletion", "This setting determines whether IMS should delete server logfiles after they are a certain number of days old."));
             layout.Add(new BooleanDisplay("AllowCheats", "Allow cheats", "This setting determines whether server operators can use commands in-game.", "Yes", "No"));
             layout.Add(new MultiToggleDisplay("Gamemode", "Gamemode", "This setting determines the default gamemode that new players spawn with.", new[] { "Survival", "Creative", "Adventure", "Spectator" }));
             layout.Add(new MultiToggleDisplay("Difficulty", "Difficulty", "This setting controls the difficulty of the server.", new[] { "Peaceful", "Easy", "Normal", "Hard" }));
@@ -90,12 +98,37 @@
             layout.Add(new NetworkCompressionThresholdDisplay("NetworkCompressionThreshold", "Network compression threshold", "This setting controls how many bytes a packet must be for the server to compress it."));
             layout.Add(new BooleanDisplay("ServerAuthoritativeMovement", "Server authoritative movement", "This setting determines whether the server will analyze player movement to prevent cheating.", "Enabled", "Disabled"));
             layout.Add(new ConditionalDisplay(new IntegerDisplay("PlayerMovementScoreThreshold", "Abnormal player movement score threshold", "This setting determines the number of times that abnormal movement of a player can occur before it is reported.", 1, int.MaxValue), config => ((BedrockServerConfiguration)config).ServerAuthoritativeMovement));
-            layout.Add(new ConditionalDisplay(new DoubleDisplay("PlayerMovementDistanceThreshold", "Abnormal player movement distance threshold", "This setting determines the number of times that abnormal behavior of a client can occur before it is reported.", 0, double.MaxValue), config => ((BedrockServerConfiguration)config).ServerAuthoritativeMovement));
-            layout.Add(new ConditionalDisplay(new IntegerDisplay("PlayerMovementDurationThreshold", "Abnormal player movement duration threshold", "This setting determines the difference between server and player-calculated positions, in blocks, that must be exceeded before abnormal movement is detected.", 1, int.MaxValue), config => ((BedrockServerConfiguration)config).ServerAuthoritativeMovement));
+            layout.Add(new ConditionalDisplay(new DoubleDisplay("PlayerMovementDistanceThreshold", "Abnormal player movement distance threshold", "This setting determines the difference between server and player-calculated positions, in blocks, that must be exceeded before abnormal movement is detected.", 0, double.MaxValue), config => ((BedrockServerConfiguration)config).ServerAuthoritativeMovement));
+            layout.Add(new ConditionalDisplay(new IntegerDisplay("PlayerMovementDurationThreshold", "Abnormal player movement duration threshold", "This setting determines the amount of time, in milliseconds, that the server and player-calculated positions must be out of sync before abnormal movement is detected.", 1, int.MaxValue), config => ((BedrockServerConfiguration)config).ServerAuthoritativeMovement));
             layout.Add(new ConditionalDisplay(new BooleanDisplay("CorrectPlayerMovement", "Player movement correction", "This setting determines whether the server should correct players' position when their movement score exceeds the threshold.", "Enabled", "Disabled"), config => ((BedrockServerConfiguration)config).ServerAuthoritativeMovement));
             return layout;
         };
-        Provider.ServerPreferenceDisplayBinding.Add(new ConfigurationPreferenceDisplayBinding(typeof(BedrockServerConfiguration), layoutGenerator));
+        Provider.ServerPreferenceDisplayBinding.Add(new ConfigurationPreferenceDisplayBinding(typeof(BedrockServerConfiguration), bedrockLayoutGenerator));
+        Provider.ServerPreferenceDisplayBinding.Add(new ConfigurationPreferenceDisplayBinding(
+            typeof(CustomJavaServerConfiguration),
+            () => {
+                List<PreferenceDisplay> layout = javaLayoutGenerator();
+                layout.RemoveAt(2);
+                layout.Insert(2, new UploadServerBinaryDisplay("Server binary", "This is the .JAR file that contains the server executable's information.",
+                        config => Path.Combine(Constants.ExecutionPath + Constants.DataLocation + "/Temp/", config.ID.ToString()),
+                        config => Path.Combine(Constants.ExecutionPath + Constants.ServerFolderLocation + "/" + config.ID, "server.jar")));
+                layout.Add(new StringDictionaryDisplay("CustomServerProperties", "Custom server properties", "This is a list of extra properties which should be written to the server properties file on server startup."));
+                return layout;
+            }
+        ));
+        Provider.ServerPreferenceDisplayBinding.Add(new ConfigurationPreferenceDisplayBinding(
+            typeof(CustomBedrockServerConfiguration),
+            () =>
+            {
+                List<PreferenceDisplay> layout = javaLayoutGenerator();
+                layout.RemoveAt(2);
+                layout.Insert(2, new UploadServerBinaryDisplay("Server binary", "This is the .EXE file that acts as the server's executable.",
+                        config => Path.Combine(Constants.ExecutionPath + Constants.DataLocation + "/Temp/", config.ID.ToString()),
+                        config => Path.Combine(Constants.ExecutionPath + Constants.ServerFolderLocation + "/" + config.ID, "server.exe")));
+                layout.Add(new StringDictionaryDisplay("CustomServerProperties", "Custom server properties", "This is a list of extra properties which should be written to the server properties file on server startup."));
+                return layout;
+            }
+        ));
     }
 
     protected override void OnInitialized()
@@ -112,8 +145,22 @@
         StateHasChanged();
     }
 
+    protected void Reset(IMSConfiguration config)
+    {
+        UploadServerBinaryDisplay display = (UploadServerBinaryDisplay)PreferenceLayout.Find(x => x is UploadServerBinaryDisplay);
+        if (display != null)
+        {
+            string path = display.TemporaryFilePath((ServerConfiguration)config);
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+        }
+    }
+
     public void Dispose()
     {
+        Reset(PreferenceConfiguration);
         ServerSelector.OnServerSelectionChange -= ChangeServerSelection;
     }
 
@@ -149,15 +196,32 @@
         }
     }
 
-    protected void ApplySettings(IMSConfiguration configuration)
+    protected async Task ApplySettings(IMSConfiguration configuration)
     {
+        lock (this)
+        {
+            if (UpdateSettingsTask != null) { return; }
+            UpdateSettingsTask = new Task(() => { });
+        }
+        UploadServerBinaryDisplay display = (UploadServerBinaryDisplay)PreferenceLayout.Find(x => x is UploadServerBinaryDisplay);
+        if (display != null)
+        {
+            string file = display.TemporaryFilePath((ServerConfiguration)configuration);
+            string finalPath = display.FinalFilePath((ServerConfiguration)configuration);
+            if (File.Exists(file))
+            {
+                if (!Directory.Exists(Path.GetDirectoryName(finalPath)))
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(finalPath));
+                }
+                await Task.Run(() => File.Copy(file, finalPath, true));
+            }
+        }
         PreferenceConfiguration = configuration;
-        if (UpdateSettingsTask != null) { return; }
         ServerProxy toRestart = ServerSelector.CurrentServer;
         ServerConfiguration serverConfig = configuration as ServerConfiguration;
         serverConfig.ID = toRestart.CurrentConfiguration.ID;
         serverConfig.IsEnabled = toRestart.CurrentConfiguration.IsEnabled;
-        serverConfig.ServerName = toRestart.CurrentConfiguration.ServerName;
         serverConfig.WorldID = toRestart.CurrentConfiguration.WorldID;
         if (toRestart.State == ServerProxy.ServerState.Disabled)
         {
@@ -167,18 +231,12 @@
         else
         {
             Editor.ErrorText = "Restarting server...";
-            UpdateSettingsTask = Task.Run(async () =>
-            {
-                await toRestart.StopAsync();
-                toRestart.CurrentConfiguration = (ServerConfiguration)configuration;
-                toRestart.StartAsync();
-                InvokeAsync(() =>
-                {
-                    Editor.ErrorText = "Settings applied successfully at " + DateTime.Now + ".";
-                    Editor.NotifyStateChanged(true);
-                    UpdateSettingsTask = null;
-                });
-            });
+            await toRestart.StopAsync();
+            toRestart.CurrentConfiguration = (ServerConfiguration)configuration;
+            toRestart.StartAsync();
+            Editor.ErrorText = "Settings applied successfully at " + DateTime.Now + ".";
+            Editor.NotifyStateChanged(true);
         }
+        UpdateSettingsTask = null;
     }
 }

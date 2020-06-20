@@ -14,7 +14,7 @@ namespace IMS_Library
     /// This is a base class that can be used to easily store/serialize configuration files in the <see cref="RoyalXML"/> format.
     /// </summary>
     [Serializable]
-    public class IMSConfiguration : ICloneable
+    public abstract class IMSConfiguration : ICloneable
     {
         /// <summary>
         /// Creates a new instance of <see cref="IMSConfiguration"/>.
@@ -34,10 +34,7 @@ namespace IMS_Library
         /// Retrieves the file path for the settings configuration file.
         /// </summary>
         /// <returns>The path of the configuration file.</returns>
-        public virtual string GetDefaultFilePath()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract string GetDefaultFilePath();
     }
 
     /// <summary>

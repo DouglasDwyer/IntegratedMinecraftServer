@@ -19,7 +19,7 @@
 <br />
 <label></label>
 <div style="position:absolute;right:10px;bottom:10px;">
-    <label class="btn btn-primary" style="padding:5px">
+    <label class="btn btn-primary" style="padding:5px" disabled="@IsUploading">
         Upload icon
         <input class="btn btn-primary" style="display:none" type="file" @ref="WorldIconUpload" @onchange="UploadIcon" accept="@AcceptedFileTypes" disabled="@IsUploading" />
     </label>

@@ -12,7 +12,30 @@ namespace IMS_Library
     /// </summary>
     public static class Logger
     {
+        /// <summary>
+        /// Represents the full path of the current log file.
+        /// </summary>
+        public static string CurrentLogFile { get; private set; }
         private static StreamWriter logWriter;
+
+        /// <summary>
+        /// Returns a reasonably-large block of recent console output from the logger.
+        /// </summary>
+        public static string ConsoleText {
+            get
+            {
+                lock (logWriter)
+                {
+                    string toReturn = string.Concat(ConsoleTextList.ToArray());
+                    if (toReturn.EndsWith("\n"))
+                    {
+                        toReturn = toReturn.Remove(toReturn.Length - 1);
+                    }
+                    return toReturn;
+                }
+            }
+        }
+        private static List<string> ConsoleTextList = new List<string>();
 
         static Logger()
         {
@@ -20,7 +43,7 @@ namespace IMS_Library
             {
                 Directory.CreateDirectory(Constants.ExecutionPath + Constants.LogLocation);
             }
-            logWriter = new StreamWriter(Constants.ExecutionPath + Constants.LogLocation + "/IMS." + DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss") + ".txt", false);
+            logWriter = new StreamWriter(CurrentLogFile = Constants.ExecutionPath + Constants.LogLocation + "/IMS." + DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss") + ".txt", false);
             logWriter.AutoFlush = true;
         }
 
@@ -32,8 +55,7 @@ namespace IMS_Library
         {
             lock (logWriter)
             {
-                Console.WriteLine("[INFO] [" + DateTime.Now + "] " + information);
-                logWriter.WriteLine("[INFO] [" + DateTime.Now + "] " + information);
+                WriteOutput("[INFO] [" + DateTime.Now + "] " + information);
             }
         }
 
@@ -45,8 +67,7 @@ namespace IMS_Library
         {
             lock (logWriter)
             {
-                Console.WriteLine("[WARNING] [" + DateTime.Now + "] " + warning);
-                logWriter.WriteLine("[WARNING] [" + DateTime.Now + "] " + warning);
+                WriteOutput("[WARNING] [" + DateTime.Now + "] " + warning);
             }
         }
 
@@ -58,8 +79,7 @@ namespace IMS_Library
         {
             lock (logWriter)
             {
-                Console.WriteLine("[ERROR] [" + DateTime.Now + "] " + error);
-                logWriter.WriteLine("[ERROR] [" + DateTime.Now + "] " + error);
+                WriteOutput("[ERROR] [" + DateTime.Now + "] " + error);
             }
         }
 
@@ -72,6 +92,17 @@ namespace IMS_Library
             {
                 logWriter.WriteLine("[INFO] Exited cleanly.");
                 logWriter.Close();
+            }
+        }
+
+        private static void WriteOutput(string output)
+        {
+            Console.WriteLine(output);
+            logWriter.WriteLine(output);
+            ConsoleTextList.Add(output + "\n");
+            while (ConsoleTextList.Count > 100)
+            {
+                ConsoleTextList.RemoveAt(0);
             }
         }
     }

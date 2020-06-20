@@ -16,6 +16,8 @@
     {
         PreferenceLayout.Add(new PortDisplay("ManagementPort", "Management Port", "This is the port which the IMS web interface runs on."));
         PreferenceLayout.Add(new BooleanDisplay("RunIMSOnStartup", "Run on startup", "This setting determines whether IMS runs when the computer boots.", "Run", "Don't run"));
+        PreferenceLayout.Add(new IMSUpdateTimeDisplay("IMSAutoUpdateTime", "IMS Automatic Updates", "This setting determines when IMS should automatically restart to install new updates, if at all.  This setting also applies if new server versions are available."));
+        PreferenceLayout.Add(new LogDeletionIntervalDisplay("LogDeletionTimespan", "IMS log deletion", "This setting determines whether IMS should delete logfiles after they are a certain number of days old."));
     }
 
     public IMSSettings GetCurrentPreferences()

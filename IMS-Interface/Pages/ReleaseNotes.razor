@@ -19,17 +19,21 @@
 <div style="max-width:500px">
     <label class="header-label"><b>Features</b></label>
     <ul>
-        <li>Added the ability to create new server worlds.</li>
-        <li>Added this release notes page.</li>
+        <li>This is the first IMS pre-release.</li>
+        <li>Added the ability to start the IMS service by running the IMS-Service.exe executable.</li>
     </ul>
     <label class="header-label"><b>Bugfixes</b></label>
     <ul>
-        <li>Fixed the issue of the "deleting world" popup not appearing until after the world is deleted.</li>
+        <li>Fixed issues with not having administrator privileges on startup.</li>
+        <li>Corrected a bug where JavaServer.ToString() threw an exception.</li>
+        <li>Fixed a minor error in Java player detection.</li>
+        <li>Fixed the positioning of the GUI components in the top right corner, including the info button/box and server selection menu.</li>
     </ul>
+    <!--
     <label class="header-label"><b>Maintenance</b></label>
     <ul>
         <li>Converted the IMS API to be completely asynchronous/thread-safe, allowing for more concise and versatile programming.</li>
-    </ul>
+    </ul>-->
 </div>
 
 @code {

@@ -75,7 +75,7 @@
                     ServerProxy server = loadedServers.Where(x => x.CurrentConfiguration.WorldID == world.ID).FirstOrDefault();
                     if (server != null)
                     {
-                        <label style="display:inline-block; position:relative; bottom:10px" data-toggle="tooltip" data-container="app" data-trigger="hover" data-placement="top" title=@("World " + (server.State == ServerProxy.ServerState.Disabled ? "mounted" : "running") + " on " + server.CurrentConfiguration.ServerName)>⛏</label>
+                        <label style="display:inline-block; position:relative; bottom:10px" data-toggle="tooltip" data-container="app" data-trigger="hover" data-placement="top" title=@("World " + (server.State == ServerProxy.ServerState.Disabled ? "mounted" : "running") + " on " + server.CurrentConfiguration.ServerName)>🔒&#xFE0E;</label>
                     }
                     <a href="@("WorldManager/" + world.ID)"  style="white-space: nowrap; overflow: hidden; width: 154px; text-overflow: ellipsis; display: inline-block;">@world.Name</a>
                     <div style="float:right; position:relative; margin-top:-2px; display:inline-block">

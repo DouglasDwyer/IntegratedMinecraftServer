@@ -1,0 +1,54 @@
+﻿@namespace IMS_Interface
+
+@using IMS_Library
+
+@page "/IMSConsole"
+
+@inject IJSRuntime JSRuntime
+
+<h3>IMS Console</h3>
+<br />
+<br />
+<div style="display:table; width:80%;resize:none; height:70%; min-height:70%; max-height:70%; max-width:80%; min-width:80%; margin:0 auto">
+    <textarea id="ConsoleOutputBox" readonly rows="25" class="form-control" style="
+        width: 100%;
+        display: table-cell;
+        resize: none;
+        height: 100%;
+        min-height: 100%;
+        max-height: 100%;
+        max-width: 100%;
+        min-width: 100%;
+        font-family: TimesNewRoman,Times New Roman,Times,Baskerville,Georgia,serif;" value="@ConsoleText"></textarea>
+    <a href="IMSLogViewer">View server logs</a>
+</div>
+
+<Timer UpdateScope=this Interval=250 @ref="LoadTimer" Tick="UpdateText" UseSynchronousTick=false UpdateComponentOnTick=false></Timer>
+
+@code {
+    public Timer LoadTimer { get; set; }
+
+    public string CommandText { get; set; }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            JSRuntime.InvokeVoidAsync("scrollToBottom", "ConsoleOutputBox");
+        }
+        LoadTimer.Enabled = true;
+    }
+
+    protected void UpdateText()
+    {
+        JSRuntime.InvokeVoidAsync("serverConsoleSetText", "ConsoleOutputBox", ConsoleText);
+    }
+
+    public string ConsoleText
+    {
+        get
+        {
+            return Logger.ConsoleText;
+        }
+    }
+}

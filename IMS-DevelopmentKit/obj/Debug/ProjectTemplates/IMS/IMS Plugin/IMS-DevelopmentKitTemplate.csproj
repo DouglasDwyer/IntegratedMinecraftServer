@@ -9,13 +9,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="IMS-Library.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Library\" />
     <Folder Include="Properties\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="IMS-Interface">
+      <HintPath>..\IMS-Interface\bin\Debug\netcoreapp3.1\IMS-Interface.dll</HintPath>
+    </Reference>
     <Reference Include="IMS-Library">
-      <HintPath>IMS-Library.dll</HintPath>
+      <HintPath>..\IMS-Library\bin\Debug\netcoreapp3.1\IMS-Library.dll</HintPath>
     </Reference>
   </ItemGroup>
 

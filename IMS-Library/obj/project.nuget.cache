@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "kQcTJCXtCw+q4ABO8XE3ecXeLwPmzi1K/aWiqFpZIjzoj/GEaESm0h2iM9XxxFzRvYUDrEO2ZtGPwPxL4apgcA==",
+  "dgSpecHash": "Msa4bEG6UJ8PVKyxLTjxUOFiS2+nl9vHrT4uD7h3IU/lIAsTxGBbRV4a1XDZLhiRiBxc7UnmgPY9ysmclg7HVw==",
   "success": true,
   "projectFilePath": "D:\\Projects\\IntegratedMinecraftServer\\IMS-Library\\IMS-Library.csproj",
   "expectedPackageFiles": [
@@ -46,6 +46,7 @@
     "C:\\Users\\Douglas\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512",
     "C:\\Users\\Douglas\\.nuget\\packages\\system.reflection.emit.ilgeneration\\4.7.0\\system.reflection.emit.ilgeneration.4.7.0.nupkg.sha512",
     "C:\\Users\\Douglas\\.nuget\\packages\\system.reflection.emit.lightweight\\4.7.0\\system.reflection.emit.lightweight.4.7.0.nupkg.sha512",
+    "C:\\Users\\Douglas\\.nuget\\packages\\system.reflection.metadataloadcontext\\4.7.2\\system.reflection.metadataloadcontext.4.7.2.nupkg.sha512",
     "C:\\Users\\Douglas\\.nuget\\packages\\system.runtime.caching\\4.7.0\\system.runtime.caching.4.7.0.nupkg.sha512",
     "C:\\Users\\Douglas\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
     "C:\\Users\\Douglas\\.nuget\\packages\\system.security.cryptography.cng\\4.7.0\\system.security.cryptography.cng.4.7.0.nupkg.sha512",

@@ -1,0 +1,28 @@
+﻿@namespace IMS_Interface
+
+@inject PopupProvider PopupManager
+
+<style>
+    label
+    {
+        font-weight:normal;
+    }
+</style>
+<label><b>@DisplayData.Title</b></label>
+<br />
+<label style="width:300px;">@DisplayData.Information</label>
+<br />
+<br />
+<label></label>
+<div style="position:absolute;right:10px;bottom:10px;">
+    @for (int i = 0; i < DisplayData.Buttons.Length; i++)
+    {
+        int u = i;
+        <button class="btn @(u == 0 ? "btn-primary" : "btn-default")" @onclick="x => { PopupManager.ClosePopup(); DisplayData.OnUserSubmit?.Invoke(u); }">@DisplayData.Buttons[u]</button>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public InformationPopupDisplay DisplayData { get; set; }
+}

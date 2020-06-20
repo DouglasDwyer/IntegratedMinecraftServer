@@ -106,13 +106,14 @@
             <td>
                 @if (SelectedView != null)
                 {
-                    RenderFragment fragment = builder =>
+                    <Dynamic Component="SelectedView.GetComponentType()" CurrentWorldID="@WorldID"></Dynamic>
+                    /*RenderFragment fragment = builder =>
                     {
                         builder.OpenComponent(0, SelectedView.GetComponentType());
                         builder.AddAttribute(0, "CurrentWorldID", WorldID);
                         builder.CloseComponent();
                     };
-                    @fragment
+                    @fragment*/
                 }
             </td>
         </tr>

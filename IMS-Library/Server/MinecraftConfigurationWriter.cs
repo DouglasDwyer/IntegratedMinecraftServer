@@ -93,6 +93,15 @@ namespace IMS_Library
             {
                 return PropertyName + "=" + ((WebPort)field.GetValue(configuration)).Port;
             }
+            else if(field.FieldType == typeof(Dictionary<string,string>))
+            {
+                string toReturn = "";
+                foreach(KeyValuePair<string, string> pair in (Dictionary<string,string>)field.GetValue(configuration))
+                {
+                    toReturn += pair.Key + "=" + pair.Value + "\n";
+                }
+                return toReturn;
+            }
             else
             {
                 throw new NotImplementedException("Cannot write type " + field.FieldType + " into the server.properties file.");

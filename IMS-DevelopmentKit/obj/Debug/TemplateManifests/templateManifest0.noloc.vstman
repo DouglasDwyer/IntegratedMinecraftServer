@@ -5,7 +5,7 @@
     <VSTemplateHeader>
       <TemplateData xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
         <Name>IMS Plugin</Name>
-        <Description>Creates a new C# project used for developing Integrated Minecraft Server plugins/GUI.</Description>
+        <Description>Creates a new project that can be used to develop IntegratedMinecraftServer extensions.</Description>
         <ProjectType>CSharp</ProjectType>
         <ProjectSubType>
         </ProjectSubType>
@@ -21,4 +21,4 @@
       </TemplateData>
     </VSTemplateHeader>
   </VSTemplateContainer>
-</VSTemplateManifest>
+</VSTemplateManifest>fest>

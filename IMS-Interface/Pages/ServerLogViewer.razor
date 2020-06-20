@@ -1,0 +1,27 @@
+﻿@page "/ServerLogViewer"
+
+@namespace IMS_Interface
+
+@using IMS_Library
+
+@implements IDisposable
+
+@inject ServerProvider ServerSelector
+
+<h3>Server Logs</h3>
+<div style="border:solid 1px #ddd; border-radius:3px">
+    <LogViewer LogManager="ServerSelector.CurrentServer"></LogViewer>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        ServerSelector.OnServerSelectionChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        ServerSelector.OnServerSelectionChange -= StateHasChanged;
+    }
+}

@@ -1,0 +1,113 @@
+﻿@namespace IMS_Interface.Preferences
+
+@using System.Reflection
+
+@inherits PreferenceDisplayView
+
+<table class="table table-bordered" style="width: 500px; height: 300px; border: 1px solid #ccc; border-radius: 3px;" data-toggle="tooltip" data-placement="right" data-title="@DisplayData.Description">
+    <thead>
+        <tr>
+            <th>
+                <label style="font-weight:normal; vertical-align:middle">@DisplayData.DisplayName</label>
+                <button class="btn btn-default" style="float:right; font-weight:bold" @onclick="@(x => EditingDictionary.Add(new MutableKeyValuePair("", "")))">+</button>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                Key
+                            </th>
+                            <th></th>
+                            <th>
+                                Value
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (MutableKeyValuePair pair in EditingDictionary)
+                        {
+                            <tr>
+                                <td>
+                                    @{
+                                        bool keyInvalid = !VerifyKeyValidity(pair.Key);
+                                    }
+                                    <input type="text" class="form-control @(keyInvalid ? "has-error" : "")" style="width:100%" value="@pair.Key" @onchange="x => { pair.Key = (string)x.Value; UpdateDictionary(); }" />
+                                    @if (keyInvalid)
+                                    {
+                                        <label class="alert-danger" style="background-color:transparent; font-weight:normal;">Duplicate key</label>
+                                    }
+                                </td>
+                                <td style="width:20px">
+                                    =
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" style="width:100%" value="@pair.Value" @onchange="x => { pair.Value = (string)x.Value; UpdateDictionary(); }" />
+                                </td>
+                                <td style="width:20px">
+                                    <button class="btn btn-default" style="float:right; font-weight:bold" @onclick="x => { EditingDictionary.Remove(pair); UpdateDictionary(); }">-</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+@code {
+
+    protected List<MutableKeyValuePair> EditingDictionary;
+
+    protected bool VerifyKeyValidity(string key)
+    {
+        return EditingDictionary.Where(x => x.Key == key).Count() <= 1;
+    }
+
+    protected override void OnParametersSet()
+    {
+        EditingDictionary = ((Dictionary<string, string>)
+            DisplayData.ParentDisplay.CurrentConfiguration.GetType()
+            .GetField(DisplayData.FieldName).GetValue(DisplayData.ParentDisplay.CurrentConfiguration)).Select(x => (MutableKeyValuePair)x).ToList();
+    }
+
+    protected Dictionary<string, string> BuildValidDictionary()
+    {
+        Dictionary<string, string> toReturn = new Dictionary<string, string>();
+        foreach(MutableKeyValuePair pair in EditingDictionary)
+        {
+            if(!toReturn.ContainsKey(pair.Key))
+            {
+                toReturn.Add(pair.Key, pair.Value);
+            }
+        }
+        return toReturn;
+    }
+
+    protected void UpdateDictionary()
+    {
+        DisplayData.ParentDisplay.CurrentConfiguration.GetType()
+            .GetField(DisplayData.FieldName)
+            .SetValue(DisplayData.ParentDisplay.CurrentConfiguration, BuildValidDictionary());
+    }
+
+    protected class MutableKeyValuePair {
+        public string Key;
+        public string Value;
+
+        public MutableKeyValuePair(string key, string value)
+        {
+            Key = key;
+            Value = value;
+        }
+
+        public static implicit operator MutableKeyValuePair(KeyValuePair<string,string> k) => new MutableKeyValuePair(k.Key, k.Value);
+        public static implicit operator KeyValuePair<string, string>(MutableKeyValuePair k) => new KeyValuePair<string, string>(k.Key, k.Value);
+    }
+}

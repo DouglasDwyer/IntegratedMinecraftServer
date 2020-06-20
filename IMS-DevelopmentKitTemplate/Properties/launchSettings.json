@@ -6,5 +6,11 @@
       "applicationUrl": "http://localhost:50648/",
       "sslPort": 44386
     }
+  },
+  "profiles": {
+    "IMS-DevelopmentKitTemplate": {
+      "commandName": "Executable",
+      "executablePath": "cmd.exe"
+    }
   }
 }

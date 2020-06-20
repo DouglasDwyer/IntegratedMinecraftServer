@@ -1,0 +1,119 @@
+﻿@namespace IMS_Interface
+
+@using IMS_Library
+@using Blazor.FileReader
+@using System.IO
+
+@page "/PluginManager"
+@inject IFileReaderService FileReader
+@inject PopupProvider PopupManager
+
+<h3>Plugin Management</h3>
+
+<label class="btn btn-primary" style="padding:5px" disabled="@IsWorking">
+    Upload plugin
+    <input class="btn btn-primary" style="display:none" type="file" @ref="UploadPluginButton" @onchange="UploadPlugin" accept=".dll" disabled="@IsWorking" />
+</label>
+<hr />
+<table class="table table-bordered">
+    <tbody>
+        <tr>
+            <td>
+                @if (IMS.Instance.PluginManager.KnownPlugins.Count > 0)
+                {
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Description
+                                </th>
+                                <th>
+                                    Version
+                                </th>
+                                <th>
+                                    Author
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (PluginInformation plugin in IMS.Instance.PluginManager.KnownPlugins.Values)
+                            {
+                                <tr>
+                                    <th>
+                                        @plugin.Name
+                                    </th>
+                                    <td>
+                                        @plugin.Description
+                                    </td>
+                                    <td>
+                                        @plugin.AssemblyVersion
+                                    </td>
+                                    <td>
+                                        @plugin.Author
+                                    </td>
+                                    <td>
+                                        @if (plugin.Enabled)
+                                        {
+                                            <a href="javascript:;" @onclick="x => { IMS.Instance.PluginManager.UnloadPlugin(plugin.AssemblyName); plugin.Enabled = false; }">Disable</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="javascript:;" @onclick="x => { IMS.Instance.PluginManager.LoadPlugin(plugin); plugin.Enabled = true; }">Enable</a>
+                                        }
+                                        | <a href="javascript:;" @onclick="x => IMS.Instance.PluginManager.DeletePlugin(plugin)">Remove</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <label style="font-weight:normal; vertical-align:middle"><i>There currently are no known plugins.</i></label>
+                }
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+@code {
+    protected ElementReference UploadPluginButton { get; set; }
+
+    protected bool IsWorking => CurrentTask != null && !CurrentTask.IsCompleted;
+    protected Task CurrentTask = null;
+
+    protected void UploadPlugin()
+    {
+        CurrentTask = UploadPluginAsync();
+    }
+
+    protected async Task UploadPluginAsync()
+    {
+        string destinationFile = Constants.ExecutionPath + Constants.PluginFolderLocation + "/" + Guid.NewGuid() + ".dll";
+        try
+        {
+            if(!Directory.Exists(Constants.ExecutionPath + Constants.PluginFolderLocation))
+            {
+                Directory.CreateDirectory(Constants.ExecutionPath + Constants.PluginFolderLocation);
+            }
+            using (Stream uploadStream = await (await FileReader.CreateReference(UploadPluginButton).EnumerateFilesAsync()).Single().CreateMemoryStreamAsync(1024 * 1024))
+            using (Stream fileStream = File.Create(destinationFile))
+            {
+                await uploadStream.CopyToAsync(fileStream);
+            }
+            IMS.Instance.PluginManager.LoadPlugin(destinationFile);
+        }
+        catch(Exception e)
+        {
+            File.Delete(destinationFile);
+            Logger.WriteError("Couldn't load new plugin!\n" + e);
+            PopupManager.ShowPopup(new InformationPopupDisplay("The plugin could not be loaded.  See the IMS log for more details.", "Couldn't load plugin", x => { }));
+        }
+        CurrentTask = null;
+        StateHasChanged();
+    }
+}

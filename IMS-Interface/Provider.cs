@@ -22,5 +22,9 @@ namespace IMS_Interface
         /// When <see cref="ServerPreferences"/> attempts to display server settings, it searches this list and chooses the binding whose <see cref="ConfigurationPreferenceDisplayBinding.PreferenceType"/> most directly matches the type of the settings to display.
         /// </summary>
         public static readonly ConcurrentBag<ConfigurationPreferenceDisplayBinding> ServerPreferenceDisplayBinding = new ConcurrentBag<ConfigurationPreferenceDisplayBinding>();
+        /// <summary>
+        /// This is a list which binds server types to "create new server" display views.
+        /// </summary>
+        public static readonly ConcurrentBag<NewServerTypeBinding> NewServerDisplayBinding = new ConcurrentBag<NewServerTypeBinding>();
     }
 }

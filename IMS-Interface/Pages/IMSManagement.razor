@@ -10,21 +10,98 @@
 <label style="font-weight:normal;"><i>Integrated Minecraft Server v@(Assembly.GetAssembly(typeof(IMS)).GetName().Version)</i></label>
 <br />
 <br />
-<a>Check for updates</a>
+<a href="javascript:;" @onclick="StopIMS">Stop IMS</a>
+<br />
+<a href="javascript:;" @onclick="RestartIMS">Restart IMS</a>
+<br />
+@if (IMS.Instance.UpdateManager.UpdatesReadyForInstallation)
+{
+    <a href="javascript:;" @onclick="AttemptIMSUpdate">Install latest version of IMS</a>
+}
+else
+{
+    <a href="javascript:;" @onclick="CheckForUpdates">Check for updates</a>
+}
 <br />
 <a href="IMSPreferences">Configure IMS</a>
 <br />
-<a>Manage plugins</a>
+<a href="PluginManager">Manage plugins</a>
 <br />
-<a href="IMSManagement" @onclick="@(x => PopupManager.ShowPopup(new ChangeUsernameAndPasswordDisplay()))">Change username/password</a>
+<a href="javascript:;" @onclick="@(x => PopupManager.ShowPopup(new ChangeUsernameAndPasswordDisplay()))">Change username/password</a>
 <br />
 <a href="ReleaseNotes">Release notes</a>
 <br />
-<a>View logfiles</a>
+<a href="IMSConsole">View IMS console</a>
 <br />
 <a href="https://github.com/DouglasDwyer/IntegratedMinecraftServer/issues/new">Report a bug</a>
 <br />
 
 @code {
+    protected void AttemptIMSUpdate()
+    {
+        PopupManager.ShowPopup(
+            new InformationPopupDisplay(
+                "There is a new update for IMS that is ready to install.  Would you like to restart IMS now?",
+                "Update IMS",
+                x =>
+                {
+                    if (x == 0)
+                    {
+                        IMS.Instance.UpdateManager.UpdateAndRestart();
+                    }
+                },
+                "Yes",
+                "No"
+        ));
+    }
 
+    protected void StopIMS()
+    {
+        PopupManager.ShowPopup(
+            new InformationPopupDisplay(
+                "Are you certain you would like to shut down IMS?  This will stop any running servers.",
+                "Shut down",
+                x =>
+                {
+                    if (x == 0)
+                    {
+                        IMS.Instance.Stop();
+                    }
+                },
+                "Yes",
+                "No"
+        ));
+    }
+
+    protected void RestartIMS()
+    {
+        PopupManager.ShowPopup(
+            new InformationPopupDisplay(
+                "Are you certain you would like to restart IMS?  This will restart any running servers.",
+                "Restart",
+                x =>
+                {
+                    if (x == 0)
+                    {
+                        IMS.Instance.Restart();
+                    }
+                },
+                "Yes",
+                "No"
+        ));
+    }
+
+    protected async void CheckForUpdates()
+    {
+        PopupManager.ShowPopup(new LoadingPopupDisplay("Checking for new updates..."));
+        await IMS.Instance.UpdateManager.DownloadUpdatesAsync();
+        if (IMS.Instance.UpdateManager.UpdatesReadyForInstallation)
+        {
+            AttemptIMSUpdate();
+        }
+        else
+        {
+            PopupManager.ShowPopup(new InformationPopupDisplay("No new updates were found for IMS.", "IMS up-to-date", x => { }));
+        }
+    }
 }

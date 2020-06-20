@@ -1,0 +1,3258 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IMS-Library</name>
+    </assembly>
+    <members>
+        <member name="T:IMS_Library.ChildProcessTracker">
+            <summary>
+            Allows processes to be automatically killed if this parent process unexpectedly quits.
+            This feature requires Windows 8 or greater. On Windows 7, nothing is done.</summary>
+            <remarks>References:
+             https://stackoverflow.com/a/4657392/386091
+             https://stackoverflow.com/a/9164742/386091 </remarks>
+        </member>
+        <member name="M:IMS_Library.ChildProcessTracker.AddProcess(System.Diagnostics.Process)">
+            <summary>
+            Add the process to be tracked. If our current process is killed, the child processes
+            that we are tracking will be automatically killed, too. If the child process terminates
+            first, that's fine, too.</summary>
+            <param name="process"></param>
+        </member>
+        <member name="T:IMS_Library.Constants">
+            <summary>
+            This class contains constant data that is necessary for program operation, like the paths to various IMS files.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.Constants.ServiceName">
+            <summary>
+            This is the name of the IMS Windows service.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.Constants.DataLocation">
+            <summary>
+            This is the folder, relative to the IMS root directory, that contains data necessary for IMS's operation.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.Constants.LogLocation">
+            <summary>
+            This is the folder, relative to the IMS root directory, which contains IMS logfiles.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.Constants.ConfigurationFilePath">
+            <summary>
+            This is the path, relative to the IMS root directory, of the IMS settings file.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.Constants.ServerFolderLocation">
+            <summary>
+            This is the folder, relative to the IMS root directory, which contains Minecraft server data.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.Constants.WorldFolderLocation">
+            <summary>
+            This is the folder, relative to the IMS root directory, which contains Minecraft world data.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.Constants.BinariesFolderLocation">
+            <summary>
+            This is the folder, relative to the IMS root directory, which contains executable assemblies that IMS uses (like the JRE).
+            </summary>
+        </member>
+        <member name="F:IMS_Library.Constants.ServerBinariesFolderLocation">
+            <summary>
+            This is the folder, relative to the IMS root directory, which contains Minecraft server executables.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.Constants.JavaExecutableLocation">
+            <summary>
+            This is the path, relative to the IMS root directory, of the bundled Java runtime environment.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.Constants.BedrockTemplateFolderLocation">
+            <summary>
+            This the path, relative to the IMS root directory, of the folder which contains all of the data necessary for a Bedrock server to run.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.Constants.PluginFolderLocation">
+            <summary>
+            This is the path, relative to the IMS root directory, of the folder used to store IMS plugins.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.Constants.ExecutionPath">
+            <summary>
+            This is the path of the current IMS root directory.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.Constants.CheckToEnsureNATConnectedInterval">
+            <summary>
+            This is how often the <see cref="T:IMS_Library.PortForwarder"/> will check to see whether IMS is still connected to a UPnP router.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.Constants.MinecraftColorsHexAndFormattingCodes">
+            <summary>
+            This is a dictionary which can be used to convert hex color codes (in the format "#rrggbb") to Minecraft formatting letter codes.
+            </summary>
+        </member>
+        <member name="T:IMS_Library.Encryption">
+            <summary>
+            This static class contains methods for encrypting data using both symmetric and assymetric algorithms.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.Encryption.GetRandomBytes(System.Byte)">
+            <summary>
+            Retrieves a securely-generated list of bytes for use in cryptographic operations.
+            </summary>
+            <param name="size">The size of the byte array to return.</param>
+            <returns>A byte array containing a series of randomized bytes.</returns>
+        </member>
+        <member name="M:IMS_Library.Encryption.HashBytes(System.Byte[])">
+            <summary>
+            Hashes a series of bytes using the SHA512 encryption algorithm.
+            </summary>
+            <param name="toEncrypt">The series of bytes to encrypt.</param>
+            <returns>An SHA512-hashed byte array.</returns>
+        </member>
+        <member name="M:IMS_Library.Encryption.HashBytes(System.Byte[],System.Byte[])">
+            <summary>
+            Hashes a series of bytes, appended with a nonce, using the SHA512 encryption algorithm.
+            </summary>
+            <param name="toEncrypt">The series of bytes to encrypt.</param>
+            <param name="nonce">The random sequence to append.</param>
+            <returns>An SHA512-hashed byte array.</returns>
+        </member>
+        <member name="M:IMS_Library.Encryption.GenerateAsymmetricKeyPair">
+            <summary>
+            Generates an asymmetric keypair for encryption.
+            </summary>
+            <returns>A Tuple which contains the public encryption information, and then the private decryption information.</returns>
+        </member>
+        <member name="M:IMS_Library.Encryption.DecryptBytesAsymmetric(System.Byte[],System.Security.Cryptography.RSAParameters)">
+            <summary>
+            Decrypts a series of bytes using a key.
+            </summary>
+            <param name="data">The byte array to decrypt.</param>
+            <param name="key">The key to use in decryption.</param>
+            <returns>The decrypted byte array.</returns>
+        </member>
+        <member name="M:IMS_Library.Encryption.EncryptBytesAsymmetric(System.Byte[],System.Security.Cryptography.RSAParameters)">
+            <summary>
+            Encrypts a series of bytes using a key.
+            </summary>
+            <param name="data">The data to encrypt.</param>
+            <param name="key">The encryption key to use.</param>
+            <returns>The encrypted byte array.</returns>
+        </member>
+        <member name="T:IMS_Library.Extensions">
+            <summary>
+            Provides general-purpose extension methods for various operations.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.Extensions.Remove``2(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0)">
+            <summary>
+            Removes an object from a <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2"/> using its key.
+            </summary>
+            <typeparam name="K">The type of the key.</typeparam>
+            <typeparam name="V">The type of value that the dictionary stores.</typeparam>
+            <param name="dictionary">The dictionary to remove an item from.</param>
+            <param name="key">The key of the item to remove.</param>
+            <returns>A <see cref="T:System.Boolean"/> that represents whether the item was found/removed from the dictionary successfully.</returns>
+        </member>
+        <member name="M:IMS_Library.Extensions.IsFileLocked(System.IO.FileInfo)">
+            <summary>
+            This method checks whether another program has a file lock on the specified file.
+            </summary>
+            <param name="file">The file to check.</param>
+            <returns>Whether the file is locked or not.</returns>
+        </member>
+        <member name="M:IMS_Library.Extensions.CopyFolder(System.String,System.String)">
+            <summary>
+            Copies an entire folder to a different directory, including subdirectories.
+            </summary>
+            <param name="sourceDirectory">The path of the directory to copy.</param>
+            <param name="targetDirectory">The path of the newly-created clone directory.</param>
+        </member>
+        <member name="T:IMS_Library.FirewallController">
+            <summary>
+            This is a manager class which provides methods to add/remove Windows firewall exceptions.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.FirewallController.CreateFirewallExecutableException(System.String,System.String)">
+            <summary>
+            Allows an executable through the Windows firewall.
+            </summary>
+            <param name="name">The name of the exception to create.  This name should be unique (and probably should contain a <see cref="T:System.Guid"/>).</param>
+            <param name="path">The path of the executable to allow through the Windows firewall.</param>
+        </member>
+        <member name="M:IMS_Library.FirewallController.RemoveFirewallExecutableException(System.String)">
+            <summary>
+            Removes a Windows firewall exception for the specified executable.
+            </summary>
+            <param name="name">The name of the exception to remove.</param>
+        </member>
+        <member name="M:IMS_Library.FirewallController.CreateFirewallPortException(System.Int32)">
+            <summary>
+            Allows a port through the Windows firewall.
+            </summary>
+            <param name="port">The port number to allow through the firewall.</param>
+        </member>
+        <member name="M:IMS_Library.FirewallController.RemoveFirewallPortException(System.Int32)">
+            <summary>
+            Removes a port exception from the Windows firewall.
+            </summary>
+            <param name="port">The port number to remove.</param>
+        </member>
+        <member name="T:IMS_Library.ILogProvider">
+            <summary>
+            Represents a service which creates and maintains logfiles.  This interface may be used to read logfile information.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.ILogProvider.GetAllLogFiles">
+            <summary>
+            Retrieves all of the logfiles that are currently stored.
+            </summary>
+            <returns>A list of logfiles.</returns>
+        </member>
+        <member name="M:IMS_Library.ILogProvider.GetLogFile(IMS_Library.LogFileInformation)">
+            <summary>
+            Retrieves the content of a specific logfile.
+            </summary>
+            <param name="information">The logfile to read.</param>
+            <returns>The text contained within the logfile.</returns>
+        </member>
+        <member name="M:IMS_Library.ILogProvider.DeleteLogFile(IMS_Library.LogFileInformation)">
+            <summary>
+            Deletes the logfile, removing it from disk.
+            </summary>
+            <param name="information">The logfile to delete.</param>
+        </member>
+        <member name="T:IMS_Library.IMS">
+            <summary>
+            Represents the core Windows service which maintains Minecraft servers in the background.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.IMS.Instance">
+            <summary>
+            Returns the currently running instance of IMS.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.IMS.CurrentSettings">
+            <summary>
+            Returns the currently active configuration for IMS.  To set the currently active configuration, use <see cref="M:IMS_Library.IMS.ChangeSettings(IMS_Library.IMSSettings)"/>.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.IMS.PortManager">
+            <summary>
+            Returns the current port manager, which can be used to forward/remove forwarded ports from UPnP routers.  Services are in charge of adding/removing their own ports.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.IMS.FirewallManager">
+            <summary>
+            Returns the current firewall manager, which can be used to bypass the Windows firewall.  Services are in charge of adding/removing their own firewall exceptions.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.IMS.WorldManager">
+            <summary>
+            Returns the current world manager, which is used to regulate the storage and backup of Minecraft worlds.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.IMS.WebServer">
+            <summary>
+            Returns the current web interface manager, which runs the administrator console for user configuration of IMS.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.IMS.ServerManager">
+            <summary>
+            Returns the current server manager, which regulates all loaded Minecraft server configurations.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.IMS.PluginManager">
+            <summary>
+            Returns the current plugin manager, which regulates user-defined IMS plugins.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.IMS.VersionManager">
+            <summary>
+            Returns the version provider, which can be used to fetch data about Minecraft server versions or download them off the internet.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.IMS.UpdateManager">
+            <summary>
+            Returns the update manager, which is used to download/install the latest version of IMS from the internet.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.IMS.UserMessageManager">
+            <summary>
+            Returns the user message manager, which is used to send data messages to the IMS admin console.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.IMS.#ctor">
+            <summary>
+            Creates a new instance of IMS.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">
+            Thrown if an instance of IMS already exists.
+            </exception>
+        </member>
+        <member name="M:IMS_Library.IMS.Restart">
+            <summary>
+            Restarts the IMS Windows service.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.IMS.Stop(System.Int32)">
+            <summary>
+            Stops the IMS Windows service, shutting down with the specified error code.
+            </summary>
+            <param name="error">The error code to return.</param>
+        </member>
+        <member name="M:IMS_Library.IMS.ChangeSettings(IMS_Library.IMSSettings)">
+            <summary>
+            Updates <see cref="P:IMS_Library.IMS.CurrentSettings"/>, making changes to other services (like forwarding ports) as necessary.
+            </summary>
+            <param name="newSettings">The settings to apply.</param>
+        </member>
+        <member name="M:IMS_Library.IMS.GetAllLogFiles">
+            <summary>
+            Retrieves all of the IMS logfiles that are currently stored.
+            </summary>
+            <returns>A list of logfiles.</returns>
+        </member>
+        <member name="M:IMS_Library.IMS.GetLogFile(IMS_Library.LogFileInformation)">
+            <summary>
+            Retrieves the content of a specific IMS logfile.
+            </summary>
+            <param name="information">The logfile to read.</param>
+            <returns>The text contained within the logfile.</returns>
+        </member>
+        <member name="M:IMS_Library.IMS.DeleteLogFile(IMS_Library.LogFileInformation)">
+            <summary>
+            Deletes the IMS logfile, removing it from disk.
+            </summary>
+            <param name="information">The logfile to delete.</param>
+        </member>
+        <member name="T:IMS_Library.IMSConfiguration">
+            <summary>
+            This is a base class that can be used to easily store/serialize configuration files in the <see cref="N:RoyalXML"/> format.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.IMSConfiguration.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:IMS_Library.IMSConfiguration"/>.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.IMSConfiguration.Clone">
+            <summary>
+            Creates a deep copy of the configuration.
+            </summary>
+            <returns>A new <see cref="T:IMS_Library.IMSConfiguration"/> object that has fields with the same values, but different objects.</returns>
+        </member>
+        <member name="M:IMS_Library.IMSConfiguration.GetDefaultFilePath">
+            <summary>
+            Retrieves the file path for the settings configuration file.
+            </summary>
+            <returns>The path of the configuration file.</returns>
+        </member>
+        <member name="T:IMS_Library.IMSConfigurationUtility">
+            <summary>
+            This is a helper class containing extension methods used for saving/loading <see cref="T:IMS_Library.IMSConfiguration"/> objects.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.IMSConfigurationUtility.FromConfiguration``1(``0)">
+            <summary>
+            Loads the configuration from its configuration file, or returns the present configuration if the file does not exist.
+            </summary>
+            <typeparam name="T">The <see cref="T:IMS_Library.IMSConfiguration"/> type to load.</typeparam>
+            <param name="imsConfiguration">The current configuration.</param>
+            <returns>The newly-loaded configuration.</returns>
+        </member>
+        <member name="M:IMS_Library.IMSConfigurationUtility.SaveConfiguration``1(``0)">
+            <summary>
+            Saves an <see cref="T:IMS_Library.IMSConfiguration"/> to disk.
+            </summary>
+            <typeparam name="T">The <see cref="T:IMS_Library.IMSConfiguration"/> type to save.</typeparam>
+            <param name="imsConfiguration">The current configuration.</param>
+        </member>
+        <member name="T:IMS_Library.IMSSettings">
+            <summary>
+            Represents a collection of settings that affect IMS behavior.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.IMSSettings.ManagementPort">
+            <summary>
+            The port to run the IMS webserver on.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.IMSSettings.RunIMSOnStartup">
+            <summary>
+            Whether IMS should run when the computer boots.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.IMSSettings.LogDeletionTimespan">
+            <summary>
+            Determines the age that IMS logfiles must be for IMS to delete them.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.IMSSettings.IMSAutoUpdateTime">
+            <summary>
+            Represents the next time at which IMS should restart to install updates.  If null, IMS will never automatically install updates.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.IMSSettings.Username">
+            <summary>
+            The username to use when logging into the IMS admin console.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.IMSSettings.PasswordHash">
+            <summary>
+            The SHA-256 hash of the password to use when logging into the IMS admin console.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.IMSSettings.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:IMS_Library.IMSSettings"/>, with <see cref="F:IMS_Library.IMSSettings.ManagementPort"/> defaulting to 8080.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.IMSSettings.GetDefaultFilePath">
+            <summary>
+            Retrieves the file path for the settings configuration file.
+            </summary>
+            <returns>The path of the configuration file.</returns>
+        </member>
+        <member name="T:IMS_Library.InformationController">
+            <summary>
+            Provides the ability to send simple information, warning, and error messages to the user in case anything goes wrong.
+            These messages should be sent sparingly to avoid overwhelming users.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.InformationController.Messages">
+            <summary>
+            A list which contains all of the messages that the admin console should display to the user.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.InformationController.NewMessagesForUser">
+            <summary>
+            Whether there are new, unread messages for the user.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.InformationController.LogInfo(System.String,System.Boolean)">
+            <summary>
+            Creates an info message to show to the user.  Info messages simply provide some data to the user; they do not indicate any errors in IMS.
+            </summary>
+            <param name="message">The message to show.</param>
+            <param name="log">If true, the controller will also write the message to <see cref="T:IMS_Library.Logger"/>.</param>
+        </member>
+        <member name="M:IMS_Library.InformationController.LogWarning(System.String,System.Boolean)">
+            <summary>
+            Creates a warning message to show to the user.  Warning messages provide a warning to the user about circumstances that may cause IMS to function irregularly.
+            </summary>
+            <param name="message">The message to show.</param>
+            <param name="log">If true, the controller will also write the message to <see cref="T:IMS_Library.Logger"/>.</param>
+        </member>
+        <member name="M:IMS_Library.InformationController.LogError(System.String,System.Boolean)">
+            <summary>
+            Creates an error message to show to the user.  Error messages provides an error to the user about a specific event that impacted the performance of IMS.
+            </summary>
+            <param name="message"></param>
+            <param name="log">If true, the controller will also write the message to <see cref="T:IMS_Library.Logger"/>.</param>
+        </member>
+        <member name="M:IMS_Library.InformationController.GetDefaultFilePath">
+            <summary>
+            Retrieves the location of the file which stores user information messages.
+            </summary>
+            <returns>The absolute path of the data file.</returns>
+        </member>
+        <member name="T:IMS_Library.InformationItem">
+            <summary>
+            Represents a piece of information that the end user should be aware of.  The <see cref="T:IMS_Library.InformationController"/> class uses these to store info, warnings, and errors produced by IMS.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.InformationItem.Message">
+            <summary>
+            The message to display to the end user.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.InformationItem.LastSendTime">
+            <summary>
+            The last time this message was logged by IMS.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.InformationItem.Severity">
+            <summary>
+            How critical this message is.
+            </summary>
+        </member>
+        <member name="T:IMS_Library.InformationItem.MessageType">
+            <summary>
+            Represents the severity of any one <see cref="T:IMS_Library.InformationItem"/>.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.InformationItem.MessageType.Info">
+            <summary>
+            This message simply provides some data to the user; it does not indicate any errors in IMS.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.InformationItem.MessageType.Warning">
+            <summary>
+            This message provides a warning to the user about circumstances that may cause IMS to function irregularly.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.InformationItem.MessageType.Error">
+            <summary>
+            This message provides an error to the user about a specific event that impacted the performance of IMS.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.InformationItem.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:IMS_Library.InformationItem"/> with default parameters.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.InformationItem.#ctor(System.String,System.DateTime,IMS_Library.InformationItem.MessageType)">
+            <summary>
+            Creates a new instance of <see cref="T:IMS_Library.InformationItem"/> with the specified data.
+            </summary>
+            <param name="message">The message to display to the end user.</param>
+            <param name="time">The last time this message was logged by IMS.</param>
+            <param name="severity">How critical this message is.</param>
+        </member>
+        <member name="T:IMS_Library.JunctionPoint">
+            <summary>
+            Provides access to NTFS junction points in .NET.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JunctionPoint.ERROR_NOT_A_REPARSE_POINT">
+            <summary>
+            The file or directory is not a reparse point.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JunctionPoint.ERROR_REPARSE_ATTRIBUTE_CONFLICT">
+            <summary>
+            The reparse point attribute cannot be set because it conflicts with an existing attribute.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JunctionPoint.ERROR_INVALID_REPARSE_DATA">
+            <summary>
+            The data present in the reparse point buffer is invalid.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JunctionPoint.ERROR_REPARSE_TAG_INVALID">
+            <summary>
+            The tag present in the reparse point buffer is invalid.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JunctionPoint.ERROR_REPARSE_TAG_MISMATCH">
+            <summary>
+            There is a mismatch between the tag specified in the request and the tag present in the reparse point.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JunctionPoint.FSCTL_SET_REPARSE_POINT">
+            <summary>
+            Command to set the reparse point data block.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JunctionPoint.FSCTL_GET_REPARSE_POINT">
+            <summary>
+            Command to get the reparse point data block.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JunctionPoint.FSCTL_DELETE_REPARSE_POINT">
+            <summary>
+            Command to delete the reparse point data base.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JunctionPoint.IO_REPARSE_TAG_MOUNT_POINT">
+            <summary>
+            Reparse point tag used to identify mount points and junction points.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JunctionPoint.NonInterpretedPathPrefix">
+            <summary>
+            This prefix indicates to NTFS that the path is to be treated as a non-interpreted
+            path in the virtual file system.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JunctionPoint.REPARSE_DATA_BUFFER.ReparseTag">
+            <summary>
+            Reparse point tag. Must be a Microsoft reparse point tag.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JunctionPoint.REPARSE_DATA_BUFFER.ReparseDataLength">
+            <summary>
+            Size, in bytes, of the data after the Reserved member. This can be calculated by:
+            (4 * sizeof(ushort)) + SubstituteNameLength + PrintNameLength + 
+            (namesAreNullTerminated ? 2 * sizeof(char) : 0);
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JunctionPoint.REPARSE_DATA_BUFFER.Reserved">
+            <summary>
+            Reserved; do not use. 
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JunctionPoint.REPARSE_DATA_BUFFER.SubstituteNameOffset">
+            <summary>
+            Offset, in bytes, of the substitute name string in the PathBuffer array.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JunctionPoint.REPARSE_DATA_BUFFER.SubstituteNameLength">
+            <summary>
+            Length, in bytes, of the substitute name string. If this string is null-terminated,
+            SubstituteNameLength does not include space for the null character.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JunctionPoint.REPARSE_DATA_BUFFER.PrintNameOffset">
+            <summary>
+            Offset, in bytes, of the print name string in the PathBuffer array.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JunctionPoint.REPARSE_DATA_BUFFER.PrintNameLength">
+            <summary>
+            Length, in bytes, of the print name string. If this string is null-terminated,
+            PrintNameLength does not include space for the null character. 
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JunctionPoint.REPARSE_DATA_BUFFER.PathBuffer">
+            <summary>
+            A buffer containing the unicode-encoded path string. The path string contains
+            the substitute name string and print name string.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.JunctionPoint.CreateHardLink(System.String,System.String)">
+            <summary>
+            Creates a file hard link.
+            </summary>
+            <param name="targetFile">The file that the link should point to.</param>
+            <param name="linkFile">The full path of the new, link file.</param>
+        </member>
+        <member name="M:IMS_Library.JunctionPoint.Create(System.String,System.String,System.Boolean)">
+            <summary>
+            Creates a junction point from the specified directory to the specified target directory.
+            </summary>
+            <remarks>
+            Only works on NTFS.
+            </remarks>
+            <param name="junctionPoint">The junction point path</param>
+            <param name="targetDir">The target directory</param>
+            <param name="overwrite">If true overwrites an existing reparse point or empty directory</param>
+            <exception cref="T:System.IO.IOException">Thrown when the junction point could not be created or when
+            an existing directory was found and <paramref name="overwrite" /> if false</exception>
+        </member>
+        <member name="M:IMS_Library.JunctionPoint.Delete(System.String)">
+            <summary>
+            Deletes a junction point at the specified source directory along with the directory itself.
+            Does nothing if the junction point does not exist.
+            </summary>
+            <remarks>
+            Only works on NTFS.
+            </remarks>
+            <param name="junctionPoint">The junction point path</param>
+        </member>
+        <member name="M:IMS_Library.JunctionPoint.Exists(System.String)">
+            <summary>
+            Determines whether the specified path exists and refers to a junction point.
+            </summary>
+            <param name="path">The junction point path</param>
+            <returns>True if the specified path represents a junction point</returns>
+            <exception cref="T:System.IO.IOException">Thrown if the specified path is invalid
+            or some other error occurs</exception>
+        </member>
+        <member name="M:IMS_Library.JunctionPoint.GetTarget(System.String)">
+            <summary>
+            Gets the target of the specified junction point.
+            </summary>
+            <remarks>
+            Only works on NTFS.
+            </remarks>
+            <param name="junctionPoint">The junction point path</param>
+            <returns>The target of the junction point</returns>
+            <exception cref="T:System.IO.IOException">Thrown when the specified path does not
+            exist, is invalid, is not a junction point, or some other error occurs</exception>
+        </member>
+        <member name="T:IMS_Library.Logger">
+            <summary>
+            This class is used for keeping IMS logs and debugging.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.Logger.CurrentLogFile">
+            <summary>
+            Represents the full path of the current log file.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.Logger.ConsoleText">
+            <summary>
+            Returns a reasonably-large block of recent console output from the logger.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.Logger.WriteInfo(System.String)">
+            <summary>
+            Writes the <paramref name="information"/> string to the IMS log under the "info" category.
+            </summary>
+            <param name="information">The information to write to the log.</param>
+        </member>
+        <member name="M:IMS_Library.Logger.WriteWarning(System.String)">
+            <summary>
+            Writes the <paramref name="warning"/> string to the IMS log under the "warning" category.
+            </summary>
+            <param name="warning">The warning to write to the log.</param>
+        </member>
+        <member name="M:IMS_Library.Logger.WriteError(System.String)">
+            <summary>
+            Writes the <paramref name="error"/> string to the IMS log under the "error" category.
+            </summary>
+            <param name="error">The error to write to the log.</param>
+        </member>
+        <member name="M:IMS_Library.Logger.FinishLog">
+            <summary>
+            Stops all logging and marks the log as successful (differentiating it from a crashed/incomplete log).
+            </summary>
+        </member>
+        <member name="T:IMS_Library.MinecraftEdition">
+            <summary>
+            Represents a Minecraft version (edition) type.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.MinecraftEdition.Java">
+            <summary>
+            The desktop "Java Edition" version of Minecraft.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.MinecraftEdition.Bedrock">
+            <summary>
+            The cross-platform "Bedrock Edition" version of Minecraft.
+            </summary>
+        </member>
+        <member name="T:IMS_Library.IMSPluginBase">
+            <summary>
+            Represents a plugin that adds functionality to IMS.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.IMSPluginBase.Service">
+            <summary>
+            The instance of IMS that is currently running.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.IMSPluginBase.PluginAssembly">
+            <summary>
+            The assembly that contains this plugin.  An IMS plugin assembly may only contain one plugin.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.IMSPluginBase.PluginAssemblyName">
+            <summary>
+            The name of the assembly that contains this plugin.  An IMS plugin assembly may only contain one plugin.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.IMSPluginBase.Name">
+            <summary>
+            The human-readable name of this plugin.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.IMSPluginBase.Author">
+            <summary>
+            The name of the plugin's creator.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.IMSPluginBase.Description">
+            <summary>
+            A description of what this plugin does.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.IMSPluginBase.CurrentVersion">
+            <summary>
+            The version of the plugin's assembly.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.IMSPluginBase.Start">
+            <summary>
+            This method is called when the plugin is first loaded.
+            It provides the ability for the plugin to register with any necessary controllers,
+            or do things like set up timers.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.IMSPluginBase.Stop">
+            <summary>
+            This method is called when the plugin is unloaded.
+            The plugin should stop, unregister with any controllers it was using
+            (such as removing forwarded ports), and prepare to be unloaded.
+            </summary>
+        </member>
+        <member name="T:IMS_Library.IWebpageProvider">
+            <summary>
+            Represents a plugin which contains unique webpages.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.IWebpageProvider.GetPageRoutings">
+            <summary>
+            Returns a list of URLs, relative to the plugin's base URL, that map to Blazor component types.
+            The plugin's base URL is "/Plugin/{PLUGIN ASSEMBLY NAME}/".  Relative URLs cannot include slashes.
+            </summary>
+            <returns>A dictionary containing URL-component mappings.</returns>
+        </member>
+        <member name="T:IMS_Library.PluginController">
+            <summary>
+            Controls the management of third-party plugins.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.PluginController.LoadedPlugins">
+            <summary>
+            All of the currently loaded plugins.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.PluginController.KnownPlugins">
+            <summary>
+            This list contains all plugins that IMS is currently aware of, including unloaded plugins, indexed by assembly name.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.PluginController.Initialize">
+            <summary>
+            Loads all plugin assemblies into the current .NET runtime, but does not call <see cref="M:IMS_Library.IMSPluginBase.Start"/>.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.PluginController.Start">
+            <summary>
+            Calls <see cref="M:IMS_Library.IMSPluginBase.Start"/> on each loaded plugin.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.PluginController.UnloadPlugin(IMS_Library.IMSPluginBase)">
+            <summary>
+            Attempts to remove a plugin from memory.  This does not guarantee that the plugin's assembly will be unloaded.
+            </summary>
+            <param name="plugin">The plugin to unload.</param>
+        </member>
+        <member name="M:IMS_Library.PluginController.LoadPlugin(IMS_Library.PluginInformation)">
+            <summary>
+            Attempts to load a plugin into memory from the specified info.
+            </summary>
+            <param name="info">The plugin to load.</param>
+            <returns>The loaded plugin.</returns>
+        </member>
+        <member name="M:IMS_Library.PluginController.LoadPlugin(System.String)">
+            <summary>
+            Attempts to load a plugin into memory from the specified path.
+            </summary>
+            <param name="path">The path of the plugin to load.</param>
+            <returns>The loaded plugin.</returns>
+        </member>
+        <member name="M:IMS_Library.PluginController.Stop">
+            <summary>
+            Stops all plugins, unloading them.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.PluginController.GetDefaultFilePath">
+            <summary>
+            Retrieves the location of the plugin controller's settings file.
+            </summary>
+            <returns>The absolute path of the configuration file.</returns>
+        </member>
+        <member name="T:IMS_Library.PluginInformation">
+            <summary>
+            Contains information about a plugin, such as the plugin's file path, name, and description.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.PluginInformation.Name">
+            <summary>
+            The display name of the plugin.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.PluginInformation.Author">
+            <summary>
+            The name of the plugin's creator.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.PluginInformation.Description">
+            <summary>
+            A short description of the plugin.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.PluginInformation.AssemblyName">
+            <summary>
+            The name of the plugin's assembly.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.PluginInformation.FileName">
+            <summary>
+            The name of the plugin's file.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.PluginInformation.AssemblyVersion">
+            <summary>
+            The version of the assembly.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.PluginInformation.Enabled">
+            <summary>
+            Whether the plugin is enabled and should be loaded by IMS.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.PluginInformation.#ctor">
+            <summary>
+            Creates a new instance of the plugin information class.
+            </summary>
+        </member>
+        <member name="T:IMS_Library.PortForwarder">
+            <summary>
+            This is a manager class used to regulate interactions with a UPnP router.  It can be used to automatically forward ports.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.PortForwarder.ConnectedToPortForwardableDevice">
+            <summary>
+            This returns whether the <see cref="T:IMS_Library.PortForwarder"/> object is currently connected to a UPnP capable router.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.PortForwarder.#ctor">
+            <summary>
+            Creates a new <see cref="T:IMS_Library.PortForwarder"/> instance.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.PortForwarder.Start">
+            <summary>
+            Begins the <see cref="T:IMS_Library.PortForwarder"/> instance, attempting to find a UPnP capable router and starting network connection monitoring.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.PortForwarder.ForwardPort(System.Int32)">
+            <summary>
+            Adds the specified port to a list of ports to forward, and attempts to forward the port.  If disconnected or not currently connected to a UPnP router, the port will be "remembered" and forwarded when possible.
+            </summary>
+            <param name="port">The port number to forward.</param>
+        </member>
+        <member name="M:IMS_Library.PortForwarder.RemovePort(System.Int32)">
+            <summary>
+            Removes the specified port from the port forwarding list.
+            </summary>
+            <param name="port">The port to remove.</param>
+        </member>
+        <member name="M:IMS_Library.PortForwarder.Stop">
+            <summary>
+            Stops the port forwarding instance, removing all forwarded ports and stopping network connection monitoring.
+            </summary>
+        </member>
+        <member name="T:IMS_Library.ServerController">
+            <summary>
+            Acts as a manager for the user's Minecraft servers, loading them from disk, starting them, and forwarding ports appropriately.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.ServerController.Servers">
+            <summary>
+            A list containing all currently loaded servers.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.ServerController.Start">
+            <summary>
+            Begins the <see cref="T:IMS_Library.ServerController"/> instance, loading and starting Minecraft servers.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.ServerController.AddServer(IMS_Library.ServerConfiguration)">
+            <summary>
+            Adds a new server to the list of known servers.
+            </summary>
+            <param name="configuration">The configuration of the new server.</param>
+            <returns>The newly created server.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Thrown if <paramref name="configuration"/> does not have a unique identifier or if a server with the same ID already exists.
+            </exception>
+        </member>
+        <member name="M:IMS_Library.ServerController.Stop">
+            <summary>
+            Stops the <see cref="T:IMS_Library.ServerController"/> instance, stopping and saving all servers.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.ServerController.GetServer(System.Guid)">
+            <summary>
+            Retrieves a server by its ID.
+            </summary>
+            <param name="server">The ID of the server to retrieve.</param>
+            <returns>The <see cref="T:IMS_Library.ServerProxy"/> associated with this ID, or null if no server is found.</returns>
+        </member>
+        <member name="M:IMS_Library.ServerController.DeleteServerAsync(System.Guid)">
+            <summary>
+            Deletes a server, removing it from the registry and deleting the associated files from disk.
+            </summary>
+            <param name="id">The unique identifier of the server to delete.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object representing the current state of the removal operation.</returns>
+        </member>
+        <member name="T:IMS_Library.BanInformation">
+            <summary>
+            Instances of this class contain information about a ban enacted on a Minecraft player.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BanInformation.Player">
+            <summary>
+            The player who was banned.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BanInformation.CreatedDate">
+            <summary>
+            The time at which the player was banned.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BanInformation.BanSource">
+            <summary>
+            The name of the person who banned the player.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BanInformation.ExpirationDate">
+            <summary>
+            The time at which the ban expires.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BanInformation.Reason">
+            <summary>
+            The reason the player was banned.
+            </summary>
+        </member>
+        <member name="T:IMS_Library.BedrockServer">
+            <summary>
+            Allows for control over a Minecraft: Bedrock Edition server process, doing things like managing crashes or maintaining server preferences.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.BedrockServer.CurrentConfiguration">
+            <summary>
+            The current server settings.  The server must be restarted for changes to take effect.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.BedrockServer.ServerVersionID">
+            <summary>
+            The Mojang-assigned identifier for the version of Minecraft that the server is currently running.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.BedrockServer.SupportsWhitelist">
+            <summary>
+            Whether the server supports whitelisting players.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.BedrockServer.WhitelistEnabled">
+            <summary>
+            Whether the server whitelist is currently enabled.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.BedrockServer.SupportsBanning">
+            <summary>
+            Whether the server supports banning players.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.BedrockServer.SupportsBanningIPs">
+            <summary>
+            Whether the server supports banning players by IP address.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.BedrockServer.SupportsOps">
+            <summary>
+            Whether the server supports designating players as server operators.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.BedrockServer.SupportsIPs">
+            <summary>
+            Whether the server has the ability to record player IP addresses.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.BedrockServer.SupportsKicking">
+            <summary>
+            Whether the server supports kicking online players.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.BedrockServer.SupportedEdition">
+            <summary>
+            This server supports Minecraft: Bedrock Edition.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.BedrockServer.ServerLocation">
+            <summary>
+            Returns the absolute path of the Minecraft server's data folder.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.BedrockServer.LogFolderLocation">
+            <summary>
+            Returns the absolute path of the Minecraft server's log folder.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.BedrockServer.WorldLocation">
+            <summary>
+            Returns the absolute path of the Minecraft world folder that this server is currently using.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServer.Locker">
+            <summary>
+            This object is used to provide thread-safety when interacting with the <see cref="T:IMS_Library.JavaServer"/> instance.  It should be locked whenever a method is interacting with the object's non-public fields.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServer.AllUsers">
+            <summary>
+            This dictionary contains information about all known players, including players that have never joined the server (like a player that is whitelisted but has never played).  It is indexed by username.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServer.OnlineUsers">
+            <summary>
+            This dictionary contains information about online players.  It is indexed by username.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.BedrockServer.ExeLocation">
+            <summary>
+            The location of the server EXE file that should be executed.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServer.ServerProcess">
+            <summary>
+            The current internal Minecraft server process, or null if the server is not running.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServer.ServerPreferences">
+            <summary>
+            The current server settings.  The server must be restarted for changes to take effect.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServer.LogWriter">
+            <summary>
+            This object writes console data to a server log, as Bedrock servers currently do not make saved console logs.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.#ctor(System.Guid,IMS_Library.BedrockServerConfiguration)">
+            <summary>
+            Creates a new <see cref="T:IMS_Library.BedrockServer"/> instance with the specified unique identifier and server configuration data.
+            </summary>
+            <param name="id">The unique identifier that this server is associated with.</param>
+            <param name="configuration">The settings that this server should use.</param>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.BackupToLocationAsync(System.String)">
+            <summary>
+            Causes the server to make a snapshot of the current world, backing the world up to the specified location.  Currently, the server must be turned off to access world files, so this method causes the server to restart.
+            </summary>
+            <param name="location">The absolute path of the Minecraft world folder to back up to.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object representing the current state of the backup operation.</returns>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.BackupToZipFileAsync(System.String)">
+            <summary>
+            Causes the server to make a snapshot of the current world, backing the world up to the specified zip file.  Currently, the server must be turned off to access the world files, so this method causes the server to restart.
+            </summary>
+            <param name="file">The absolute path of the zip file to back up to.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object representing the current state of the backup operation.</returns>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.BanIP(System.String,System.String)">
+            <summary>
+            Bans a player by IP address.
+            </summary>
+            <param name="ip">The IP address of the player to ban.</param>
+            <param name="reason">The reason that the IP address is being banned.</param>
+            <exception cref="T:System.NotSupportedException">
+            Minecraft: Bedrock Edition servers do not currently support banning IP addresses.
+            </exception>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.BanPlayer(System.String,System.String)">
+            <summary>
+            Bans a player from the server, kicking them from the game and preventing them from rejoining.
+            </summary>
+            <param name="name">The name of the player to ban.</param>
+            <param name="reason">The reason the player is being banned.  This may be left null.</param>
+            <exception cref="T:System.NotSupportedException">
+            Minecraft: Bedrock Edition servers do not currently support banning players.
+            </exception>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.DeopPlayer(System.String)">
+            <summary>
+            Revokes a player's server operator status.
+            </summary>
+            <param name="name">The name of the player to demote.</param>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.GetAllBannedIPs">
+            <summary>
+            Retrieves a list of information about IPs that have been banned from the server.
+            </summary>
+            <returns>An enumerable of information about banned IPs.</returns>
+            <exception cref="T:System.NotSupportedException">
+            Minecraft: Bedrock Edition servers do not currently support banning IP addresses.
+            </exception>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.GetAllBans">
+            <summary>
+            Retrieves a list of ban information about players who have been banned from the server.
+            </summary>
+            <returns>An enumerable of information about bans.</returns>
+            <exception cref="T:System.NotSupportedException">
+            Minecraft: Bedrock Edition servers do not currently support banning players.
+            </exception>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.GetAllOps">
+            <summary>
+            Retrieves a list of players on the server who have operator status.
+            </summary>
+            <returns>An enumerable of players.</returns>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.GetAllPlayers">
+            <summary>
+            Retrieves a list of all players who have every logged onto the server.
+            </summary>
+            <returns>An enumerable of players.</returns>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.GetAllWhitelistedPlayers">
+            <summary>
+            Retrieves a list of all players with whitelist status on the server.
+            </summary>
+            <returns>An enumerable of players.</returns>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.GetConsoleText">
+            <summary>
+            Retrieves a reasonably-large block of recent text from the Minecraft server console.
+            </summary>
+            <returns>A block of recent server console text.</returns>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.GetLogFile(IMS_Library.LogFileInformation)">
+            <summary>
+            Gets the text inside a specific logfile.
+            </summary>
+            <param name="info">The logfile to get information about.</param>
+            <returns>The information that the logfile contains.</returns>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.GetAllLogFiles">
+            <summary>
+            Retrieves a list of logfiles that this server has produced.
+            </summary>
+            <returns>A list with information about each logfile created by the Minecraft server.</returns>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.GetOnlinePlayers">
+            <summary>
+            Retrieves a list of all online players.
+            </summary>
+            <returns>An enumerable of players.</returns>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.GetPlayerInformationByUsername(System.String)">
+            <summary>
+            Get information about a player by their username.
+            </summary>
+            <param name="username">The username of the player to retrieve data about.</param>
+            <returns>Information about the specified player, or null if no player was found.</returns>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.GetPlayerInformationByUUID(System.String)">
+            <summary>
+            Get information about a player by their UUID.
+            </summary>
+            <param name="uuid">The UUID of the player to retrieve data about.</param>
+            <returns>Information about the specified player, or null if no player was found.</returns>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.KickPlayer(System.String,System.String)">
+            <summary>
+            Kicks a player from the server.
+            </summary>
+            <param name="name">The name of the player to disconnect.</param>
+            <param name="reason">The reason for the player's disconnection.</param>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.OpPlayer(System.String)">
+            <summary>
+            Gives server operator status to the specified player.
+            </summary>
+            <param name="name">The player to make server operator.</param>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.ReloadServerPermissions">
+            <summary>
+            Causes the internal Minecraft server to reload the server permissions file from disk.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.ReloadServerWhitelist">
+            <summary>
+            Causes the internal Minecraft server to reload the whitelist from disk.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.RemoveWhitelistPlayer(System.String)">
+            <summary>
+            Removes a player from the server whitelist, preventing them from joining the game while the whitelist is enabled.  If <see cref="F:IMS_Library.JavaServerConfiguration.EnforceWhitelist"/> is true and this player is currently online, they will be kicked from the game.
+            </summary>
+            <param name="name">The name of the player to remove from the whitelist.</param>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.RestartAsync">
+            <summary>
+            Restarts the server, blocking until the server has entered the <see cref="F:IMS_Library.ServerProxy.ServerState.Running"/> state.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object representing the current state of the restart operation.</returns>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.SendConsoleCommand(System.String)">
+            <summary>
+            Sends a command to the server console.  If the command is "stop," shuts down the server and sets <see cref="F:IMS_Library.ServerConfiguration.IsEnabled"/> to false.
+            </summary>
+            <param name="command">The command to send to the server console.</param>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.StartAsync">
+            <summary>
+            Starts the internal Minecraft server process.  This call does not complete until the server leaves the <see cref="F:IMS_Library.ServerProxy.ServerState.Starting"/> state.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object that represents the current start operation.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Thrown if the server is already running when this method is called.
+            </exception>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.ToString">
+            <summary>
+            Returns a string that describes the current object.
+            </summary>
+            <returns>A string with the name of this server type.</returns>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.StopAsync">
+            <summary>
+            Stops the internal server process.  This call does not complete until the server has reached the <see cref="F:IMS_Library.ServerProxy.ServerState.Disabled"/> state.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object that represents the current state of the stop operation.</returns>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.UnbanIP(System.String)">
+            <summary>
+            Pardons an IP, allowing players with that IP to rejoin the server after an IP ban.
+            </summary>
+            <param name="ip">The IP address to unban.</param>
+            <exception cref="T:System.NotSupportedException">
+            Minecraft: Bedrock Edition servers do not currently support banning IP addresses.
+            </exception>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.UnbanPlayer(System.String)">
+            <summary>
+            Pardons a player, allowing them to rejoin the server after a ban.
+            </summary>
+            <param name="name">The name of the player to unban.</param>
+            <exception cref="T:System.NotSupportedException">
+            Minecraft: Bedrock Edition servers do not currently support banning players.
+            </exception>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.WhitelistPlayer(System.String)">
+            <summary>
+            Adds a player to the server whitelist, allowing them to join the game while the whitelist is enabled.
+            </summary>
+            <param name="name">The name of the player to whitelist.</param>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.ReloadWhitelistJSON">
+            <summary>
+            Reloads the server whitelist from its file on disk, updating IMS data accordingly.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.ReloadOpJSON">
+            <summary>
+            Reloads server operator information from disk, updating IMS data accordingly.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.OnServerConsoleDataReceived(System.Object,System.Diagnostics.DataReceivedEventArgs)">
+            <summary>
+            This method is called when the internal Minecraft server posts data to its console.
+            </summary>
+            <param name="sender">The process which invoked this event handler.</param>
+            <param name="args">The data that the server posted to its console.</param>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.MatchRegex(System.String,System.String,System.Text.RegularExpressions.Match@)">
+            <summary>
+            This method checks whether an input matches a Regex pattern, and if it does, saves that data to <paramref name="match"/>.
+            </summary>
+            <param name="data">The input string to parse with the Regex pattern.</param>
+            <param name="pattern">The Regex pattern to use in parsing.</param>
+            <param name="match">The data object that will describe the result of the parse operation once this method returns.</param>
+            <returns>A <see cref="T:System.Boolean"/> which indicates whether the Regex pattern matched successfully.</returns>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.OnServerProcessDie">
+            <summary>
+            This method is called when the server process quits.  If the server was in the <see cref="F:IMS_Library.ServerProxy.ServerState.Running"/> state, the proxy will attempt to restart the server.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.SendUncheckedConsoleCommand(System.String)">
+            <summary>
+            Sends a command to the Minecraft server console without checking the command beforehand.
+            </summary>
+            <param name="command">The command to send to the server console.</param>
+        </member>
+        <member name="M:IMS_Library.BedrockServer.DeleteLogFile(IMS_Library.LogFileInformation)">
+            <summary>
+            Deletes the specified logfile, removing it from disk.
+            </summary>
+            <param name="info">The logfile to delete.</param>
+        </member>
+        <member name="T:IMS_Library.BedrockServerConfiguration">
+            <summary>
+            Contains settings information about a <see cref="T:IMS_Library.BedrockServer"/>.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.Gamemode">
+            <summary>
+            The default player gamemode.  0 = Survival, 1 = Creative, 2 = Adventure, 3 = Spectator
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.Difficulty">
+            <summary>
+            The difficulty of the Minecraft world.  0 = Peaceful, 1 = Easy, 2 = Normal, 3 = Hard
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.LevelType">
+            <summary>
+            The type of level to use when generating a new world.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.ServerDisplayName">
+            <summary>
+            The name of the server that should display on players' screens.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.MaxPlayers">
+            <summary>
+            The maximum number of players that may join the server at once.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.ServerPortV6">
+            <summary>
+            The IPv6 port that the server should use to communicate with players.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.LevelName">
+            <summary>
+            The name of the subfolder containing Minecraft world data.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.LevelSeed">
+            <summary>
+            The seed to use when generating a new world.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.OnlineMode">
+            <summary>
+            Whether the server should verify the identities of connecting players by conferring with Mojang servers.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.Whitelist">
+            <summary>
+            Whether the player should kick non-whitelisted players when the whitelist is enabled in-game.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.AllowCheats">
+            <summary>
+            Whether server operators should be allowed to use commands in-game.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.ViewDistance">
+            <summary>
+            The distance (in chunks) that the server should render around any given player.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.PlayerIdleTimeout">
+            <summary>
+            The amount of time to wait, in minutes, before kicking an idle player.  Setting this to 0 disables the behavior.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.MaximumThreads">
+            <summary>
+            The maximum number of worker threads that the server should use for processing.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.TickDistance">
+            <summary>
+            The maximum distance, in chunks, for ticking the world around any given player.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.DefaultPlayerPermissionLevel">
+            <summary>
+            The default permission level assigned to new players.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.TexturePackRequired">
+            <summary>
+            Whether players must download a texture pack to play on the current server.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.ContentLogging">
+            <summary>
+            Whether the server should log content errors to a file.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.NetworkCompressionThreshold">
+            <summary>
+            The threshold (in bytes) at which the server should start compressing messages.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.ServerAuthoritativeMovement">
+            <summary>
+            Whether the server should analyze client movement.  The server will only enforce correct movement if <see cref="F:IMS_Library.BedrockServerConfiguration.CorrectPlayerMovement"/> is <c>true</c>.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.PlayerMovementScoreThreshold">
+            <summary>
+            The number of times that abnormal behavior of a client can occur before it is reported.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.PlayerMovementDistanceThreshold">
+            <summary>
+            The difference between server and client positions that needs to be exceeded before abnormal behavior is detected.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.PlayerMovementDurationThreshold">
+            <summary>
+            The duration of time, in milliseconds, the server and client positions can be out of sync (as defined by <see cref="F:IMS_Library.BedrockServerConfiguration.PlayerMovementDistanceThreshold"/>) before the abnormal movement score is incremented.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.CorrectPlayerMovement">
+            <summary>
+            Whether the server should correct clients' position when their movement score exceeds <see cref="F:IMS_Library.BedrockServerConfiguration.PlayerMovementScoreThreshold"/>.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.BedrockServerConfiguration.#ctor">
+            <summary>
+            Creates a new <see cref="T:IMS_Library.BedrockServerConfiguration"/> instance with a new unique identifier.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.BedrockServerConfiguration.#ctor(System.Guid)">
+            <summary>
+            Creates a new <see cref="T:IMS_Library.BedrockServerConfiguration"/> instance with the specified unique identifier.
+            </summary>
+            <param name="id">The unique identifier to associate with this server configuration.</param>
+        </member>
+        <member name="M:IMS_Library.BedrockServerConfiguration.GetUsedPorts">
+            <summary>
+            Retrieves a list of ports that this server uses.
+            </summary>
+            <returns>A list of port numbers.</returns>
+        </member>
+        <member name="M:IMS_Library.BedrockServerConfiguration.GetPortsToForward">
+            <summary>
+            Retrieves a list of ports that this server uses which should be forwarded with a UPnP router.
+            </summary>
+            <returns>A list of port numbers.</returns>
+        </member>
+        <member name="M:IMS_Library.BedrockServerConfiguration.CreateServer">
+            <summary>
+            Creates a server object that can be used to run a Minecraft server with this configuration.
+            </summary>
+            <returns>A Minecraft server wrapper configured with these settings.</returns>
+        </member>
+        <member name="T:IMS_Library.CustomBedrockServer">
+            <summary>
+            Represents a Bedrock server that runs on a user-defined EXE file.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.CustomBedrockServer.#ctor(System.Guid,IMS_Library.CustomBedrockServerConfiguration)">
+            <summary>
+            Creates a new custom Java server using the specified settings.
+            </summary>
+            <param name="id">The unique identifier to associate this server with.</param>
+            <param name="config">The server settings to use.</param>
+        </member>
+        <member name="P:IMS_Library.CustomBedrockServer.ExeLocation">
+            <summary>
+            The location of the server EXE file that should be executed.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.CustomBedrockServer.StartAsync">
+            <summary>
+            Starts the internal Minecraft server process.  This call does not complete until the server leaves the <see cref="F:IMS_Library.ServerProxy.ServerState.Starting"/> state.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object that represents the current start operation.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Thrown if the server is already running when this method is called, or if no JAR file exists for the server to run.
+            </exception>
+        </member>
+        <member name="M:IMS_Library.CustomBedrockServer.ToString">
+            <summary>
+            Returns a string that describes the current object.
+            </summary>
+            <returns>A string with the name of this server type.</returns>
+        </member>
+        <member name="T:IMS_Library.CustomBedrockServerConfiguration">
+            <summary>
+            Represents the server settings for a Bedrock server with a user-defined EXE.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.CustomBedrockServerConfiguration.CustomServerProperties">
+            <summary>
+            A list of user-defined keys and values to be written to the server properties file.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.CustomBedrockServerConfiguration.CreateServer">
+            <summary>
+            Creates a <see cref="T:IMS_Library.CustomBedrockServer"/> object that can be used to host a Minecraft server with the specified settings.
+            </summary>
+            <returns>The server associated with these preferences.</returns>
+        </member>
+        <member name="T:IMS_Library.CustomJavaServer">
+            <summary>
+            Represents a Java server that runs on a user-defined JAR file.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.CustomJavaServer.#ctor(System.Guid,IMS_Library.CustomJavaServerConfiguration)">
+            <summary>
+            Creates a new custom Java server using the specified settings.
+            </summary>
+            <param name="id">The unique identifier to associate this server with.</param>
+            <param name="config">The server settings to use.</param>
+        </member>
+        <member name="P:IMS_Library.CustomJavaServer.JarLocation">
+            <summary>
+            The location of the server JAR file that should be executed.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.CustomJavaServer.StartAsync">
+            <summary>
+            Starts the internal Minecraft server process.  This call does not complete until the server leaves the <see cref="F:IMS_Library.ServerProxy.ServerState.Starting"/> state.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object that represents the current start operation.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Thrown if the server is already running when this method is called, or if no JAR file exists for the server to run.
+            </exception>
+        </member>
+        <member name="M:IMS_Library.CustomJavaServer.ToString">
+            <summary>
+            Returns a string that describes the current object.
+            </summary>
+            <returns>A string with the name of this server type.</returns>
+        </member>
+        <member name="T:IMS_Library.CustomJavaServerConfiguration">
+            <summary>
+            Represents the server settings for a Java server with a user-defined JAR.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.CustomJavaServerConfiguration.CustomServerProperties">
+            <summary>
+            A list of user-defined keys and values to be written to the server properties file.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.CustomJavaServerConfiguration.CreateServer">
+            <summary>
+            Creates a <see cref="T:IMS_Library.CustomJavaServer"/> object that can be used to host a Minecraft server with the specified settings.
+            </summary>
+            <returns>The server associated with these preferences.</returns>
+        </member>
+        <member name="T:IMS_Library.MOTDServerProperty">
+            <summary>
+            Represents a property that is formatted in HTML which should be converted to Minecraft formatting codes upon being written to a <c>server.properties</c> file.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.MOTDServerProperty.#ctor(System.String)">
+            <summary>
+            Constructs a new <see cref="T:IMS_Library.MOTDServerProperty"/> instance bound to the specified <c>server.properties</c> name.
+            </summary>
+            <param name="propertyName">The name of the property to write to the server properties file.</param>
+        </member>
+        <member name="M:IMS_Library.MOTDServerProperty.GetData(IMS_Library.ServerConfiguration,System.Reflection.FieldInfo)">
+            <summary>
+            Obtains the line of text which should be written to the server properties file.
+            </summary>
+            <param name="configuration">The current server configuration which holds the data to be written.</param>
+            <param name="field">The field that this attribute is bound to.</param>
+            <returns>A <see cref="T:System.String"/> which should be written to the server properties file.</returns>
+        </member>
+        <member name="T:IMS_Library.JavaServer">
+            <summary>
+            Allows for control over a Minecraft: Java Edition server process, doing things like managing crashes or maintaining server preferences.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServer.ServerPreferences">
+            <summary>
+            The current server settings.  The server must be restarted for changes to take effect.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.JavaServer.CurrentConfiguration">
+            <summary>
+            The current server settings.  The server must be restarted for changes to take effect.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.JavaServer.SupportsWhitelist">
+            <summary>
+            Whether the server supports whitelisting players.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.JavaServer.WhitelistEnabled">
+            <summary>
+            Whether the server whitelist is currently enabled.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.JavaServer.SupportsBanning">
+            <summary>
+            Whether the server supports banning players.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.JavaServer.SupportsBanningIPs">
+            <summary>
+            Whether the server supports banning players by IP address.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.JavaServer.SupportsOps">
+            <summary>
+            Whether the server supports designating players as server operators.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.JavaServer.SupportsIPs">
+            <summary>
+            Whether the server has the ability to record player IP addresses.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.JavaServer.SupportsKicking">
+            <summary>
+            Whether the server supports kicking online players.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.JavaServer.ServerVersionID">
+            <summary>
+            The Mojang-assigned identifier for the version of Minecraft that the server is currently running.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.JavaServer.SupportedEdition">
+            <summary>
+            This server supports Minecraft: Java Edition.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.JavaServer.ServerIconLocation">
+            <summary>
+            The absolute path of the server icon.  This property does not check whether the icon exists.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServer.ServerProcess">
+            <summary>
+            The current internal Minecraft server process, or null if the server is not running.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServer.BanList">
+            <summary>
+            This list contains information about all the players on the server who have been banned.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServer.BanIPList">
+            <summary>
+            This dictionary contains information about all the IP addresses that have been banned, indexed by IP address.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServer.OnlineUsers">
+            <summary>
+            This dictionary contains information about online players.  It is indexed by UUID if <see cref="F:IMS_Library.JavaServerConfiguration.OnlineMode"/> is true, otherwise, it is indexed by username.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServer.AllUsers">
+            <summary>
+            This dictionary contains information about all known players, including players that have never joined the server (like a player that is whitelisted but has never played).  It is indexed by UUID if <see cref="F:IMS_Library.JavaServerConfiguration.OnlineMode"/> is true, otherwise, it is indexed by username.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.JavaServer.JarLocation">
+            <summary>
+            The location of the server JAR file that should be executed.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.JavaServer.WorldLocation">
+            <summary>
+            The absolute path of the server world.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServer.Locker">
+            <summary>
+            This object is used to provide thread-safety when interacting with the <see cref="T:IMS_Library.JavaServer"/> instance.  It should be locked whenever a method is interacting with the object's non-public fields.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.JavaServer.#ctor(System.Guid,IMS_Library.JavaServerConfiguration)">
+            <summary>
+            Creates a new <see cref="T:IMS_Library.JavaServer"/> instance with the specified unique identifier and server configuration data.
+            </summary>
+            <param name="id">The unique identifier that this server is associated with.</param>
+            <param name="configuration">The settings that this server should use.</param>
+        </member>
+        <member name="M:IMS_Library.JavaServer.KickPlayer(System.String,System.String)">
+            <summary>
+            Kicks a player from the server.
+            </summary>
+            <param name="name">The name of the player to disconnect.</param>
+            <param name="reason">The reason for the player's disconnection.</param>
+        </member>
+        <member name="M:IMS_Library.JavaServer.ToString">
+            <summary>
+            Returns a string that describes the current object.
+            </summary>
+            <returns>A string with the name of this server type.</returns>
+        </member>
+        <member name="M:IMS_Library.JavaServer.GetOnlinePlayers">
+            <summary>
+            Retrieves a list of all online players.
+            </summary>
+            <returns>An enumerable of players.</returns>
+        </member>
+        <member name="M:IMS_Library.JavaServer.GetConsoleText">
+            <summary>
+            Retrieves a reasonably-large block of recent text from the Minecraft server console.
+            </summary>
+            <returns>A block of recent server console text.</returns>
+        </member>
+        <member name="M:IMS_Library.JavaServer.OnServerProcessDie">
+            <summary>
+            This method is called when the server process quits.  If the server was in the <see cref="F:IMS_Library.ServerProxy.ServerState.Running"/> state, the proxy will attempt to restart the server.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.JavaServer.OpPlayer(System.String)">
+            <summary>
+            Gives server operator status to the specified player.
+            </summary>
+            <param name="name">The player to make server operator.</param>
+        </member>
+        <member name="M:IMS_Library.JavaServer.BackupToLocationAsync(System.String)">
+            <summary>
+            Causes the server to make a snapshot of the current world, backing the world up to the specified location.
+            </summary>
+            <param name="location">The absolute path of the Minecraft world folder to back up to.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object representing the current state of the backup operation.</returns>
+        </member>
+        <member name="M:IMS_Library.JavaServer.BackupToZipFileAsync(System.String)">
+            <summary>
+            Causes the server to make a snapshot of the current world, backing the world up to the specified zip file.
+            </summary>
+            <param name="file">The absolute path of the zip file to back up to.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object representing the current state of the backup operation.</returns>
+        </member>
+        <member name="M:IMS_Library.JavaServer.RestartAsync">
+            <summary>
+            Restarts the server, blocking until the server has entered the <see cref="F:IMS_Library.ServerProxy.ServerState.Running"/> state.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object representing the current state of the restart operation.</returns>
+        </member>
+        <member name="M:IMS_Library.JavaServer.SendConsoleCommand(System.String)">
+            <summary>
+            Sends a command to the server console.  If the command is "stop," shuts down the server and sets <see cref="F:IMS_Library.ServerConfiguration.IsEnabled"/> to false.
+            </summary>
+            <param name="command">The command to send to the server console.</param>
+        </member>
+        <member name="M:IMS_Library.JavaServer.SendUncheckedConsoleCommand(System.String)">
+            <summary>
+            Sends a command to the Minecraft server console without checking the command beforehand.
+            </summary>
+            <param name="command">The command to send to the server console.</param>
+        </member>
+        <member name="M:IMS_Library.JavaServer.ReloadWhitelistJSON">
+            <summary>
+            Reloads the server whitelist from its file on disk, updating IMS data accordingly.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.JavaServer.AddPlayerToAllPlayersList(IMS_Library.MinecraftPlayer)">
+            <summary>
+            Registers a player as part of the all-players list.
+            </summary>
+            <param name="player">The player to add.  The player does not need to have played on the server before, but if that is the case, then <see cref="F:IMS_Library.MinecraftPlayer.LastConnectionEvent"/> should be equal to <see cref="F:System.DateTime.MinValue"/>.</param>
+        </member>
+        <member name="M:IMS_Library.JavaServer.ReloadOpJSON">
+            <summary>
+            Reloads server operator information from disk, updating IMS data accordingly.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.JavaServer.GetPlayerByIdentifier(System.String,System.String)">
+            <summary>
+            Retrieves a player's information given both their name and UUID.
+            </summary>
+            <param name="name">The name of the player to find.</param>
+            <param name="uuid">The UUID of the player to find.</param>
+            <returns>The player's data, or null if no player was found.</returns>
+        </member>
+        <member name="M:IMS_Library.JavaServer.GetPlayerOrDefaultByIdentifier(System.String,System.String)">
+            <summary>
+            Gets a player's information given both their name or UUID.
+            </summary>
+            <param name="name">The name of the player to find.</param>
+            <param name="uuid">The UUID of the player to find.</param>
+            <returns>The found player, or a new Minecraft player with the specified name and UUID if no player was found.</returns>
+        </member>
+        <member name="M:IMS_Library.JavaServer.ReloadBanJSON">
+            <summary>
+            Reloads the list of banned players from disk.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.JavaServer.ReloadBanIPJSON">
+            <summary>
+            Reloads the list of banned IPs from disk.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.JavaServer.GetOperatorStatusOfPlayerByUUID(System.String)">
+            <summary>
+            Retrieves the permission level of a player from their UUID.
+            </summary>
+            <param name="uuid">The UUID of the player to get information about.</param>
+            <returns>An <see cref="T:System.Int32"/> representing the player's permission level.</returns>
+        </member>
+        <member name="M:IMS_Library.JavaServer.StartAsync">
+            <summary>
+            Starts the internal Minecraft server process.  This call does not complete until the server leaves the <see cref="F:IMS_Library.ServerProxy.ServerState.Starting"/> state.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object that represents the current start operation.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Thrown if the server is already running when this method is called.
+            </exception>
+        </member>
+        <member name="M:IMS_Library.JavaServer.OnServerConsoleDataReceived(System.Object,System.Diagnostics.DataReceivedEventArgs)">
+            <summary>
+            This method is called when the internal Minecraft server posts data to its console.
+            </summary>
+            <param name="sender">The process which invoked this event handler.</param>
+            <param name="args">The data that the server posted to its console.</param>
+        </member>
+        <member name="M:IMS_Library.JavaServer.StopAsync">
+            <summary>
+            Stops the internal server process.  This call does not complete until the server has reached the <see cref="F:IMS_Library.ServerProxy.ServerState.Disabled"/> state.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object that represents the current state of the stop operation.</returns>
+        </member>
+        <member name="M:IMS_Library.JavaServer.MatchRegex(System.String,System.String,System.Text.RegularExpressions.Match@)">
+            <summary>
+            This method checks whether an input matches a Regex pattern, and if it does, saves that data to <paramref name="match"/>.
+            </summary>
+            <param name="data">The input string to parse with the Regex pattern.</param>
+            <param name="pattern">The Regex pattern to use in parsing.</param>
+            <param name="match">The data object that will describe the result of the parse operation once this method returns.</param>
+            <returns>A <see cref="T:System.Boolean"/> which indicates whether the Regex pattern matched successfully.</returns>
+        </member>
+        <member name="M:IMS_Library.JavaServer.BanPlayer(System.String,System.String)">
+            <summary>
+            Bans a player from the server, kicking them from the game and preventing them from rejoining.
+            </summary>
+            <param name="name">The name of the player to ban.</param>
+            <param name="reason">The reason the player is being banned.  This may be left null.</param>
+        </member>
+        <member name="M:IMS_Library.JavaServer.BanIP(System.String,System.String)">
+            <summary>
+            Bans a player by IP address.
+            </summary>
+            <param name="ip">The IP address of the player to ban.</param>
+            <param name="reason">The reason that the IP address is being banned.</param>
+        </member>
+        <member name="M:IMS_Library.JavaServer.UnbanPlayer(System.String)">
+            <summary>
+            Pardons a player, allowing them to rejoin the server after a ban.
+            </summary>
+            <param name="name">The name of the player to unban.</param>
+        </member>
+        <member name="M:IMS_Library.JavaServer.UnbanIP(System.String)">
+            <summary>
+            Pardons an IP, allowing players with that IP to rejoin the server after an IP ban.
+            </summary>
+            <param name="ip">The IP address to unban.</param>
+        </member>
+        <member name="M:IMS_Library.JavaServer.DeopPlayer(System.String)">
+            <summary>
+            Revokes a player's server operator status.
+            </summary>
+            <param name="name">The name of the player to demote.</param>
+        </member>
+        <member name="M:IMS_Library.JavaServer.WhitelistPlayer(System.String)">
+            <summary>
+            Adds a player to the server whitelist, allowing them to join the game while the whitelist is enabled.
+            </summary>
+            <param name="name">The name of the player to whitelist.</param>
+        </member>
+        <member name="M:IMS_Library.JavaServer.RemoveWhitelistPlayer(System.String)">
+            <summary>
+            Removes a player from the server whitelist, preventing them from joining the game while the whitelist is enabled.  If <see cref="F:IMS_Library.JavaServerConfiguration.EnforceWhitelist"/> is true and this player is currently online, they will be kicked from the game.
+            </summary>
+            <param name="name">The name of the player to remove from the whitelist.</param>
+        </member>
+        <member name="M:IMS_Library.JavaServer.GetAllPlayers">
+            <summary>
+            Retrieves a list of all players who have every logged onto the server.
+            </summary>
+            <returns>An enumerable of players.</returns>
+        </member>
+        <member name="M:IMS_Library.JavaServer.GetAllOps">
+            <summary>
+            Retrieves a list of players on the server who have operator status.
+            </summary>
+            <returns>An enumerable of players.</returns>
+        </member>
+        <member name="M:IMS_Library.JavaServer.GetAllBans">
+            <summary>
+            Retrieves a list of ban information about players who have been banned from the server.
+            </summary>
+            <returns>An enumerable of information about bans.</returns>
+        </member>
+        <member name="M:IMS_Library.JavaServer.GetAllBannedIPs">
+            <summary>
+            Retrieves a list of information about IPs that have been banned from the server.
+            </summary>
+            <returns>An enumerable of information about banned IPs.</returns>
+        </member>
+        <member name="M:IMS_Library.JavaServer.ReloadServerWhitelist">
+            <summary>
+            Causes the internal Minecraft server to reload the whitelist from disk.
+            </summary>
+            <exception cref="T:System.NotSupportedException">
+            Minecraft: Java Edition servers do not support this operation.
+            </exception>
+        </member>
+        <member name="M:IMS_Library.JavaServer.ReloadServerPermissions">
+            <summary>
+            Causes the internal Minecraft server to reload the server permissions file from disk.
+            </summary>
+            <exception cref="T:System.NotSupportedException">
+            Minecraft: Java Edition servers do not support this operation.
+            </exception>
+        </member>
+        <member name="M:IMS_Library.JavaServer.GetAllLogFiles">
+            <summary>
+            Retrieves a list of logfiles that this server has produced.
+            </summary>
+            <returns>A list with information about each logfile created by the Minecraft server.</returns>
+        </member>
+        <member name="M:IMS_Library.JavaServer.GetLogFile(IMS_Library.LogFileInformation)">
+            <summary>
+            Gets the text inside a specific logfile.
+            </summary>
+            <param name="info">The logfile to get information about.</param>
+            <returns>The information that the logfile contains.</returns>
+        </member>
+        <member name="M:IMS_Library.JavaServer.GetAllWhitelistedPlayers">
+            <summary>
+            Retrieves a list of all players with whitelist status on the server.
+            </summary>
+            <returns>An enumerable of players.</returns>
+        </member>
+        <member name="M:IMS_Library.JavaServer.GetPlayerInformationByUsername(System.String)">
+            <summary>
+            Get information about a player by their username.
+            </summary>
+            <param name="username">The username of the player to retrieve data about.</param>
+            <returns>Information about the specified player, or null if no player was found.</returns>
+        </member>
+        <member name="M:IMS_Library.JavaServer.DeleteLogFile(IMS_Library.LogFileInformation)">
+            <summary>
+            Deletes the specified logfile, removing it from disk.
+            </summary>
+            <param name="info">The logfile to delete.</param>
+        </member>
+        <member name="M:IMS_Library.JavaServer.GetPlayerInformationByUUID(System.String)">
+            <summary>
+            Get information about a player by their UUID.
+            </summary>
+            <param name="uuid">The UUID of the player to retrieve data about.</param>
+            <returns>Information about the specified player, or null if no player was found.</returns>
+        </member>
+        <member name="T:IMS_Library.JavaServerConfiguration">
+            <summary>
+            Contains settings information about a <see cref="T:IMS_Library.JavaServer"/>.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.ServerVersion">
+            <summary>
+            The version of Minecraft to run this server with, or null if the latest version should be used.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.MinimumMemoryMB">
+            <summary>
+            The minimum amount of memory (in megabytes) that the JVM should allocate.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.MaximumMemoryMB">
+            <summary>
+            The maximum amout of memory (in megabytes) that the JVM should allocate.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.JavaArguments">
+            <summary>
+            Additional arguments that should be passed to the JVM when the server begins.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.AllowFlight">
+            <summary>
+            Whether the server should kick non-creative players for flying.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.AllowNether">
+            <summary>
+            Whether the server should allow people to enter the Nether.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.BroadcastConsoleToOps">
+            <summary>
+            Whether interactions with the server console should appear in-game in server operators' chats.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.BroadcastRCONToOps">
+            <summary>
+            Whether RCON interactions with the server console should appear in-game in server operators' chats.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.Difficulty">
+            <summary>
+            The difficulty of the Minecraft world.  0 = Peaceful, 1 = Easy, 2 = Normal, 3 = Hard.  This setting is overriden to "hard" when <see cref="F:IMS_Library.JavaServerConfiguration.HardcoreMode"/> is true.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.EnableCommandBlocks">
+            <summary>
+            Whether command blocks should run on the server.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.EnableRCON">
+            <summary>
+            Whether the server should listen for RCON (remote console) requests.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.SyncChunkWrites">
+            <summary>
+            Whether the server should save chunks synchronously with the main game thread.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.EnableQuery">
+            <summary>
+            Whether the server can be queried for information with the Game4Spy protocol.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.ForceGamemode">
+            <summary>
+            Whether the server should set players' gamemodes to default when they log in.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.FunctionPermissionLevel">
+            <summary>
+            What operator level Minecraft command functions run at.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.Gamemode">
+            <summary>
+            The default player gamemode.  0 = Survival, 1 = Creative, 2 = Adventure, 3 = Spectator
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.GenerateStructures">
+            <summary>
+            Whether the server should generate structures like villages or Nether fortresses.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.GeneratorSettings">
+            <summary>
+            What settings the world generator should use when creating a new world.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.HardcoreMode">
+            <summary>
+            Whether hardcore mode is enabled (in hardcore mode, you cannot respawn after death - you only get one chance).
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.LevelName">
+            <summary>
+            The name of the subfolder containing Minecraft world data.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.LevelSeed">
+            <summary>
+            The seed to use when generating a new world.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.LevelType">
+            <summary>
+            The type of level to use when generating a new world.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.MaxBuildHeight">
+            <summary>
+            The maximum build height that players may place blocks at.  Terrain may still naturally generate above this height.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.MaxPlayers">
+            <summary>
+            The maximum number of players that may join the server at once.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.MaxTickTime">
+            <summary>
+            The maximum time the server watchdog thread should wait, in milliseconds, for a tick before it declares the server crashed.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.MaxWorldSize">
+            <summary>
+            The distance from 0 to the world border.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.MessageOfTheDay">
+            <summary>
+            The message of the day that displays on clients' screens.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.NetworkCompressionThreshold">
+            <summary>
+            The threshold (in bytes) at which the server should start compressing messages.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.OnlineMode">
+            <summary>
+            Whether the server should verify the identities of connecting players by conferring with Mojang servers.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.DefaultOpPermissionLevel">
+            <summary>
+            The permission level given to operators when /op is used.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.PlayerIdleTimeout">
+            <summary>
+            The amount of time to wait, in minutes, before kicking an idle player.  Setting this to 0 disables the behavior.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.PreventProxyConnections">
+            <summary>
+            Whether the player should prevent connections from players using network proxies.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.EnablePVP">
+            <summary>
+            Whether players should be able to hit each other.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.QueryPort">
+            <summary>
+            What port to listen on for Game4Spy queries.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.RCONPassword">
+            <summary>
+            The password that RCON applications should use to gain access to the server.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.RCONPort">
+            <summary>
+            The port that the server should listen on for RCON requests.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.ResourcePack">
+            <summary>
+            A URL to a resource pack that clients should download, or empty if a resource pack should not be used.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.ResourcePackSHA1">
+            <summary>
+            The SHA-1 hash of the resource pack that should be used to check for the download's integrity, or empty if a check should not be employed.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.ServerIP">
+            <summary>
+            The IP address that the server should bind to, or empty if the server should listen on all addresses.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.SnooperEnabled">
+            <summary>
+            The port that the server should use to communicate with players.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.SpawnAnimals">
+            <summary>
+            Whether passive mobs (like cows) should spawn naturally.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.SpawnMonsters">
+            <summary>
+            Whether monsters (like zombies) should spawn naturally.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.SpawnVillagers">
+            <summary>
+            Whether villagers should spawn naturally.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.SpawnProtection">
+            <summary>
+            The amount of blocks from the world center that normal players should be prevented from editing.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.UseLinuxNativeTransport">
+            <summary>
+            Whether the server should use native network protocols on Linux machines.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.ViewDistance">
+            <summary>
+            The distance (in chunks) that the server should render around any given player.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.UseWhitelist">
+            <summary>
+            Whether the player should only allow whitelisted players to jion.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.JavaServerConfiguration.EnforceWhitelist">
+            <summary>
+            Whether the player should kick non-whitelisted players when the whitelist is enabled in-game.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.JavaServerConfiguration.#ctor">
+            <summary>
+            Creates a new Java server settings object with a random unique identifier.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.JavaServerConfiguration.#ctor(System.Guid)">
+            <summary>
+            Creates a new Java server settings object with the specified unique identifier.
+            </summary>
+            <param name="id">The unique identifier that this configuration should be associated with.</param>
+        </member>
+        <member name="M:IMS_Library.JavaServerConfiguration.GetUsedPorts">
+            <summary>
+            Retrieves a list of all ports that the server is currently using.
+            </summary>
+            <returns>A list of ports.</returns>
+        </member>
+        <member name="M:IMS_Library.JavaServerConfiguration.GetPortsToForward">
+            <summary>
+            Retrieves a list of ports that should be forwarded by the server.
+            </summary>
+            <returns>A list of ports.</returns>
+        </member>
+        <member name="M:IMS_Library.JavaServerConfiguration.CreateServer">
+            <summary>
+            Creates a <see cref="T:IMS_Library.JavaServer"/> object that can be used to host a Minecraft server with the specified settings.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:IMS_Library.LogFileInformation">
+            <summary>
+            Contains information about a logfile.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.LogFileInformation.Name">
+            <summary>
+            The name of the logfile.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.LogFileInformation.CreationDate">
+            <summary>
+            The time at which the logfile was created.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.LogFileInformation.CleanExit">
+            <summary>
+            Whether the logfile is the result of a clean exit, or a crash.
+            </summary>
+        </member>
+        <member name="T:IMS_Library.MinecraftConfigurationWriter">
+            <summary>
+            This class provides methods for automatically generating Minecraft server properties files.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.MinecraftConfigurationWriter.WriteServerPropertiesFile(System.String,IMS_Library.ServerConfiguration)">
+            <summary>
+            Given a <see cref="T:IMS_Library.ServerConfiguration"/> with property data, serializes that data and writes it to a file.
+            </summary>
+            <param name="fileName">The relative path of the file to write.</param>
+            <param name="configuration">The server settings to serialize.</param>
+        </member>
+        <member name="M:IMS_Library.MinecraftConfigurationWriter.WriteEULA(System.String,IMS_Library.ServerConfiguration)">
+            <summary>
+            Writes the Minecraft EULA agreement to a file automatically.
+            </summary>
+            <param name="fileName">The relative path of the file to write to.</param>
+            <param name="configuration">The current server settings.</param>
+        </member>
+        <member name="T:IMS_Library.ServerProperty">
+            <summary>
+            Represents a property serializable to a Minecraft server properties file.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.ServerProperty.PropertyName">
+            <summary>
+            The name of the property to write to the server properties file.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.ServerProperty.#ctor(System.String)">
+            <summary>
+            Marks a field as representing a property in a <c>server.properties</c> file.
+            </summary>
+            <param name="propertyName">The name of the property to write to the server configuration file.</param>
+        </member>
+        <member name="M:IMS_Library.ServerProperty.GetData(IMS_Library.ServerConfiguration,System.Reflection.FieldInfo)">
+            <summary>
+            Retrieves a string representing the serialized data of a field to be written to the server properties file.
+            </summary>
+            <param name="configuration">The server configuration object containing the data to serialize.</param>
+            <param name="field">The field of <paramref name="configuration"/> that this attribute is bound to.</param>
+            <returns>A string with the serialized field data.</returns>
+        </member>
+        <member name="T:IMS_Library.MinecraftPlayer">
+            <summary>
+            Contains data about a player on a Minecraft server.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.MinecraftPlayer.Username">
+            <summary>
+            The username/display name of the player.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.MinecraftPlayer.UUID">
+            <summary>
+            The player's unique identifier.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.MinecraftPlayer.IP">
+            <summary>
+            The last-recorded IP address of the player.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.MinecraftPlayer.IsWhitelisted">
+            <summary>
+            Whether the player has whitelist status on the server.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.MinecraftPlayer.PermissionLevel">
+            <summary>
+            The permission (op) level of the player.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.MinecraftPlayer.LastConnectionEvent">
+            <summary>
+            The last time that the player logged into or out of the server.
+            </summary>
+        </member>
+        <member name="T:IMS_Library.MinecraftVersionProvider">
+            <summary>
+            This class acts as a manager for Minecraft versions.  It keeps track of Minecraft versions and updates version data automatically.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.MinecraftVersionProvider.LatestRelease">
+            <summary>
+            The latest version of Minecraft: Java Edition to be made available as an official release.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.MinecraftVersionProvider.LatestSnapshot">
+            <summary>
+            The latest version of Minecraft: Java Edition to be made available as a prerelease snapshot.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.MinecraftVersionProvider.AvailableServerVersions">
+            <summary>
+            This dictionary contains information about every version of Minecraft, indexed by version code.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.MinecraftVersionProvider.Start">
+            <summary>
+            Begins the <see cref="T:IMS_Library.MinecraftVersionProvider"/> instance, beginning an update timer and updating version data.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.MinecraftVersionProvider.RestartUpdatedServers">
+            <summary>
+            This method attempts to restart any servers configured to "use the latest Minecraft version" that are running an outdated version.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.MinecraftVersionProvider.Stop">
+            <summary>
+            Stops the <see cref="T:IMS_Library.MinecraftVersionProvider"/> instance, saving all version data to disk.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.MinecraftVersionProvider.GetVersionInformationFromID(System.String)">
+            <summary>
+            Gets information about a certain Minecraft version from its version code.
+            </summary>
+            <param name="id">The version code of the version to get information about.</param>
+            <returns>A <see cref="T:IMS_Library.ServerVersionInformation"/> object that contains data about the server version, or null if no version was found.</returns>
+        </member>
+        <member name="M:IMS_Library.MinecraftVersionProvider.GetDefaultFilePath">
+            <summary>
+            Retrieves the location of the version provider's settings file.
+            </summary>
+            <returns>An absolute path representing this instance's configuration file.</returns>
+        </member>
+        <member name="M:IMS_Library.MinecraftVersionProvider.UpdateAllServerVersionsAsync">
+            <summary>
+            Downloads updates about all server versions.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object representing the state of the current update operation.</returns>
+        </member>
+        <member name="T:IMS_Library.MojangInteropUtility">
+            <summary>
+            This class provides methods for interacting with the Mojang web API.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.MojangInteropUtility.GetAllJavaVersionInformation">
+            <summary>
+            Retrieves a JSON structure describing all existing versions of Minecraft.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object that that represents the current state of the download operation.</returns>
+            <exception cref="T:System.Net.WebException">
+            Thrown if the web API request times out.
+            </exception>
+        </member>
+        <member name="M:IMS_Library.MojangInteropUtility.GetVersionInformation(IMS_Library.VersionMetadataTag)">
+            <summary>
+            Retrieves a JSON structure describing data about a single version of Minecraft.
+            </summary>
+            <param name="version">The version to download additional information about.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object that represents the current state of the download operation.</returns>
+            <exception cref="T:System.Net.WebException">
+            Thrown if the web API request times out.
+            </exception>
+        </member>
+        <member name="M:IMS_Library.MojangInteropUtility.GetUUIDFromUsername(System.String)">
+            <summary>
+            Gets the UUID of a Minecraft: Java Edition player from their username.
+            </summary>
+            <param name="username">The username of the player to get information about.</param>
+            <returns>A string that represents the player's UUID.</returns>
+        </member>
+        <member name="M:IMS_Library.MojangInteropUtility.GetUsernameFromUUID(System.String)">
+            <summary>
+            Gets the username of a Minecraft: Java Edition player from their UUID.
+            </summary>
+            <param name="uuid">The UUID of the player to get information about.</param>
+            <returns>A string representing the player's username.</returns>
+        </member>
+        <member name="T:IMS_Library.ServerConfiguration">
+            <summary>
+            Represents the current settings of a <see cref="T:IMS_Library.ServerProxy"/>.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.ServerConfiguration.ID">
+            <summary>
+            The unique identifier of the server.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.ServerConfiguration.ServerName">
+            <summary>
+            The display name of the server.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.ServerConfiguration.Edition">
+            <summary>
+            The edition of Minecraft that this server supports.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.ServerConfiguration.IsEnabled">
+            <summary>
+            Whether the server should be run by IMS, or if it should remain disabled.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.ServerConfiguration.WorldID">
+            <summary>
+            The unique identifier of the <see cref="T:IMS_Library.World"/> that this server is currently using.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.ServerConfiguration.LogDeletionInterval">
+            <summary>
+            The age that a logfile must be in order to be automatically deleted, or <see cref="F:System.TimeSpan.Zero"/> if automatic deletion should not occur.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.ServerConfiguration.ServerPort">
+            <summary>
+            The IPv4 port that the server should use to communicate with players.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.ServerConfiguration.#ctor">
+            <summary>
+            Creates a new <see cref="T:IMS_Library.ServerConfiguration"/> instance with a new unique identifier.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.ServerConfiguration.#ctor(System.Guid)">
+            <summary>
+            Creates a new <see cref="T:IMS_Library.ServerConfiguration"/> instance with the specified unique identifier.
+            </summary>
+            <param name="id">The unique identifier of the server to use.</param>
+        </member>
+        <member name="M:IMS_Library.ServerConfiguration.GetServerFolderLocation">
+            <summary>
+            Retrieves the location of the Minecraft server's folder.
+            </summary>
+            <returns>The absolute path to the folder on disk.</returns>
+        </member>
+        <member name="M:IMS_Library.ServerConfiguration.GetDefaultFilePath">
+            <summary>
+            Retrieves the location of the server's configuration file.
+            </summary>
+            <returns>The absolute path of the server's configuration file on disk.</returns>
+        </member>
+        <member name="M:IMS_Library.ServerConfiguration.GetUsedPorts">
+            <summary>
+            Retrieves a list of network ports that the server uses.
+            </summary>
+            <returns>A list of port numbers.</returns>
+        </member>
+        <member name="M:IMS_Library.ServerConfiguration.GetPortsToForward">
+            <summary>
+            Retrieves a list of network ports that should be forwarded with a UPnP router.
+            </summary>
+            <returns>A list of port numbers.</returns>
+        </member>
+        <member name="M:IMS_Library.ServerConfiguration.CreateServer">
+            <summary>
+            Creates a <see cref="T:IMS_Library.ServerProxy"/> object that can be used to control the server.
+            </summary>
+            <returns>A new server controller object.</returns>
+        </member>
+        <member name="T:IMS_Library.ServerProxy">
+            <summary>
+            This class represents a Minecraft server wrapper, and provides functionality for server management.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.ServerProxy.ID">
+            <summary>
+            The unique identifier of the server.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.ServerProxy.ServerVersionID">
+            <summary>
+            The Mojang-assigned identifier for the version of Minecraft that the server is currently running.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.ServerProxy.State">
+            <summary>
+            The current state of the internal server process.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.ServerProxy.CurrentConfiguration">
+            <summary>
+            The current server settings.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.ServerProxy.SupportsWhitelist">
+            <summary>
+            Whether the server supports whitelisting players.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.ServerProxy.WhitelistEnabled">
+            <summary>
+            Whether the server's whitelist is currently enabled.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.ServerProxy.SupportsBanning">
+            <summary>
+            Whether the server supports banning players.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.ServerProxy.SupportsBanningIPs">
+            <summary>
+            Whether the server supports banning by IP address.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.ServerProxy.SupportsOps">
+            <summary>
+            Whether the server supports player permissions.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.ServerProxy.SupportsIPs">
+            <summary>
+            Whether the server supports gathering player IP addresses.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.ServerProxy.SupportsKicking">
+            <summary>
+            Whether the server supports kicking online players.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.ServerProxy.SupportedEdition">
+            <summary>
+            The version of Minecraft that this server is targeted toward.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.ServerProxy.#ctor(System.Guid)">
+            <summary>
+            Creates a new <see cref="T:IMS_Library.ServerProxy"/> instance with the specified unique identifier.
+            </summary>
+            <param name="guid">The unique identifier that the server should be associated with.</param>
+        </member>
+        <member name="M:IMS_Library.ServerProxy.StartAsync">
+            <summary>
+            Starts the Minecraft server.  This call does not complete until the Minecraft server is in the <see cref="F:IMS_Library.ServerProxy.ServerState.Running"/> phase.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object that represents the state of the start operation.</returns>
+        </member>
+        <member name="M:IMS_Library.ServerProxy.StopAsync">
+            <summary>
+            Stops the Minecraft server.  This call does not complete until the Minecraft server is in the <see cref="F:IMS_Library.ServerProxy.ServerState.Disabled"/> phase.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object that represents the state of the stop operation.</returns>
+        </member>
+        <member name="M:IMS_Library.ServerProxy.RestartAsync">
+            <summary>
+            Restarts the Minecraft server.  This call does not complete until the Minecraft server has restarted and is in the <see cref="F:IMS_Library.ServerProxy.ServerState.Running"/> phase.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object that represents the state of the restart operation.</returns>
+        </member>
+        <member name="M:IMS_Library.ServerProxy.GetPlayerInformationByUsername(System.String)">
+            <summary>
+            Retrieves a Minecraft player's data by their username.
+            </summary>
+            <param name="username">The username of the player to find.</param>
+            <returns>An object with information about the player, or null if no player was found..</returns>
+        </member>
+        <member name="M:IMS_Library.ServerProxy.GetPlayerInformationByUUID(System.String)">
+            <summary>
+            Retrieves a Minecraft player's data by their UUID.
+            </summary>
+            <param name="uuid">The unique identifier of the player to find.</param>
+            <returns>An object with information about the player, or null if no player was found.</returns>
+        </member>
+        <member name="M:IMS_Library.ServerProxy.GetOnlinePlayers">
+            <summary>
+            Retrieves a list of players currently logged onto the Minecraft server.
+            </summary>
+            <returns>A list of players.</returns>
+        </member>
+        <member name="M:IMS_Library.ServerProxy.GetAllPlayers">
+            <summary>
+            Retrieves a list of all players who have logged onto the Minecraft server.
+            </summary>
+            <returns>A list of players.</returns>
+        </member>
+        <member name="M:IMS_Library.ServerProxy.GetAllOps">
+            <summary>
+            Retrieves a list of all server operators registered on the server.
+            </summary>
+            <returns>A list of players.</returns>
+        </member>
+        <member name="M:IMS_Library.ServerProxy.GetAllBans">
+            <summary>
+            Retrieves a list of all players banned from the server.
+            </summary>
+            <returns>A list of players.</returns>
+        </member>
+        <member name="M:IMS_Library.ServerProxy.GetAllBannedIPs">
+            <summary>
+            Retrieves a list of all IPs banned from the server.
+            </summary>
+            <returns>A list of IP ban information.</returns>
+        </member>
+        <member name="M:IMS_Library.ServerProxy.GetAllWhitelistedPlayers">
+            <summary>
+            Retrieves a list of all players currently whitelisted on the server.
+            </summary>
+            <returns>A list of players.</returns>
+        </member>
+        <member name="M:IMS_Library.ServerProxy.WhitelistPlayer(System.String)">
+            <summary>
+            Adds a player to the server whitelist.
+            </summary>
+            <param name="name">The name of the player to whitelist.</param>
+        </member>
+        <member name="M:IMS_Library.ServerProxy.RemoveWhitelistPlayer(System.String)">
+            <summary>
+            Removes a player from the server whitelist.
+            </summary>
+            <param name="name">The name of the player to remove.</param>
+        </member>
+        <member name="M:IMS_Library.ServerProxy.OpPlayer(System.String)">
+            <summary>
+            Makes a player a server operator.
+            </summary>
+            <param name="name">The name of the player to promote.</param>
+        </member>
+        <member name="M:IMS_Library.ServerProxy.DeopPlayer(System.String)">
+            <summary>
+            Revokes a player's server operator status.
+            </summary>
+            <param name="name">The name of the player to demote.</param>
+        </member>
+        <member name="M:IMS_Library.ServerProxy.KickPlayer(System.String,System.String)">
+            <summary>
+            Kicks a player from the Minecraft server.
+            </summary>
+            <param name="name">The name of the player to disconnect.</param>
+            <param name="reason">The disconnection reason that should display on the player's screen.</param>
+        </member>
+        <member name="M:IMS_Library.ServerProxy.BanPlayer(System.String,System.String)">
+            <summary>
+            Permanently bans a player from the server.
+            </summary>
+            <param name="name">The name of the player to banish.</param>
+            <param name="reason">The reason for banning that should display on the player's screen.</param>
+        </member>
+        <member name="M:IMS_Library.ServerProxy.BanIP(System.String,System.String)">
+            <summary>
+            Permanently bans an IP address from the server.
+            </summary>
+            <param name="ip">The IP to ban.</param>
+            <param name="reason">The reason for banning that should display on the players' screens who have this IP.</param>
+        </member>
+        <member name="M:IMS_Library.ServerProxy.UnbanPlayer(System.String)">
+            <summary>
+            Lifts a player's ban, allowing them to rejoin the server.
+            </summary>
+            <param name="name">The name of the player to unban.</param>
+        </member>
+        <member name="M:IMS_Library.ServerProxy.UnbanIP(System.String)">
+            <summary>
+            Lifts an IP address ban, allowing those with the address to rejoin the server.
+            </summary>
+            <param name="ip">The IP address to unban.</param>
+        </member>
+        <member name="M:IMS_Library.ServerProxy.SendConsoleCommand(System.String)">
+            <summary>
+            Sends a command to the server's input console.
+            </summary>
+            <param name="command">The command to send.</param>
+        </member>
+        <member name="M:IMS_Library.ServerProxy.GetConsoleText">
+            <summary>
+            Retrieves a reasonably large number of lines of recent output from the Minecraft server console.
+            </summary>
+            <returns>A block of recent server console text.</returns>
+        </member>
+        <member name="M:IMS_Library.ServerProxy.ReloadServerWhitelist">
+            <summary>
+            Reloads the server whitelist from the server whitelist file.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.ServerProxy.ReloadServerPermissions">
+            <summary>
+            Reloads the server permissions list from the server whitelist file.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.ServerProxy.GetAllLogFiles">
+            <summary>
+            Retrieves a list of all currently-existing Minecraft server logfiles.
+            </summary>
+            <returns>A list containing information about each logfile.</returns>
+        </member>
+        <member name="M:IMS_Library.ServerProxy.GetLogFile(IMS_Library.LogFileInformation)">
+            <summary>
+            Retrieves the text of a logfile based on its name.
+            </summary>
+            <param name="name">The name of the logfile to retrieve.</param>
+            <returns>The text inside the logfile.</returns>
+        </member>
+        <member name="M:IMS_Library.ServerProxy.BackupToLocationAsync(System.String)">
+            <summary>
+            Copies the current server world to a specified location on disk.
+            </summary>
+            <param name="location">The absolute path of the folder to copy the current Minecraft world to.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object representing the current state of the backup operation.</returns>
+        </member>
+        <member name="M:IMS_Library.ServerProxy.BackupToZipFileAsync(System.String)">
+            <summary>
+            Copies the current server world to a zip file.
+            </summary>
+            <param name="file">The absolute path of the zip file to make of the current Minecraft world.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object representing the current state of the backup operation.</returns>
+        </member>
+        <member name="M:IMS_Library.ServerProxy.GetDefaultServerConfiguration">
+            <summary>
+            Loads the server's previous settings from disk.
+            </summary>
+            <returns>A configuration object representing the loaded server settings.</returns>
+        </member>
+        <member name="M:IMS_Library.ServerProxy.DeleteLogFile(IMS_Library.LogFileInformation)">
+            <summary>
+            Deletes the server logfile, removing it from disk.
+            </summary>
+            <param name="information">The logfile to delete.</param>
+        </member>
+        <member name="T:IMS_Library.ServerProxy.ServerState">
+            <summary>
+            This enum is used to represent the current state of the internal server process.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.ServerProxy.ServerState.Disabled">
+            <summary>
+            The server is not currently running.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.ServerProxy.ServerState.Starting">
+            <summary>
+            The server is loading files from disk, but is not ready to accept players yet.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.ServerProxy.ServerState.Running">
+            <summary>
+            The server is running and players can join/interact with the Minecraft world.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.ServerProxy.ServerState.Stopping">
+            <summary>
+            The server is saving its files and shutting down.
+            </summary>
+        </member>
+        <member name="T:IMS_Library.ServerVersionInformation">
+            <summary>
+            Instances of this class contain information about a particular Minecraft server version.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.ServerVersionInformation.Name">
+            <summary>
+            The display name of the server version.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.ServerVersionInformation.Version">
+            <summary>
+            The official Minecraft version code.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.ServerVersionInformation.ReleaseTime">
+            <summary>
+            The time at which this Minecraft version was released.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.ServerVersionInformation.Edition">
+            <summary>
+            The edition of Minecraft that this server supports.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.ServerVersionInformation.VersionType">
+            <summary>
+            The type of release that this server was made under.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.ServerVersionInformation.DownloadURL">
+            <summary>
+            The download URL for the Minecraft server binary.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.ServerVersionInformation.PhysicalLocation">
+            <summary>
+            Represents where the server binary is located on disk.  This returns an absolute path if the server binary is downloaded, or null if the server binary does not exist locally.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.ServerVersionInformation.#ctor">
+            <summary>
+            Constructs a new <see cref="T:IMS_Library.ServerVersionInformation"/> instance.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.ServerVersionInformation.#ctor(System.String,System.String,System.DateTime,IMS_Library.MinecraftEdition,IMS_Library.ServerVersionInformation.ReleaseType,System.String)">
+            <summary>
+            Constructs a new <see cref="T:IMS_Library.ServerVersionInformation"/> instance with the specified information.
+            </summary>
+            <param name="name">The display name of the version.</param>
+            <param name="version">The official Minecraft version code.</param>
+            <param name="releaseTime">When the server was publicly released.</param>
+            <param name="edition">The type of Minecraft that this server supports.</param>
+            <param name="versionType">The release type that this server was released under.</param>
+            <param name="downloadUrl">The URL for downloading the server binary.</param>
+        </member>
+        <member name="M:IMS_Library.ServerVersionInformation.DownloadServerBinaryAsync">
+            <summary>
+            Downloads the server binary from the internet if it does not already exist.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object representing the current state of the download operation.</returns>
+        </member>
+        <member name="T:IMS_Library.ServerVersionInformation.ReleaseType">
+            <summary>
+            Represents the type of software release that any one version was made available under.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.ServerVersionInformation.ReleaseType.Release">
+            <summary>
+            This server version goes along with an official release of a new Minecraft version.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.ServerVersionInformation.ReleaseType.Snapshot">
+            <summary>
+            This server version goes along with a "preview" version of a new Minecraft update.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.ServerVersionInformation.ReleaseType.OldBeta">
+            <summary>
+            This server version corresponds to a beta version of Minecraft.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.ServerVersionInformation.ReleaseType.OldAlpha">
+            <summary>
+            This server version corresponds to an alpha version of Minecraft.
+            </summary>
+        </member>
+        <member name="T:IMS_Library.UpdateController">
+            <summary>
+            This controller is in charge of keeping IMS up-to-date by downloading IMS version information and update packages as necessary.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.UpdateController.CurrentVersion">
+            <summary>
+            The version of IMS that is currently running.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.UpdateController.UpdatesReadyForInstallation">
+            <summary>
+            Whether there are new IMS updates ready for installation.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.UpdateController.VersionDataURL">
+            <summary>
+            The URL which contains data about the latest version of IMS.  Fetching this URL should return a string that can be parsed into a <see cref="T:System.Version"/> object.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.UpdateController.LatestUpdateURL">
+            <summary>
+            The URL which contains a zipfile of the latest version of IMS.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.UpdateController.Start">
+            <summary>
+            Starts the controller, automatically checking to see whether updates are available.  If new updates have been downloaded, IMS may update and restart.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.UpdateController.Stop">
+            <summary>
+            Stops the controller.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.UpdateController.UpdateAndRestart">
+            <summary>
+            Causes IMS to shut down, copies the queued update files over the current IMS installation, and then starts IMS again.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.UpdateController.DownloadUpdatesAsync">
+            <summary>
+            Gets version data from the internet about the latest copy of IMS, and downloads the latest version if IMS is out-of-date.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object representing the current state of the download operation.</returns>
+        </member>
+        <member name="T:IMS_Library.WebInterface">
+            <summary>
+            Represents the IMS admin console web interface.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.WebInterface.Port">
+            <summary>
+            The port which the interface should run on.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.WebInterface.Start">
+            <summary>
+            This method starts the web interface.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.WebInterface.Stop">
+            <summary>
+            This method shuts down the web interface.
+            </summary>
+        </member>
+        <member name="T:IMS_Library.WebPort">
+            <summary>
+            Represents a port on the host computer, and contains data about the port's identity and whether it should be forwarded.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.WebPort.Port">
+            <summary>
+            The port number that this object represents.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.WebPort.AttemptUPnPForwarding">
+            <summary>
+            Whether IMS should attempt to forward this port using UPnP when it is in use.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.WebPort.#ctor(System.Int32)">
+            <summary>
+            Creates a new <see cref="T:IMS_Library.WebPort"/> instance with the specified port that does not attempt UPnP forwarding.
+            </summary>
+            <param name="port">The port this object represents.</param>
+        </member>
+        <member name="M:IMS_Library.WebPort.#ctor(System.Int32,System.Boolean)">
+            <summary>
+            Creates a new <see cref="T:IMS_Library.WebPort"/> instance.
+            </summary>
+            <param name="port">The port that this object represents.</param>
+            <param name="attemptUPnP">Whether IMS should attempt to forward the port.</param>
+        </member>
+        <member name="T:IMS_Library.WorldController">
+            <summary>
+            Acts as a manager object which regulates the user's Minecraft worlds.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.WorldController.LoadedWorlds">
+            <summary>
+            A list which contains all currently loaded Minecraft worlds.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.WorldController.Start">
+            <summary>
+            Begins the <see cref="T:IMS_Library.WorldController"/> instance, loading worlds from disk and starting the update timer for world backups.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.WorldController.GetWorldByID(System.Guid)">
+            <summary>
+            Retrieves a <see cref="T:IMS_Library.World"/> instance by its ID.
+            </summary>
+            <param name="id">The ID of the world to find.</param>
+            <returns>The <see cref="T:IMS_Library.World"/> object that was found, or if the ID was not found, null.</returns>
+        </member>
+        <member name="M:IMS_Library.WorldController.GetServerOfWorld(IMS_Library.World)">
+            <summary>
+            Gets the server on which <paramref name="world"/> is currently running.
+            </summary>
+            <param name="world">The world whose server to obtain.</param>
+            <returns>The server that is currently running <paramref name="world"/>, or null if no server is using it.</returns>
+        </member>
+        <member name="M:IMS_Library.WorldController.AddWorldToRegistry(IMS_Library.World)">
+            <summary>
+            Adds a Minecraft world to the instance's world registry.
+            </summary>
+            <param name="world">The <see cref="T:IMS_Library.World"/> to make known to IMS.</param>
+        </member>
+        <member name="M:IMS_Library.WorldController.DeleteWorldAsync(IMS_Library.World)">
+            <summary>
+            Deletes a world from the registry and removes it from disk.
+            </summary>
+            <param name="world">The world to delete.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object which represents the progress of the world folder deletion.</returns>
+        </member>
+        <member name="M:IMS_Library.WorldController.Stop">
+            <summary>
+            Stops the <see cref="T:IMS_Library.WorldController"/> instance, saving worlds and disabling the backup timer.
+            </summary>
+        </member>
+        <member name="T:IMS_Library.BackupAfterTimeIntervalPolicy">
+            <summary>
+            Represents a backup policy where a backup is created when a specific time interval elapses.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BackupAfterTimeIntervalPolicy.BackupName">
+            <summary>
+            The name of the backup to create.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BackupAfterTimeIntervalPolicy.BackupInterval">
+            <summary>
+            The interval between world backups.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BackupAfterTimeIntervalPolicy.LastBackedUp">
+            <summary>
+            The last time the world was backed up.  When it is <see cref="F:IMS_Library.BackupAfterTimeIntervalPolicy.BackupInterval"/> past this time, a new backup is made.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.BackupAfterTimeIntervalPolicy.Update(IMS_Library.World)">
+            <summary>
+            This function checks to determine whether it is time to make a backup, and does so if necessary.
+            </summary>
+            <param name="world">The parent world.</param>
+        </member>
+        <member name="T:IMS_Library.BackupInformation">
+            <summary>
+            This class is used to keep track of backup data.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BackupInformation.Name">
+            <summary>
+            The display name of the backup.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BackupInformation.Date">
+            <summary>
+            The time at which the backup was created.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BackupInformation.ID">
+            <summary>
+            The unique identifier of the backup.
+            </summary>
+        </member>
+        <member name="T:IMS_Library.IBackupPolicy">
+            <summary>
+            This interface is used to implement backup functionality - it represents a controller which performs an action related to maintaining world backups when <see cref="M:IMS_Library.IBackupPolicy.Update(IMS_Library.World)"/> is called.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.IBackupPolicy.Update(IMS_Library.World)">
+            <summary>
+            This method is called by <see cref="T:IMS_Library.WorldController"/> every 60 seconds to allow the backup policy to perform any actions it needs to complete.
+            </summary>
+            <param name="world">The world to perform backup operations on.</param>
+        </member>
+        <member name="T:IMS_Library.RemoveBackupAfterTimeIntervalPolicy">
+            <summary>
+            This represents a backup policy which removes backups of a specified name after they are a certain age.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.RemoveBackupAfterTimeIntervalPolicy.BackupName">
+            <summary>
+            The name of the backups to remove.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.RemoveBackupAfterTimeIntervalPolicy.BackupRemovalTime">
+            <summary>
+            The age that any one backup needs to be in order to be automatically deleted.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.RemoveBackupAfterTimeIntervalPolicy.Update(IMS_Library.World)">
+            <summary>
+            This method causes the backup policy to iterate over known backups and delete the ones which are older than <see cref="F:IMS_Library.RemoveBackupAfterTimeIntervalPolicy.BackupRemovalTime"/>.
+            </summary>
+            <param name="world">The world whose backups to operate on.</param>
+        </member>
+        <member name="T:IMS_Library.World">
+            <summary>
+            Instances of this class represent Minecraft worlds, allowing for control over the world files and their backups.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.World.ID">
+            <summary>
+            The unique identifier of the world.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.World.Name">
+            <summary>
+            The display name of the world.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.World.Edition">
+            <summary>
+            The edition of Minecraft that this world is associated with.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.World.BackupPolicies">
+            <summary>
+            The backup policies that this world utilizes to make/delete backups.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.World.Backups">
+            <summary>
+            All of the backups that currently exist of this world, indexed by unique identifier.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.World.FolderPath">
+            <summary>
+            The absolute path of this world's directory (the directory which stores metadata, world backups, and the current world files).  This is the parent directory of <see cref="P:IMS_Library.World.WorldPath"/>.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.World.WorldPath">
+            <summary>
+            The absolute path of the current Minecraft world folder.
+            </summary>
+        </member>
+        <member name="P:IMS_Library.World.IconPath">
+            <summary>
+            The absolute path of the world's display icon.  This always returns a default path based on world edition - it does not check to see whether an icon exists.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.World.#ctor">
+            <summary>
+            Constructs a new instance of the <see cref="T:IMS_Library.World"/> class, generating a new GUID to associate it with.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.World.#ctor(System.Guid)">
+            <summary>
+            Constructs a new instance of the <see cref="T:IMS_Library.World"/> class with the specified GUID.
+            </summary>
+            <param name="id">The unique identifier to associate this world with.</param>
+        </member>
+        <member name="M:IMS_Library.World.MakeBackupAsync(System.String)">
+            <summary>
+            Takes a snapshot of the current world.
+            </summary>
+            <param name="backupName">The display name of the backup to create.</param>
+            <returns>The unique identifier of the backup that was created.</returns>
+        </member>
+        <member name="M:IMS_Library.World.RestoreFromBackupAsync(System.Guid,System.Boolean,System.String)">
+            <summary>
+            Restores a world to a former backup.
+            </summary>
+            <param name="backupID">The unique identifier of the backup to restore to.</param>
+            <param name="makeBackupOfCurrentWorld">Whether the current Minecraft world should be backed up before restoration, or simply overwritten.</param>
+            <param name="currentWorldBackupName">The name of the backup that represents the replaced Minecraft world instance.  This is only used if <paramref name="makeBackupOfCurrentWorld"/> is <c>true</c>.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object representing the progress of the operation, including any necessary server restart and the copying of the Minecraft world folders.</returns>
+        </member>
+        <member name="M:IMS_Library.World.GetPathOfBackup(IMS_Library.BackupInformation)">
+            <summary>
+            Retrieves the absolute path of a backup's Minecraft world folder.
+            </summary>
+            <param name="backup">The backup to get information about.</param>
+            <returns>The absolute path of the Minecraft world folder.</returns>
+        </member>
+        <member name="M:IMS_Library.World.GetPathOfBackup(System.Guid)">
+            <summary>
+            Retrieves the absolute path of a backup's Minecraft world folder.
+            </summary>
+            <param name="backup">The unique identifier of the backup to get information about.</param>
+            <returns>The absolute path of the Minecraft world folder.</returns>
+        </member>
+        <member name="M:IMS_Library.World.DeleteBackupAsync(System.Guid)">
+            <summary>
+            Deletes a backup from the backup registry, removing the Minecraft world folder from disk.
+            </summary>
+            <param name="backupID">The unique identifier of the backup to remove.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object representing the current state of the directory deletion operation.</returns>
+        </member>
+        <member name="M:IMS_Library.World.GetDefaultFilePath">
+            <summary>
+            Retrieves the file path for this <see cref="T:IMS_Library.World"/>'s configuration file.
+            </summary>
+            <returns>The absolute path of the configuration file.</returns>
+        </member>
+        <member name="M:IMS_Library.World.RunBackupUpdates">
+            <summary>
+            Calls the <see cref="M:IMS_Library.IBackupPolicy.Update(IMS_Library.World)"/> method on all registered backup policies.
+            </summary>
+        </member>
+        <member name="M:IMS_Library.World.GetTotalSizeAsync">
+            <summary>
+            Retrieves the total size of all Minecraft world files on disk.
+            </summary>
+            <returns>The size, in bytes, of the <see cref="P:IMS_Library.World.FolderPath"/> folder.</returns>
+        </member>
+        <member name="M:IMS_Library.World.GetWorldSizeAsync">
+            <summary>
+            Retrieves the total size of the current Minecraft world folder.
+            </summary>
+            <returns>The size, in bytes, of the <see cref="P:IMS_Library.World.WorldPath"/> folder.</returns>
+        </member>
+    </members>
+</doc>

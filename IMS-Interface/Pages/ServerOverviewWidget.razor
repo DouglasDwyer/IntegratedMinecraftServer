@@ -1,0 +1,174 @@
+﻿@namespace IMS_Interface
+
+@using IMS_Library
+@using System.IO 
+
+@inject NavigationManager Navigator
+@inject PopupProvider PopupManager
+@inject ServerProvider ServerSelector
+@inject FileCache Cache 
+
+<style>
+    label {
+        font-weight:normal;
+    }
+</style>
+<div style="border:1px solid #ccc; border-radius:3px; width:fit-content;">
+    <table class="table" style="border:none; margin-bottom:0px">
+        <tbody style="border:none">
+            <tr>
+                <td style="border-top:none; width:135px">
+                    <img style="width:128px;height:128px; image-rendering:pixelated" src="@GetServerIconLink()" />
+                    @if (CurrentServer is JavaServer)
+                    {
+                <div style="position:relative">
+                    <button style="position: absolute; line-height:0px; padding:0px; float:right;width: 20px;height: 20px;background-color: white; border:1px solid #ccc; border-radius: 10px;top: -15px; font-size:20px; text-align:center; vertical-align:middle; right:-5px" @onclick="ChangeServerIcon">+</button>
+                </div>
+                    }
+                </td>
+                <td style="border-top:none; width:350px">
+                    <label style="font-size:20px; line-height:0.9; margin-bottom:0px; text-overflow:ellipsis">@CurrentServer.CurrentConfiguration.ServerName</label>
+                    <br />
+                    <label style="font-size:12px; color:gray">@CurrentServer.ID</label>
+                    <br />
+                    @if (CurrentServer.State == ServerProxy.ServerState.Disabled)
+                    {
+                        <label class="label label-danger">Offline</label>
+                    }
+                    else if (CurrentServer.State == ServerProxy.ServerState.Running)
+                    {
+                        if (CurrentServer.CurrentConfiguration is JavaServerConfiguration jConfig)
+                        {
+                            <label class="label label-success">@CurrentServer.GetOnlinePlayers().Count()/@jConfig.MaxPlayers online</label>
+                        }
+                        else if (CurrentServer.CurrentConfiguration is BedrockServerConfiguration bConfig)
+                        {
+                            <label class="label label-success">@CurrentServer.GetOnlinePlayers().Count()/@bConfig.MaxPlayers online</label>
+                        }
+                        else
+                        {
+                            <label class="label label-success">@CurrentServer.GetOnlinePlayers().Count() online</label>
+                        }
+                    }
+                    else
+                    {
+                        <label class="label label-danger">@CurrentServer.State</label>
+                    }
+                    <label class="label label-info">
+                        @CurrentServer
+                    </label>
+                    <br />
+                    <hr style="margin:7px 0px 3px 0px" />
+                    @{
+                        string publicIp = Extensions.GetPublicIPAddress();
+                        string localIp = Extensions.GetLocalIPAddress();
+                        if (publicIp != null)
+                        {
+                            @("Public IP:")
+                            <button style="background-color:transparent; border:none" onclick="navigator.clipboard.writeText('@publicIp:@CurrentServer.CurrentConfiguration.ServerPort.Port')">
+                                <b style="border-bottom: 1px dotted #000;" data-toggle="tooltip" data-container="app" data-trigger="hover" data-placement="top" title="Click to copy address">@publicIp:@CurrentServer.CurrentConfiguration.ServerPort.Port</b>
+                            </button>
+                            <br />
+                        }
+                        if (localIp != null)
+                        {
+                            @("Local IP:")
+                            <button style="background-color:transparent; border:none" onclick="navigator.clipboard.writeText('@localIp:@CurrentServer.CurrentConfiguration.ServerPort.Port')">
+                                <b style="border-bottom: 1px dotted #000;" data-toggle="tooltip" data-container="app" data-trigger="hover" data-placement="top" title="Click to copy address">@localIp:@CurrentServer.CurrentConfiguration.ServerPort.Port</b>
+                            </button>
+                        }
+                    }
+                </td>
+                <td style="border-top:none;width:1px;">
+                    <div style="width:1px; border-right:1px solid #eee; height:128px"></div>
+                </td>
+                <td id="overview-buttons" style="border-top:none; vertical-align:middle">
+                    <style scoped>
+                        #overview-buttons > button {
+                            margin:3px;
+                            margin-bottom:3px;
+                            width:150px;
+                        }
+                    </style>
+                    @if (CurrentServer.State == ServerProxy.ServerState.Disabled)
+                    {
+                        <button class="btn btn-success" @onclick="x => { CurrentServer.CurrentConfiguration.IsEnabled = true; CurrentServer.StartAsync(); }">Start</button>
+                        <br />
+                    }
+                    else if (CurrentServer.State == ServerProxy.ServerState.Running)
+                    {
+                        <button class="btn btn-danger" style="width:72px; margin-right:0px" @onclick="x => { CurrentServer.CurrentConfiguration.IsEnabled = false; CurrentServer.StopAsync(); }">Stop</button>
+                        <button class="btn btn-warning" style="width:72px; margin-left:0px" @onclick="CurrentServer.RestartAsync">Restart</button>
+                        <br />
+                    }
+                    else
+                    {
+                        <button class="btn btn-danger" style="width:72px; margin-right:0px" disabled>Stop</button>
+                        <button class="btn btn-warning" style="width:72px; margin-left:0px" disabled>Restart</button>
+                        <br />
+                    }
+                    <button class="btn btn-default" @onclick="@(x => { ServerSelector.CurrentServer = CurrentServer; Navigator.NavigateTo("/ServerPreferences"); })">Change settings</button>
+                    <br />
+                    <button class="btn btn-danger" @onclick="TryDeleteServer">Delete server</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<Timer Interval="1000" UpdateComponentOnTick="true" UpdateScope="this" Enabled="true"></Timer>
+
+
+@code {
+    [Parameter]
+    public ServerProxy CurrentServer { get; set; }
+    [Parameter]
+    public Action OnDelete { get; set; }
+
+    protected void TryDeleteServer()
+    {
+        PopupManager.ShowPopup(new InformationPopupDisplay(
+            "This will delete " + CurrentServer.CurrentConfiguration.ServerName + " and associated settings (like the whitelist and player permissions) permanently.  This will not remove or delete any Minecraft worlds.",
+            "Delete server?",
+            async x => {
+                if(x == 0)
+                {
+                    PopupManager.ShowPopup(new LoadingPopupDisplay("Deleting server..."));
+                    if(CurrentServer.State != ServerProxy.ServerState.Disabled)
+                    {
+                        await CurrentServer.StopAsync();
+                    }
+                    await IMS.Instance.ServerManager.DeleteServerAsync(CurrentServer.ID);
+                    PopupManager.ClosePopup();
+                    StateHasChanged();
+                    OnDelete?.Invoke();
+                }
+            },
+            "Delete", "Cancel"
+        ));
+    }
+
+    protected void ChangeServerIcon()
+    {
+        PopupManager.ShowPopup(new ChangeServerIconDisplayView.ChangeServerIconDisplay((JavaServer)CurrentServer, StateHasChanged));
+    }
+
+    protected string GetServerIconLink()
+    {
+        if(CurrentServer is JavaServer server)
+        {
+            if(File.Exists(server.ServerIconLocation))
+            {
+                return Cache.CacheFile(server.ServerIconLocation);
+            }
+            else
+            {
+                return "/img/pack.png";
+            }
+        }
+        else
+        {
+            return "/img/bedrock.png";
+        }
+    }
+}

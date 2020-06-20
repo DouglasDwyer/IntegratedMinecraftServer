@@ -22,9 +22,14 @@ namespace IMS_Library
         public bool RunIMSOnStartup = true;
 
         /// <summary>
-        /// The paths of all currently registered plugins.
+        /// Determines the age that IMS logfiles must be for IMS to delete them.
         /// </summary>
-        public List<string> PluginPaths = new List<string>();
+        public TimeSpan LogDeletionTimespan = TimeSpan.FromHours(72);
+
+        /// <summary>
+        /// Represents the next time at which IMS should restart to install updates.  If null, IMS will never automatically install updates.
+        /// </summary>
+        public DateTime? IMSAutoUpdateTime = DateTime.Today.AddDays(1);
 
         /// <summary>
         /// The username to use when logging into the IMS admin console.

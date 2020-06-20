@@ -30,9 +30,18 @@
     {
         <label class="alert alert-success" style="padding:6px; margin-right:8px; margin-bottom:unset">@ErrorText</label>
     }
-    <button class="btn btn-success" @onclick="Apply">@ApplyText</button>
-    <button class="btn btn-warning" @onclick="Revert">@RevertText</button>
-    <button class="btn btn-danger" @onclick="Reset">@ResetText</button>
+    @if (!string.IsNullOrEmpty(ApplyText))
+    {
+        <button class="btn btn-success" @onclick="Apply">@ApplyText</button>
+    }
+    @if (!string.IsNullOrEmpty(RevertText))
+    {
+        <button class="btn btn-warning" @onclick="Revert">@RevertText</button>
+    }
+    @if (!string.IsNullOrEmpty(ResetText))
+    {
+        <button class="btn btn-danger" @onclick="Reset">@ResetText</button>
+    }
 </div>
 <br />
 <br />
@@ -80,6 +89,10 @@
     public List<PreferenceDisplay> FieldDisplays { get; set; }
     [Parameter]
     public EventCallback<IMSConfiguration> OnApply { get; set; }
+    [Parameter]
+    public EventCallback<IMSConfiguration> OnRevert { get; set; }
+    [Parameter]
+    public EventCallback<IMSConfiguration> OnReset { get; set; }
 
     private IMSConfiguration LoadedConfiguration;
     private IMSConfiguration InitialConfiguration;
@@ -101,15 +114,17 @@
         await OnApply.InvokeAsync((IMSConfiguration)CurrentConfiguration.Clone());
     }
 
-    protected void Revert()
+    protected async Task Revert()
     {
         ErrorText = null;
+        await OnRevert.InvokeAsync(CurrentConfiguration);
         CurrentConfiguration = InitialConfiguration;
     }
 
-    protected void Reset()
+    protected async Task Reset()
     {
         ErrorText = null;
+        await OnReset.InvokeAsync(CurrentConfiguration);
         LoadedConfiguration = (IMSConfiguration)Activator.CreateInstance(CurrentConfiguration.GetType());
     }
 }

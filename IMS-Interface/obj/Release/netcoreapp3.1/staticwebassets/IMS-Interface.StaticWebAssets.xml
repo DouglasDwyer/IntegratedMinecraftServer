@@ -1,0 +1,4 @@
+﻿<StaticWebAssets Version="1.0">
+  <ContentRoot BasePath="_content/Cloudcrate.AspNetCore.Blazor.Browser.Storage" Path="C:\Users\Douglas\.nuget\packages\cloudcrate.aspnetcore.blazor.browser.storage\3.0.0\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Tewr.Blazor.FileReader" Path="C:\Users\Douglas\.nuget\packages\tewr.blazor.filereader\1.5.0.20109\build\..\staticwebassets\" />
+</StaticWebAssets>

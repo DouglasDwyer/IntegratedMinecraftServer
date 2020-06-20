@@ -1,0 +1,71 @@
+﻿@namespace IMS_Interface.Preferences
+
+@using System.IO
+@using Blazor.FileReader
+
+@inherits PreferenceDisplayView
+@implements IDisposable
+@inject IFileReaderService FileReader
+@inject IJSRuntime JSRuntime
+
+<label style="font-weight:normal">@DisplayData.DisplayName</label>
+<br />
+@{ 
+    string finalPath = ((UploadServerBinaryDisplay)DisplayData).FinalFilePath((IMS_Library.ServerConfiguration)DisplayData.ParentDisplay.CurrentConfiguration);
+    string tempPath = ((UploadServerBinaryDisplay)DisplayData).TemporaryFilePath((IMS_Library.ServerConfiguration)DisplayData.ParentDisplay.CurrentConfiguration);
+}
+
+<label class="btn btn-primary" style="padding:6px; margin-top:4px" disabled="@IsExecutingTask" data-toggle="tooltip" data-placement="right" data-title="@DisplayData.Description" data-original-title="@DisplayData.Description">
+    @if(IsExecutingTask)
+    {
+        @("Uploading...")
+    }
+    else if(File.Exists(finalPath) || File.Exists(tempPath))
+    {
+        @("Change server binary")
+    }
+    else
+    {
+        @("Upload server binary")
+    }
+    <input @ref="ServerBinaryInput" type="file" class="btn btn-primary" style="display:none" accept="@Path.GetExtension(finalPath)" @onchange="UploadServer" disabled="@IsExecutingTask" />
+</label>
+<br />
+
+@code {
+    protected ElementReference ServerBinaryInput;
+
+    protected bool IsExecutingTask => CurrentTask != null && !CurrentTask.IsCompleted;
+    protected Task CurrentTask = null;
+
+    protected void UploadServer()
+    {
+        CurrentTask = UploadServerAsync();
+    }
+
+    protected async Task UploadServerAsync()
+    {
+        UploadServerBinaryDisplay displayData = (UploadServerBinaryDisplay)DisplayData;
+        string path = displayData.TemporaryFilePath((IMS_Library.ServerConfiguration)DisplayData.ParentDisplay.CurrentConfiguration);
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+        }
+        IFileReference file = (await FileReader.CreateReference(ServerBinaryInput).EnumerateFilesAsync()).Single();
+        using Stream fileStream = File.Create(path);
+        using MemoryStream memoryStream = await file.CreateMemoryStreamAsync(1024 * 1024);
+        await memoryStream.CopyToAsync(fileStream);
+        await JSRuntime.InvokeVoidAsync("clearInput", ServerBinaryInput);
+        CurrentTask = null;
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        UploadServerBinaryDisplay displayData = (UploadServerBinaryDisplay)DisplayData;
+        if (File.Exists(displayData.TemporaryFilePath((IMS_Library.ServerConfiguration)DisplayData.ParentDisplay.CurrentConfiguration)))
+        {
+            File.Delete(displayData.TemporaryFilePath((IMS_Library.ServerConfiguration)DisplayData.ParentDisplay.CurrentConfiguration));
+        }
+    }
+}

@@ -18,11 +18,11 @@
         <br />
         <label style="font-size:medium">Username</label>
         <br />
-        <input class="form-control" @bind="Username" />
+        <input class="form-control" style="width:100%" @bind="Username" />
         <br />
         <label style="font-size:medium">Password</label>
         <br />
-        <input class="form-control" type="password" @bind="Password" onkeyup="if (event.keyCode === 13) { document.getElementById('LoginButton').click(); }" />
+        <input class="form-control" style="width:100%" type="password" @bind="Password" onkeyup="if (event.keyCode === 13) { document.getElementById('LoginButton').click(); }" />
         <br />
         <button class="btn btn-primary" id="LoginButton" type="submit" @onclick="AttemptLoginAsync">Login</button>
         <button class="btn btn-primary" style="margin-left:10px; background-color:transparent; color:#23527c" @onclick="RequestLoginReset">Reset username/password</button>

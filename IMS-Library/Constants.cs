@@ -50,6 +50,14 @@ namespace IMS_Library
         /// </summary>
         public const string JavaExecutableLocation = BinariesFolderLocation + "/Java/bin/java.exe";
         /// <summary>
+        /// This the path, relative to the IMS root directory, of the folder which contains all of the data necessary for a Bedrock server to run.
+        /// </summary>
+        public const string BedrockTemplateFolderLocation = BinariesFolderLocation + "/BedrockTemplate";
+        /// <summary>
+        /// This is the path, relative to the IMS root directory, of the folder used to store IMS plugins.
+        /// </summary>
+        public const string PluginFolderLocation = DataLocation + "/Plugin";
+        /// <summary>
         /// This is the path of the current IMS root directory.
         /// </summary>
         public static readonly string ExecutionPath = new FileInfo(Assembly.GetEntryAssembly().Location).Directory.ToString();

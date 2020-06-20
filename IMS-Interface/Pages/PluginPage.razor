@@ -1,0 +1,22 @@
+﻿@page "/Plugin/{ID}/{URL}/"
+
+@using IMS_Library
+
+@{ 
+    IMSPluginBase plugin = IMS.Instance.PluginManager.LoadedPlugins[ID];
+    if(plugin != null && plugin is IWebpageProvider provider)
+    {
+        Dictionary<string, Type> routings = provider.GetPageRoutings();
+        if(routings.ContainsKey(URL))
+        {
+            <Dynamic Component="routings[URL]"></Dynamic>
+        }
+    }
+}
+
+@code {
+    [Parameter]
+    public string ID { get; set; }
+    [Parameter]
+    public string URL { get; set; }
+}

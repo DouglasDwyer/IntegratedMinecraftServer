@@ -49,14 +49,11 @@
     <Compile Include="IMS_DevelopmentKitPackage.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="IMS-Library.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="ProjectTemplates\IMS\IMS Plugin.zip">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="TemplateData.txt" />
     <None Include="..\.editorconfig">
       <Link>.editorconfig</Link>
     </None>
@@ -65,6 +62,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="IMS-Interface">
+      <HintPath>..\IMS-Interface\bin\Debug\netcoreapp3.1\IMS-Interface.dll</HintPath>
+    </Reference>
     <Reference Include="IMS-Library">
       <HintPath>..\IMS-Library\bin\Debug\netcoreapp3.1\IMS-Library.dll</HintPath>
     </Reference>

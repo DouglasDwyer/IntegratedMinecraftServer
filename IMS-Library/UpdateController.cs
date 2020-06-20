@@ -6,6 +6,7 @@ using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace IMS_Library
 {
@@ -36,19 +37,41 @@ namespace IMS_Library
         
         private bool IsUpdating = false;
         private object Locker = new object();
+        private Timer UpdateCheckTimer = new Timer();
 
         /// <summary>
         /// Starts the controller, automatically checking to see whether updates are available.  If new updates have been downloaded, IMS may update and restart.
         /// </summary>
         public void Start()
         {
-            if (UpdatesReadyForInstallation)
+            lock (Locker)
             {
-                UpdateAndRestart();
-            }
-            else
-            {
-                DownloadUpdatesAsync();
+                if (UpdatesReadyForInstallation)
+                {
+                    UpdateAndRestart();
+                }
+                else
+                {
+                    DownloadUpdatesAsync();
+                }
+                UpdateCheckTimer.Interval = 30 * 60 * 1000;
+                UpdateCheckTimer.Elapsed += async (x, y) =>
+                {
+                    await DownloadUpdatesAsync();
+                    if(IMS.Instance.CurrentSettings.IMSAutoUpdateTime != null && IMS.Instance.CurrentSettings.IMSAutoUpdateTime.Value < DateTime.Now)
+                    {
+                        IMS.Instance.CurrentSettings.IMSAutoUpdateTime = DateTime.Today.AddDays(1) + IMS.Instance.CurrentSettings.IMSAutoUpdateTime.Value.TimeOfDay;
+                        if(UpdatesReadyForInstallation)
+                        {
+                            UpdateAndRestart();
+                        }
+                        else
+                        {
+                            IMS.Instance.VersionManager.RestartUpdatedServers();
+                        }
+                    }
+                };
+                UpdateCheckTimer.Start();
             }
         }
 
@@ -57,7 +80,10 @@ namespace IMS_Library
         /// </summary>
         public void Stop()
         {
-
+            lock(Locker)
+            {
+                UpdateCheckTimer.Stop();
+            }
         }
 
         /// <summary>
@@ -65,6 +91,7 @@ namespace IMS_Library
         /// </summary>
         public void UpdateAndRestart()
         {
+
             Process process = new Process();
             process.StartInfo = new ProcessStartInfo();
             process.StartInfo.FileName = "cmd.exe";
@@ -99,11 +126,12 @@ namespace IMS_Library
                     if(newVersion > CurrentVersion)
                     {
                         await client.DownloadFileTaskAsync(LatestUpdateURL, UpdateFile);
+                        IMS.Instance.UserMessageManager.LogInfo("A new version of IMS (v" + newVersion + ") is available for download.", false);
                     }
                 }
                 else
                 {
-                    Logger.WriteError("Unable to fetch IMS version data from " + VersionDataURL + "!  The version string was not in the correct format.  To update IMS, a reinstall may be required.");
+                    IMS.Instance.UserMessageManager.LogError("Unable to fetch IMS version data from " + VersionDataURL + "!  The version string was not in the correct format.  To update IMS, a reinstall may be required.");
                 }
             }
             catch(Exception e)

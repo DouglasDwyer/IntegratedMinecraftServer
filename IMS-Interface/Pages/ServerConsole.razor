@@ -3,7 +3,7 @@
 
 @inject IJSRuntime JSRuntime
 @inject ServerProvider ServerSelector
-
+<h3>Server Console</h3>
 <br />
 <br />
     <div style="display:table; width:80%;resize:none; height:70%; min-height:70%; max-height:70%; max-width:80%; min-width:80%; margin:0 auto">
@@ -17,8 +17,9 @@
         max-width: 100%;
         min-width: 100%;
         font-family: TimesNewRoman,Times New Roman,Times,Baskerville,Georgia,serif;" value="@ConsoleText"></textarea>
-        <input placeholder="Enter console command..." class="form-control" style="margin-top:4px; display:table-cell; margin-left:0px; margin-right:6px; max-width:calc(100% - 44px)" onkeyup="if (event.keyCode === 13) { document.getElementById('SendCommandButton').click(); }" @bind="CommandText" />
+        <input placeholder="Enter console command..." class="form-control" style="margin-top:4px; display:table-cell; margin-left:0px; width:100%; margin-right:6px; max-width:calc(100% - 44px)" onkeyup="if (event.keyCode === 13) { document.getElementById('SendCommandButton').click(); }" @bind="CommandText" />
         <button class="btn btn-primary" id="SendCommandButton" style="margin-right:0" @onclick="SendCommand">▶</button>
+        <a href="ServerLogViewer">View server logs</a>
     </div>
 
 <Timer UpdateScope=this Interval=250 @ref="LoadTimer" Tick="UpdateText" UseSynchronousTick=false UpdateComponentOnTick=false></Timer>

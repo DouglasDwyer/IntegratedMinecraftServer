@@ -19,6 +19,10 @@
             $('[onload]').trigger('onload');
         }
 
+        function clearInput(element) {
+            element.value = null;
+        }
+
         function executeInputEvent(parent, elementId) {
             parent.querySelector('#' + elementId).dispatchEvent(new Event('input', { bubbles: true, cancelable: true, }));
         }
@@ -62,6 +66,11 @@
             temporalDivElement.innerHTML = html;
             // Retrieve the text property of the element (cross-browser support)
             return temporalDivElement.textContent || temporalDivElement.innerText || "";
+        }
+
+        function toggleInfoBox() {
+            var isHidden = $("#ShowUserInformation").attr("hidden");
+            $('#ShowUserInformation').attr("hidden", !isHidden);
         }
 
         function format(command, value) {
@@ -113,6 +122,17 @@
             }
             return undefined;
         }
+
+        function isDescendant(parent, child) {
+            var node = child.parentNode;
+            while (node != null) {
+                if (node == parent) {
+                    return true;
+                }
+                node = node.parentNode;
+            }
+            return false;
+        }
     </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -133,8 +153,9 @@
             $('[data-toggle="tooltip"]').tooltip();
             $("body").click(
                 function (e) {
-                 if(e.target.className != 'color-box' && e.target.id != 'foreColorButton'){
-                     $('.color-box').attr("hidden",true);
+                 if(e.target.className != 'color-box' && e.target.id != 'foreColorButton' && e.target.id != 'infoButton' && !isDescendant(document.getElementById('ShowUserInformation'), e.target)){
+                     $('.color-box').attr("hidden", true);
+                     $('#ShowUserInformation').attr("hidden", true);
                  }
             });
             $('[keepSelectedIndexAtZero]').change(function (e) {

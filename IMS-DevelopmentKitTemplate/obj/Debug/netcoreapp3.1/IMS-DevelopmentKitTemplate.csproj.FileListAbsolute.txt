@@ -19,7 +19,6 @@ D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKitTemplate\bin\Debug\netco
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKitTemplate\bin\Debug\netcoreapp3.1\IMS-DevelopmentKitTemplate.dll
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKitTemplate\bin\Debug\netcoreapp3.1\IMS-DevelopmentKitTemplate.pdb
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKitTemplate\bin\Debug\netcoreapp3.1\IMS-Library.dll
-D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKitTemplate\obj\Debug\netcoreapp3.1\IMS-DevelopmentKitTemplate.csprojAssemblyReference.cache
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKitTemplate\obj\Debug\netcoreapp3.1\staticwebassets\IMS-DevelopmentKitTemplate.StaticWebAssets.Manifest.cache
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKitTemplate\obj\Debug\netcoreapp3.1\staticwebassets\IMS-DevelopmentKitTemplate.StaticWebAssets.xml
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKitTemplate\obj\Debug\netcoreapp3.1\IMS-DevelopmentKitTemplate.AssemblyInfoInputs.cache
@@ -29,3 +28,7 @@ D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKitTemplate\obj\Debug\netco
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKitTemplate\obj\Debug\netcoreapp3.1\IMS-DevelopmentKitTemplate.dll
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKitTemplate\obj\Debug\netcoreapp3.1\IMS-DevelopmentKitTemplate.pdb
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKitTemplate\obj\Debug\netcoreapp3.1\IMS-DevelopmentKitTemplate.csproj.CoreCompileInputs.cache
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKitTemplate\obj\Debug\netcoreapp3.1\IMS-DevelopmentKitTemplate.csprojAssemblyReference.cache
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKitTemplate\bin\Debug\netcoreapp3.1\IMS-Interface.dll
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKitTemplate\bin\Debug\netcoreapp3.1\IMS-Interface.xml
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKitTemplate\bin\Debug\netcoreapp3.1\IMS-Library.xml

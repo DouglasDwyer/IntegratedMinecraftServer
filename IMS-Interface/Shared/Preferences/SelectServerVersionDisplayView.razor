@@ -115,7 +115,7 @@
             catch (Exception e)
             {
                 Logger.WriteWarning("Unable to download server binary for " + SelectedVersion.Name + "!\n" + e);
-                PopupManager.ShowPopup(new InformationPopupDisplay("IMS was unable to download the server binary.  Check your internet connection or consult the IMS log for more details.", "Downloading error"));
+                PopupManager.ShowPopup(new InformationPopupDisplay("IMS was unable to download the server binary.  Check your internet connection or consult the IMS log for more details.", "Downloading error", null));
                 return;
             }
         }

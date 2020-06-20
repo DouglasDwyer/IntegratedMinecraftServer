@@ -1,4 +1,2 @@
-IMS-Service/bin/Debug/netcoreapp3.1/Data/World/*
-IMS-Service/bin/Debug/netcoreapp3.1/Data/Log/*
-IMS-Service/bin/Debug/netcoreapp3.1/Data/Server/*
-IMS-Service/bin/Debug/netcoreapp3.1/wwwroot/*
+IMS-Service/bin/Release/*
+IMS-Service/bin/Debug/*

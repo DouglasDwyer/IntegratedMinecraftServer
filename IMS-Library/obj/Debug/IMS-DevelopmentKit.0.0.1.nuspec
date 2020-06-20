@@ -13,6 +13,7 @@
         <dependency id="Microsoft.Windows.Compatibility" version="3.1.0" exclude="Build,Analyzers" />
         <dependency id="Newtonsoft.Json" version="12.0.3" exclude="Build,Analyzers" />
         <dependency id="Open.NAT.Core" version="2.1.0.5" exclude="Build,Analyzers" />
+        <dependency id="System.Reflection.MetadataLoadContext" version="4.7.2" exclude="Build,Analyzers" />
       </group>
     </dependencies>
   </metadata>

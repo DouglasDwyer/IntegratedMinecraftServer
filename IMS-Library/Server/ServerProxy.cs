@@ -11,12 +11,16 @@ namespace IMS_Library
     /// <summary>
     /// This class represents a Minecraft server wrapper, and provides functionality for server management.
     /// </summary>
-    public abstract class ServerProxy
+    public abstract class ServerProxy : ILogProvider
     {
         /// <summary>
         /// The unique identifier of the server.
         /// </summary>
         public Guid ID { get; protected set; }
+        /// <summary>
+        /// The Mojang-assigned identifier for the version of Minecraft that the server is currently running.
+        /// </summary>
+        public abstract string ServerVersionID { get; }
         /// <summary>
         /// The current state of the internal server process.
         /// </summary>
@@ -194,13 +198,13 @@ namespace IMS_Library
         /// Retrieves a list of all currently-existing Minecraft server logfiles.
         /// </summary>
         /// <returns>A list containing information about each logfile.</returns>
-        public abstract List<LogFileInformation> GetLogFiles();
+        public abstract IEnumerable<LogFileInformation> GetAllLogFiles();
         /// <summary>
         /// Retrieves the text of a logfile based on its name.
         /// </summary>
         /// <param name="name">The name of the logfile to retrieve.</param>
         /// <returns>The text inside the logfile.</returns>
-        public abstract string GetLogFile(string name);
+        public abstract string GetLogFile(LogFileInformation name);
         /// <summary>
         /// Copies the current server world to a specified location on disk.
         /// </summary>
@@ -222,6 +226,12 @@ namespace IMS_Library
         {
             return new ServerConfiguration(ID).FromConfiguration();
         }
+
+        /// <summary>
+        /// Deletes the server logfile, removing it from disk.
+        /// </summary>
+        /// <param name="information">The logfile to delete.</param>
+        public abstract void DeleteLogFile(LogFileInformation information);
 
         /// <summary>
         /// This enum is used to represent the current state of the internal server process.

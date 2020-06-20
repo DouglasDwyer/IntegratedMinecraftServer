@@ -60,7 +60,7 @@ namespace IMS_Library
                 {
                     if (UPnPDevice is null)
                     {
-                        Logger.WriteWarning("Failed to find UPnP capable device to port forward with.");
+                        IMS.Instance.UserMessageManager.LogWarning("Failed to find UPnP capable device to port forward with.");
                     }
                 }
             }
@@ -165,9 +165,9 @@ namespace IMS_Library
         /// </summary>
         public void Stop()
         {
-            lock (this)
+            lock (Locker)
             {
-                foreach(int port in Ports)
+                foreach(int port in Ports.ToArray())
                 {
                     RemovePort(port);
                 }

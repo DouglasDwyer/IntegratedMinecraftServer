@@ -12,6 +12,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using Timer = System.Timers.Timer;
 
 namespace IMS_Library
 {
@@ -76,9 +77,19 @@ namespace IMS_Library
         public override bool SupportsKicking => true;
 
         /// <summary>
+        /// The Mojang-assigned identifier for the version of Minecraft that the server is currently running.
+        /// </summary>
+        public override string ServerVersionID => ServerVersion;
+        private string ServerVersion;
+        /// <summary>
         /// This server supports Minecraft: Java Edition.
         /// </summary>
         public sealed override MinecraftEdition SupportedEdition => MinecraftEdition.Java;
+
+        /// <summary>
+        /// The absolute path of the server icon.  This property does not check whether the icon exists.
+        /// </summary>
+        public virtual string ServerIconLocation => Constants.ExecutionPath + Constants.ServerFolderLocation + "/" + ID + "/server-icon.png";
 
         /// <summary>
         /// The current internal Minecraft server process, or null if the server is not running.
@@ -108,7 +119,14 @@ namespace IMS_Library
 
         private bool AutomaticSavingPlayerEnabled = true;
         private bool HasCompletedAutomaticSave = true;
-        
+        private Timer LogManagementTimer;
+
+        /// <summary>
+        /// The location of the server JAR file that should be executed.
+        /// </summary>
+        protected virtual string JarLocation => (string.IsNullOrEmpty(ServerPreferences.ServerVersion)
+                            ? IMS.Instance.VersionManager.LatestRelease.PhysicalLocation : IMS.Instance.VersionManager.AvailableServerVersions[ServerPreferences.ServerVersion].PhysicalLocation).Replace("/", "\\");
+
         /// <summary>
         /// The absolute path of the server world.
         /// </summary>
@@ -129,6 +147,7 @@ namespace IMS_Library
             ServerPreferences = configuration;
             UUIDCache = new MemoryCache("IMS", null, true);
             State = ServerState.Disabled;
+            SetupLogDeletionTimer();
         }
 
         /// <summary>
@@ -145,6 +164,22 @@ namespace IMS_Library
             else
             {
                 SendUncheckedConsoleCommand("kick " + name + " " + reason);
+            }
+        }
+
+        /// <summary>
+        /// Returns a string that describes the current object.
+        /// </summary>
+        /// <returns>A string with the name of this server type.</returns>
+        public override string ToString()
+        {
+            if (string.IsNullOrEmpty(ServerPreferences.ServerVersion))
+            {
+                return "Java " + IMS.Instance.VersionManager.LatestRelease.Name;
+            }
+            else
+            {
+                return "Java " + IMS.Instance.VersionManager.AvailableServerVersions[ServerPreferences.ServerVersion].Name;
             }
         }
 
@@ -193,13 +228,13 @@ namespace IMS_Library
                 {
                     if (State == ServerState.Running)
                     {
-                        Logger.WriteError("Server " + ID + " crashed.  Attempting restart...");
+                        IMS.Instance.UserMessageManager.LogError("Server " + CurrentConfiguration.ServerName + " crashed.  Attempting restart...");
                         State = ServerState.Disabled;
                         StartAsync();
                     }
                     else
                     {
-                        Logger.WriteError("Server " + ID + " crashed on startup.");
+                        IMS.Instance.UserMessageManager.LogError("Server " + CurrentConfiguration.ServerName + " crashed on startup and was subsequently disabled.");
                         State = ServerState.Disabled;
                         ServerPreferences.IsEnabled = false;
                     }
@@ -552,6 +587,7 @@ namespace IMS_Library
                 {
                     throw new InvalidOperationException("Cannot start a server that's already running!");
                 }
+                State = ServerState.Starting;
                 try
                 {
                     World world = IMS.Instance.WorldManager.GetWorldByID(CurrentConfiguration.WorldID);
@@ -603,9 +639,9 @@ namespace IMS_Library
                     ServerProcess.StartInfo.Arguments = "-Xms" + ServerPreferences.MinimumMemoryMB
                         + "M -Xmx" + ServerPreferences.MaximumMemoryMB
                         + "M " + ServerPreferences.JavaArguments
-                        + " -jar \"" + (string.IsNullOrEmpty(ServerPreferences.ServerVersion)
-                            ? IMS.Instance.VersionManager.LatestRelease.PhysicalLocation : IMS.Instance.VersionManager.AvailableServerVersions[ServerPreferences.ServerVersion].PhysicalLocation).Replace("/", "\\")
-                        + "\" nogui";
+                        + " -jar \"" + JarLocation + "\" nogui";
+
+                    ServerVersion = string.IsNullOrEmpty(ServerPreferences.ServerVersion) ? IMS.Instance.VersionManager.LatestRelease.Version : IMS.Instance.VersionManager.AvailableServerVersions[ServerPreferences.ServerVersion].Version;
 
                     ServerProcess.StartInfo.WorkingDirectory = ServerPreferences.GetServerFolderLocation();
                     ServerProcess.StartInfo.LoadUserProfile = false;
@@ -631,18 +667,23 @@ namespace IMS_Library
                     };
 
                     IMS.Instance.FirewallManager.CreateFirewallExecutableException("Server" + ID, ServerProcess.StartInfo.FileName);
-                    ServerProcess.Start();
+                    foreach(int port in ServerPreferences.GetPortsToForward())
+                    {
+                        IMS.Instance.PortManager.ForwardPort(port);
+                    }
 
-                    State = ServerState.Starting;
+                    ServerProcess.Start();
 
                     ServerProcess.BeginOutputReadLine();
                     ServerProcess.BeginErrorReadLine();
                     ChildProcessTracker.AddProcess(ServerProcess);
+                    LogManagementTimer.Start();
                 }
                 catch (Exception e)
                 {
                     Logger.WriteWarning("Server " + ID + " was unable to start.\n" + e);
                     CurrentConfiguration.IsEnabled = false;
+                    State = ServerState.Disabled;
                 }
             }
             while (State == ServerState.Starting) { await Task.Delay(1); }
@@ -709,6 +750,7 @@ namespace IMS_Library
                             }
                             if (loggingInPlayer is null)
                             {
+                                loggingInPlayer = new MinecraftPlayer();
                                 loggingInPlayer.Username = playerName;
                                 loggingInPlayer.UUID = uuid;
                                 if (ServerPreferences.OnlineMode)
@@ -920,15 +962,24 @@ namespace IMS_Library
                 if (State == ServerState.Disabled || State == ServerState.Stopping) { return; }
                 State = ServerState.Stopping;
             }
+            ServerVersion = null;
+            LogManagementTimer.Stop();
             ServerProcess.EnableRaisingEvents = false;
             SendUncheckedConsoleCommand("stop");
+
             foreach(MinecraftPlayer player in OnlineUsers.Values)
             {
                 player.LastConnectionEvent = DateTime.Now;
             }
             OnlineUsers.Clear();
             File.WriteAllText(ServerPreferences.GetServerFolderLocation() + "/usercache.xml", RoyalSerializer.ObjectToXML(AllUsers.Values.ToArray()));
+
+            foreach (int port in ServerPreferences.GetPortsToForward())
+            {
+                IMS.Instance.PortManager.RemovePort(port);
+            }
             IMS.Instance.FirewallManager.RemoveFirewallExecutableException("Server" + ID);
+
             while (!ServerProcess.HasExited) { await Task.Delay(1); }
             if (File.Exists(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log"))
             {
@@ -1230,15 +1281,19 @@ namespace IMS_Library
         /// Retrieves a list of logfiles that this server has produced.
         /// </summary>
         /// <returns>A list with information about each logfile created by the Minecraft server.</returns>
-        public override List<LogFileInformation> GetLogFiles()
+        public override IEnumerable<LogFileInformation> GetAllLogFiles()
         {
             List<LogFileInformation> files = new List<LogFileInformation>();
             foreach(string file in Directory.EnumerateFiles(ServerPreferences.GetServerFolderLocation() + "/logs", "*.log", SearchOption.TopDirectoryOnly)) {
-                files.Add(new LogFileInformation { Name = Path.GetFileNameWithoutExtension(file), CleanExit = true });
+                if(new FileInfo(file).Name == "latest.log")
+                {
+                    continue;
+                }
+                files.Add(new LogFileInformation { Name = Path.GetFileNameWithoutExtension(file), CreationDate = File.GetCreationTime(file), CleanExit = true });
             }
             foreach (string file in Directory.EnumerateFiles(ServerPreferences.GetServerFolderLocation() + "/logs", "*.loge", SearchOption.TopDirectoryOnly))
             {
-                files.Add(new LogFileInformation { Name = Path.GetFileNameWithoutExtension(file), CleanExit = false });
+                files.Add(new LogFileInformation { Name = Path.GetFileNameWithoutExtension(file), CreationDate = File.GetCreationTime(file), CleanExit = false });
             }
             files = files.OrderBy(info => info.Name).ToList();
             return files;
@@ -1247,17 +1302,17 @@ namespace IMS_Library
         /// <summary>
         /// Gets the text inside a specific logfile.
         /// </summary>
-        /// <param name="name">The name of the logfile to get information about.</param>
+        /// <param name="info">The logfile to get information about.</param>
         /// <returns>The information that the logfile contains.</returns>
-        public override string GetLogFile(string name)
+        public override string GetLogFile(LogFileInformation info)
         {
-            if(File.Exists(ServerPreferences.GetServerFolderLocation() + "/logs/" + name + ".log"))
+            if(File.Exists(ServerPreferences.GetServerFolderLocation() + "/logs/" + info.Name + ".log"))
             {
-                return File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/logs/" + name + ".log");
+                return File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/logs/" + info.Name + ".log");
             }
             else
             {
-                return File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/logs/" + name + ".loge");
+                return File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/logs/" + info.Name + ".loge");
             }
         }
 
@@ -1308,6 +1363,22 @@ namespace IMS_Library
         }
 
         /// <summary>
+        /// Deletes the specified logfile, removing it from disk.
+        /// </summary>
+        /// <param name="info">The logfile to delete.</param>
+        public override void DeleteLogFile(LogFileInformation info)
+        {
+            if (info.CleanExit)
+            {
+                File.Delete(ServerPreferences.GetServerFolderLocation() + "/logs/" + info.Name + ".log");
+            }
+            else
+            {
+                File.Delete(ServerPreferences.GetServerFolderLocation() + "/logs/" + info.Name + ".loge");
+            }
+        }
+
+        /// <summary>
         /// Get information about a player by their UUID.
         /// </summary>
         /// <param name="uuid">The UUID of the player to retrieve data about.</param>
@@ -1340,6 +1411,25 @@ namespace IMS_Library
                     return null;
                 }
             }
+        }
+
+        private void SetupLogDeletionTimer()
+        {
+            LogManagementTimer = new Timer();
+            LogManagementTimer.Interval = 10 * 60 * 1000;
+            LogManagementTimer.Elapsed += (x, y) => {
+                if (ServerPreferences.LogDeletionInterval == default)
+                {
+                    return;
+                }
+                foreach (LogFileInformation info in GetAllLogFiles())
+                {
+                    if (info.CreationDate + ServerPreferences.LogDeletionInterval < DateTime.Now)
+                    {
+                        DeleteLogFile(info);
+                    }
+                }
+            };
         }
     }
 }

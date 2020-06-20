@@ -13,14 +13,16 @@ using System.ServiceProcess;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Xml.Serialization;
+using Timer = System.Timers.Timer;
 
 namespace IMS_Library
 {
     /// <summary>
     /// Represents the core Windows service which maintains Minecraft servers in the background.
     /// </summary>
-    public sealed partial class IMS : ServiceBase
+    public sealed partial class IMS : ServiceBase, ILogProvider
     {
         /// <summary>
         /// Returns the currently running instance of IMS.
@@ -63,11 +65,31 @@ namespace IMS_Library
         /// Returns the update manager, which is used to download/install the latest version of IMS from the internet.
         /// </summary>
         public UpdateController UpdateManager { get; private set; }
+        /// <summary>
+        /// Returns the user message manager, which is used to send data messages to the IMS admin console.
+        /// </summary>
+        public InformationController UserMessageManager { get; set; }
 
+        /// <summary>
+        /// Returns whether IMS is running in developer mode - as a console application instead of a service.
+        /// </summary>
+        public bool IsDevelopmentMode { get; private set; } = false;
+
+        private Timer SaveManagementTimer;
         private int exitCode = 0;
 
+        /// <summary>
+        /// Creates a new instance of IMS.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown if an instance of IMS already exists.
+        /// </exception>
         public IMS()
         {
+            if(Instance != null)
+            {
+                throw new InvalidOperationException("IMS is already running.");
+            }
             ServiceName = "IMS";
             CanPauseAndContinue = false;
             CanShutdown = true;
@@ -77,9 +99,11 @@ namespace IMS_Library
 
         public void SimulateService()
         {
+            IsDevelopmentMode = true;
             OnStart(new string[0]);
             Console.ReadKey();
             OnStop();
+            Environment.Exit(0);
         }
 
         /// <summary>
@@ -87,7 +111,7 @@ namespace IMS_Library
         /// </summary>
         public void Restart()
         {
-            
+            Process.Start("cmd.exe", "/C net stop \"IMS\" && net start \"IMS\"");
         }
 
         /// <summary>
@@ -96,8 +120,7 @@ namespace IMS_Library
         /// <param name="error">The error code to return.</param>
         public void Stop(int error = 0)
         {
-            exitCode = error;
-            base.Stop();
+            Process.Start("cmd.exe", "/C net stop \"IMS\"");
         }
 
         private void Execute()
@@ -107,6 +130,8 @@ namespace IMS_Library
             CurrentSettings = new IMSSettings().FromConfiguration();
             Logger.WriteInfo("IMS settings configuration loaded.");
             Logger.WriteInfo("Attempting to find suitable UPnP router for port forwarding...");
+
+            UserMessageManager = new InformationController().FromConfiguration();
 
             PluginManager = new PluginController();
             PluginManager.Initialize();
@@ -133,6 +158,32 @@ namespace IMS_Library
             WebServer.Start();
 
             PluginManager.Start();
+
+            StartLogDeletionTimer();
+        }
+
+        private void StartLogDeletionTimer()
+        {
+            SaveManagementTimer = new Timer();
+            SaveManagementTimer.Interval = 15 * 60 * 1000;
+            SaveManagementTimer.Elapsed += (x, y) => {
+                ServerManager.SaveConfigurations();
+                WorldManager.SaveConfigurations();
+                UserMessageManager.SaveConfiguration();
+
+                if (CurrentSettings.LogDeletionTimespan == default)
+                {
+                    return;
+                }
+                foreach (LogFileInformation info in GetAllLogFiles())
+                {
+                    if (info.CreationDate + CurrentSettings.LogDeletionTimespan < DateTime.Now)
+                    {
+                        DeleteLogFile(info);
+                    }
+                }
+            };
+            SaveManagementTimer.Start();
         }
 
         protected override void OnStart(string[] args)
@@ -150,12 +201,16 @@ namespace IMS_Library
             UpdateManager.Stop();
             PortManager.Stop();
             FirewallManager.RemoveFirewallExecutableException("MainService");
+            UserMessageManager.SaveConfiguration();
             CurrentSettings.SaveConfiguration();
-            if (exitCode != 0)
+            if (exitCode == 0)
             {
                 Logger.FinishLog();
             }
-            Environment.Exit(exitCode);
+            else
+            {
+                Environment.Exit(exitCode);
+            }
         }
 
         /// <summary>
@@ -184,16 +239,61 @@ namespace IMS_Library
                 {
                     if (newSettings.RunIMSOnStartup)
                     {
-                        //set service to run on computer start
+                        Process.Start("cmd.exe", "/C sc config IMS start=auto");
                     }
                     else
                     {
-                        //set service to not run on computer start
+                        Process.Start("cmd.exe", "/C sc config IMS start=demand");
                     }
                 }
                 CurrentSettings = newSettings;
                 CurrentSettings.SaveConfiguration();
             }
+        }
+
+        /// <summary>
+        /// Retrieves all of the IMS logfiles that are currently stored.
+        /// </summary>
+        /// <returns>A list of logfiles.</returns>
+        public IEnumerable<LogFileInformation> GetAllLogFiles()
+        {
+            List<LogFileInformation> toReturn = new List<LogFileInformation>();
+            foreach(string file in Directory.GetFiles(Constants.ExecutionPath + Constants.LogLocation))
+            {
+                if(new FileInfo(file).FullName == new FileInfo(Logger.CurrentLogFile).FullName)
+                {
+                    continue;
+                }
+                LogFileInformation information = new LogFileInformation();
+                information.Name = Path.GetFileNameWithoutExtension(file);
+                information.CreationDate = File.GetCreationTime(file);
+                string[] text = File.ReadAllLines(file);
+                if(text.Length > 0)
+                {
+                    information.CleanExit = text[text.Length - 1] == "[INFO] Exited cleanly.";
+                }
+                toReturn.Add(information);
+            }
+            return toReturn;
+        }
+
+        /// <summary>
+        /// Retrieves the content of a specific IMS logfile.
+        /// </summary>
+        /// <param name="information">The logfile to read.</param>
+        /// <returns>The text contained within the logfile.</returns>
+        public string GetLogFile(LogFileInformation information)
+        {
+            return File.ReadAllText(Constants.ExecutionPath + Constants.LogLocation + "/" + information.Name + ".txt");
+        }
+
+        /// <summary>
+        /// Deletes the IMS logfile, removing it from disk.
+        /// </summary>
+        /// <param name="information">The logfile to delete.</param>
+        public void DeleteLogFile(LogFileInformation information)
+        {
+            File.Delete(Constants.ExecutionPath + Constants.LogLocation + "/" + information.Name + ".txt");
         }
     }
 }

@@ -30,6 +30,15 @@ namespace IMS_Library
         /// The unique identifier of the <see cref="World"/> that this server is currently using.
         /// </summary>
         public Guid WorldID;
+        /// <summary>
+        /// The age that a logfile must be in order to be automatically deleted, or <see cref="TimeSpan.Zero"/> if automatic deletion should not occur.
+        /// </summary>
+        public TimeSpan LogDeletionInterval = TimeSpan.FromDays(3);
+        /// <summary>
+        /// The IPv4 port that the server should use to communicate with players.
+        /// </summary>
+        [ServerProperty("server-port")]
+        public WebPort ServerPort = new WebPort(19132);
 
         /// <summary>
         /// Creates a new <see cref="ServerConfiguration"/> instance with a new unique identifier.

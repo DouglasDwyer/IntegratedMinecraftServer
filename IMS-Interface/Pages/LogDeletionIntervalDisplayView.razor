@@ -1,0 +1,73 @@
+﻿@namespace IMS_Interface
+
+@inherits PreferenceDisplayView
+@using System.Reflection
+
+<label>@DisplayData.DisplayName</label>
+<br />
+<div data-toggle="tooltip"
+     data-placement="right"
+     data-title="@DisplayData.Description" style="display:inline-block; margin:5px 0px">
+    <MultiToggle Options="@(new string[] { "Don't delete logs", "Delete logs" })"
+                 SelectedIndex="SelectedItem"
+                 OnSelectionChange="@(x => SelectedItem = x)"></MultiToggle>
+</div>
+@if (SelectedItem != 0)
+{
+    <label style="font-weight:normal; margin:0px 5px 0px 5px">after they are</label>
+    <input class="form-control"
+           style="margin-top:5px;margin-bottom:5px; width:150px; display:unset"
+           type="number"
+           min="1"
+           max="@double.MaxValue)"
+           @bind="Value" /><label style="margin-left:10px"> days old.</label>
+}
+<br />
+
+@code {
+    public string Value
+    {
+        get
+        {
+            return ((TimeSpan)DisplayData.ParentDisplay.CurrentConfiguration.GetType().GetField(DisplayData.FieldName, BindingFlags.Public | BindingFlags.Instance).GetValue(DisplayData.ParentDisplay.CurrentConfiguration)).TotalDays.ToString();
+        }
+        set
+        {
+            double val;
+            if (double.TryParse((string)value, out val))
+            {
+                DisplayData.ParentDisplay.CurrentConfiguration.GetType().GetField(DisplayData.FieldName, BindingFlags.Public | BindingFlags.Instance).SetValue(DisplayData.ParentDisplay.CurrentConfiguration, TimeSpan.FromDays(val));
+            }
+
+            DisplayData.ParentDisplay.NotifyStateChanged();
+        }
+    }
+
+    public int SelectedItem
+    {
+        get
+        {
+            TimeSpan selection = (TimeSpan)DisplayData.ParentDisplay.CurrentConfiguration.GetType().GetField(DisplayData.FieldName, BindingFlags.Public | BindingFlags.Instance).GetValue(DisplayData.ParentDisplay.CurrentConfiguration);
+            if (selection == default)
+            {
+                return 0;
+            }
+            else
+            {
+                return 1;
+            }
+        }
+        set
+        {
+            if (value == 0)
+            {
+                Value = "0";
+            }
+            else
+            {
+                Value = "3";
+            }
+            DisplayData.ParentDisplay.NotifyStateChanged();
+        }
+    }
+}

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
@@ -210,11 +211,6 @@ namespace IMS_Library
         /// <summary>
         /// The port that the server should use to communicate with players.
         /// </summary>
-        [ServerProperty("server-port")]
-        public WebPort ServerPort = new WebPort(25565, true);
-        /// <summary>
-        /// Whether the server should send telemetry data to Mojang.
-        /// </summary>
         [ServerProperty("snooper-enabled")]
         public bool SnooperEnabled = true;
         /// <summary>
@@ -261,12 +257,16 @@ namespace IMS_Library
         /// <summary>
         /// Creates a new Java server settings object with a random unique identifier.
         /// </summary>
-        public JavaServerConfiguration() { }
+        public JavaServerConfiguration() {
+            ServerPort = new WebPort(25565);
+        }
         /// <summary>
         /// Creates a new Java server settings object with the specified unique identifier.
         /// </summary>
         /// <param name="id">The unique identifier that this configuration should be associated with.</param>
-        public JavaServerConfiguration(Guid id) : base(id) { }
+        public JavaServerConfiguration(Guid id) : base(id) {
+            ServerPort = new WebPort(25565);
+        }
 
         /// <summary>
         /// Retrieves a list of all ports that the server is currently using.

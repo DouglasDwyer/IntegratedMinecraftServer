@@ -3,6 +3,7 @@ using RoyalXML;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -10,6 +11,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using Timer = System.Timers.Timer;
 
 namespace IMS_Library
 {
@@ -33,6 +35,11 @@ namespace IMS_Library
                 }
             }
         }
+
+        /// <summary>
+        /// The Mojang-assigned identifier for the version of Minecraft that the server is currently running.
+        /// </summary>
+        public override string ServerVersionID => throw new NotImplementedException();
 
         /// <summary>
         /// Whether the server supports whitelisting players.
@@ -108,6 +115,11 @@ namespace IMS_Library
         protected Dictionary<string, MinecraftPlayer> OnlineUsers = new Dictionary<string, MinecraftPlayer>();
 
         /// <summary>
+        /// The location of the server EXE file that should be executed.
+        /// </summary>
+        protected virtual string ExeLocation => ServerLocation + "/Bedrock.exe";
+
+        /// <summary>
         /// The current internal Minecraft server process, or null if the server is not running.
         /// </summary>
         protected Process ServerProcess;
@@ -125,6 +137,7 @@ namespace IMS_Library
         private List<string> ConsoleText = new List<string>();
 
         private BackupState CurrentBackupState = BackupState.None;
+        private Timer LogManagementTimer;
 
         /// <summary>
         /// Creates a new <see cref="BedrockServer"/> instance with the specified unique identifier and server configuration data.
@@ -134,6 +147,7 @@ namespace IMS_Library
         public BedrockServer(Guid id, BedrockServerConfiguration configuration) : base(id)
         {
             ServerPreferences = configuration;
+            SetupLogDeletionTimer();
         }
 
         /// <summary>
@@ -357,20 +371,41 @@ namespace IMS_Library
         /// <summary>
         /// Gets the text inside a specific logfile.
         /// </summary>
-        /// <param name="name">The name of the logfile to get information about.</param>
+        /// <param name="info">The logfile to get information about.</param>
         /// <returns>The information that the logfile contains.</returns>
-        public override string GetLogFile(string name)
+        public override string GetLogFile(LogFileInformation info)
         {
-            throw new NotImplementedException();
+            if (info.CleanExit)
+            {
+                return File.ReadAllText(LogFolderLocation + "/" + info.Name + ".log");
+            }
+            else
+            {
+                return File.ReadAllText(LogFolderLocation + "/" + info.Name + ".loge");
+            }
         }
 
         /// <summary>
         /// Retrieves a list of logfiles that this server has produced.
         /// </summary>
         /// <returns>A list with information about each logfile created by the Minecraft server.</returns>
-        public override List<LogFileInformation> GetLogFiles()
+        public override IEnumerable<LogFileInformation> GetAllLogFiles()
         {
-            throw new NotImplementedException();
+            List<LogFileInformation> files = new List<LogFileInformation>();
+            foreach (string file in Directory.EnumerateFiles(LogFolderLocation, "*.log", SearchOption.TopDirectoryOnly))
+            {
+                if(new FileInfo(file).Name == "latest.log")
+                {
+                    continue;
+                }
+                files.Add(new LogFileInformation { Name = Path.GetFileNameWithoutExtension(file), CreationDate = File.GetCreationTime(file), CleanExit = true });
+            }
+            foreach (string file in Directory.EnumerateFiles(LogFolderLocation, "*.loge", SearchOption.TopDirectoryOnly))
+            {
+                files.Add(new LogFileInformation { Name = Path.GetFileNameWithoutExtension(file), CreationDate = File.GetCreationTime(file), CleanExit = false });
+            }
+            files = files.OrderBy(info => info.Name).ToList();
+            return files;
         }
 
         /// <summary>
@@ -527,6 +562,10 @@ namespace IMS_Library
                 {
                     throw new InvalidOperationException("Cannot start a server that's already running!");
                 }
+                State = ServerState.Starting;
+            }
+            await Task.Run(() => EnsureBedrockTemplateFilesExist());
+            lock (Locker) {
                 try
                 {
                     World world = IMS.Instance.WorldManager.GetWorldByID(CurrentConfiguration.WorldID);
@@ -539,13 +578,13 @@ namespace IMS_Library
                         IMS.Instance.WorldManager.AddWorldToRegistry(world);
                     }
                     JunctionPoint.Create(WorldLocation, world.WorldPath, true);
-                    if (File.Exists(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log"))
+                    if (File.Exists(LogFolderLocation + "/latest.log"))
                     {
-                        if (File.GetAttributes(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log") != FileAttributes.Hidden)
+                        if (File.GetAttributes(LogFolderLocation + "/latest.log") != FileAttributes.Hidden)
                         {
-                            File.Copy(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log", ServerPreferences.GetServerFolderLocation() + "/logs/" + File.GetCreationTime(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log").ToString("yyyy-dd-M--HH-mm-ss") + ".loge", true);
+                            File.Copy(LogFolderLocation + "/latest.log", LogFolderLocation + "/" + File.GetCreationTime(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log").ToString("yyyy-dd-M--HH-mm-ss") + ".loge", true);
                         }
-                        File.Delete(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log");
+                        File.Delete(LogFolderLocation + "/latest.log");
                     }
                     if (File.Exists(ServerPreferences.GetServerFolderLocation() + "/usercache.xml"))
                     {
@@ -587,7 +626,7 @@ namespace IMS_Library
 
                     JunctionPoint.CreateHardLink(Constants.ExecutionPath + Constants.ServerBinariesFolderLocation + "/Bedrock.exe", ServerLocation + "/Bedrock.exe");
 
-                    ServerProcess.StartInfo.FileName = ServerLocation + "/Bedrock.exe";
+                    ServerProcess.StartInfo.FileName = ExeLocation;
 
                     ServerProcess.StartInfo.WorkingDirectory = ServerPreferences.GetServerFolderLocation();
                     ServerProcess.StartInfo.LoadUserProfile = false;
@@ -612,13 +651,17 @@ namespace IMS_Library
                     };
 
                     IMS.Instance.FirewallManager.CreateFirewallExecutableException("Server" + ID, ServerProcess.StartInfo.FileName);
+                    foreach (int port in ServerPreferences.GetPortsToForward())
+                    {
+                        IMS.Instance.PortManager.ForwardPort(port);
+                    }
 
-                    State = ServerState.Starting;
                     ServerProcess.Start();
 
                     ServerProcess.BeginOutputReadLine();
                     ServerProcess.BeginErrorReadLine();
                     ChildProcessTracker.AddProcess(ServerProcess);
+                    LogManagementTimer.Start();
                 }
                 catch (Exception e)
                 {
@@ -628,6 +671,15 @@ namespace IMS_Library
                 }
             }
             while (State == ServerState.Starting) { await Task.Delay(1); }
+        }
+
+        /// <summary>
+        /// Returns a string that describes the current object.
+        /// </summary>
+        /// <returns>A string with the name of this server type.</returns>
+        public override string ToString()
+        {
+            return "Bedrock";
         }
 
         /// <summary>
@@ -642,6 +694,8 @@ namespace IMS_Library
                 State = ServerState.Stopping;
             }
 
+            LogManagementTimer.Stop();
+
             WhitelistWatcher.EnableRaisingEvents = false;
             WhitelistWatcher.Dispose();
             PermissionsWatcher.EnableRaisingEvents = false;
@@ -655,7 +709,13 @@ namespace IMS_Library
             }
             OnlineUsers.Clear();
             File.WriteAllText(ServerPreferences.GetServerFolderLocation() + "/usercache.xml", RoyalSerializer.ObjectToXML(AllUsers.Values.ToArray()));
+
+            foreach (int port in ServerPreferences.GetPortsToForward())
+            {
+                IMS.Instance.PortManager.RemovePort(port);
+            }
             IMS.Instance.FirewallManager.RemoveFirewallExecutableException("Server" + ID);
+
             while(!ServerProcess.HasExited) { await Task.Delay(1); }
 
             LogWriter.Close();
@@ -817,6 +877,7 @@ namespace IMS_Library
                             {
                                 player = new MinecraftPlayer();
                                 player.Username = name;
+                                AllUsers[name] = player;
                             }
                             player.UUID = uuid;
                             player.LastConnectionEvent = DateTime.Now;
@@ -871,15 +932,22 @@ namespace IMS_Library
                 OnlineUsers.Clear();
                 if (State != ServerState.Stopping)
                 {
+                    try
+                    {
+                        LogWriter.Close();
+                        File.Copy(LogFolderLocation + "/latest.log", LogFolderLocation + "/" + DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss") + ".loge");
+                        File.Delete(LogFolderLocation + "/latest.log");
+                    }
+                    catch { }
                     if (State == ServerState.Running)
                     {
-                        Logger.WriteError("Server " + ID + " crashed.  Attempting restart...");
+                        IMS.Instance.UserMessageManager.LogError("Server " + ID + " crashed.  Attempting restart...");
                         State = ServerState.Disabled;
                         StartAsync();
                     }
                     else
                     {
-                        Logger.WriteError("Server " + ID + " crashed on startup.");
+                        IMS.Instance.UserMessageManager.LogError("Server " + ID + " crashed on startup and was subsequently disabled.");
                         State = ServerState.Disabled;
                         ServerPreferences.IsEnabled = false;
                     }
@@ -900,6 +968,61 @@ namespace IMS_Library
             lock(Locker)
             {
                 ServerProcess?.StandardInput.WriteLine(command);
+            }
+        }
+
+        /// <summary>
+        /// Deletes the specified logfile, removing it from disk.
+        /// </summary>
+        /// <param name="info">The logfile to delete.</param>
+        public override void DeleteLogFile(LogFileInformation info)
+        {
+            if (info.CleanExit)
+            {
+                File.Delete(LogFolderLocation + "/" + info.Name + ".log");
+            }
+            else
+            {
+                File.Delete(LogFolderLocation + "/" + info.Name + ".loge");
+            }
+        }
+
+        private void SetupLogDeletionTimer()
+        {
+            LogManagementTimer = new Timer();
+            LogManagementTimer.Interval = 10 * 60 * 1000;
+            LogManagementTimer.Elapsed += (x, y) => {
+                if (ServerPreferences.LogDeletionInterval == default)
+                {
+                    return;
+                }
+                foreach (LogFileInformation info in GetAllLogFiles())
+                {
+                    if (info.CreationDate + ServerPreferences.LogDeletionInterval < DateTime.Now)
+                    {
+                        DeleteLogFile(info);
+                    }
+                }
+            };
+        }
+
+        private void EnsureBedrockTemplateFilesExist()
+        {
+            foreach(string file in Directory.GetFiles(Constants.ExecutionPath + Constants.BedrockTemplateFolderLocation))
+            {
+                string newFile = Path.Combine(ServerLocation, Path.GetFileName(file));
+                if (!File.Exists(newFile))
+                {
+                    File.Copy(file, newFile);
+                }
+            }
+            foreach (string directory in Directory.GetDirectories(Constants.ExecutionPath + Constants.BedrockTemplateFolderLocation))
+            {
+                string newFolder = ServerLocation + "/" + new DirectoryInfo(directory).Name;
+                if (!Directory.Exists(newFolder))
+                {
+                    Extensions.CopyFolder(directory, newFolder);
+                }
             }
         }
 

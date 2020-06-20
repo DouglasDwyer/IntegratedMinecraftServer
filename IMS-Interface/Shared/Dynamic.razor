@@ -1,0 +1,10 @@
+﻿@namespace IMS_Interface
+
+@Component.GetRenderFragment(Attributes)
+
+@code {
+    [Parameter]
+    public Type Component { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object> Attributes { get; set; }
+}

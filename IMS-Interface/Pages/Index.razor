@@ -1,26 +1,25 @@
 ﻿@namespace IMS_Interface
 
 @page "/"
-@using System.IO
-@inject NavigationManager manager
-@inject DownloadManager downloader
-Welcome
-Welcome
-Welcome
-Welcome
-Welcome
-Welcome
-index pagee
-<h1>ff</h1>
+@using IMS_Library
+@inject NavigationManager Navigator
+@inject ServerProvider ServerSelector
 
-Welcome to your neeew CRAP.
-Aedd
-
-<button @onclick="Yeet">Click for yeet</button>
+<h3>IMS Overview</h3>
+<div style="width:fit-content;height:fit-content;margin:auto">
+    @foreach (ServerProxy server in IMS.Instance.ServerManager.Servers)
+    {
+        <ServerOverviewWidget CurrentServer="server" OnDelete="StateHasChanged"></ServerOverviewWidget>
+        <br />
+    }
+</div>
 
 @code {
-    protected void Yeet()
+    protected override void OnAfterRender(bool firstRender)
     {
-        downloader.ZipAndDownloadFolderAsync(manager, "C:/Users/Douglas/Documents/AP EXAM 2020");
+        if(ServerSelector.CurrentServer is null)
+        {
+            Navigator.NavigateTo("/CreateNewServer");
+        }
     }
 }

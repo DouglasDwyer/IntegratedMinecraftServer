@@ -21,8 +21,6 @@ namespace IMS_Library
         public IList<ServerProxy> Servers { get { return LoadedServers.Values.ToList().AsReadOnly(); } }
         private ConcurrentDictionary<Guid, ServerProxy> LoadedServers = new ConcurrentDictionary<Guid, ServerProxy>();
 
-        private List<int> UsedPorts = new List<int>();
-
         /// <summary>
         /// Begins the <see cref="ServerController"/> instance, loading and starting Minecraft servers.
         /// </summary>
@@ -36,6 +34,34 @@ namespace IMS_Library
         }
 
         /// <summary>
+        /// Adds a new server to the list of known servers.
+        /// </summary>
+        /// <param name="configuration">The configuration of the new server.</param>
+        /// <returns>The newly created server.</returns>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown if <paramref name="configuration"/> does not have a unique identifier or if a server with the same ID already exists.
+        /// </exception>
+        public ServerProxy AddServer(ServerConfiguration configuration)
+        {
+            if (configuration.ID == default)
+            {
+                throw new InvalidOperationException("The server has not been assigned a proper unique identifier.");
+            }
+            if (LoadedServers.ContainsKey(configuration.ID))
+            {
+                throw new InvalidOperationException("There is already a server registered with that unique identifier.");
+            }
+            configuration.SaveConfiguration();
+            ServerProxy toLoad = configuration.CreateServer();
+            LoadedServers[configuration.ID] = toLoad;
+            if (configuration.IsEnabled)
+            {
+                toLoad.StartAsync();
+            }
+            return toLoad;
+        }
+
+        /// <summary>
         /// Stops the <see cref="ServerController"/> instance, stopping and saving all servers.
         /// </summary>
         public void Stop()
@@ -46,7 +72,6 @@ namespace IMS_Library
                 if (server.State != ServerProxy.ServerState.Disabled)
                 {
                     server.StopAsync().Wait();
-                    RemoveForwardedPorts(server.CurrentConfiguration.GetPortsToForward());
                 }
                 server.CurrentConfiguration.SaveConfiguration();
             }
@@ -60,38 +85,8 @@ namespace IMS_Library
                 ServerConfiguration configuration = loadedServer.CurrentConfiguration;
                 if (configuration.IsEnabled)
                 {
-                    int[] ports = configuration.GetUsedPorts();
-                    foreach(int port in ports)
-                    {
-                        if(UsedPorts.Contains(port))
-                        {
-                            Logger.WriteError("Couldn't start server " + configuration.ServerName + " as it attempts to use port " + port + " which is already in use.");
-                            configuration.IsEnabled = false;
-                        }
-                    }
-                    if (configuration.IsEnabled)
-                    {
-                        UsedPorts.AddRange(ports);
-                        ForwardPorts(configuration.GetPortsToForward());
-                        loadedServer.StartAsync();
-                    }
+                    loadedServer.StartAsync();
                 }
-            }
-        }
-
-        private void ForwardPorts(int[] ports)
-        {
-            foreach(int port in ports)
-            {
-                IMS.Instance.PortManager.ForwardPort(port);
-            }
-        }
-
-        private void RemoveForwardedPorts(int[] ports)
-        {
-            foreach (int port in ports)
-            {
-                IMS.Instance.PortManager.RemovePort(port);
             }
         }
 
@@ -139,6 +134,48 @@ namespace IMS_Library
         public ServerProxy GetServer(Guid server)
         {
             return LoadedServers.ContainsKey(server) ? LoadedServers[server] : null;
+        }
+
+        /// <summary>
+        /// Deletes a server, removing it from the registry and deleting the associated files from disk.
+        /// </summary>
+        /// <param name="id">The unique identifier of the server to delete.</param>
+        /// <returns>A <see cref="Task"/> object representing the current state of the removal operation.</returns>
+        public async Task DeleteServerAsync(Guid id)
+        {
+            if(LoadedServers.TryRemove(id, out ServerProxy server))
+            {
+                await Task.Run(() => {
+                    DeleteDirectoryAndJunctions(Constants.ExecutionPath + Constants.ServerFolderLocation + "/" + id);
+                });
+            }
+        }
+
+        private void DeleteDirectoryAndJunctions(string path)
+        {
+            foreach(string directory in Directory.GetDirectories(path))
+            {
+                if(JunctionPoint.Exists(directory))
+                {
+                    JunctionPoint.Delete(directory);
+                }
+                else
+                {
+                    DeleteDirectoryAndJunctions(directory);
+                }
+            }
+            Directory.Delete(path, true);
+        }
+
+        /// <summary>
+        /// Saves all server configurations to disk.
+        /// </summary>
+        public void SaveConfigurations()
+        {
+            foreach(ServerProxy server in LoadedServers.Values)
+            {
+                server.CurrentConfiguration.SaveConfiguration();
+            }
         }
     }
 }
