@@ -20,7 +20,7 @@ namespace IMS_Library
         public void CreateFirewallExecutableException(string name, string path)
         {
             string error;
-            if(Extensions.ExecuteShellCommand("netsh advfirewall firewall add rule name=\"IMS E" + name + "\" dir=in protocol=tcp program=" + path.Replace("/", "\\") + " profile=any action=allow", out error) != 0)
+            if(Extensions.ExecuteShellCommand("netsh advfirewall firewall add rule name=\"IMS E" + name + "\" dir=in protocol=tcp program=\"" + path.Replace("/", "\\") + "\" profile=any action=allow", out error) != 0)
             {
                 IMS.Instance.UserMessageManager.LogWarning("IMS was unable to make an exception in the windows firewall.", false);
                 Logger.WriteWarning("IMS was unable to make an exception in the windows firewall for " + path + ".  Error:\n" + error);
