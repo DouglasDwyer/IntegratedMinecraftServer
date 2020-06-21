@@ -22,7 +22,7 @@ namespace IMS_Interface
 
         public static void Start(int port)
         {
-            ServerHost = CreateHostBuilder(new[] { "--urls=http://*:" + port }).Build();
+            ServerHost = CreateHostBuilder(new[] { "--urls=http://+:" + port }).Build();
             ServerHost.RunAsync();
         }
 

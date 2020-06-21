@@ -2,7 +2,7 @@
   <Metadata>
     <Identity Id="IMS_DevelopmentKit.d3e7dd32-dfd8-4c05-b704-e20491f2d45c" Version="0.0.1" Language="en-US" Publisher="Douglas Dwyer" />
     <DisplayName>IMS Development Kit</DisplayName>
-    <Description xml:space="preserve">This extension is used for developing Integrated Minecraft Server plugins and GUI.</Description>
+    <Description xml:space="preserve">This extension is used for developing IntegratedMinecraftServer plugins and GUI.</Description>
     <Icon>ims_icon.ico</Icon>
   </Metadata>
   <Installation>

@@ -67,7 +67,14 @@
     <div class="navbar navbar-inverse navbar-fixed-top" style="z-index:300">
         <div>
             <div class="navbar-header">
-                <a class="navbar-brand" style="padding:15px 0px" href="/">Integrated Minecraft Server</a>
+                @if (IMS.Instance.IsDevelopmentMode)
+                {
+                    <a class="navbar-brand" style="padding:15px 0px" href="/">IntegratedMinecraftServer (experimental)</a>
+                }
+                else
+                {
+                    <a class="navbar-brand" style="padding:15px 0px" href="/">IntegratedMinecraftServer</a>
+                }
             </div>
 
             <div style="right:8px; position:absolute; height:100%; width:fit-content; display:flex; align-items:center">

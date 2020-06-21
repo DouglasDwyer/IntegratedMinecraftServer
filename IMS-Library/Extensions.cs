@@ -99,9 +99,9 @@ namespace IMS_Library
         /// Executes a system shell command by internally invoking cmd.exe.
         /// </summary>
         /// <param name="command">The command to execute.</param>
-        /// <param name="error">The output of the process's standard error.</param>
+        /// <param name="output">The output of the process's standard error.</param>
         /// <returns>An integer representing the command's output code.  If the errorlevel 0, then the command probably completed successfully.</returns>
-        public static int ExecuteShellCommand(string command, out string error)
+        public static int ExecuteShellCommand(string command, out string output)
         {
             Process process = new Process();
             process.StartInfo = new ProcessStartInfo();
@@ -109,10 +109,11 @@ namespace IMS_Library
             process.StartInfo.Arguments = "/C " + command;
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.CreateNoWindow = true;
+            process.StartInfo.RedirectStandardOutput = true;
             process.StartInfo.RedirectStandardError = true;
             process.Start();
             process.WaitForExit();
-            error = process.StandardError.ReadToEnd();
+            output = process.StandardOutput.ReadToEnd() + process.StandardError.ReadToEnd();
             return process.ExitCode;
         }
     }

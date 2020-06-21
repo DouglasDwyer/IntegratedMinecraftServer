@@ -12,6 +12,8 @@ namespace IMS_Library
     /// </summary>
     public sealed class FirewallController
     {
+        private Dictionary<string, string> SavedExecutablePaths = new Dictionary<string,string>();
+
         /// <summary>
         /// Allows an executable through the Windows firewall.
         /// </summary>
@@ -19,12 +21,19 @@ namespace IMS_Library
         /// <param name="path">The path of the executable to allow through the Windows firewall.</param>
         public void CreateFirewallExecutableException(string name, string path)
         {
-            string error;
-            Logger.WriteInfo("Trying to forward " + "netsh advfirewall firewall add rule name=\"IMS E" + name + "\" dir=in protocol=tcp program=\"" + path.Replace("/", "\\") + "\" profile=any action=allow");
-            if(Extensions.ExecuteShellCommand("netsh advfirewall firewall add rule name=\"IMS E" + name + "\" dir=in protocol=tcp program=\"" + path.Replace("/", "\\") + "\" profile=any action=allow", out error) != 0)
+            lock (SavedExecutablePaths)
             {
-                IMS.Instance.UserMessageManager.LogWarning("IMS was unable to make an exception in the windows firewall.", false);
-                Logger.WriteWarning("IMS was unable to make an exception in the windows firewall for " + path + ".  Error:\n" + error);
+                string error;
+                if (!SavedExecutablePaths.ContainsValue(path))
+                {
+                    Extensions.ExecuteShellCommand("netsh advfirewall firewall delete rule name=all program=\"" + path.Replace("/", "\\") + "\"");
+                }
+                SavedExecutablePaths.Add(name, path);
+                if (Extensions.ExecuteShellCommand("netsh advfirewall firewall add rule name=\"IMS E" + name + "\" dir=in protocol=tcp program=\"" + path.Replace("/", "\\") + "\" profile=any action=allow", out error) != 0)
+                {
+                    IMS.Instance.UserMessageManager.LogWarning("IMS was unable to make an exception in the windows firewall.", false);
+                    Logger.WriteWarning("IMS was unable to make an exception in the windows firewall for " + path + ".  Error:\n" + error);
+                }
             }
         }
 
@@ -34,11 +43,15 @@ namespace IMS_Library
         /// <param name="name">The name of the exception to remove.</param>
         public void RemoveFirewallExecutableException(string name)
         {
-            string error;
-            if(Extensions.ExecuteShellCommand("netsh advfirewall firewall delete rule name=\"IMS E" + name + "\"", out error) != 0)
+            lock (SavedExecutablePaths)
             {
-                IMS.Instance.UserMessageManager.LogWarning("IMS was unable to remove an exception in the windows firewall.", false);
-                Logger.WriteWarning("IMS was unable to remove an exception in the windows firewall for " + name + ".  Error:\n" + error);
+                string error;
+                SavedExecutablePaths.Remove(name);
+                if (Extensions.ExecuteShellCommand("netsh advfirewall firewall delete rule name=\"IMS E" + name + "\"", out error) != 0)
+                {
+                    IMS.Instance.UserMessageManager.LogWarning("IMS was unable to remove an exception in the windows firewall.", false);
+                    Logger.WriteWarning("IMS was unable to remove an exception in the windows firewall for " + name + ".  Error:\n" + error);
+                }
             }
         }
 

@@ -184,7 +184,7 @@
             Executes a system shell command by internally invoking cmd.exe.
             </summary>
             <param name="command">The command to execute.</param>
-            <param name="error">The output of the process's standard error.</param>
+            <param name="output">The output of the process's standard error.</param>
             <returns>An integer representing the command's output code.  If the errorlevel 0, then the command probably completed successfully.</returns>
         </member>
         <member name="T:IMS_Library.FirewallController">
