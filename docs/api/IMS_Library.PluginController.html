@@ -1,0 +1,464 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class PluginController
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class PluginController
+   ">
+    <meta name="generator" content="docfx 2.54.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="IMS_Library.PluginController">
+  
+  
+  <h1 id="IMS_Library_PluginController" data-uid="IMS_Library.PluginController" class="text-break">Class PluginController
+  </h1>
+  <div class="markdown level0 summary"><p>Controls the management of third-party plugins.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><a class="xref" href="IMS_Library.IMSConfiguration.html">IMSConfiguration</a></div>
+    <div class="level2"><span class="xref">PluginController</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">System.ICloneable</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="IMS_Library.IMSConfiguration.html#IMS_Library_IMSConfiguration_Clone">IMSConfiguration.Clone()</a>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="IMS_Library.html">IMS_Library</a></h6>
+  <h6><strong>Assembly</strong>: IMS-Library.dll</h6>
+  <h5 id="IMS_Library_PluginController_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class PluginController : IMSConfiguration, ICloneable</code></pre>
+  </div>
+  <h3 id="fields">Fields
+  </h3>
+  
+  
+  <h4 id="IMS_Library_PluginController_KnownPlugins" data-uid="IMS_Library.PluginController.KnownPlugins">KnownPlugins</h4>
+  <div class="markdown level1 summary"><p>This list contains all plugins that IMS is currently aware of, including unloaded plugins, indexed by assembly name.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Dictionary&lt;string, PluginInformation&gt; KnownPlugins</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <a class="xref" href="IMS_Library.PluginInformation.html">PluginInformation</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="IMS_Library_PluginController_LoadedPlugins_" data-uid="IMS_Library.PluginController.LoadedPlugins*"></a>
+  <h4 id="IMS_Library_PluginController_LoadedPlugins" data-uid="IMS_Library.PluginController.LoadedPlugins">LoadedPlugins</h4>
+  <div class="markdown level1 summary"><p>All of the currently loaded plugins.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyDictionary&lt;string, IMSPluginBase&gt; LoadedPlugins { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IReadOnlyDictionary</span>&lt;<span class="xref">System.String</span>, <a class="xref" href="IMS_Library.IMSPluginBase.html">IMSPluginBase</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="IMS_Library_PluginController_DeletePlugin_" data-uid="IMS_Library.PluginController.DeletePlugin*"></a>
+  <h4 id="IMS_Library_PluginController_DeletePlugin_IMS_Library_PluginInformation_" data-uid="IMS_Library.PluginController.DeletePlugin(IMS_Library.PluginInformation)">DeletePlugin(PluginInformation)</h4>
+  <div class="markdown level1 summary"><p>Deletes the specified plugin's information from the registry.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DeletePlugin(PluginInformation information)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="IMS_Library.PluginInformation.html">PluginInformation</a></td>
+        <td><span class="parametername">information</span></td>
+        <td><p>The plugin to delete.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="IMS_Library_PluginController_GetDefaultFilePath_" data-uid="IMS_Library.PluginController.GetDefaultFilePath*"></a>
+  <h4 id="IMS_Library_PluginController_GetDefaultFilePath" data-uid="IMS_Library.PluginController.GetDefaultFilePath">GetDefaultFilePath()</h4>
+  <div class="markdown level1 summary"><p>Retrieves the location of the plugin controller's settings file.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string GetDefaultFilePath()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>The absolute path of the configuration file.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="IMS_Library.IMSConfiguration.html#IMS_Library_IMSConfiguration_GetDefaultFilePath">IMSConfiguration.GetDefaultFilePath()</a></div>
+  
+  
+  <a id="IMS_Library_PluginController_Initialize_" data-uid="IMS_Library.PluginController.Initialize*"></a>
+  <h4 id="IMS_Library_PluginController_Initialize" data-uid="IMS_Library.PluginController.Initialize">Initialize()</h4>
+  <div class="markdown level1 summary"><p>Loads all plugin assemblies into the current .NET runtime, but does not call <a class="xref" href="IMS_Library.IMSPluginBase.html#IMS_Library_IMSPluginBase_Start">Start()</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Initialize()</code></pre>
+  </div>
+  
+  
+  <a id="IMS_Library_PluginController_LoadPlugin_" data-uid="IMS_Library.PluginController.LoadPlugin*"></a>
+  <h4 id="IMS_Library_PluginController_LoadPlugin_IMS_Library_PluginInformation_" data-uid="IMS_Library.PluginController.LoadPlugin(IMS_Library.PluginInformation)">LoadPlugin(PluginInformation)</h4>
+  <div class="markdown level1 summary"><p>Attempts to load a plugin into memory from the specified info.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IMSPluginBase LoadPlugin(PluginInformation info)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="IMS_Library.PluginInformation.html">PluginInformation</a></td>
+        <td><span class="parametername">info</span></td>
+        <td><p>The plugin to load.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="IMS_Library.IMSPluginBase.html">IMSPluginBase</a></td>
+        <td><p>The loaded plugin.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="IMS_Library_PluginController_LoadPlugin_" data-uid="IMS_Library.PluginController.LoadPlugin*"></a>
+  <h4 id="IMS_Library_PluginController_LoadPlugin_System_String_" data-uid="IMS_Library.PluginController.LoadPlugin(System.String)">LoadPlugin(String)</h4>
+  <div class="markdown level1 summary"><p>Attempts to load a plugin into memory from the specified path.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IMSPluginBase LoadPlugin(string path)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>The path of the plugin to load.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="IMS_Library.IMSPluginBase.html">IMSPluginBase</a></td>
+        <td><p>The loaded plugin.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="IMS_Library_PluginController_Start_" data-uid="IMS_Library.PluginController.Start*"></a>
+  <h4 id="IMS_Library_PluginController_Start" data-uid="IMS_Library.PluginController.Start">Start()</h4>
+  <div class="markdown level1 summary"><p>Calls <a class="xref" href="IMS_Library.IMSPluginBase.html#IMS_Library_IMSPluginBase_Start">Start()</a> on each loaded plugin.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Start()</code></pre>
+  </div>
+  
+  
+  <a id="IMS_Library_PluginController_Stop_" data-uid="IMS_Library.PluginController.Stop*"></a>
+  <h4 id="IMS_Library_PluginController_Stop" data-uid="IMS_Library.PluginController.Stop">Stop()</h4>
+  <div class="markdown level1 summary"><p>Stops all plugins, unloading them.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Stop()</code></pre>
+  </div>
+  
+  
+  <a id="IMS_Library_PluginController_UnloadPlugin_" data-uid="IMS_Library.PluginController.UnloadPlugin*"></a>
+  <h4 id="IMS_Library_PluginController_UnloadPlugin_IMS_Library_IMSPluginBase_" data-uid="IMS_Library.PluginController.UnloadPlugin(IMS_Library.IMSPluginBase)">UnloadPlugin(IMSPluginBase)</h4>
+  <div class="markdown level1 summary"><p>Attempts to remove a plugin from memory.  This does not guarantee that the plugin's assembly will be unloaded.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UnloadPlugin(IMSPluginBase plugin)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="IMS_Library.IMSPluginBase.html">IMSPluginBase</a></td>
+        <td><span class="parametername">plugin</span></td>
+        <td><p>The plugin to unload.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="IMS_Library_PluginController_UnloadPlugin_" data-uid="IMS_Library.PluginController.UnloadPlugin*"></a>
+  <h4 id="IMS_Library_PluginController_UnloadPlugin_System_String_" data-uid="IMS_Library.PluginController.UnloadPlugin(System.String)">UnloadPlugin(String)</h4>
+  <div class="markdown level1 summary"><p>Attempts to remove a plugin from memory.  This does not guarantee that the plugin's assembly will be unloaded.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UnloadPlugin(string name)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>The assembly name of the plugin to unload.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.ICloneable</span>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="IMS_Library.IMSConfigurationUtility.html#IMS_Library_IMSConfigurationUtility_FromConfiguration__1___0_">IMSConfigurationUtility.FromConfiguration&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="IMS_Library.IMSConfigurationUtility.html#IMS_Library_IMSConfigurationUtility_SaveConfiguration__1___0_">IMSConfigurationUtility.SaveConfiguration&lt;T&gt;(T)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

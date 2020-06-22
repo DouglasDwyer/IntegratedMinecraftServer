@@ -1,0 +1,467 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class CustomBedrockServer
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class CustomBedrockServer
+   ">
+    <meta name="generator" content="docfx 2.54.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="IMS_Library.CustomBedrockServer">
+  
+  
+  <h1 id="IMS_Library_CustomBedrockServer" data-uid="IMS_Library.CustomBedrockServer" class="text-break">Class CustomBedrockServer
+  </h1>
+  <div class="markdown level0 summary"><p>Represents a Bedrock server that runs on a user-defined EXE file.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><a class="xref" href="IMS_Library.ServerProxy.html">ServerProxy</a></div>
+    <div class="level2"><a class="xref" href="IMS_Library.BedrockServer.html">BedrockServer</a></div>
+    <div class="level3"><span class="xref">CustomBedrockServer</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="IMS_Library.ILogProvider.html">ILogProvider</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_CurrentConfiguration">BedrockServer.CurrentConfiguration</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_ServerVersionID">BedrockServer.ServerVersionID</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_SupportsWhitelist">BedrockServer.SupportsWhitelist</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_WhitelistEnabled">BedrockServer.WhitelistEnabled</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_SupportsBanning">BedrockServer.SupportsBanning</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_SupportsBanningIPs">BedrockServer.SupportsBanningIPs</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_SupportsOps">BedrockServer.SupportsOps</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_SupportsIPs">BedrockServer.SupportsIPs</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_SupportsKicking">BedrockServer.SupportsKicking</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_SupportedEdition">BedrockServer.SupportedEdition</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_ServerLocation">BedrockServer.ServerLocation</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_LogFolderLocation">BedrockServer.LogFolderLocation</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_WorldLocation">BedrockServer.WorldLocation</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_Locker">BedrockServer.Locker</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_AllUsers">BedrockServer.AllUsers</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_OnlineUsers">BedrockServer.OnlineUsers</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_ServerProcess">BedrockServer.ServerProcess</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_ServerPreferences">BedrockServer.ServerPreferences</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_LogWriter">BedrockServer.LogWriter</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_BackupToLocationAsync_System_String_">BedrockServer.BackupToLocationAsync(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_BackupToZipFileAsync_System_String_">BedrockServer.BackupToZipFileAsync(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_BanIP_System_String_System_String_">BedrockServer.BanIP(String, String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_BanPlayer_System_String_System_String_">BedrockServer.BanPlayer(String, String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_DeopPlayer_System_String_">BedrockServer.DeopPlayer(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_GetAllBannedIPs">BedrockServer.GetAllBannedIPs()</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_GetAllBans">BedrockServer.GetAllBans()</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_GetAllOps">BedrockServer.GetAllOps()</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_GetAllPlayers">BedrockServer.GetAllPlayers()</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_GetAllWhitelistedPlayers">BedrockServer.GetAllWhitelistedPlayers()</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_GetConsoleText">BedrockServer.GetConsoleText()</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_GetLogFile_IMS_Library_LogFileInformation_">BedrockServer.GetLogFile(LogFileInformation)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_GetAllLogFiles">BedrockServer.GetAllLogFiles()</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_GetOnlinePlayers">BedrockServer.GetOnlinePlayers()</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_GetPlayerInformationByUsername_System_String_">BedrockServer.GetPlayerInformationByUsername(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_GetPlayerInformationByUUID_System_String_">BedrockServer.GetPlayerInformationByUUID(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_KickPlayer_System_String_System_String_">BedrockServer.KickPlayer(String, String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_OpPlayer_System_String_">BedrockServer.OpPlayer(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_ReloadServerPermissions">BedrockServer.ReloadServerPermissions()</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_ReloadServerWhitelist">BedrockServer.ReloadServerWhitelist()</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_RemoveWhitelistPlayer_System_String_">BedrockServer.RemoveWhitelistPlayer(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_RestartAsync">BedrockServer.RestartAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_SendConsoleCommand_System_String_">BedrockServer.SendConsoleCommand(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_StopAsync">BedrockServer.StopAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_UnbanIP_System_String_">BedrockServer.UnbanIP(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_UnbanPlayer_System_String_">BedrockServer.UnbanPlayer(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_WhitelistPlayer_System_String_">BedrockServer.WhitelistPlayer(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_ReloadWhitelistJSON">BedrockServer.ReloadWhitelistJSON()</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_ReloadOpJSON">BedrockServer.ReloadOpJSON()</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_OnServerConsoleDataReceived_System_Object_System_Diagnostics_DataReceivedEventArgs_">BedrockServer.OnServerConsoleDataReceived(Object, DataReceivedEventArgs)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_MatchRegex_System_String_System_String_System_Text_RegularExpressions_Match__">BedrockServer.MatchRegex(String, String, Match)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_OnServerProcessDie">BedrockServer.OnServerProcessDie()</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_SendUncheckedConsoleCommand_System_String_">BedrockServer.SendUncheckedConsoleCommand(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_DeleteLogFile_IMS_Library_LogFileInformation_">BedrockServer.DeleteLogFile(LogFileInformation)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.ServerProxy.html#IMS_Library_ServerProxy_ID">ServerProxy.ID</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.ServerProxy.html#IMS_Library_ServerProxy_State">ServerProxy.State</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.ServerProxy.html#IMS_Library_ServerProxy_GetDefaultServerConfiguration">ServerProxy.GetDefaultServerConfiguration()</a>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="IMS_Library.html">IMS_Library</a></h6>
+  <h6><strong>Assembly</strong>: IMS-Library.dll</h6>
+  <h5 id="IMS_Library_CustomBedrockServer_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class CustomBedrockServer : BedrockServer, ILogProvider</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="IMS_Library_CustomBedrockServer__ctor_" data-uid="IMS_Library.CustomBedrockServer.#ctor*"></a>
+  <h4 id="IMS_Library_CustomBedrockServer__ctor_System_Guid_IMS_Library_CustomBedrockServerConfiguration_" data-uid="IMS_Library.CustomBedrockServer.#ctor(System.Guid,IMS_Library.CustomBedrockServerConfiguration)">CustomBedrockServer(Guid, CustomBedrockServerConfiguration)</h4>
+  <div class="markdown level1 summary"><p>Creates a new custom Java server using the specified settings.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CustomBedrockServer(Guid id, CustomBedrockServerConfiguration config)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Guid</span></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>The unique identifier to associate this server with.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="IMS_Library.CustomBedrockServerConfiguration.html">CustomBedrockServerConfiguration</a></td>
+        <td><span class="parametername">config</span></td>
+        <td><p>The server settings to use.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="IMS_Library_CustomBedrockServer_ExeLocation_" data-uid="IMS_Library.CustomBedrockServer.ExeLocation*"></a>
+  <h4 id="IMS_Library_CustomBedrockServer_ExeLocation" data-uid="IMS_Library.CustomBedrockServer.ExeLocation">ExeLocation</h4>
+  <div class="markdown level1 summary"><p>The location of the server EXE file that should be executed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override string ExeLocation { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_ExeLocation">BedrockServer.ExeLocation</a></div>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="IMS_Library_CustomBedrockServer_StartAsync_" data-uid="IMS_Library.CustomBedrockServer.StartAsync*"></a>
+  <h4 id="IMS_Library_CustomBedrockServer_StartAsync" data-uid="IMS_Library.CustomBedrockServer.StartAsync">StartAsync()</h4>
+  <div class="markdown level1 summary"><p>Starts the internal Minecraft server process.  This call does not complete until the server leaves the <a class="xref" href="IMS_Library.ServerProxy.ServerState.html#IMS_Library_ServerProxy_ServerState_Starting">Starting</a> state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Task StartAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><p>A <span class="xref">System.Threading.Tasks.Task</span> object that represents the current start operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_StartAsync">BedrockServer.StartAsync()</a></div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown if the server is already running when this method is called, or if no JAR file exists for the server to run.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="IMS_Library_CustomBedrockServer_ToString_" data-uid="IMS_Library.CustomBedrockServer.ToString*"></a>
+  <h4 id="IMS_Library_CustomBedrockServer_ToString" data-uid="IMS_Library.CustomBedrockServer.ToString">ToString()</h4>
+  <div class="markdown level1 summary"><p>Returns a string that describes the current object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>A string with the name of this server type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="IMS_Library.BedrockServer.html#IMS_Library_BedrockServer_ToString">BedrockServer.ToString()</a></div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="IMS_Library.ILogProvider.html">ILogProvider</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

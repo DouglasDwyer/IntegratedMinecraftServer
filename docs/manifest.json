@@ -1,0 +1,1446 @@
+{
+  "homepages": [],
+  "source_base_path": "D:/Projects/IntegratedMinecraftServer/IMS-Documentation",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.ChangeUsernameAndPasswordDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.ChangeUsernameAndPasswordDisplay.html",
+          "hash": "w2Pqy4zXK7bN4VQ8tG748w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Data.DownloadManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Data.DownloadManager.html",
+          "hash": "KzqHccSfWohv8OragmbC0g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Data.FileCache.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Data.FileCache.html",
+          "hash": "lnXq9u7zkRNktmLvGtbNAg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Data.PopupDisplay-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Data.PopupDisplay-1.html",
+          "hash": "PjNPTSPm2NyxnZY/m7mxAg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Data.PopupProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Data.PopupProvider.html",
+          "hash": "DlNX6z7Ziick1vAl78dJhA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Data.ServerProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Data.ServerProvider.html",
+          "hash": "KEwFmn3nKqdXBQ9KUChmkg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Data.WeatherForecast.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Data.WeatherForecast.html",
+          "hash": "m1FbFrrStmMSTyfQjw5oAg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Data.WeatherForecastService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Data.WeatherForecastService.html",
+          "hash": "ZX3uRe1Zfur6FMtxNbBGlQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Data.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Data.html",
+          "hash": "Sl1O8A6jAjY9gLNa9xeDtg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Extensions.html",
+          "hash": "UZ6ELkO55mOa6mzZvAW/LQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.HardcoreDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.HardcoreDisplay.html",
+          "hash": "rTiZaB/P8z8FnmBfBbhZAA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.IMSUpdateTimeDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.IMSUpdateTimeDisplay.html",
+          "hash": "aq3mUYBDJuZCOz8KqKY0FA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.InformationPopupDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.InformationPopupDisplay.html",
+          "hash": "nJKuZ4Vyycgsv5W9jEcyIA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.LoadingPopupDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.LoadingPopupDisplay.html",
+          "hash": "cxiNx8f+QT0ehk3Cuybr3Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.LogDeletionIntervalDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.LogDeletionIntervalDisplay.html",
+          "hash": "QdRR3orV7FzdITxxb1sEmQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.MaximumThreadDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.MaximumThreadDisplay.html",
+          "hash": "HUd1TKc+M37EI9foM1+s2Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.NavigationBarLink.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.NavigationBarLink.html",
+          "hash": "dFx4rrc8GKvBPND1AaDo1g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.NetworkCompressionThresholdDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.NetworkCompressionThresholdDisplay.html",
+          "hash": "8u9GcNeytCGSQQDLthWBBQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.NewServerTypeBinding.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.NewServerTypeBinding.html",
+          "hash": "87P2uPDqF9Cd1IOI7NR3tw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Player.AllPlayerDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Player.AllPlayerDisplay.html",
+          "hash": "c/8Q8rSB1PUpnrnuj4U57w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Player.BanIPDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Player.BanIPDisplay.html",
+          "hash": "CDg9CeROs5wFlvcllBvuwg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Player.BanPlayerDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Player.BanPlayerDisplay.html",
+          "hash": "cp5F41rZytbv/d+yCEIqmw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Player.OnlinePlayerDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Player.OnlinePlayerDisplay.html",
+          "hash": "8/rN8oq6+gMJPeJXLrjKPg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Player.OpPlayerDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Player.OpPlayerDisplay.html",
+          "hash": "ygNgTVLK7D0TBVCdl8tKfQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Player.PlayerDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Player.PlayerDisplay.html",
+          "hash": "bkX9KztRTznvHQY48b5XPQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Player.WhitelistPlayerDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Player.WhitelistPlayerDisplay.html",
+          "hash": "lZgoeIzAgYdm5/WHzrAHaA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Player.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Player.html",
+          "hash": "HJ5kSQxYgEr2FCYV7ahEog=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Preferences.BooleanDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Preferences.BooleanDisplay.html",
+          "hash": "Ai6bAWT9gr4Eh8rRmRU3GA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Preferences.ConditionalDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Preferences.ConditionalDisplay.html",
+          "hash": "oINo5TidzcWNFp5Q5k68vA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Preferences.ConfigurationPreferenceDisplayBinding.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Preferences.ConfigurationPreferenceDisplayBinding.html",
+          "hash": "+oXQ4ouR1m0086zCAekB4w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Preferences.DoubleDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Preferences.DoubleDisplay.html",
+          "hash": "Z3xw/8OMi6Q8O6Rw5aTgFw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Preferences.IntegerDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Preferences.IntegerDisplay.html",
+          "hash": "c2g7+d4M70QUgr6S7tKAdQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Preferences.MOTDDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Preferences.MOTDDisplay.html",
+          "hash": "qxtobcNzaJ3Iu8a0geyfjg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Preferences.MultiToggleDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Preferences.MultiToggleDisplay.html",
+          "hash": "d3LDuQa/RvSURFmTExAaRA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Preferences.PlayerIdleTimeoutDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Preferences.PlayerIdleTimeoutDisplay.html",
+          "hash": "lNKSGMVNdFicmPTi4r6IfQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Preferences.PortDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Preferences.PortDisplay.html",
+          "hash": "/RjLKFF0XAfhXd7nNDfUCA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Preferences.PreferenceDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Preferences.PreferenceDisplay.html",
+          "hash": "kZlwrO/V4cPOp0E0Ykcxkw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Preferences.StringDictionaryDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Preferences.StringDictionaryDisplay.html",
+          "hash": "K/vhxC9V+X+5U5LZmEW1Fg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Preferences.StringDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Preferences.StringDisplay.html",
+          "hash": "nBb/xcYSnCYdJGezfVYGqg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Preferences.UploadServerBinaryDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Preferences.UploadServerBinaryDisplay.html",
+          "hash": "PqIHuh7ox1XPK8d5iyf9uw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Preferences.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Preferences.html",
+          "hash": "PGSTBt1/vqh198Fy51iqtA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Program.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Program.html",
+          "hash": "BpBPzcNdrbjvJoxFm2YZ4Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Provider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Provider.html",
+          "hash": "uNbZ3BkdHOWbOnFonzcXFw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.Startup.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.Startup.html",
+          "hash": "/bilgms+YIOHyr6qA3miWw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.World.BackupPolicyDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.World.BackupPolicyDisplay.html",
+          "hash": "zOcC6paioFRr21UFUF4Vrw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.World.WorldBackupPolicyDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.World.WorldBackupPolicyDisplay.html",
+          "hash": "8PEa+NR/B0WVTwFueJ85uw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.World.WorldBackupsDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.World.WorldBackupsDisplay.html",
+          "hash": "s23oobbHAGvZcgygggU4XQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.World.WorldDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.World.WorldDisplay.html",
+          "hash": "nhMIMJvFOkOIBOkyyzgGHA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.World.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.World.html",
+          "hash": "rEm/6tec3mzoueNAcmvVag=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Interface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Interface.html",
+          "hash": "cVBESR4JEJrmtWcvX+BPeA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.BackupAfterTimeIntervalPolicy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.BackupAfterTimeIntervalPolicy.html",
+          "hash": "8ekfbCyZIcmzwWBwbmHP1A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.BackupInformation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.BackupInformation.html",
+          "hash": "atmzV8P7zlHlZi4VGwpk6w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.BanIPTag.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.BanIPTag.html",
+          "hash": "/GN5QoGoXUcyUZWRCKlr7w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.BanInformation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.BanInformation.html",
+          "hash": "yroFEAoewsdbi07McS4N9A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.BedrockServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.BedrockServer.html",
+          "hash": "PANq0bVHzaBx6s8bxRT7Og=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.BedrockServerConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.BedrockServerConfiguration.html",
+          "hash": "q5iRdwWEZYhPks+c6ypwHQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.ChildProcessTracker.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.ChildProcessTracker.html",
+          "hash": "KnxlozHBLvs65xWxjL1bCA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.Constants.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.Constants.html",
+          "hash": "mKcrH0tfuYcyCn8jwnU4cQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.CustomBedrockServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.CustomBedrockServer.html",
+          "hash": "7TzxXErr4JUCMXIAtyL0Kw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.CustomBedrockServerConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.CustomBedrockServerConfiguration.html",
+          "hash": "qgLz5/3uJ94RHK7e2zxf0g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.CustomJavaServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.CustomJavaServer.html",
+          "hash": "kTuRVO1OB3TvW3vV6fSebA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.CustomJavaServerConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.CustomJavaServerConfiguration.html",
+          "hash": "IVhF7c6mWvfctONhwn5HNw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.Encryption.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.Encryption.html",
+          "hash": "9BnrQv7/Xo4JNGHJ2wbvWA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.Extensions.html",
+          "hash": "cnmcvLeJ9vv8PWM7+aJXug=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.FirewallController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.FirewallController.html",
+          "hash": "ZFKa6AGZnylW5b2/Ye74lg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.IBackupPolicy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.IBackupPolicy.html",
+          "hash": "aex/pSnYjxx3pWK2SFCkLw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.ILogProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.ILogProvider.html",
+          "hash": "K2TJ2ZRR+zGSaAV4ZbFypQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.IMS.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.IMS.html",
+          "hash": "cKP+RlLaluOb+qqgq4k+fA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.IMSConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.IMSConfiguration.html",
+          "hash": "ibNws44gAkHtUY3+7lfq0w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.IMSConfigurationUtility.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.IMSConfigurationUtility.html",
+          "hash": "ULoLN5tfwqTWpJRDYTBqPg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.IMSPluginBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.IMSPluginBase.html",
+          "hash": "zhT5MOKbJdJjQ2RJbz1cTQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.IMSSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.IMSSettings.html",
+          "hash": "vtGrEYd7mkmsKARt2xkGWQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.IWebpageProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.IWebpageProvider.html",
+          "hash": "8XPlm6FxgltUPoFM5pL/Mw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.InformationController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.InformationController.html",
+          "hash": "xNRNj4fan+zcc1M9atHwxQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.InformationItem.MessageType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.InformationItem.MessageType.html",
+          "hash": "kAoIWW1BYTV3eM0pHESCKQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.InformationItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.InformationItem.html",
+          "hash": "beOHYDcgiffKu8K1RPC8kQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.JavaServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.JavaServer.html",
+          "hash": "hFFQt0UWGjaVTA9IakREKQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.JavaServerConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.JavaServerConfiguration.html",
+          "hash": "S/LHQNxqaXXLeZeLSOw5Bg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.JunctionPoint.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.JunctionPoint.html",
+          "hash": "ldDyN31/bEYcu4To2xtQsA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.LastestVersionsTag.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.LastestVersionsTag.html",
+          "hash": "a5WzmULJt9slOwREOgGBkQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.LogFileInformation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.LogFileInformation.html",
+          "hash": "g5WPjt3bmlQtc+FCHcTkwQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.Logger.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.Logger.html",
+          "hash": "1DHYZ14pQJ0uOm5pd3MDtw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.MOTDServerProperty.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.MOTDServerProperty.html",
+          "hash": "A1lPEPVaCuVWXgVE3FGnaw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.MinecraftConfigurationWriter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.MinecraftConfigurationWriter.html",
+          "hash": "Y4Z9q2krvg/GsAnPnRKz7g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.MinecraftEdition.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.MinecraftEdition.html",
+          "hash": "dwaDo0InNFIu+nV4TFKcPQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.MinecraftPlayer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.MinecraftPlayer.html",
+          "hash": "VP5QutTyIzmfuq1Wx2AWeg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.MinecraftVersionProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.MinecraftVersionProvider.html",
+          "hash": "3OaMatKscMZEyvlmuhyOBQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.MojangInteropUtility.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.MojangInteropUtility.html",
+          "hash": "mCzY3sxUxvGaA2q8MAIBvQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.PluginController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.PluginController.html",
+          "hash": "RaNSVdfs4++NXVhOIPCAqQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.PluginInformation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.PluginInformation.html",
+          "hash": "ozt/zDyrrsGIvvQTnp9V/A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.PortForwarder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.PortForwarder.html",
+          "hash": "0CLJbAOrRiZjkEC0b1keGQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.RemoveBackupAfterTimeIntervalPolicy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.RemoveBackupAfterTimeIntervalPolicy.html",
+          "hash": "R90smSHWpmcg2c832EI2dw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.ServerConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.ServerConfiguration.html",
+          "hash": "Otst7ezgFxrKEp0QttaFhg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.ServerController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.ServerController.html",
+          "hash": "Z6WSvx3NpkL2J1wcHU5TKA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.ServerDownloadTag.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.ServerDownloadTag.html",
+          "hash": "RqLCWu4QpjjjpwzpRWr2BA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.ServerProperty.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.ServerProperty.html",
+          "hash": "BC9KIwyRQqYQeAWndQ/s4g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.ServerProxy.ServerState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.ServerProxy.ServerState.html",
+          "hash": "W+R3She1Tcyd9HI3UniLvw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.ServerProxy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.ServerProxy.html",
+          "hash": "zBgeci+OljeanifrFIL0ag=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.ServerVersionInformation.ReleaseType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.ServerVersionInformation.ReleaseType.html",
+          "hash": "ycAGTGgZbmx75YAe1tGzxQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.ServerVersionInformation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.ServerVersionInformation.html",
+          "hash": "llBxK8L75+Tjn1A1kn5qCw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.UpdateController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.UpdateController.html",
+          "hash": "JS4fVDglyMcVrOgnYsiAOQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.VersionDataTag.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.VersionDataTag.html",
+          "hash": "PsT8QMZXFHY9+ODUiH/c8A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.VersionDownloadTag.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.VersionDownloadTag.html",
+          "hash": "Unt4fdEiNWkH2lAJw74wjw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.VersionInformationTag.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.VersionInformationTag.html",
+          "hash": "yklk2T1L5PpvLhajdFIN2w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.VersionMetadataTag.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.VersionMetadataTag.html",
+          "hash": "VPHNC9IHpsb9LHHS7vrVyw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.WebInterface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.WebInterface.html",
+          "hash": "m9dVAQL6eKGj8SfvxN0lEg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.WebPort.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.WebPort.html",
+          "hash": "uKEt2qGrFg5eCF8wrdDwpQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.World.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.World.html",
+          "hash": "uzx1O15WjYap41ekQBWajA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.WorldController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.WorldController.html",
+          "hash": "3L4JkQI1R3SPz9zHTy7mUA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IMS_Library.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IMS_Library.html",
+          "hash": "Mxthzemsylwo13rUCV+TBw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "jE2KJX47OAr7xjts5djfkQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "z73wxUNuuIcGcKrjRFmrcQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "zHYzwsa2LBiE7t/XhQpacA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "gB8AESyvNru97tzIZofEEg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "1hn+sqE6LTNjh6QVWx036Q=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "rhvckPE+ymORYgNmzQoQaQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": true,
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 3,
+          "skipped_file_count": 3
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 110,
+          "skipped_file_count": 56
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": true,
+        "details": "Can support incremental post processing.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

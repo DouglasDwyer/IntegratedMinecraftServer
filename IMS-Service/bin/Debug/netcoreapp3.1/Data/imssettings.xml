@@ -16,7 +16,7 @@
     </Root>
     <Types>
         <TypeInfo
-            type="IMS_Library.IMSSettings, IMS-Library, Version=0.1.0.5, Culture=neutral, PublicKeyToken=null">IMSSettings</TypeInfo>
+            type="IMS_Library.IMSSettings, IMS-Library, Version=0.2.0.0, Culture=neutral, PublicKeyToken=null">IMSSettings</TypeInfo>
         <TypeInfo
             type="System.DateTime, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">DateTime</TypeInfo>
     </Types>

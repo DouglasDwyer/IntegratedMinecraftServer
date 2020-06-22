@@ -1,0 +1,485 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class CustomJavaServer
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class CustomJavaServer
+   ">
+    <meta name="generator" content="docfx 2.54.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="IMS_Library.CustomJavaServer">
+  
+  
+  <h1 id="IMS_Library_CustomJavaServer" data-uid="IMS_Library.CustomJavaServer" class="text-break">Class CustomJavaServer
+  </h1>
+  <div class="markdown level0 summary"><p>Represents a Java server that runs on a user-defined JAR file.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><a class="xref" href="IMS_Library.ServerProxy.html">ServerProxy</a></div>
+    <div class="level2"><a class="xref" href="IMS_Library.JavaServer.html">JavaServer</a></div>
+    <div class="level3"><span class="xref">CustomJavaServer</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="IMS_Library.ILogProvider.html">ILogProvider</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_ServerPreferences">JavaServer.ServerPreferences</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_CurrentConfiguration">JavaServer.CurrentConfiguration</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_SupportsWhitelist">JavaServer.SupportsWhitelist</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_WhitelistEnabled">JavaServer.WhitelistEnabled</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_SupportsBanning">JavaServer.SupportsBanning</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_SupportsBanningIPs">JavaServer.SupportsBanningIPs</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_SupportsOps">JavaServer.SupportsOps</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_SupportsIPs">JavaServer.SupportsIPs</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_SupportsKicking">JavaServer.SupportsKicking</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_ServerVersionID">JavaServer.ServerVersionID</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_SupportedEdition">JavaServer.SupportedEdition</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_ServerIconLocation">JavaServer.ServerIconLocation</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_ServerProcess">JavaServer.ServerProcess</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_BanList">JavaServer.BanList</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_BanIPList">JavaServer.BanIPList</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_OnlineUsers">JavaServer.OnlineUsers</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_AllUsers">JavaServer.AllUsers</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_WorldLocation">JavaServer.WorldLocation</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_Locker">JavaServer.Locker</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_KickPlayer_System_String_System_String_">JavaServer.KickPlayer(String, String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_GetOnlinePlayers">JavaServer.GetOnlinePlayers()</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_GetConsoleText">JavaServer.GetConsoleText()</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_OnServerProcessDie">JavaServer.OnServerProcessDie()</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_OpPlayer_System_String_">JavaServer.OpPlayer(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_BackupToLocationAsync_System_String_">JavaServer.BackupToLocationAsync(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_BackupToZipFileAsync_System_String_">JavaServer.BackupToZipFileAsync(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_RestartAsync">JavaServer.RestartAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_SendConsoleCommand_System_String_">JavaServer.SendConsoleCommand(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_SendUncheckedConsoleCommand_System_String_">JavaServer.SendUncheckedConsoleCommand(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_ReloadWhitelistJSON">JavaServer.ReloadWhitelistJSON()</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_AddPlayerToAllPlayersList_IMS_Library_MinecraftPlayer_">JavaServer.AddPlayerToAllPlayersList(MinecraftPlayer)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_ReloadOpJSON">JavaServer.ReloadOpJSON()</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_GetPlayerByIdentifier_System_String_System_String_">JavaServer.GetPlayerByIdentifier(String, String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_GetPlayerOrDefaultByIdentifier_System_String_System_String_">JavaServer.GetPlayerOrDefaultByIdentifier(String, String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_ReloadBanJSON">JavaServer.ReloadBanJSON()</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_ReloadBanIPJSON">JavaServer.ReloadBanIPJSON()</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_GetOperatorStatusOfPlayerByUUID_System_String_">JavaServer.GetOperatorStatusOfPlayerByUUID(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_OnServerConsoleDataReceived_System_Object_System_Diagnostics_DataReceivedEventArgs_">JavaServer.OnServerConsoleDataReceived(Object, DataReceivedEventArgs)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_StopAsync">JavaServer.StopAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_MatchRegex_System_String_System_String_System_Text_RegularExpressions_Match__">JavaServer.MatchRegex(String, String, Match)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_BanPlayer_System_String_System_String_">JavaServer.BanPlayer(String, String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_BanIP_System_String_System_String_">JavaServer.BanIP(String, String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_UnbanPlayer_System_String_">JavaServer.UnbanPlayer(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_UnbanIP_System_String_">JavaServer.UnbanIP(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_DeopPlayer_System_String_">JavaServer.DeopPlayer(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_WhitelistPlayer_System_String_">JavaServer.WhitelistPlayer(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_RemoveWhitelistPlayer_System_String_">JavaServer.RemoveWhitelistPlayer(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_GetAllPlayers">JavaServer.GetAllPlayers()</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_GetAllOps">JavaServer.GetAllOps()</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_GetAllBans">JavaServer.GetAllBans()</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_GetAllBannedIPs">JavaServer.GetAllBannedIPs()</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_ReloadServerWhitelist">JavaServer.ReloadServerWhitelist()</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_ReloadServerPermissions">JavaServer.ReloadServerPermissions()</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_GetAllLogFiles">JavaServer.GetAllLogFiles()</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_GetLogFile_IMS_Library_LogFileInformation_">JavaServer.GetLogFile(LogFileInformation)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_GetAllWhitelistedPlayers">JavaServer.GetAllWhitelistedPlayers()</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_GetPlayerInformationByUsername_System_String_">JavaServer.GetPlayerInformationByUsername(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_DeleteLogFile_IMS_Library_LogFileInformation_">JavaServer.DeleteLogFile(LogFileInformation)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_GetPlayerInformationByUUID_System_String_">JavaServer.GetPlayerInformationByUUID(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.ServerProxy.html#IMS_Library_ServerProxy_ID">ServerProxy.ID</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.ServerProxy.html#IMS_Library_ServerProxy_State">ServerProxy.State</a>
+    </div>
+    <div>
+      <a class="xref" href="IMS_Library.ServerProxy.html#IMS_Library_ServerProxy_GetDefaultServerConfiguration">ServerProxy.GetDefaultServerConfiguration()</a>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="IMS_Library.html">IMS_Library</a></h6>
+  <h6><strong>Assembly</strong>: IMS-Library.dll</h6>
+  <h5 id="IMS_Library_CustomJavaServer_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class CustomJavaServer : JavaServer, ILogProvider</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="IMS_Library_CustomJavaServer__ctor_" data-uid="IMS_Library.CustomJavaServer.#ctor*"></a>
+  <h4 id="IMS_Library_CustomJavaServer__ctor_System_Guid_IMS_Library_CustomJavaServerConfiguration_" data-uid="IMS_Library.CustomJavaServer.#ctor(System.Guid,IMS_Library.CustomJavaServerConfiguration)">CustomJavaServer(Guid, CustomJavaServerConfiguration)</h4>
+  <div class="markdown level1 summary"><p>Creates a new custom Java server using the specified settings.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CustomJavaServer(Guid id, CustomJavaServerConfiguration config)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Guid</span></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>The unique identifier to associate this server with.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="IMS_Library.CustomJavaServerConfiguration.html">CustomJavaServerConfiguration</a></td>
+        <td><span class="parametername">config</span></td>
+        <td><p>The server settings to use.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="IMS_Library_CustomJavaServer_JarLocation_" data-uid="IMS_Library.CustomJavaServer.JarLocation*"></a>
+  <h4 id="IMS_Library_CustomJavaServer_JarLocation" data-uid="IMS_Library.CustomJavaServer.JarLocation">JarLocation</h4>
+  <div class="markdown level1 summary"><p>The location of the server JAR file that should be executed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override string JarLocation { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_JarLocation">JavaServer.JarLocation</a></div>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="IMS_Library_CustomJavaServer_StartAsync_" data-uid="IMS_Library.CustomJavaServer.StartAsync*"></a>
+  <h4 id="IMS_Library_CustomJavaServer_StartAsync" data-uid="IMS_Library.CustomJavaServer.StartAsync">StartAsync()</h4>
+  <div class="markdown level1 summary"><p>Starts the internal Minecraft server process.  This call does not complete until the server leaves the <a class="xref" href="IMS_Library.ServerProxy.ServerState.html#IMS_Library_ServerProxy_ServerState_Starting">Starting</a> state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Task StartAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><p>A <span class="xref">System.Threading.Tasks.Task</span> object that represents the current start operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_StartAsync">JavaServer.StartAsync()</a></div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown if the server is already running when this method is called, or if no JAR file exists for the server to run.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="IMS_Library_CustomJavaServer_ToString_" data-uid="IMS_Library.CustomJavaServer.ToString*"></a>
+  <h4 id="IMS_Library_CustomJavaServer_ToString" data-uid="IMS_Library.CustomJavaServer.ToString">ToString()</h4>
+  <div class="markdown level1 summary"><p>Returns a string that describes the current object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>A string with the name of this server type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="IMS_Library.JavaServer.html#IMS_Library_JavaServer_ToString">JavaServer.ToString()</a></div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="IMS_Library.ILogProvider.html">ILogProvider</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
