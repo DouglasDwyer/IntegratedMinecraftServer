@@ -45,3 +45,7 @@ IMS offers complete control over Minecraft worlds.  To access the world manageme
 If one would like to access the running Minecraft server on a lower level, navigate to the command block on the left navigation bar ("Server console").  From here, one can send commands to the Minecraft server's console interface, or view its logfiles.  Settings for automatic logfile deletion, however, are found in the server settings.
 #### Change IMS settings
 To report bugs, change the admin console username/password, shut down IMS, or perform other administrative actions, one should click on the book icon ("IMS preferences").  From here, a list of options are available.
+
+---
+### Developing for IMS
+Developing for IMS requires the IMS Development Kit (IMSDK).  The IMSDK is a Visual Studio extension which comes with an experimental instance of IMS as well as the IMS library.  From there, it may be used to create IMS plugin files (stored as .DLLs) that can be distributed for use with IMS.  The IMSDK API allows for extensive customization of IMS, including the addition of new web interfaces, server types, and more.  For more info, or to view the API documentation, please visit this repository's [Github Pages](https://douglasdwyer.github.io/IntegratedMinecraftServer/).
