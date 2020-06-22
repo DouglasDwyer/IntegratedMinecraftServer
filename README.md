@@ -1,3 +1,6 @@
+![Platform](https://img.shields.io/badge/platform-win--64-lightgrey)
+![License](https://img.shields.io/github/license/DouglasDwyer/IntegratedMinecraftServer)
+
 <p align="center">
   <img width="150" height="150" src="icon.png" align="right">
 </p>
