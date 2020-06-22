@@ -26,12 +26,13 @@
 + View Minecraft server logs and configure rules for automatic deletion of server logs
 + Updates itself automatically
 + Extensible API and plugin system
-### System requirements:
-+ Windows 10 x64
-+ At least 200MB of free storage
 ---
 ### Installation
+#### Download
 The current Windows installer for IMS can be found [here](https://github.com/DouglasDwyer/IntegratedMinecraftServer/releases/tag/v0.2.0.1).  The installer includes all of the files necessary to run IntegratedMinecraftServer, and will prompt to start IMS upon completion.
+#### System requirements:
++ Windows 10 x64
++ At least 200MB of free storage
 ### Basic usage
 #### Server creation
 Upon starting IMS for the first time, one will be prompted to create a new server.  There, one may choose what server type, version, and name to use, and may also set certain preferences like how much RAM the server should allocate.  One may click Create to generate and automatically start the new world, or Reset to Default to reset the form to its default settings.
