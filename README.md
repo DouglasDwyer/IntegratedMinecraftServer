@@ -1,6 +1,7 @@
 <p align="center">
   <img width="150" height="150" src="icon.png" align="right">
 </p>
+
 # IntegratedMinecraftServer
  The IntegratedMinecraftServer project seeks to provide a reliable, stable interface for managing dedicated Windows Minecraft servers.  IMS runs in the background as a Windows service, manages servers, restarts them upon crashing, provides tools for optimization and management, and includes a remote web interface.  IMS also offers a software development kit for the creation of plugins.
 ### Included features:
