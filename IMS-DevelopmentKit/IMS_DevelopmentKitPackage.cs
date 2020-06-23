@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.IO.Compression;
 using System.Runtime.InteropServices;
 using System.Threading;
 using EnvDTE;
@@ -28,7 +29,8 @@ namespace IMS_DevelopmentKit
     /// </para>
     /// </remarks>
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
-    [ProvideAutoLoad(UIContextGuids80.SolutionBuilding)]
+    [ProvideAutoLoad(UIContextGuids80.NoSolution, PackageAutoLoadFlags.BackgroundLoad)]
+    [ProvideAutoLoad(UIContextGuids80.SolutionExists, PackageAutoLoadFlags.BackgroundLoad)]
     [Guid(IMS_DevelopmentKitPackage.PackageGuidString)]
     public sealed class IMS_DevelopmentKitPackage : AsyncPackage
     {
@@ -50,7 +52,14 @@ namespace IMS_DevelopmentKit
         {
             // When initialized asynchronously, the current thread may be a background thread at this point.
             // Do any initialization that requires the UI thread after switching to the UI thread.
-            Environment.SetEnvironmentVariable("IMSDKLocation", Path.GetDirectoryName(typeof(IMS_DevelopmentKitPackage).Assembly.Location));
+            string dataLocation = Path.GetDirectoryName(typeof(IMS_DevelopmentKitPackage).Assembly.Location);
+            Environment.SetEnvironmentVariable("IMSDKLocation", dataLocation);
+            Environment.SetEnvironmentVariable("IMSDKLocation", dataLocation, EnvironmentVariableTarget.User);
+            if(File.Exists(dataLocation + "/runtime.zip"))
+            {
+                await Task.Run(() => ZipFile.ExtractToDirectory(dataLocation + "/runtime.zip", dataLocation));
+                await Task.Run(() => File.Delete(dataLocation + "/runtime.zip"));
+            }
             await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
         }
 

@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Linq;
 using System.ServiceProcess;
 using WindowManager;
+using Microsoft.AspNetCore.Mvc.TagHelpers;
 
 namespace IMS_Service
 {
@@ -22,6 +23,14 @@ namespace IMS_Service
             Directory.SetCurrentDirectory(Constants.ExecutionPath);
             if (args.Contains("-devmode"))
             {
+                for(int i = 0; i < args.Length; i++)
+                {
+                    if(args[i] == "-plugin")
+                    {
+                        ims.DevelopmentPluginPath = args[i + 1];
+                        break;
+                    }
+                }
                 AllocConsole();
                 ims.SimulateService();
             }

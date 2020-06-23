@@ -77,6 +77,10 @@ namespace IMS_Library
 
         private Timer SaveManagementTimer;
         private int exitCode = 0;
+        /// <summary>
+        /// Represents the path of an experimental plugin that IMS should load for use in plugin development.
+        /// </summary>
+        public string DevelopmentPluginPath = null;
 
         /// <summary>
         /// Creates a new instance of IMS.
@@ -158,6 +162,21 @@ namespace IMS_Library
             WebServer.Start();
 
             PluginManager.Start();
+            if(!string.IsNullOrEmpty(DevelopmentPluginPath))
+            {
+                try
+                {
+                    if (PluginManager.LoadedPlugins.Where(x => Path.GetFullPath(x.Value.PluginAssembly.Location) == Path.GetFullPath(DevelopmentPluginPath)).Count() == 0)
+                    {
+                        PluginManager.LoadPlugin(DevelopmentPluginPath);
+                    }
+                }
+                catch(Exception e)
+                {
+                    UserMessageManager.LogError("Couldn't load development plugin!  See the console for more details.", false);
+                    Logger.WriteError("Couldn't load development plugin at path '" + DevelopmentPluginPath + "'!  Error:\n" + e);
+                }
+            }
 
             StartLogDeletionTimer();
         }

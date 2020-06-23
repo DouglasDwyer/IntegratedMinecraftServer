@@ -21,12 +21,7 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="launchSettings.json">launchSettings.json</ProjectItem>
       </Folder>
       <Folder Name="wwwroot" TargetFolderName="wwwroot" />
-      <Folder Name="Library" TargetFolderName="Library">
-        <ProjectItem ReplaceParameters="false" TargetFileName="IMS-Interface.dll">IMS-Interface.dll</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="IMS-Interface.xml">IMS-Interface.xml</ProjectItem>
-        <ProjectItem ReplaceParameters="false" TargetFileName="IMS-Library.dll">IMS-Library.dll</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="IMS-Library.xml">IMS-Library.xml</ProjectItem>
-      </Folder>
+      <ProjectItem ReplaceParameters="false" TargetFileName="_Imports.razor">_Imports.razor</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="Plugin.cs">Plugin.cs</ProjectItem>
     </Project>
   </TemplateContent>

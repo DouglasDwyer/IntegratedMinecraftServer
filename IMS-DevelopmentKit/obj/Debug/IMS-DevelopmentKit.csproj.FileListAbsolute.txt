@@ -1,14 +1,11 @@
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\IMS-DevelopmentKit.dll
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\IMS-DevelopmentKit.pdb
-D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\IMS-DevelopmentKit.pkgdef
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\IMS-DevelopmentKit.vsix
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\extension.vsixmanifest
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\_EmptyResource.resources
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\IMS-DevelopmentKit.csproj.GenerateResource.cache
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\IMS-DevelopmentKit.dll
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\IMS-DevelopmentKit.pdb
-D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\IMS-DevelopmentKit.pkgdef
-D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\IMS-DevelopmentKit.latest.pkgdef
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\extension.vsixmanifest
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\files.json
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\ims_icon.ico
@@ -43,7 +40,7 @@ D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\KinglyNetwork
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\KinglyNetworking.xml
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\RoyalXML.pdb
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\ProjectTemplates\IMS\IMS Plugin\Plugin.cs
-D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\ProjectTemplates\IMS\IMS Plugin\Library\IMS-Interface.dll
-D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\ProjectTemplates\IMS\IMS Plugin\Library\IMS-Interface.xml
-D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\ProjectTemplates\IMS\IMS Plugin\Library\IMS-Library.dll
-D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\ProjectTemplates\IMS\IMS Plugin\Library\IMS-Library.xml
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\ProjectTemplates\IMS\IMS Plugin\_Imports.razor
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\IMS-DevelopmentKit.pkgdef
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\IMS-DevelopmentKit.pkgdef
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\IMS-DevelopmentKit.latest.pkgdef

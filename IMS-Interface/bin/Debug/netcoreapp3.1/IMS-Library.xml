@@ -306,6 +306,11 @@
             Returns whether IMS is running in developer mode - as a console application instead of a service.
             </summary>
         </member>
+        <member name="F:IMS_Library.IMS.DevelopmentPluginPath">
+            <summary>
+            Represents the path of an experimental plugin that IMS should load for use in plugin development.
+            </summary>
+        </member>
         <member name="M:IMS_Library.IMS.#ctor">
             <summary>
             Creates a new instance of IMS.

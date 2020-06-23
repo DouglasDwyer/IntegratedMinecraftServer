@@ -94,18 +94,6 @@
             {
               "name": "Microsoft.AspNetCore.App.Ref",
               "version": "[3.1.2, 3.1.2]"
-            },
-            {
-              "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-              "version": "[3.1.4, 3.1.4]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Runtime.win-x64",
-              "version": "[3.1.4, 3.1.4]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
-              "version": "[3.1.4, 3.1.4]"
             }
           ],
           "frameworkReferences": {
@@ -118,15 +106,10 @@
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
         }
-      },
-      "runtimes": {
-        "win-x64": {
-          "#import": []
-        }
       }
     },
     "D:\\Projects\\IntegratedMinecraftServer\\IMS-Library\\IMS-Library.csproj": {
-      "version": "0.2.0.1",
+      "version": "0.2.1",
       "restore": {
         "projectUniqueName": "D:\\Projects\\IntegratedMinecraftServer\\IMS-Library\\IMS-Library.csproj",
         "projectName": "IMS-DevelopmentKit",
@@ -199,18 +182,6 @@
             {
               "name": "Microsoft.AspNetCore.App.Ref",
               "version": "[3.1.2, 3.1.2]"
-            },
-            {
-              "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-              "version": "[3.1.4, 3.1.4]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Runtime.win-x64",
-              "version": "[3.1.4, 3.1.4]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
-              "version": "[3.1.4, 3.1.4]"
             }
           ],
           "frameworkReferences": {
@@ -219,11 +190,6 @@
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
-        }
-      },
-      "runtimes": {
-        "win-x64": {
-          "#import": []
         }
       }
     }

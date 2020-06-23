@@ -10,7 +10,8 @@
   "profiles": {
     "$safeprojectname$": {
       "commandName": "Executable",
-      "executablePath": "cmd.exe"
+      "executablePath": "$(IMSDKLocation)\\Instance\\IMS-Service.exe",
+      "commandLineArgs": "-devmode -plugin \"$(MSBuildThisFileDirectory)$(OutDir)\\$(AssemblyName).dll\""
     }
   }
 }

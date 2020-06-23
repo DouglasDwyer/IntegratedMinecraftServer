@@ -1,2 +1,8 @@
 IMS-Service/bin/Release/*
 IMS-Service/bin/Debug/*
+IMS-DevelopmentKit/bin/Release/*
+IMS-DevelopmentKit/bin/Debug/*
+IMS-DevelopmentKit/obj/*
+IMS-DevelopmentKit/Instance/*
+IMS-DevelopmentKit/runtime.zip
+IMS-DevelopmentKit/bin/Debug/IMS-DevelopmentKit.vsix

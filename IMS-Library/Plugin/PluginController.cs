@@ -139,7 +139,7 @@ namespace IMS_Library
         /// <returns>The loaded plugin.</returns>
         public IMSPluginBase LoadPlugin(PluginInformation info)
         {
-            return LoadPlugin(PluginPath + "/" + info.FileName);
+            return LoadPlugin(info.FileName);
         }
 
         /// <summary>
@@ -203,6 +203,7 @@ namespace IMS_Library
                 }
                 AppDomain.CurrentDomain.UnhandledException += PreventPluginCrash;
             }
+            this.SaveConfiguration();
         }
 
         /// <summary>

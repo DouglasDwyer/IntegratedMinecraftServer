@@ -8,22 +8,31 @@
     <StartupObject />
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Remove="IMS-Library.xml" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Library\" />
     <Folder Include="Properties\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Instance\*.*">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="IMS-Interface">
-      <HintPath>..\IMS-Interface\bin\Debug\netcoreapp3.1\IMS-Interface.dll</HintPath>
+      <HintPath>$(IMSDKLocation)\Instance\IMS-Interface.dll</HintPath>
     </Reference>
     <Reference Include="IMS-Library">
-      <HintPath>..\IMS-Library\bin\Debug\netcoreapp3.1\IMS-Library.dll</HintPath>
+      <HintPath>$(IMSDKLocation)\Instance\IMS-Library.dll</HintPath>
     </Reference>
   </ItemGroup>
 
