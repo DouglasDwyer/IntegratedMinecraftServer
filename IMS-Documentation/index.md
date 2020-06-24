@@ -40,7 +40,7 @@ IMS keeps track of plugins using the `IMS.Instance.PluginManager` object, which 
 ### Adding new GUIs to IMS
 IMS uses Blazor, a C#-based web framework, for rendering the IMS admin console.  There are two different ways to add new Blazor components to IMS.  You can use the `Provider` class to add new displays and displayviews to existing interface webpages, or have your plugin class implement `IWebpageProvider` to add completely new webpages to IMS.
 #### Provider, displays, and displayviews
-Multiple parts of the IMS web interface offer tabs and components that users can interact with.  These GUIs are easily extensible, and each one has a list of its "displays" in the `Provider` class.  IMS separates these component-based interfaces in two parts - displays, which contain data about the displayview, such as its name or whether it should be rendered, and displayviews, which are Blazor components that will actually be rendered as part of the IMS interface.
+Multiple parts of the IMS web interface offer tabs and components that users can interact with.  These GUIs are easily extensible, and each one has a list of its "displays" in the `Provider` class.  IMS separates these component-based interfaces into two parts - displays, which contain data about the displayview, such as its name or whether it should be rendered, and displayviews, which are Blazor components that will actually be rendered as part of the IMS interface.
 As an example, the code for `BooleanDisplay` is shown below.  `BooleanDisplay` is used as a part of `PreferenceEditor` instances to render a boolean toggle that allows the user to select one of two options:
 ``` c#
 public class BooleanDisplay : PreferenceDisplay
