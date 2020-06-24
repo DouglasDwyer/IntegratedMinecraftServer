@@ -1,2 +1,2 @@
-# PLACEHOLDER
-TODO: Add .NET projects to the *src* folder and run `docfx` to generate **REAL** *API Documentation*!
+# IMS API Documentation
+This is the C# documentation for IMS.  IMS is separated into two main parts - `IMS_Library`, which contains code for running IMS as a Windows service and performing the necessary functions for maintaining Minecraft servers, and `IMS_Interface`, which contains the Blazor components used to render the IMS admin console.  For details on getting started with the IMSDK, see [the homepage](https://douglasdwyer.github.io/IntegratedMinecraftServer/).
