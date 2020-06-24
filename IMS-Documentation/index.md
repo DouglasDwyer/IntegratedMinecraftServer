@@ -60,3 +60,21 @@ public class BooleanDisplay : PreferenceDisplay
 }
 ```
 The `BooleanDisplayView` class is a Blazor component which renders itself using the data `BooleanDisplay` provides.  This pattern allows for extensibility and ease-of-use, as multiple Blazor components may be instantiated, dynamically rendered, and have access to the same rendering data.
+#### Custom webpages
+Custom webpages may be implemented in IMS through the use of the `IWebpageProvider` interface.  IMS checks for plugins that have this interface when the user attempts to access a custom webpage, and loads the page accordingly.  Plugin webpages have the following special URL, relative to the admin console's base URL: `/Plugin/{PluginAssemblyName}/{PluginPage}`, where `{PluginAssemblyName}` is the name of the plugin that owns the custom webpage and `{PluginPage}` is the page name.  The implementation of this using the `IWebpageProvider` interface is as follows:
+``` c#
+public class Plugin : IMSPluginBase, IWebpageProvider
+{
+    public Dictionary<string, Type> GetPageRoutings()
+    {
+        Dictionary<string, Type> routings = new Dictionary<string, Type>();
+        routings.Add("PageName", typeof(PageComponent));
+        return routings;
+    }
+}
+```
+This code tells IMS that the Blazor component type `PageComponent` should render when the custom webpage `PageName` is accessed by a user.
+
+---
+### Further reading
+This website contains the IMS API documentation, which may be used to look up information regarding the interfaces that IMS exposes.  In addition, the source code of IMS is available [on GitHub](https://github.com/DouglasDwyer/IntegratedMinecraftServer/).
