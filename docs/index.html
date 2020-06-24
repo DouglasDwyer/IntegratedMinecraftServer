@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>This is the HOMEPAGE. </title>
+    <title>IntegratedMinecraftServer API Reference </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="This is the HOMEPAGE. ">
+    <meta name="title" content="IntegratedMinecraftServer API Reference ">
     <meta name="generator" content="docfx 2.54.0.0">
     
     <link rel="shortcut icon" href="favicon.ico">
@@ -60,14 +60,81 @@
         <div class="article row grid">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="this-is-the-homepage">This is the <strong>HOMEPAGE</strong>.</h1>
+<h1 id="integratedminecraftserver-api-reference">IntegratedMinecraftServer API Reference</h1>
 
-<p>Refer to <a href="http://daringfireball.net/projects/markdown/">Markdown</a> for how to write markdown files.</p>
-<h2 id="quick-start-notes">Quick Start Notes:</h2>
-<ol>
-<li>Add images to the <em>images</em> folder if the file is referencing an image.
-yeet</li>
-</ol>
+<hr>
+<p>The IntegratedMinecraftServer project seeks to provide a reliable, stable interface for managing dedicated Windows Minecraft servers.
+IMS runs in the background as a Windows service, manages servers, restarts them upon crashing,
+provides tools for optimization and management,and includes a remote web interface.</p>
+<p>IMS also comes with an extensible plugin API that allows for the addition of third-party features.  This website contains guides to writing IMS plugins as well as the IMS API reference.  IMS, along with its plugin API, is written in C#.  IMS uses Blazor to render the admin console.</p>
+<hr>
+<h3 id="getting-started-with-the-ims-development-kit">Getting started with the IMS Development Kit</h3>
+<h4 id="downloading-the-imsdk">Downloading the IMSDK</h4>
+<p>In order to create plugins for IMS, it is necessary to download and install the IMS Development Kit (IMSDK).  The IMSDK is a Visual Studio Extension which comes with the IMS Plugin project template in addition to an experimental instance of IMS for testing.  The IMSDK can be installed by opening Visual Studio, going to <code>Extensions &gt; Manage Extensions</code>, and then searching for &quot;IMS Development Kit&quot; on the Visual Studio Marketplace.  Alternatively, the IMSDK can be downloaded directly using <a href="https://marketplace.visualstudio.com/items?itemName=DouglasDwyer.IMSDevelopmentKit">this link</a>.  In order to properly use the IMSDK, it is also necessary to have support for .NET Core and Razor Web Development installed with Visual Studio.  If you do not have them, they can be installed by opening the Visual Studio Installer and selecting <code>Modify</code>.</p>
+<h4 id="creating-your-first-plugin">Creating your first plugin</h4>
+<p>Once the IMSDK has been installed, the <code>IMS Plugin</code> project template will be available in the <code>Create New Project</code> menu.  Upon creation of a new IMS plugin, you will be presented with the following class:</p>
+<pre><code class="lang-c#">public class Plugin : IMSPluginBase
+{
+    public override string Name =&gt; &quot;New plugin&quot;;
+
+    public override string Author =&gt; &quot;Anonymous&quot;;
+
+    public override string Description =&gt; &quot;A new plugin.&quot;;
+
+    public override void Start()
+    {
+            
+    }
+
+    public override void Stop()
+    {
+            
+    }
+}
+</code></pre>
+<p>Several things are of note here.  The properties of <code>Name</code>, <code>Author</code>, and <code>Description</code> should be overwritten to properly describe the plugin.  The <code>Start</code> and <code>Stop</code> methods are called by IMS when the plugin is loaded and unloaded.  These methods will contain any code necessary for interfacing with IMS, like registering displays with <code>Provider</code>.  You should familiarize yourself with the <code>IMS</code> class and its properties, because they contain all of the core methods necessary for interfacing with servers and worlds.  To access the current instance of <code>IMS</code>, you can use the <code>IMSPluginBase</code> property <code>Service</code> or use the static property <code>IMS.Instance</code>.</p>
+<h4 id="debugging">Debugging</h4>
+<p>Debugging IMS plugins is relatively straightforward and simple.  Clicking <code>Debug</code> in Visual Studio will open an experimental instance of IMS with the debug plugin already loaded.  Breakpoints work and may be set at any point in plugin code.  Visual Studio must be run in administrator mode to debug, though, because IMS is designed to require administrator privileges.</p>
+<h4 id="how-ims-manages-plugins">How IMS manages plugins</h4>
+<p>IMS keeps track of plugins using the <code>IMS.Instance.PluginManager</code> object, which stores a registry of all plugins.  Plugins are indexed by <strong>assembly name</strong>, meaning each plugin must have a unique assembly name and only one plugin may belong to any plugin assembly.</p>
+<h3 id="adding-new-guis-to-ims">Adding new GUIs to IMS</h3>
+<p>IMS uses Blazor, a C#-based web framework, for rendering the IMS admin console.  There are two different ways to add new Blazor components to IMS.  You can use the <code>Provider</code> class to add new displays and displayviews to existing interface webpages, or have your plugin class implement <code>IWebpageProvider</code> to add completely new webpages to IMS.</p>
+<h4 id="provider-displays-and-displayviews">Provider, displays, and displayviews</h4>
+<p>Multiple parts of the IMS web interface offer tabs and components that users can interact with.  These GUIs are easily extensible, and each one has a list of its &quot;displays&quot; in the <code>Provider</code> class.  IMS separates these component-based interfaces into two parts - displays, which contain data about the displayview, such as its name or whether it should be rendered, and displayviews, which are Blazor components that will actually be rendered as part of the IMS interface.
+As an example, the code for <code>BooleanDisplay</code> is shown below.  <code>BooleanDisplay</code> is used as a part of <code>PreferenceEditor</code> instances to render a boolean toggle that allows the user to select one of two options:</p>
+<pre><code class="lang-c#">public class BooleanDisplay : PreferenceDisplay
+{
+    public string WhenTrue, WhenFalse;
+
+    public BooleanDisplay(string name, string display, string description, string whenTrue, string whenFalse) : base(name, display, description)
+    {
+        WhenTrue = whenTrue;
+        WhenFalse = whenFalse;
+    }
+
+    public override Type GetComponentType()
+    {
+        return typeof(BooleanDisplayView);
+    }
+}
+</code></pre>
+<p>The <code>BooleanDisplayView</code> class is a Blazor component which renders itself using the data <code>BooleanDisplay</code> provides.  This pattern allows for extensibility and ease-of-use, as multiple Blazor components may be instantiated, dynamically rendered, and have access to the same rendering data.</p>
+<h4 id="custom-webpages">Custom webpages</h4>
+<p>Custom webpages may be implemented in IMS through the use of the <code>IWebpageProvider</code> interface.  IMS checks for plugins that have this interface when the user attempts to access a custom webpage, and loads the page accordingly.  Plugin webpages have the following special URL, relative to the admin console's base URL: <code>/Plugin/{PluginAssemblyName}/{PluginPage}</code>, where <code>{PluginAssemblyName}</code> is the name of the plugin that owns the custom webpage and <code>{PluginPage}</code> is the page name.  The implementation of this using the <code>IWebpageProvider</code> interface is as follows:</p>
+<pre><code class="lang-c#">public class Plugin : IMSPluginBase, IWebpageProvider
+{
+    public Dictionary&lt;string, Type&gt; GetPageRoutings()
+    {
+        Dictionary&lt;string, Type&gt; routings = new Dictionary&lt;string, Type&gt;();
+        routings.Add(&quot;PageName&quot;, typeof(PageComponent));
+        return routings;
+    }
+}
+</code></pre>
+<p>This code tells IMS that the Blazor component type <code>PageComponent</code> should render when the custom webpage <code>PageName</code> is accessed by a user.</p>
+<hr>
+<h3 id="further-reading">Further reading</h3>
+<p>This website contains the IMS API documentation, which may be used to look up information regarding the interfaces that IMS exposes.  In addition, the source code of IMS is available <a href="https://github.com/DouglasDwyer/IntegratedMinecraftServer/">on GitHub</a>.</p>
 </article>
           </div>
           

@@ -3550,6 +3550,12 @@ references:
   isSpec: "True"
   fullName: IMS_Library.IMS.DeleteLogFile
   nameWithType: IMS.DeleteLogFile
+- uid: IMS_Library.IMS.DevelopmentPluginPath
+  name: DevelopmentPluginPath
+  href: api/IMS_Library.IMS.html#IMS_Library_IMS_DevelopmentPluginPath
+  commentId: F:IMS_Library.IMS.DevelopmentPluginPath
+  fullName: IMS_Library.IMS.DevelopmentPluginPath
+  nameWithType: IMS.DevelopmentPluginPath
 - uid: IMS_Library.IMS.FirewallManager
   name: FirewallManager
   href: api/IMS_Library.IMS.html#IMS_Library_IMS_FirewallManager
