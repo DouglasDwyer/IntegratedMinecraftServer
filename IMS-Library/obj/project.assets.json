@@ -3702,7 +3702,7 @@
     "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
-    "version": "1.0.1",
+    "version": "1.0.1.1",
     "restore": {
       "projectUniqueName": "D:\\Projects\\IntegratedMinecraftServer\\IMS-Library\\IMS-Library.csproj",
       "projectName": "IMS-DevelopmentKit",

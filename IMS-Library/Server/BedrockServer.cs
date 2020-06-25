@@ -157,14 +157,6 @@ namespace IMS_Library
         /// <returns>A <see cref="Task"/> object representing the current state of the backup operation.</returns>
         public override async Task BackupToLocationAsync(string location)
         {
-            await StopAsync();
-            await Task.Run(() =>
-            {
-                Extensions.CopyFolder(WorldLocation, location);
-            });
-            StartAsync();
-            return;
-            //so this is what we would do normally, but there's a bug where the BDS takes out an exclusive file lock on the world files, meaning we have to shut down to backup
             try
             {
                 lock (Locker)
@@ -173,7 +165,7 @@ namespace IMS_Library
                     {
                         return;
                     }
-                    CurrentBackupState = BackupState.Copying;
+                    CurrentBackupState = BackupState.Saving;
                 }
                 SendUncheckedConsoleCommand("save hold");
                 while (CurrentBackupState == BackupState.Saving)
@@ -200,14 +192,6 @@ namespace IMS_Library
         /// <returns>A <see cref="Task"/> object representing the current state of the backup operation.</returns>
         public override async Task BackupToZipFileAsync(string file)
         {
-            await StopAsync();
-            await Task.Run(() =>
-            {
-                ZipFile.CreateFromDirectory(WorldLocation, file);
-            });
-            StartAsync();
-            return;
-            return;
             try
             {
                 lock (Locker)
@@ -629,9 +613,9 @@ namespace IMS_Library
                         File.Delete(ServerLocation + "/Bedrock.exe");
                     }
 
-                    JunctionPoint.CreateHardLink(Constants.ExecutionPath + Constants.JavaBinariesFolderLocation + "/Bedrock.exe", ServerLocation + "/Bedrock.exe");
+                    JunctionPoint.CreateHardLink(ExeLocation, ServerLocation + "/Bedrock.exe");
 
-                    ServerProcess.StartInfo.FileName = ExeLocation;
+                    ServerProcess.StartInfo.FileName = ServerLocation + "/Bedrock.exe";
 
                     ServerProcess.StartInfo.WorkingDirectory = ServerPreferences.GetServerFolderLocation();
                     ServerProcess.StartInfo.LoadUserProfile = false;
@@ -901,10 +885,10 @@ namespace IMS_Library
                         {
                             State = ServerState.Running;
                         }
-                        else if (MatchRegex(data, @"Data saved. Files are now ready to be copied.", out regexMatch))
-                        {
-                            CurrentBackupState = BackupState.Copying;
-                        }
+                    }
+                    else if (MatchRegex(args.Data, @"Data saved. Files are now ready to be copied.", out regexMatch))
+                    {
+                        CurrentBackupState = BackupState.Copying;
                     }
                 }
             }

@@ -608,9 +608,13 @@ namespace IMS_Library
                     }
                     JunctionPoint.Create(WorldLocation, world.WorldPath, true);
 
-                    if (Directory.Exists(Path.GetDirectoryName(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log")))
+                    if (Directory.Exists(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log"))
                     {
                         File.Delete(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log");
+                    }
+                    else
+                    {
+                        Directory.CreateDirectory(ServerPreferences.GetServerFolderLocation() + "/logs/");
                     }
                     LogFilePath = ServerPreferences.GetServerFolderLocation() + "/logs/" + DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss") + ".loge";
                     File.WriteAllText(LogFilePath, "");
