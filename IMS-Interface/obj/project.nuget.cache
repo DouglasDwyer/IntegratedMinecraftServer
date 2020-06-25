@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "hz6pHN3jCX3yN4bClQxlyHYsUVQgZhhnapk7/EmgqB+1EJawWQ86wVb2pTe72Y4pGCLVn28DfUu/m++n2IUFOw==",
+  "dgSpecHash": "SdIWpHh9fUMWs7aAGbtvGmk3u725/PLjNRNvAN1X9w8EAi7YBeDErhrqMieA9TFQEWe8PpNkZpIZQy1m82iAHw==",
   "success": true,
   "projectFilePath": "D:\\Projects\\IntegratedMinecraftServer\\IMS-Interface\\IMS-Interface.csproj",
   "expectedPackageFiles": [
@@ -115,6 +115,9 @@
     "C:\\Users\\Douglas\\.nuget\\packages\\system.threading.channels\\4.5.0\\system.threading.channels.4.5.0.nupkg.sha512",
     "C:\\Users\\Douglas\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512",
     "C:\\Users\\Douglas\\.nuget\\packages\\tewr.blazor.filereader\\1.5.0.20109\\tewr.blazor.filereader.1.5.0.20109.nupkg.sha512",
+    "C:\\Users\\Douglas\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\3.1.4\\microsoft.netcore.app.runtime.win-x64.3.1.4.nupkg.sha512",
+    "C:\\Users\\Douglas\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\3.1.4\\microsoft.windowsdesktop.app.runtime.win-x64.3.1.4.nupkg.sha512",
+    "C:\\Users\\Douglas\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\3.1.4\\microsoft.aspnetcore.app.runtime.win-x64.3.1.4.nupkg.sha512",
     "C:\\Users\\Douglas\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
   ],
   "logs": []

@@ -59,7 +59,7 @@
             This is the folder, relative to the IMS root directory, which contains executable assemblies that IMS uses (like the JRE).
             </summary>
         </member>
-        <member name="F:IMS_Library.Constants.ServerBinariesFolderLocation">
+        <member name="F:IMS_Library.Constants.JavaBinariesFolderLocation">
             <summary>
             This is the folder, relative to the IMS root directory, which contains Minecraft server executables.
             </summary>
@@ -69,7 +69,7 @@
             This is the path, relative to the IMS root directory, of the bundled Java runtime environment.
             </summary>
         </member>
-        <member name="F:IMS_Library.Constants.BedrockTemplateFolderLocation">
+        <member name="F:IMS_Library.Constants.BedrockBinariesFolderLocation">
             <summary>
             This the path, relative to the IMS root directory, of the folder which contains all of the data necessary for a Bedrock server to run.
             </summary>
@@ -2430,14 +2430,19 @@
             This class acts as a manager for Minecraft versions.  It keeps track of Minecraft versions and updates version data automatically.
             </summary>
         </member>
-        <member name="P:IMS_Library.MinecraftVersionProvider.LatestRelease">
+        <member name="P:IMS_Library.MinecraftVersionProvider.LatestJavaRelease">
             <summary>
             The latest version of Minecraft: Java Edition to be made available as an official release.
             </summary>
         </member>
-        <member name="P:IMS_Library.MinecraftVersionProvider.LatestSnapshot">
+        <member name="P:IMS_Library.MinecraftVersionProvider.LatestJavaSnapshot">
             <summary>
             The latest version of Minecraft: Java Edition to be made available as a prerelease snapshot.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.MinecraftVersionProvider.LatestBedrockRelease">
+            <summary>
+            The latest version of Minecraft: Bedrock Edition to be made available as an official release.
             </summary>
         </member>
         <member name="F:IMS_Library.MinecraftVersionProvider.AvailableServerVersions">
@@ -2497,6 +2502,15 @@
         <member name="M:IMS_Library.MojangInteropUtility.GetAllJavaVersionInformation">
             <summary>
             Retrieves a JSON structure describing all existing versions of Minecraft.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object that that represents the current state of the download operation.</returns>
+            <exception cref="T:System.Net.WebException">
+            Thrown if the web API request times out.
+            </exception>
+        </member>
+        <member name="M:IMS_Library.MojangInteropUtility.GetCurrentBedrockServerVersionInformation">
+            <summary>
+            Retrieves information about the latest version of the Minecraft: Bedrock Edition server.
             </summary>
             <returns>A <see cref="T:System.Threading.Tasks.Task"/> object that that represents the current state of the download operation.</returns>
             <exception cref="T:System.Net.WebException">

@@ -55,7 +55,7 @@
                                     <td>
                                         @plugin.Author
                                     </td>
-                                    <td>
+                                    <td style="float:right">
                                         @if (plugin.Enabled)
                                         {
                                             <a href="javascript:;" @onclick="x => { IMS.Instance.PluginManager.UnloadPlugin(plugin.AssemblyName); plugin.Enabled = false; }">Disable</a>

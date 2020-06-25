@@ -117,7 +117,7 @@ namespace IMS_Library
         /// <summary>
         /// The location of the server EXE file that should be executed.
         /// </summary>
-        protected virtual string ExeLocation => ServerLocation + "/Bedrock.exe";
+        protected virtual string ExeLocation => IMS.Instance.VersionManager.LatestBedrockRelease.PhysicalLocation;
 
         /// <summary>
         /// The current internal Minecraft server process, or null if the server is not running.
@@ -786,7 +786,7 @@ namespace IMS_Library
                 try
                 {
                     FileInfo file = new FileInfo(ServerLocation + "/whitelist.json");
-                    while(file.IsFileLocked()) { Thread.Sleep(1); }
+                    while (file.IsFileLocked()) { Thread.Sleep(1); }
                     BedrockWhitelistTag[] tags = JsonConvert.DeserializeObject<BedrockWhitelistTag[]>(File.ReadAllText(file.FullName));
                     foreach (MinecraftPlayer player in AllUsers.Values)
                     {
@@ -1013,41 +1013,49 @@ namespace IMS_Library
 
         private void EnsureBedrockTemplateFilesExist(ServerVersionInformation info)
         {
-            foreach(string file in Directory.GetFiles(Path.GetDirectoryName(info.PhysicalLocation)))
+            try
             {
-                string fileName = Path.GetFileName(file);
-                string newFile = Path.Combine(ServerLocation, fileName);
-                if (!File.Exists(newFile))
+                foreach (string file in Directory.GetFiles(Path.GetDirectoryName(info.PhysicalLocation)))
                 {
-                    if(fileName == "bedrock_server.exe" || fileName == "bedrock_server.pdb")
+                    string fileName = Path.GetFileName(file);
+                    string newFile = Path.Combine(ServerLocation, fileName);
+                    if (!File.Exists(newFile))
                     {
-                        continue;
+                        if (fileName == "bedrock_server.exe" || fileName == "bedrock_server.pdb" || fileName == "data.zip")
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            File.Copy(file, newFile);
+                        }
                     }
-                    else
+                }
+                foreach (string directory in Directory.GetDirectories(Path.GetDirectoryName(info.PhysicalLocation)))
+                {
+                    string folderName = new DirectoryInfo(directory).Name;
+                    string newFolder = ServerLocation + "/" + folderName;
+                    if (!Directory.Exists(newFolder))
                     {
-                        File.Copy(file, newFile);
+                        if (folderName == "worlds")
+                        {
+                            Directory.CreateDirectory(newFolder);
+                        }
+                        else if (folderName == "internalStorage")
+                        {
+                            Extensions.CopyFolder(directory, newFolder);
+                        }
+                        else
+                        {
+                            JunctionPoint.Create(newFolder, directory, true);
+                        }
                     }
                 }
             }
-            foreach (string directory in Directory.GetFiles(Path.GetDirectoryName(info.PhysicalLocation)))
+            catch(Exception e)
             {
-                string folderName = new DirectoryInfo(directory).Name;
-                string newFolder = ServerLocation + "/" + folderName;
-                if (!Directory.Exists(newFolder))
-                {
-                    if(folderName == "worlds")
-                    {
-                        Directory.CreateDirectory(newFolder);
-                    }
-                    else if(folderName == "internalStorage")
-                    {
-                        Extensions.CopyFolder(directory, newFolder);
-                    }
-                    else
-                    {
-                        JunctionPoint.Create(newFolder, directory, true);
-                    }
-                }
+                Logger.WriteError("Couldn't correctly copy Bedrock files!\n" + e);
+                throw;
             }
         }
 

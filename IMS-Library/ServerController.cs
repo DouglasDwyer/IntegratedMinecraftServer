@@ -71,7 +71,14 @@ namespace IMS_Library
             {
                 if (server.State != ServerProxy.ServerState.Disabled)
                 {
-                    server.StopAsync().Wait();
+                    try
+                    {
+                        server.StopAsync().Wait();
+                    }
+                    catch(Exception e)
+                    {
+                        Logger.WriteError("Couldn't stop server " + server.CurrentConfiguration.ServerName + "!\n" + e);
+                    }
                 }
                 server.CurrentConfiguration.SaveConfiguration();
             }

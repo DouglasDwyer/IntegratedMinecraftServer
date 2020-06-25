@@ -104,7 +104,7 @@ namespace IMS_Library
             try
             {
                 LatestBedrockRelease = await MojangInteropUtility.GetCurrentBedrockServerVersionInformation();
-                if(LatestBedrockRelease.PhysicalLocation == null)
+                if(LatestBedrockRelease.PhysicalLocation is null)
                 {
                     LatestBedrockRelease.DownloadServerBinaryAsync();
                 }
