@@ -26,10 +26,13 @@
 + View Minecraft server logs and configure rules for automatic deletion of server logs
 + Updates itself automatically
 + Extensible API and plugin system
+#### Relation to Minecraft itself
+INTEGRATEDMINECRAFTSERVER IS NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG.
+
 ---
 ### Installation
 #### Download
-The current Windows installer for IMS can be found [here](https://github.com/DouglasDwyer/IntegratedMinecraftServer/releases/tag/v0.2.0.1).  The installer includes all of the files necessary to run IntegratedMinecraftServer, and will prompt to start IMS upon completion.
+The current Windows installer for IMS can be found [here](https://github.com/DouglasDwyer/IntegratedMinecraftServer/releases/tag/v1.0.0.0).  The installer includes all of the files necessary to run IntegratedMinecraftServer, and will prompt to start IMS upon completion.
 #### System requirements:
 + Windows 10 x64
 + At least 200MB of free storage
