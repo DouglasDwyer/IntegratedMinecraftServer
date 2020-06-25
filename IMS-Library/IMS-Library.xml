@@ -2445,6 +2445,16 @@
             This dictionary contains information about every version of Minecraft, indexed by version code.
             </summary>
         </member>
+        <member name="F:IMS_Library.MinecraftVersionProvider.LatestReleaseID">
+            <summary>
+            This is the ID of the latest release of Minecraft.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.MinecraftVersionProvider.LatestSnapshotID">
+            <summary>
+            This is the ID of the latest snapshot of Minecraft.
+            </summary>
+        </member>
         <member name="M:IMS_Library.MinecraftVersionProvider.Start">
             <summary>
             Begins the <see cref="T:IMS_Library.MinecraftVersionProvider"/> instance, beginning an update timer and updating version data.

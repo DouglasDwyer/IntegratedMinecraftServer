@@ -24,8 +24,14 @@ namespace IMS_Library
         /// This dictionary contains information about every version of Minecraft, indexed by version code.
         /// </summary>
         public ConcurrentDictionary<string, ServerVersionInformation> AvailableServerVersions = new ConcurrentDictionary<string, ServerVersionInformation>();
-        private string LatestReleaseID;
-        private string LatestSnapshotID;
+        /// <summary>
+        /// This is the ID of the latest release of Minecraft.
+        /// </summary>
+        public string LatestReleaseID = "1.15.2";
+        /// <summary>
+        /// This is the ID of the latest snapshot of Minecraft.
+        /// </summary>
+        public string LatestSnapshotID = "20w09a";
 
         private Timer AutomaticUpdateTimer = new Timer();
 
