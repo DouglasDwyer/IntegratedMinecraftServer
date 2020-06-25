@@ -38,17 +38,18 @@ namespace IMS_Library
         {
             lock (Locker) {
                 AppDomain.CurrentDomain.UnhandledException += PreventPluginCrash;
-                foreach (PluginInformation plugin in KnownPlugins.Values)
+                foreach (PluginInformation plugin in KnownPlugins.Values.ToArray())
                 {
                     try
                     {
                         if (plugin.Enabled)
                         {
-                            LoadPluginAssembly(PluginPath + "/" + plugin.FileName);
+                            LoadPluginAssembly(plugin.FileName);
                         }
                     }
                     catch (Exception e)
                     {
+                        KnownPlugins.Remove(plugin.AssemblyName);
                         Logger.WriteError("Couldn't pre-load plugin assembly " + plugin + "!\n" + e);
                     }
                 }
@@ -201,7 +202,7 @@ namespace IMS_Library
                 {
                     UnloadPlugin(plugin);
                 }
-                AppDomain.CurrentDomain.UnhandledException += PreventPluginCrash;
+                AppDomain.CurrentDomain.UnhandledException -= PreventPluginCrash;
             }
             this.SaveConfiguration();
         }

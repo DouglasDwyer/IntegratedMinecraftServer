@@ -13,7 +13,7 @@
 </style>
 
 <h3>Release Notes</h3>
-<label style="font-weight:normal"><i>IMS Prerelease v@(Assembly.GetAssembly(typeof(IMS)).GetName().Version)</i></label>
+<label style="font-weight:normal"><i>IMS v@(Assembly.GetAssembly(typeof(IMS)).GetName().Version)</i></label>
 <br />
 <br />
 <div style="max-width:500px">
@@ -22,11 +22,11 @@
         <li>Created the first prerelease build of the IMS Development Kit.</li>
         <li>Added new features for debugging plugins, including the addition of the "-plugin" command line argument.</li>
     </ul>
-    <!--
     <label class="header-label"><b>Bugfixes</b></label>
     <ul>
-        <li>Fixed the placement of the "manage servers" tooltip.</li>
+        <li>Fixed a bug where newly-created Java servers wouldn't start due to the inexistence of a log folder.</li>
     </ul>
+    <!--
     <label class="header-label"><b>Maintenance</b></label>
     <ul>
         <li>Added logging support for the IMS update routine.</li>

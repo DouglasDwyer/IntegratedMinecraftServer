@@ -137,7 +137,7 @@ namespace IMS_Library
 
             UserMessageManager = new InformationController().FromConfiguration();
 
-            PluginManager = new PluginController();
+            PluginManager = new PluginController().FromConfiguration();
             PluginManager.Initialize();
 
             FirewallManager = new FirewallController();

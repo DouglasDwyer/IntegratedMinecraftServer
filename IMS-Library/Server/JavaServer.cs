@@ -602,7 +602,10 @@ namespace IMS_Library
                     }
                     JunctionPoint.Create(WorldLocation, world.WorldPath, true);
 
-                    File.Delete(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log");
+                    if (Directory.Exists(Path.GetDirectoryName(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log")))
+                    {
+                        File.Delete(ServerPreferences.GetServerFolderLocation() + "/logs/latest.log");
+                    }
                     LogFilePath = ServerPreferences.GetServerFolderLocation() + "/logs/" + DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss") + ".loge";
                     File.WriteAllText(LogFilePath, "");
                     JunctionPoint.CreateHardLink(LogFilePath, ServerPreferences.GetServerFolderLocation() + "/logs/latest.log");
