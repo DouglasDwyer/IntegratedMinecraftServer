@@ -50,3 +50,5 @@ To report bugs, change the admin console username/password, shut down IMS, or pe
 ---
 ### Developing for IMS
 Developing for IMS requires the IMS Development Kit (IMSDK).  The IMSDK is a Visual Studio extension which comes with an experimental instance of IMS as well as the IMS library.  From there, it may be used to create IMS plugin files (stored as .DLLs) that can be distributed for use with IMS.  The IMSDK API allows for extensive customization of IMS, including the addition of new web interfaces, server types, and more.  For more info, or to view the API documentation, please visit this repository's [Github Pages](https://douglasdwyer.github.io/IntegratedMinecraftServer/).
+### Relation to Minecraft itself
+INTEGRATEDMINECRAFTSERVER IS NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG.
