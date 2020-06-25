@@ -90,7 +90,7 @@
     {
         if (string.IsNullOrEmpty(version))
         {
-            return IMS.Instance.VersionManager.LatestRelease.PhysicalLocation != null;
+            return IMS.Instance.VersionManager.LatestJavaRelease.PhysicalLocation != null;
         }
         else
         {
@@ -105,7 +105,7 @@
 
     protected async Task DownloadVersionAndSetAsync(string version)
     {
-        ServerVersionInformation information = IMS.Instance.VersionManager.AvailableServerVersions.ContainsKey(version ?? "") ? IMS.Instance.VersionManager.AvailableServerVersions[version] : IMS.Instance.VersionManager.LatestRelease;
+        ServerVersionInformation information = IMS.Instance.VersionManager.AvailableServerVersions.ContainsKey(version ?? "") ? IMS.Instance.VersionManager.AvailableServerVersions[version] : IMS.Instance.VersionManager.LatestJavaRelease;
         if (information.PhysicalLocation is null)
         {
             try

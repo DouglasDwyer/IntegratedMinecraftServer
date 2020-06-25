@@ -1,0 +1,20 @@
+<RoyalXML>
+    <Root
+        type="ServerVersionInformation">
+        <Name
+            type="String">Bedrock 1.16.2</Name>
+        <Version
+            type="String">1.16.2</Version>
+        <ReleaseTime>6/25/2020 1:51:13 PM</ReleaseTime>
+        <Edition>Bedrock</Edition>
+        <VersionType>Release</VersionType>
+        <DownloadURL
+            type="String">https://minecraft.azureedge.net/bin-win/bedrock-server-1.16.0.2.zip</DownloadURL>
+    </Root>
+    <Types>
+        <TypeInfo
+            type="IMS_Library.ServerVersionInformation, IMS-Library, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">ServerVersionInformation</TypeInfo>
+        <TypeInfo
+            type="System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">String</TypeInfo>
+    </Types>
+</RoyalXML>

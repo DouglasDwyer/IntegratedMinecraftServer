@@ -103,6 +103,9 @@ namespace IMS_Library
 
         public void SimulateService()
         {
+            Console.WriteLine(RoyalSerializer.ObjectToXML(new ServerVersionInformation { Name = "Bedrock 1.16.2", Version = "1.16.2", DownloadURL = "https://minecraft.azureedge.net/bin-win/bedrock-server-1.16.0.2.zip", Edition = MinecraftEdition.Bedrock, ReleaseTime = DateTime.Now, VersionType = ServerVersionInformation.ReleaseType.Release }));
+            Console.ReadKey();
+            return;
             IsDevelopmentMode = true;
             OnStart(new string[0]);
             Console.ReadKey();

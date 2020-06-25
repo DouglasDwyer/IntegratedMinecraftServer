@@ -564,7 +564,12 @@ namespace IMS_Library
                 }
                 State = ServerState.Starting;
             }
-            await Task.Run(() => EnsureBedrockTemplateFilesExist());
+            ServerVersionInformation info = IMS.Instance.VersionManager.LatestBedrockRelease;
+            if(info.PhysicalLocation is null)
+            {
+                await info.DownloadServerBinaryAsync();
+            }
+            await Task.Run(() => EnsureBedrockTemplateFilesExist(info));
             lock (Locker) {
                 try
                 {
@@ -624,7 +629,7 @@ namespace IMS_Library
                         File.Delete(ServerLocation + "/Bedrock.exe");
                     }
 
-                    JunctionPoint.CreateHardLink(Constants.ExecutionPath + Constants.ServerBinariesFolderLocation + "/Bedrock.exe", ServerLocation + "/Bedrock.exe");
+                    JunctionPoint.CreateHardLink(Constants.ExecutionPath + Constants.JavaBinariesFolderLocation + "/Bedrock.exe", ServerLocation + "/Bedrock.exe");
 
                     ServerProcess.StartInfo.FileName = ExeLocation;
 
@@ -1006,22 +1011,42 @@ namespace IMS_Library
             };
         }
 
-        private void EnsureBedrockTemplateFilesExist()
+        private void EnsureBedrockTemplateFilesExist(ServerVersionInformation info)
         {
-            foreach(string file in Directory.GetFiles(Constants.ExecutionPath + Constants.BedrockTemplateFolderLocation))
+            foreach(string file in Directory.GetFiles(Path.GetDirectoryName(info.PhysicalLocation)))
             {
-                string newFile = Path.Combine(ServerLocation, Path.GetFileName(file));
+                string fileName = Path.GetFileName(file);
+                string newFile = Path.Combine(ServerLocation, fileName);
                 if (!File.Exists(newFile))
                 {
-                    File.Copy(file, newFile);
+                    if(fileName == "bedrock_server.exe" || fileName == "bedrock_server.pdb")
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        File.Copy(file, newFile);
+                    }
                 }
             }
-            foreach (string directory in Directory.GetDirectories(Constants.ExecutionPath + Constants.BedrockTemplateFolderLocation))
+            foreach (string directory in Directory.GetFiles(Path.GetDirectoryName(info.PhysicalLocation)))
             {
-                string newFolder = ServerLocation + "/" + new DirectoryInfo(directory).Name;
+                string folderName = new DirectoryInfo(directory).Name;
+                string newFolder = ServerLocation + "/" + folderName;
                 if (!Directory.Exists(newFolder))
                 {
-                    Extensions.CopyFolder(directory, newFolder);
+                    if(folderName == "worlds")
+                    {
+                        Directory.CreateDirectory(newFolder);
+                    }
+                    else if(folderName == "internalStorage")
+                    {
+                        Extensions.CopyFolder(directory, newFolder);
+                    }
+                    else
+                    {
+                        JunctionPoint.Create(newFolder, directory, true);
+                    }
                 }
             }
         }

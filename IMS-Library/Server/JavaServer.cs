@@ -8,6 +8,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Runtime.Caching;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -126,7 +127,7 @@ namespace IMS_Library
         /// The location of the server JAR file that should be executed.
         /// </summary>
         protected virtual string JarLocation => (string.IsNullOrEmpty(ServerPreferences.ServerVersion)
-                            ? IMS.Instance.VersionManager.LatestRelease.PhysicalLocation : IMS.Instance.VersionManager.AvailableServerVersions[ServerPreferences.ServerVersion].PhysicalLocation).Replace("/", "\\");
+                            ? IMS.Instance.VersionManager.LatestJavaRelease.PhysicalLocation : IMS.Instance.VersionManager.AvailableServerVersions[ServerPreferences.ServerVersion].PhysicalLocation).Replace("/", "\\");
 
         /// <summary>
         /// The absolute path of the server world.
@@ -176,7 +177,7 @@ namespace IMS_Library
         {
             if (string.IsNullOrEmpty(ServerPreferences.ServerVersion))
             {
-                return "Java " + IMS.Instance.VersionManager.LatestRelease.Name;
+                return "Java " + IMS.Instance.VersionManager.LatestJavaRelease.Name;
             }
             else
             {
@@ -582,6 +583,11 @@ namespace IMS_Library
         /// </exception>
         public override async Task StartAsync()
         {
+            ServerVersionInformation versionInfo = string.IsNullOrEmpty(ServerPreferences.ServerVersion) ? IMS.Instance.VersionManager.LatestJavaRelease : IMS.Instance.VersionManager.AvailableServerVersions[ServerPreferences.ServerVersion];
+            if(versionInfo.PhysicalLocation is null)
+            {
+                await versionInfo.DownloadServerBinaryAsync();
+            }
             lock (Locker)
             {
                 if (State != ServerState.Disabled)
@@ -643,7 +649,7 @@ namespace IMS_Library
                         + "M " + ServerPreferences.JavaArguments
                         + " -jar \"" + JarLocation + "\" nogui";
 
-                    ServerVersion = string.IsNullOrEmpty(ServerPreferences.ServerVersion) ? IMS.Instance.VersionManager.LatestRelease.Version : IMS.Instance.VersionManager.AvailableServerVersions[ServerPreferences.ServerVersion].Version;
+                    ServerVersion = versionInfo.Version;
 
                     ServerProcess.StartInfo.WorkingDirectory = ServerPreferences.GetServerFolderLocation();
                     ServerProcess.StartInfo.LoadUserProfile = false;

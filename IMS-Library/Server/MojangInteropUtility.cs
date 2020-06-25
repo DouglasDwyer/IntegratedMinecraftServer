@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using RoyalXML;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,19 @@ namespace IMS_Library
         {
             WebClientWithTimeout mojangRequest = new WebClientWithTimeout(1000);
             return await Task.Run(() => JsonConvert.DeserializeObject<VersionInformationTag>(mojangRequest.DownloadString("https://launchermeta.mojang.com/mc/game/version_manifest.json")));
+        }
+
+        /// <summary>
+        /// Retrieves information about the latest version of the Minecraft: Bedrock Edition server.
+        /// </summary>
+        /// <returns>A <see cref="Task"/> object that that represents the current state of the download operation.</returns>
+        /// <exception cref="WebException">
+        /// Thrown if the web API request times out.
+        /// </exception>
+        public static async Task<ServerVersionInformation> GetCurrentBedrockServerVersionInformation()
+        {
+            WebClientWithTimeout mojangRequest = new WebClientWithTimeout(1000);
+            return await Task.Run(() => RoyalSerializer.XMLToObject<ServerVersionInformation>(mojangRequest.DownloadString("http://raw.githubusercontent.com/DouglasDwyer/IntegratedMinecraftServer/master/IMS-Distribution/bedrock-version.xml")));
         }
 
         /// <summary>

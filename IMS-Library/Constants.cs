@@ -44,7 +44,7 @@ namespace IMS_Library
         /// <summary>
         /// This is the folder, relative to the IMS root directory, which contains Minecraft server executables.
         /// </summary>
-        public const string ServerBinariesFolderLocation = BinariesFolderLocation + "/Servers";
+        public const string JavaBinariesFolderLocation = BinariesFolderLocation + "/Servers";
         /// <summary>
         /// This is the path, relative to the IMS root directory, of the bundled Java runtime environment.
         /// </summary>
@@ -52,7 +52,7 @@ namespace IMS_Library
         /// <summary>
         /// This the path, relative to the IMS root directory, of the folder which contains all of the data necessary for a Bedrock server to run.
         /// </summary>
-        public const string BedrockTemplateFolderLocation = BinariesFolderLocation + "/BedrockTemplate";
+        public const string BedrockBinariesFolderLocation = BinariesFolderLocation + "/BedrockTemplates";
         /// <summary>
         /// This is the path, relative to the IMS root directory, of the folder used to store IMS plugins.
         /// </summary>

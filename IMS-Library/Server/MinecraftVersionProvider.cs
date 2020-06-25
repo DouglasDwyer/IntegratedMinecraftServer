@@ -15,11 +15,15 @@ namespace IMS_Library
         /// <summary>
         /// The latest version of Minecraft: Java Edition to be made available as an official release.
         /// </summary>
-        public ServerVersionInformation LatestRelease => AvailableServerVersions.ContainsKey(LatestReleaseID) ? AvailableServerVersions[LatestReleaseID] : null;
+        public ServerVersionInformation LatestJavaRelease => AvailableServerVersions.ContainsKey(LatestReleaseID) ? AvailableServerVersions[LatestReleaseID] : null;
         /// <summary>
         /// The latest version of Minecraft: Java Edition to be made available as a prerelease snapshot.
         /// </summary>
-        public ServerVersionInformation LatestSnapshot => AvailableServerVersions.ContainsKey(LatestSnapshotID) ? AvailableServerVersions[LatestSnapshotID] : null;
+        public ServerVersionInformation LatestJavaSnapshot => AvailableServerVersions.ContainsKey(LatestSnapshotID) ? AvailableServerVersions[LatestSnapshotID] : null;
+        /// <summary>
+        /// The latest version of Minecraft: Bedrock Edition to be made available as an official release.
+        /// </summary>
+        public ServerVersionInformation LatestBedrockRelease;
         /// <summary>
         /// This dictionary contains information about every version of Minecraft, indexed by version code.
         /// </summary>
@@ -27,11 +31,11 @@ namespace IMS_Library
         /// <summary>
         /// This is the ID of the latest release of Minecraft.
         /// </summary>
-        public string LatestReleaseID = "1.15.2";
+        public string LatestReleaseID;
         /// <summary>
         /// This is the ID of the latest snapshot of Minecraft.
         /// </summary>
-        public string LatestSnapshotID = "20w09a";
+        public string LatestSnapshotID;
 
         private Timer AutomaticUpdateTimer = new Timer();
 
@@ -55,7 +59,7 @@ namespace IMS_Library
             {
                 if (server.State != ServerProxy.ServerState.Disabled && server.CurrentConfiguration is JavaServerConfiguration config)
                 {
-                    if (string.IsNullOrEmpty(config.ServerVersion) && server.ServerVersionID != LatestRelease.Version)
+                    if (string.IsNullOrEmpty(config.ServerVersion) && server.ServerVersionID != LatestJavaRelease.Version)
                     {
                         server.RestartAsync();
                     }
@@ -79,7 +83,7 @@ namespace IMS_Library
         /// <returns>A <see cref="ServerVersionInformation"/> object that contains data about the server version, or null if no version was found.</returns>
         public ServerVersionInformation GetVersionInformationFromID(string id)
         {
-            return string.IsNullOrEmpty(id) ? LatestRelease : AvailableServerVersions[id];
+            return string.IsNullOrEmpty(id) ? LatestJavaRelease : AvailableServerVersions[id];
         }
 
         /// <summary>
@@ -97,6 +101,19 @@ namespace IMS_Library
         /// <returns>A <see cref="Task"/> object representing the state of the current update operation.</returns>
         public async Task UpdateAllServerVersionsAsync()
         {
+            try
+            {
+                LatestBedrockRelease = await MojangInteropUtility.GetCurrentBedrockServerVersionInformation();
+                if(LatestBedrockRelease.PhysicalLocation == null)
+                {
+                    LatestBedrockRelease.DownloadServerBinaryAsync();
+                }
+            }
+            catch(Exception e)
+            {
+                Logger.WriteError("Couldn't download latest Bedrock server version!\n" + e);
+            }
+
             VersionInformationTag versionInfo = await MojangInteropUtility.GetAllJavaVersionInformation();
             LatestReleaseID = versionInfo.latest.release;
             LatestSnapshotID = versionInfo.latest.snapshot;
@@ -149,9 +166,9 @@ namespace IMS_Library
                     }
                 }
             }
-            if(LatestRelease.PhysicalLocation is null)
+            if(LatestJavaRelease.PhysicalLocation is null)
             {
-                await LatestRelease.DownloadServerBinaryAsync();
+                await LatestJavaRelease.DownloadServerBinaryAsync();
             }
         }
     }

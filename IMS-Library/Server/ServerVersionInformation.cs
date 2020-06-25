@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Net;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
@@ -11,7 +12,7 @@ namespace IMS_Library
     /// <summary>
     /// Instances of this class contain information about a particular Minecraft server version.
     /// </summary>
-    public class ServerVersionInformation
+    public sealed class ServerVersionInformation
     {
         /// <summary>
         /// The display name of the server version.
@@ -38,12 +39,25 @@ namespace IMS_Library
         /// </summary>
         public string DownloadURL;
 
-        private string DefaultLocation => Constants.ExecutionPath + Constants.ServerBinariesFolderLocation + "/" + Edition + "-" + Version + (Edition == MinecraftEdition.Java ? ".jar" : ".exe");
+        private string DefaultLocation {
+            get {
+                if (Edition == MinecraftEdition.Java)
+                {
+                    return Constants.ExecutionPath + Constants.JavaBinariesFolderLocation + "/" + Edition + "-" + Version + ".jar";
+                }
+                else
+                {
+                    return Constants.ExecutionPath + Constants.BedrockBinariesFolderLocation + "/" + Edition + "/data.zip";
+                }
+            }
+        }
         
         /// <summary>
         /// Represents where the server binary is located on disk.  This returns an absolute path if the server binary is downloaded, or null if the server binary does not exist locally.
         /// </summary>
-        public string PhysicalLocation => File.Exists(DefaultLocation) ? DefaultLocation : null;
+        public string PhysicalLocation => File.Exists(DefaultLocation) ? (Edition == MinecraftEdition.Java ? DefaultLocation : Constants.ExecutionPath + Constants.BedrockBinariesFolderLocation + "/" + Edition + "/bedrock_server.exe") : null;
+
+        private Task CurrentTask = null;
 
         /// <summary>
         /// Constructs a new <see cref="ServerVersionInformation"/> instance.
@@ -69,11 +83,26 @@ namespace IMS_Library
             DownloadURL = downloadUrl;
         }
 
+        public Task DownloadServerBinaryAsync()
+        {
+            lock(DownloadURL)
+            {
+                if(CurrentTask != null)
+                {
+                    return CurrentTask;
+                }
+                else
+                {
+                    return CurrentTask = RetrieveServerFilesAsync();
+                }
+            }
+        }
+
         /// <summary>
         /// Downloads the server binary from the internet if it does not already exist.
         /// </summary>
         /// <returns>A <see cref="Task"/> object representing the current state of the download operation.</returns>
-        public async Task DownloadServerBinaryAsync()
+        private async Task RetrieveServerFilesAsync()
         {
             using(WebClient client = new WebClient())
             {
@@ -84,15 +113,18 @@ namespace IMS_Library
                 }
                 try
                 {
-                    lock (DownloadURL)
+                    if (PhysicalLocation != null)
                     {
-                        if (PhysicalLocation != null)
-                        {
-                            return;
-                        }
-                        File.WriteAllBytes(DefaultLocation, new byte[0]);
+                        return;
                     }
+                    File.WriteAllBytes(DefaultLocation, new byte[0]);
                     await client.DownloadFileTaskAsync(DownloadURL, DefaultLocation);
+                    if(Edition == MinecraftEdition.Bedrock)
+                    {
+                        await Task.Run(() => {
+                            ZipFile.ExtractToDirectory(DefaultLocation, path);
+                        });
+                    }
                 }
                 catch
                 {
