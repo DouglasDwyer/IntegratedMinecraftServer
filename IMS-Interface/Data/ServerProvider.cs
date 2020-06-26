@@ -24,6 +24,11 @@ namespace IMS_Interface.Data
                         return Guid.Empty;
                     }
                 }
+                else if(IMS.Instance.ServerManager.GetServer(ServerID) is null)
+                {
+                    ServerID = Guid.Empty;
+                    return CurrentServerID;
+                }
                 return ServerID;
             }
             set

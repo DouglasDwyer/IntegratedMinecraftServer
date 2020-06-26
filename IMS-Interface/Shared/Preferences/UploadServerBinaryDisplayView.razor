@@ -51,6 +51,11 @@
         {
             File.Delete(path);
         }
+        DirectoryInfo directory = new DirectoryInfo(Path.GetDirectoryName(path));
+        if(!directory.Exists)
+        {
+            directory.Create();
+        }
         IFileReference file = (await FileReader.CreateReference(ServerBinaryInput).EnumerateFilesAsync()).Single();
         using Stream fileStream = File.Create(path);
         using MemoryStream memoryStream = await file.CreateMemoryStreamAsync(1024 * 1024);
