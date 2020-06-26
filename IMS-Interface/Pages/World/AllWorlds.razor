@@ -192,7 +192,12 @@
                 IEnumerable<IFileInfo> fileInfo = fileUpload.Select(x => x.ReadFileInfoAsync().Result);
                 if (fileInfo.Where(x => x.Name == "level.dat").Count() == 0)
                 {
-                    Console.WriteLine("Invalid world");
+                    InvokeAsync(() =>
+                    {
+                        PopupManager.ShowPopup(new InformationPopupDisplay("The world folder that was selected does not contain a valid world.", "Invalid world", x => { }));
+                        CurrentTask = null;
+                        StateHasChanged();
+                    });
                 }
                 else
                 {
