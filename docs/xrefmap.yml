@@ -2961,12 +2961,12 @@ references:
   commentId: T:IMS_Library.Constants
   fullName: IMS_Library.Constants
   nameWithType: Constants
-- uid: IMS_Library.Constants.BedrockTemplateFolderLocation
-  name: BedrockTemplateFolderLocation
-  href: api/IMS_Library.Constants.html#IMS_Library_Constants_BedrockTemplateFolderLocation
-  commentId: F:IMS_Library.Constants.BedrockTemplateFolderLocation
-  fullName: IMS_Library.Constants.BedrockTemplateFolderLocation
-  nameWithType: Constants.BedrockTemplateFolderLocation
+- uid: IMS_Library.Constants.BedrockBinariesFolderLocation
+  name: BedrockBinariesFolderLocation
+  href: api/IMS_Library.Constants.html#IMS_Library_Constants_BedrockBinariesFolderLocation
+  commentId: F:IMS_Library.Constants.BedrockBinariesFolderLocation
+  fullName: IMS_Library.Constants.BedrockBinariesFolderLocation
+  nameWithType: Constants.BedrockBinariesFolderLocation
 - uid: IMS_Library.Constants.BinariesFolderLocation
   name: BinariesFolderLocation
   href: api/IMS_Library.Constants.html#IMS_Library_Constants_BinariesFolderLocation
@@ -2997,6 +2997,12 @@ references:
   commentId: F:IMS_Library.Constants.ExecutionPath
   fullName: IMS_Library.Constants.ExecutionPath
   nameWithType: Constants.ExecutionPath
+- uid: IMS_Library.Constants.JavaBinariesFolderLocation
+  name: JavaBinariesFolderLocation
+  href: api/IMS_Library.Constants.html#IMS_Library_Constants_JavaBinariesFolderLocation
+  commentId: F:IMS_Library.Constants.JavaBinariesFolderLocation
+  fullName: IMS_Library.Constants.JavaBinariesFolderLocation
+  nameWithType: Constants.JavaBinariesFolderLocation
 - uid: IMS_Library.Constants.JavaExecutableLocation
   name: JavaExecutableLocation
   href: api/IMS_Library.Constants.html#IMS_Library_Constants_JavaExecutableLocation
@@ -3021,12 +3027,6 @@ references:
   commentId: F:IMS_Library.Constants.PluginFolderLocation
   fullName: IMS_Library.Constants.PluginFolderLocation
   nameWithType: Constants.PluginFolderLocation
-- uid: IMS_Library.Constants.ServerBinariesFolderLocation
-  name: ServerBinariesFolderLocation
-  href: api/IMS_Library.Constants.html#IMS_Library_Constants_ServerBinariesFolderLocation
-  commentId: F:IMS_Library.Constants.ServerBinariesFolderLocation
-  fullName: IMS_Library.Constants.ServerBinariesFolderLocation
-  nameWithType: Constants.ServerBinariesFolderLocation
 - uid: IMS_Library.Constants.ServerFolderLocation
   name: ServerFolderLocation
   href: api/IMS_Library.Constants.html#IMS_Library_Constants_ServerFolderLocation
@@ -5681,32 +5681,50 @@ references:
   isSpec: "True"
   fullName: IMS_Library.MinecraftVersionProvider.GetVersionInformationFromID
   nameWithType: MinecraftVersionProvider.GetVersionInformationFromID
-- uid: IMS_Library.MinecraftVersionProvider.LatestRelease
-  name: LatestRelease
-  href: api/IMS_Library.MinecraftVersionProvider.html#IMS_Library_MinecraftVersionProvider_LatestRelease
-  commentId: P:IMS_Library.MinecraftVersionProvider.LatestRelease
-  fullName: IMS_Library.MinecraftVersionProvider.LatestRelease
-  nameWithType: MinecraftVersionProvider.LatestRelease
-- uid: IMS_Library.MinecraftVersionProvider.LatestRelease*
-  name: LatestRelease
-  href: api/IMS_Library.MinecraftVersionProvider.html#IMS_Library_MinecraftVersionProvider_LatestRelease_
-  commentId: Overload:IMS_Library.MinecraftVersionProvider.LatestRelease
+- uid: IMS_Library.MinecraftVersionProvider.LatestBedrockRelease
+  name: LatestBedrockRelease
+  href: api/IMS_Library.MinecraftVersionProvider.html#IMS_Library_MinecraftVersionProvider_LatestBedrockRelease
+  commentId: F:IMS_Library.MinecraftVersionProvider.LatestBedrockRelease
+  fullName: IMS_Library.MinecraftVersionProvider.LatestBedrockRelease
+  nameWithType: MinecraftVersionProvider.LatestBedrockRelease
+- uid: IMS_Library.MinecraftVersionProvider.LatestJavaRelease
+  name: LatestJavaRelease
+  href: api/IMS_Library.MinecraftVersionProvider.html#IMS_Library_MinecraftVersionProvider_LatestJavaRelease
+  commentId: P:IMS_Library.MinecraftVersionProvider.LatestJavaRelease
+  fullName: IMS_Library.MinecraftVersionProvider.LatestJavaRelease
+  nameWithType: MinecraftVersionProvider.LatestJavaRelease
+- uid: IMS_Library.MinecraftVersionProvider.LatestJavaRelease*
+  name: LatestJavaRelease
+  href: api/IMS_Library.MinecraftVersionProvider.html#IMS_Library_MinecraftVersionProvider_LatestJavaRelease_
+  commentId: Overload:IMS_Library.MinecraftVersionProvider.LatestJavaRelease
   isSpec: "True"
-  fullName: IMS_Library.MinecraftVersionProvider.LatestRelease
-  nameWithType: MinecraftVersionProvider.LatestRelease
-- uid: IMS_Library.MinecraftVersionProvider.LatestSnapshot
-  name: LatestSnapshot
-  href: api/IMS_Library.MinecraftVersionProvider.html#IMS_Library_MinecraftVersionProvider_LatestSnapshot
-  commentId: P:IMS_Library.MinecraftVersionProvider.LatestSnapshot
-  fullName: IMS_Library.MinecraftVersionProvider.LatestSnapshot
-  nameWithType: MinecraftVersionProvider.LatestSnapshot
-- uid: IMS_Library.MinecraftVersionProvider.LatestSnapshot*
-  name: LatestSnapshot
-  href: api/IMS_Library.MinecraftVersionProvider.html#IMS_Library_MinecraftVersionProvider_LatestSnapshot_
-  commentId: Overload:IMS_Library.MinecraftVersionProvider.LatestSnapshot
+  fullName: IMS_Library.MinecraftVersionProvider.LatestJavaRelease
+  nameWithType: MinecraftVersionProvider.LatestJavaRelease
+- uid: IMS_Library.MinecraftVersionProvider.LatestJavaSnapshot
+  name: LatestJavaSnapshot
+  href: api/IMS_Library.MinecraftVersionProvider.html#IMS_Library_MinecraftVersionProvider_LatestJavaSnapshot
+  commentId: P:IMS_Library.MinecraftVersionProvider.LatestJavaSnapshot
+  fullName: IMS_Library.MinecraftVersionProvider.LatestJavaSnapshot
+  nameWithType: MinecraftVersionProvider.LatestJavaSnapshot
+- uid: IMS_Library.MinecraftVersionProvider.LatestJavaSnapshot*
+  name: LatestJavaSnapshot
+  href: api/IMS_Library.MinecraftVersionProvider.html#IMS_Library_MinecraftVersionProvider_LatestJavaSnapshot_
+  commentId: Overload:IMS_Library.MinecraftVersionProvider.LatestJavaSnapshot
   isSpec: "True"
-  fullName: IMS_Library.MinecraftVersionProvider.LatestSnapshot
-  nameWithType: MinecraftVersionProvider.LatestSnapshot
+  fullName: IMS_Library.MinecraftVersionProvider.LatestJavaSnapshot
+  nameWithType: MinecraftVersionProvider.LatestJavaSnapshot
+- uid: IMS_Library.MinecraftVersionProvider.LatestReleaseID
+  name: LatestReleaseID
+  href: api/IMS_Library.MinecraftVersionProvider.html#IMS_Library_MinecraftVersionProvider_LatestReleaseID
+  commentId: F:IMS_Library.MinecraftVersionProvider.LatestReleaseID
+  fullName: IMS_Library.MinecraftVersionProvider.LatestReleaseID
+  nameWithType: MinecraftVersionProvider.LatestReleaseID
+- uid: IMS_Library.MinecraftVersionProvider.LatestSnapshotID
+  name: LatestSnapshotID
+  href: api/IMS_Library.MinecraftVersionProvider.html#IMS_Library_MinecraftVersionProvider_LatestSnapshotID
+  commentId: F:IMS_Library.MinecraftVersionProvider.LatestSnapshotID
+  fullName: IMS_Library.MinecraftVersionProvider.LatestSnapshotID
+  nameWithType: MinecraftVersionProvider.LatestSnapshotID
 - uid: IMS_Library.MinecraftVersionProvider.RestartUpdatedServers
   name: RestartUpdatedServers()
   href: api/IMS_Library.MinecraftVersionProvider.html#IMS_Library_MinecraftVersionProvider_RestartUpdatedServers
@@ -5778,6 +5796,19 @@ references:
   isSpec: "True"
   fullName: IMS_Library.MojangInteropUtility.GetAllJavaVersionInformation
   nameWithType: MojangInteropUtility.GetAllJavaVersionInformation
+- uid: IMS_Library.MojangInteropUtility.GetCurrentBedrockServerVersionInformation
+  name: GetCurrentBedrockServerVersionInformation()
+  href: api/IMS_Library.MojangInteropUtility.html#IMS_Library_MojangInteropUtility_GetCurrentBedrockServerVersionInformation
+  commentId: M:IMS_Library.MojangInteropUtility.GetCurrentBedrockServerVersionInformation
+  fullName: IMS_Library.MojangInteropUtility.GetCurrentBedrockServerVersionInformation()
+  nameWithType: MojangInteropUtility.GetCurrentBedrockServerVersionInformation()
+- uid: IMS_Library.MojangInteropUtility.GetCurrentBedrockServerVersionInformation*
+  name: GetCurrentBedrockServerVersionInformation
+  href: api/IMS_Library.MojangInteropUtility.html#IMS_Library_MojangInteropUtility_GetCurrentBedrockServerVersionInformation_
+  commentId: Overload:IMS_Library.MojangInteropUtility.GetCurrentBedrockServerVersionInformation
+  isSpec: "True"
+  fullName: IMS_Library.MojangInteropUtility.GetCurrentBedrockServerVersionInformation
+  nameWithType: MojangInteropUtility.GetCurrentBedrockServerVersionInformation
 - uid: IMS_Library.MojangInteropUtility.GetUsernameFromUUID(System.String)
   name: GetUsernameFromUUID(String)
   href: api/IMS_Library.MojangInteropUtility.html#IMS_Library_MojangInteropUtility_GetUsernameFromUUID_System_String_
