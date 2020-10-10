@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "L3eX1R5xhi2Brb1F0C5YQcWBgrOaA51usf8NjV16u+2cX9guRQss6Dnm9oKdJh8q4qNBkgV8qdGZxcFr221ngQ==",
+  "dgSpecHash": "MlE/Kmxmv3SMN53WzaKvgP5UYuWDB+Fj1Xt0/xJt2bfBQVV6vrKKCVO1QMiE+FyfAqex8So+PO95mLYS/HAfrg==",
   "success": true,
   "projectFilePath": "D:\\Projects\\IntegratedMinecraftServer\\IMS-Interface\\IMS-Interface.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Douglas\\.nuget\\packages\\cloudcrate.aspnetcore.blazor.browser.storage\\3.0.0\\cloudcrate.aspnetcore.blazor.browser.storage.3.0.0.nupkg.sha512",
+    "C:\\Users\\Douglas\\.nuget\\packages\\douglasdwyer.royalxml\\1.1.0.1\\douglasdwyer.royalxml.1.1.0.1.nupkg.sha512",
     "C:\\Users\\Douglas\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\Douglas\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Douglas\\.nuget\\packages\\microsoft.aspnetcore.authentication.cookies\\2.2.0\\microsoft.aspnetcore.authentication.cookies.2.2.0.nupkg.sha512",

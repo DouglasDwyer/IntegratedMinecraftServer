@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Xml.Serialization;
+using DouglasDwyer.RoyalXml;
 using KinglyStudios.Knetworking;
 using RoyalXML;
 
@@ -42,6 +43,8 @@ namespace IMS_Library
     /// </summary>
     public static class IMSConfigurationUtility
     {
+        private static RoyalXmlSerializer ConfigurationSerializer = new RoyalXmlSerializer();
+
         /// <summary>
         /// Loads the configuration from its configuration file, or returns the present configuration if the file does not exist.
         /// </summary>
@@ -50,9 +53,10 @@ namespace IMS_Library
         /// <returns>The newly-loaded configuration.</returns>
         public static T FromConfiguration<T>(this T imsConfiguration) where T : IMSConfiguration
         {
+            ConfigurationSerializer.Serialize("yeet");
             if(File.Exists(imsConfiguration.GetDefaultFilePath()))
             {
-                return RoyalSerializer.XMLToObject<T>(File.ReadAllText(imsConfiguration.GetDefaultFilePath()));
+                return ConfigurationSerializer.Deserialize<T>(File.ReadAllText(imsConfiguration.GetDefaultFilePath()));
             }
             else
             {
@@ -75,7 +79,7 @@ namespace IMS_Library
                 {
                     Directory.CreateDirectory(folder);
                 }
-                File.WriteAllText(path, RoyalSerializer.ObjectToXML(imsConfiguration));
+                File.WriteAllText(path, ConfigurationSerializer.Serialize(imsConfiguration));
             }
         }
     }

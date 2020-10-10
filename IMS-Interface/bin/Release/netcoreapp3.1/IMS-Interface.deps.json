@@ -1545,17 +1545,17 @@
           "System.Windows.Forms.dll": {}
         }
       },
-      "KinglyNetworking/1.0.0.0": {
+      "RoyalXml/1.1.0.0": {
         "runtime": {
-          "KinglyNetworking.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
+          "RoyalXml.dll": {
+            "assemblyVersion": "1.1.0.0",
+            "fileVersion": "1.1.0.0"
           }
         }
       },
-      "RoyalXML/1.0.0.0": {
+      "KinglyNetworking/1.0.0.0": {
         "runtime": {
-          "RoyalXML.dll": {
+          "KinglyNetworking.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -3952,12 +3952,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "KinglyNetworking/1.0.0.0": {
+    "RoyalXml/1.1.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
-    "RoyalXML/1.0.0.0": {
+    "KinglyNetworking/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

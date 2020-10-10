@@ -1,4 +1,5 @@
-﻿using KinglyStudios.Knetworking;
+﻿using DouglasDwyer.RoyalXml;
+using KinglyStudios.Knetworking;
 using Newtonsoft.Json;
 using RoyalXML;
 using System;
@@ -622,7 +623,7 @@ namespace IMS_Library
 
                     if (File.Exists(ServerPreferences.GetServerFolderLocation() + "/usercache.xml"))
                     {
-                        foreach (MinecraftPlayer player in RoyalSerializer.XMLToObject<MinecraftPlayer[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/usercache.xml")))
+                        foreach (MinecraftPlayer player in new RoyalXmlSerializer().Deserialize<MinecraftPlayer[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/usercache.xml")))
                         {
                             if (ServerPreferences.OnlineMode)
                             {
@@ -984,7 +985,7 @@ namespace IMS_Library
                 player.LastConnectionEvent = DateTime.Now;
             }
             OnlineUsers.Clear();
-            File.WriteAllText(ServerPreferences.GetServerFolderLocation() + "/usercache.xml", RoyalSerializer.ObjectToXML(AllUsers.Values.ToArray()));
+            File.WriteAllText(ServerPreferences.GetServerFolderLocation() + "/usercache.xml", new RoyalXmlSerializer().Serialize(AllUsers.Values.ToArray()));
 
             foreach (int port in ServerPreferences.GetPortsToForward())
             {

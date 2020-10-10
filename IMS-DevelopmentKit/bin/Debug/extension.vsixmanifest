@@ -1,6 +1,6 @@
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011">
   <Metadata>
-    <Identity Id="IMS_DevelopmentKit.d3e7dd32-dfd8-4c05-b704-e20491f2d45c" Version="1.0.0.0" Language="en-US" Publisher="Douglas Dwyer" />
+    <Identity Id="IMS_DevelopmentKit.d3e7dd32-dfd8-4c05-b704-e20491f2d45c" Version="1.0.1.2" Language="en-US" Publisher="Douglas Dwyer" />
     <DisplayName>IMS Development Kit</DisplayName>
     <Description xml:space="preserve">This extension is used for developing IntegratedMinecraftServer plugins and GUI.</Description>
     <MoreInfo>https://github.com/DouglasDwyer/IntegratedMinecraftServer</MoreInfo>

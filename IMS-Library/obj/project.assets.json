@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
+      "DouglasDwyer.RoyalXml/1.1.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/RoyalXml.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/RoyalXml.dll": {}
+        }
+      },
       "Microsoft.NETCore.Platforms/3.1.0": {
         "type": "package",
         "compile": {
@@ -927,6 +936,20 @@
     }
   },
   "libraries": {
+    "DouglasDwyer.RoyalXml/1.1.0.1": {
+      "sha512": "kP08KzyrO7igc8axP4RANFfetrCWVi1qiGgTyCjiaXvOjcc3DtTvnQYlKOCD3SSJXSIWD+UcY0/vKdhhFoVkfQ==",
+      "type": "package",
+      "path": "douglasdwyer.royalxml/1.1.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "douglasdwyer.royalxml.1.1.0.1.nupkg.sha512",
+        "douglasdwyer.royalxml.nuspec",
+        "lib/netstandard2.0/RoyalXml.dll",
+        "lib/netstandard2.0/RoyalXml.xml"
+      ]
+    },
     "Microsoft.NETCore.Platforms/3.1.0": {
       "sha512": "z7aeg8oHln2CuNulfhiLYxCVMPEwBl3rzicjvIX+4sUuCwvXw5oXQEtbiU2c0z4qYL5L3Kmx0mMA/+t/SbY67w==",
       "type": "package",
@@ -2997,6 +3020,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "DouglasDwyer.RoyalXml >= 1.1.0.1",
       "Microsoft.VisualBasic >= 10.3.0",
       "Microsoft.Windows.Compatibility >= 3.1.0",
       "Newtonsoft.Json >= 12.0.3",
@@ -3009,7 +3033,7 @@
     "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
-    "version": "1.0.1.2",
+    "version": "1.0.1.3",
     "restore": {
       "projectUniqueName": "D:\\Projects\\IntegratedMinecraftServer\\IMS-Library\\IMS-Library.csproj",
       "projectName": "IMS-DevelopmentKit",
@@ -3031,7 +3055,8 @@
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "D:\\Projects\\BlazorFileReader\\src\\Blazor.FileReader\\bin\\Release\\netstandard2.0\\publish": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://nuget.pkg.github.com/DouglasDwyer/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
@@ -3047,6 +3072,10 @@
     "frameworks": {
       "netcoreapp3.1": {
         "dependencies": {
+          "DouglasDwyer.RoyalXml": {
+            "target": "Package",
+            "version": "[1.1.0.1, )"
+          },
           "Microsoft.VisualBasic": {
             "target": "Package",
             "version": "[10.3.0, )"

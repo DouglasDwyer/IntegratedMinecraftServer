@@ -15,7 +15,7 @@
           "System.Reflection.MetadataLoadContext": "4.7.2",
           "KinglyNetworking": "1.0.0.0",
           "Microsoft.VisualBasic.Reference": "10.0.0.0",
-          "RoyalXML": "1.0.0.0"
+          "RoyalXML": "1.1.0.0"
         },
         "runtime": {
           "IMS-Library.dll": {}
@@ -812,15 +812,15 @@
         "runtime": {
           "Microsoft.VisualBasic.dll": {
             "assemblyVersion": "10.0.0.0",
-            "fileVersion": "14.8.3752.0"
+            "fileVersion": "14.8.4084.0"
           }
         }
       },
-      "RoyalXML/1.0.0.0": {
+      "RoyalXML/1.1.0.0": {
         "runtime": {
           "RoyalXML.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
+            "assemblyVersion": "1.1.0.0",
+            "fileVersion": "1.1.0.0"
           }
         }
       },
@@ -828,7 +828,7 @@
         "runtime": {
           "System.Windows.Forms.dll": {
             "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.8.4150.0"
+            "fileVersion": "4.8.4200.0"
           }
         }
       },
@@ -836,7 +836,7 @@
         "runtime": {
           "System.Deployment.dll": {
             "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.8.3752.0"
+            "fileVersion": "4.8.4240.0"
           }
         }
       },
@@ -844,7 +844,7 @@
         "runtime": {
           "System.Runtime.Remoting.dll": {
             "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.8.3752.0"
+            "fileVersion": "4.8.4084.0"
           }
         }
       },
@@ -852,7 +852,7 @@
         "runtime": {
           "Accessibility.dll": {
             "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.8.3752.0"
+            "fileVersion": "4.8.4084.0"
           }
         }
       },
@@ -860,7 +860,7 @@
         "runtime": {
           "System.Runtime.Serialization.Formatters.Soap.dll": {
             "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.8.3752.0"
+            "fileVersion": "4.8.4084.0"
           }
         }
       }
@@ -1309,7 +1309,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "RoyalXML/1.0.0.0": {
+    "RoyalXML/1.1.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

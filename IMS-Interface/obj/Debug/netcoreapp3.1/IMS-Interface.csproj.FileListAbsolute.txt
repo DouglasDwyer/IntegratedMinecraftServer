@@ -140,7 +140,6 @@ D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\Razo
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Player\BanPlayerDisplayView.razor.g.cs
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Player\BanIPDisplayView.razor.g.cs
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\bin\Debug\netcoreapp3.1\RoyalXML.dll
-D:\Projects\IntegratedMinecraftServer\IMS-Interface\bin\Debug\netcoreapp3.1\RoyalXML.pdb
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\World\WorldBackupsDisplayView.razor.g.cs
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\World\WorldDisplayView.razor.g.cs
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\World\WorldManager.razor.g.cs

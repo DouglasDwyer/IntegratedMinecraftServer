@@ -17,21 +17,18 @@
 <br />
 <br />
 <div style="max-width:500px">
-    <label class="header-label"><b>Features</b></label>
+    <!--<label class="header-label"><b>Features</b></label>
     <ul>
         <li>Added a proper warning on the worlds page when an invalid Minecraft world is uploaded.</li>
-    </ul>
+    </ul>-->
     <label class="header-label"><b>Bugfixes</b></label>
     <ul>
-        <li>Removed an issue where the title page would revert to the "create new server" GUI even when other servers still existed.</li>
-        <li>Fixed a bug where server binary uploads failed due to the inexistence of the upload directory.  Thanks to u/boredidiot on Reddit for pointing this out!</li>
+        <li>Fixed a crash that occured when attempting to run IMS in countries other than the United States. IMS will now always read/write dates to configuration files in US format, preventing their misinterpretation.</li>
     </ul>
-    <!--
     <label class="header-label"><b>Maintenance</b></label>
     <ul>
-        <li>Added proper versioning support for Minecraft: Bedrock Edition binaries.</li>
-        <li>Removed all Minecraft server binaries from IMS in order to be Mojang EULA-compliant.</li>
-    </ul>-->
+        <li>Imported the RoyalXml library from the Nuget package manager instead of referencing it as a DLL file, making it easier to manage as a dependency.</li>
+    </ul>
 </div>
 
 @code {

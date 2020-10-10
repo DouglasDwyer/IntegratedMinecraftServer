@@ -1,23 +1,21 @@
-<RoyalXML>
-    <Root
-        type="IMSSettings">
-        <ManagementPort>
-            <Port>8080</Port>
-            <AttemptUPnPForwarding>False</AttemptUPnPForwarding>
-        </ManagementPort>
-        <RunIMSOnStartup>False</RunIMSOnStartup>
-        <LogDeletionTimespan>02:24:00</LogDeletionTimespan>
-        <IMSAutoUpdateTime
-            type="DateTime">6/21/2020 12:00:00 AM</IMSAutoUpdateTime>
-        <Username
-            type="null" />
-        <PasswordHash
-            type="null" />
-    </Root>
-    <Types>
-        <TypeInfo
-            type="IMS_Library.IMSSettings, IMS-Library, Version=1.0.1.2, Culture=neutral, PublicKeyToken=null">IMSSettings</TypeInfo>
-        <TypeInfo
-            type="System.DateTime, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">DateTime</TypeInfo>
-    </Types>
-</RoyalXML>
+<RoyalXml
+    Version="1.1.0.1"
+    Type="IMS_Library.IMSSettings, IMS-Library, Version=1.0.1.3, Culture=neutral, PublicKeyToken=null">
+    <ManagementPort
+        Type="IMS_Library.WebPort, IMS-Library, Version=1.0.1.3, Culture=neutral, PublicKeyToken=null">
+        <Port
+            Type="System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">8080</Port>
+        <AttemptUPnPForwarding
+            Type="System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">False</AttemptUPnPForwarding>
+    </ManagementPort>
+    <RunIMSOnStartup
+        Type="System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">False</RunIMSOnStartup>
+    <LogDeletionTimespan
+        Type="System.TimeSpan, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">02:24:00</LogDeletionTimespan>
+    <IMSAutoUpdateTime
+        Type="System.DateTime, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">6/21/2020 12:00:00 AM</IMSAutoUpdateTime>
+    <Username
+        Type="null" />
+    <PasswordHash
+        Type="null" />
+</RoyalXml>

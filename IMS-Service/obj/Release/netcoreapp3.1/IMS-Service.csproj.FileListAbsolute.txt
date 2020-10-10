@@ -95,8 +95,8 @@ D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\Roya
 D:\Projects\IntegratedMinecraftServer\IMS-Service\obj\Release\netcoreapp3.1\IMS-Service.csprojAssemblyReference.cache
 D:\Projects\IntegratedMinecraftServer\IMS-Service\obj\Release\netcoreapp3.1\IMS-Service.AssemblyInfoInputs.cache
 D:\Projects\IntegratedMinecraftServer\IMS-Service\obj\Release\netcoreapp3.1\IMS-Service.AssemblyInfo.cs
-D:\Projects\IntegratedMinecraftServer\IMS-Service\obj\Release\netcoreapp3.1\IMS-Service.csproj.CoreCompileInputs.cache
 D:\Projects\IntegratedMinecraftServer\IMS-Service\obj\Release\netcoreapp3.1\IMS-Service.csproj.CopyComplete
 D:\Projects\IntegratedMinecraftServer\IMS-Service\obj\Release\netcoreapp3.1\IMS-Service.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\obj\Release\netcoreapp3.1\IMS-Service.pdb
 D:\Projects\IntegratedMinecraftServer\IMS-Service\obj\Release\netcoreapp3.1\IMS-Service.genruntimeconfig.cache
+D:\Projects\IntegratedMinecraftServer\IMS-Service\obj\Release\netcoreapp3.1\IMS-Service.csproj.CoreCompileInputs.cache

@@ -25,7 +25,7 @@
       "IMS-DevelopmentKitTemplate/1.0.0": {
         "dependencies": {
           "IMS-Interface": "1.0.0.0",
-          "IMS-Library": "0.2.1.0",
+          "IMS-Library": "1.0.1.2",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "3.1.0.0",
@@ -318,11 +318,11 @@
           "IMS-Interface.dll": {}
         }
       },
-      "IMS-Library/0.2.1.0": {
+      "IMS-Library/1.0.1.2": {
         "runtime": {
           "IMS-Library.dll": {
-            "assemblyVersion": "0.2.1.0",
-            "fileVersion": "0.2.1.0"
+            "assemblyVersion": "1.0.1.2",
+            "fileVersion": "1.0.1.2"
           }
         },
         "compile": {
@@ -2052,7 +2052,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "IMS-Library/0.2.1.0": {
+    "IMS-Library/1.0.1.2": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

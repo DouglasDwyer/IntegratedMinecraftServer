@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using RoyalXML;
+using DouglasDwyer.RoyalXml;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +38,7 @@ namespace IMS_Library
         public static async Task<ServerVersionInformation> GetCurrentBedrockServerVersionInformation()
         {
             WebClientWithTimeout mojangRequest = new WebClientWithTimeout(1000);
-            return await Task.Run(() => RoyalSerializer.XMLToObject<ServerVersionInformation>(mojangRequest.DownloadString("http://raw.githubusercontent.com/DouglasDwyer/IntegratedMinecraftServer/master/IMS-Distribution/bedrock-version.xml")));
+            return await Task.Run(() => new RoyalXmlSerializer().Deserialize<ServerVersionInformation>(mojangRequest.DownloadString("http://raw.githubusercontent.com/DouglasDwyer/IntegratedMinecraftServer/master/IMS-Distribution/bedrock-version.xml")));
         }
 
         /// <summary>

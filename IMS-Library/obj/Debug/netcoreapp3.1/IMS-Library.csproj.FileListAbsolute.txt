@@ -15,8 +15,6 @@ D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Debug\netcoreapp3.1\System
 D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Debug\netcoreapp3.1\System.Runtime.Remoting.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Debug\netcoreapp3.1\Accessibility.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Debug\netcoreapp3.1\System.Runtime.Serialization.Formatters.Soap.dll
-D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Debug\netcoreapp3.1\RoyalXML.dll
-D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Debug\netcoreapp3.1\RoyalXML.pdb
 D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Debug\netcoreapp3.1\IMS-Library.xml
 D:\Projects\IntegratedMinecraftServer\IMS-Library\obj\Debug\netcoreapp3.1\IMS-Library.csprojAssemblyReference.cache
 D:\Projects\IntegratedMinecraftServer\IMS-Library\obj\Debug\netcoreapp3.1\IMS-Library.csproj.CoreCompileInputs.cache

@@ -115,7 +115,10 @@ namespace IMS_Library
         /// </summary>
         public void Restart()
         {
-            Process.Start("cmd.exe", "/C net stop \"IMS\" && net start \"IMS\"");
+            if (!IsDevelopmentMode)
+            {
+                Process.Start("cmd.exe", "/C net stop \"IMS\" && net start \"IMS\"");
+            }
         }
 
         /// <summary>
@@ -124,7 +127,10 @@ namespace IMS_Library
         /// <param name="error">The error code to return.</param>
         public void Stop(int error = 0)
         {
-            Process.Start("cmd.exe", "/C net stop \"IMS\"");
+            if (!IsDevelopmentMode)
+            {
+                Process.Start("cmd.exe", "/C net stop \"IMS\"");
+            }
         }
 
         private void Execute()
