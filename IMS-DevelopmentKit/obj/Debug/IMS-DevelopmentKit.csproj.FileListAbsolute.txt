@@ -29,7 +29,6 @@ D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\Microsoft.Asp
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\Blazor.FileReader.dll
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\System.ServiceModel.Primitives.dll
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\KinglyNetworking.dll
-D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\RoyalXML.dll
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\System.Private.ServiceModel.dll
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\IMS-Interface.pdb
@@ -38,7 +37,6 @@ D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\IMS-Library.p
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\IMS-Library.xml
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\KinglyNetworking.pdb
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\KinglyNetworking.xml
-D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\RoyalXML.pdb
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\ProjectTemplates\IMS\IMS Plugin\Plugin.cs
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\ProjectTemplates\IMS\IMS Plugin\_Imports.razor
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\IMS-DevelopmentKit.pkgdef

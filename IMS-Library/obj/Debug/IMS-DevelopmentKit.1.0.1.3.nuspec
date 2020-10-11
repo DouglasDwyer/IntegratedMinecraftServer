@@ -9,7 +9,7 @@
     <description>Package Description</description>
     <dependencies>
       <group targetFramework=".NETCoreApp3.1">
-        <dependency id="DouglasDwyer.RoyalXml" version="1.1.0.1" exclude="Build,Analyzers" />
+        <dependency id="DouglasDwyer.RoyalXml" version="1.1.0.2" exclude="Build,Analyzers" />
         <dependency id="Microsoft.VisualBasic" version="10.3.0" exclude="Build,Analyzers" />
         <dependency id="Microsoft.Windows.Compatibility" version="3.1.0" exclude="Build,Analyzers" />
         <dependency id="Newtonsoft.Json" version="12.0.3" exclude="Build,Analyzers" />

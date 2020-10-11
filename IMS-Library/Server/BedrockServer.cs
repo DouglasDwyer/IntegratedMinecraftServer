@@ -148,6 +148,16 @@ namespace IMS_Library
         {
             ServerPreferences = configuration;
             SetupLogDeletionTimer();
+
+            if (File.Exists(ServerPreferences.GetServerFolderLocation() + "/usercache.xml"))
+            {
+                foreach (MinecraftPlayer player in new RoyalXmlSerializer().Deserialize<MinecraftPlayer[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/usercache.xml")))
+                {
+                    AllUsers[player.Username] = player;
+                }
+            }
+            ReloadOpJSON();
+            ReloadWhitelistJSON();
         }
 
         /// <summary>
@@ -270,6 +280,7 @@ namespace IMS_Library
                     }
                     player.PermissionLevel = 0;
                     File.WriteAllText(ServerLocation + "/permissions.json", JsonConvert.SerializeObject(tags));
+                    SaveAllUserData();
                     ReloadServerPermissions();
                 }
             }
@@ -460,6 +471,7 @@ namespace IMS_Library
                         }
                     }
                     player.PermissionLevel = 4;
+                    SaveAllUserData();
                     File.WriteAllText(ServerLocation + "/permissions.json", JsonConvert.SerializeObject(tags));
                 }
                 ReloadServerPermissions();
@@ -501,6 +513,7 @@ namespace IMS_Library
                 {
                     AllUsers[name].IsWhitelisted = false;
                 }
+                SaveAllUserData();
                 ReloadServerWhitelist();
             }
         }
@@ -549,11 +562,18 @@ namespace IMS_Library
                 State = ServerState.Starting;
             }
             ServerVersionInformation info = IMS.Instance.VersionManager.LatestBedrockRelease;
-            if(info.PhysicalLocation is null)
+            if (info == null)
             {
-                await info.DownloadServerBinaryAsync();
+                Logger.WriteWarning("Couldn't obtain data about the latest version of Bedrock Dedicated Server! Attempting to start using last version...");
             }
-            await Task.Run(() => EnsureBedrockTemplateFilesExist(info));
+            else
+            {
+                if (info.PhysicalLocation is null)
+                {
+                    await info.DownloadServerBinaryAsync();
+                }
+                await Task.Run(() => EnsureBedrockTemplateFilesExist(info));
+            }
             lock (Locker) {
                 try
                 {
@@ -697,7 +717,7 @@ namespace IMS_Library
                 player.LastConnectionEvent = DateTime.Now;
             }
             OnlineUsers.Clear();
-            File.WriteAllText(ServerPreferences.GetServerFolderLocation() + "/usercache.xml", new RoyalXmlSerializer().Serialize(AllUsers.Values.ToArray()));
+            SaveAllUserData();
 
             foreach (int port in ServerPreferences.GetPortsToForward())
             {
@@ -754,8 +774,9 @@ namespace IMS_Library
                     File.WriteAllText(ServerLocation + "/whitelist.json", JsonConvert.SerializeObject(tags.ToArray()));
                     if (AllUsers.ContainsKey(name))
                     {
-                        AllUsers[name].IsWhitelisted = false;
+                        AllUsers[name].IsWhitelisted = true;
                     }
+                    SaveAllUserData();
                     ReloadServerWhitelist();
                 }
             }
@@ -1003,15 +1024,16 @@ namespace IMS_Library
                 {
                     string fileName = Path.GetFileName(file);
                     string newFile = Path.Combine(ServerLocation, fileName);
-                    if (!File.Exists(newFile))
+                    
+                    if (fileName == "bedrock_server.exe" || fileName == "bedrock_server.pdb" || fileName == "data.zip")
                     {
-                        if (fileName == "bedrock_server.exe" || fileName == "bedrock_server.pdb" || fileName == "data.zip")
+                        continue;
+                    }
+                    else
+                    {
+                        if (!File.Exists(newFile) || (fileName != "whitelist.json" && fileName != "permissions.json"))
                         {
-                            continue;
-                        }
-                        else
-                        {
-                            File.Copy(file, newFile);
+                            File.Copy(file, newFile, true);
                         }
                     }
                 }
@@ -1025,14 +1047,15 @@ namespace IMS_Library
                         {
                             Directory.CreateDirectory(newFolder);
                         }
-                        else if (folderName == "internalStorage")
-                        {
-                            Extensions.CopyFolder(directory, newFolder);
-                        }
-                        else
-                        {
-                            JunctionPoint.Create(newFolder, directory, true);
-                        }
+                    }
+                    else if (folderName == "internalStorage")
+                    {
+                        Directory.Delete(newFolder + "/" + directory, true);
+                        Extensions.CopyFolder(directory, newFolder);
+                    }
+                    else
+                    {
+                        JunctionPoint.Create(newFolder, directory, true);
                     }
                 }
             }
@@ -1041,6 +1064,11 @@ namespace IMS_Library
                 Logger.WriteError("Couldn't correctly copy Bedrock files!\n" + e);
                 throw;
             }
+        }
+
+        private void SaveAllUserData()
+        {
+            File.WriteAllText(ServerPreferences.GetServerFolderLocation() + "/usercache.xml", new RoyalXmlSerializer().Serialize(AllUsers.Values.ToArray()));
         }
 
         private enum BackupState { None, Saving, Copying }

@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "DouglasDwyer.RoyalXml/1.1.0.1": {
+      "DouglasDwyer.RoyalXml/1.1.0.2": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/RoyalXml.dll": {}
@@ -936,15 +936,15 @@
     }
   },
   "libraries": {
-    "DouglasDwyer.RoyalXml/1.1.0.1": {
-      "sha512": "kP08KzyrO7igc8axP4RANFfetrCWVi1qiGgTyCjiaXvOjcc3DtTvnQYlKOCD3SSJXSIWD+UcY0/vKdhhFoVkfQ==",
+    "DouglasDwyer.RoyalXml/1.1.0.2": {
+      "sha512": "uqHKPOpu5MIVknx3aURs/UirYymmSkc/Pjl2BCwn/2gHvoQFI+fF2FUeNQtfFzZo5UxC5rboy/S+AY1DspWo6A==",
       "type": "package",
-      "path": "douglasdwyer.royalxml/1.1.0.1",
+      "path": "douglasdwyer.royalxml/1.1.0.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
-        "douglasdwyer.royalxml.1.1.0.1.nupkg.sha512",
+        "douglasdwyer.royalxml.1.1.0.2.nupkg.sha512",
         "douglasdwyer.royalxml.nuspec",
         "lib/netstandard2.0/RoyalXml.dll",
         "lib/netstandard2.0/RoyalXml.xml"
@@ -3020,7 +3020,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "DouglasDwyer.RoyalXml >= 1.1.0.1",
+      "DouglasDwyer.RoyalXml >= 1.1.0.2",
       "Microsoft.VisualBasic >= 10.3.0",
       "Microsoft.Windows.Compatibility >= 3.1.0",
       "Newtonsoft.Json >= 12.0.3",
@@ -3074,7 +3074,7 @@
         "dependencies": {
           "DouglasDwyer.RoyalXml": {
             "target": "Package",
-            "version": "[1.1.0.1, )"
+            "version": "[1.1.0.2, )"
           },
           "Microsoft.VisualBasic": {
             "target": "Package",

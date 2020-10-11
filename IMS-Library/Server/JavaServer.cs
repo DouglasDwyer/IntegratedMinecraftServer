@@ -151,6 +151,25 @@ namespace IMS_Library
             UUIDCache = new MemoryCache("IMS", null, true);
             State = ServerState.Disabled;
             SetupLogDeletionTimer();
+
+            if (File.Exists(ServerPreferences.GetServerFolderLocation() + "/usercache.xml"))
+            {
+                foreach (MinecraftPlayer player in new RoyalXmlSerializer().Deserialize<MinecraftPlayer[]>(File.ReadAllText(ServerPreferences.GetServerFolderLocation() + "/usercache.xml")))
+                {
+                    if (ServerPreferences.OnlineMode)
+                    {
+                        AllUsers[player.UUID] = player;
+                    }
+                    else
+                    {
+                        AllUsers[player.Username] = player;
+                    }
+                }
+            }
+            ReloadWhitelistJSON();
+            ReloadBanJSON();
+            ReloadBanIPJSON();
+            ReloadOpJSON();
         }
 
         /// <summary>
@@ -985,7 +1004,7 @@ namespace IMS_Library
                 player.LastConnectionEvent = DateTime.Now;
             }
             OnlineUsers.Clear();
-            File.WriteAllText(ServerPreferences.GetServerFolderLocation() + "/usercache.xml", new RoyalXmlSerializer().Serialize(AllUsers.Values.ToArray()));
+            SaveAllUsers();
 
             foreach (int port in ServerPreferences.GetPortsToForward())
             {
@@ -1009,6 +1028,11 @@ namespace IMS_Library
             }
             State = ServerState.Disabled;
             ServerProcess = null;
+        }
+
+        private void SaveAllUsers()
+        {
+            File.WriteAllText(ServerPreferences.GetServerFolderLocation() + "/usercache.xml", new RoyalXmlSerializer().Serialize(AllUsers.Values.ToArray()));
         }
 
         /// <summary>

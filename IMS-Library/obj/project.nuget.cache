@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "X/XrrmLwg3edTXXdw08zPg4j39jRYqBtHR7hXj5wRsKL4DZ/XzgeOPfoQGkVbzY+N/OXxo1fuLHJSUmZMCOJKQ==",
+  "dgSpecHash": "yJj/kTZMCzpVTverCZHCXe1vZk+eN3nJgtS9jR6r1h9fh/U9W5ygQPHYEIsz8dofFcytlqTtoNiDJvkmRflNmg==",
   "success": true,
   "projectFilePath": "D:\\Projects\\IntegratedMinecraftServer\\IMS-Library\\IMS-Library.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Douglas\\.nuget\\packages\\douglasdwyer.royalxml\\1.1.0.1\\douglasdwyer.royalxml.1.1.0.1.nupkg.sha512",
+    "C:\\Users\\Douglas\\.nuget\\packages\\douglasdwyer.royalxml\\1.1.0.2\\douglasdwyer.royalxml.1.1.0.2.nupkg.sha512",
     "C:\\Users\\Douglas\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\Douglas\\.nuget\\packages\\microsoft.visualbasic\\10.3.0\\microsoft.visualbasic.10.3.0.nupkg.sha512",
     "C:\\Users\\Douglas\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
