@@ -65,7 +65,6 @@ D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\win-
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\win-x64\IMS-Library.pdb
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\win-x64\KinglyNetworking.pdb
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\win-x64\KinglyNetworking.xml
-D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\win-x64\RoyalXML.pdb
 D:\Projects\IntegratedMinecraftServer\IMS-Service\obj\Release\netcoreapp3.1\win-x64\IMS-Service.AssemblyInfoInputs.cache
 D:\Projects\IntegratedMinecraftServer\IMS-Service\obj\Release\netcoreapp3.1\win-x64\IMS-Service.AssemblyInfo.cs
 D:\Projects\IntegratedMinecraftServer\IMS-Service\obj\Release\netcoreapp3.1\win-x64\IMS-Service.csproj.CoreCompileInputs.cache
