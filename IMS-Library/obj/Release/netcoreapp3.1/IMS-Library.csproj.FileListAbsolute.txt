@@ -3,7 +3,6 @@ D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Release\netcoreapp3.1\IMS-
 D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Release\netcoreapp3.1\IMS-Library.pdb
 D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Release\netcoreapp3.1\KinglyNetworking.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Release\netcoreapp3.1\Microsoft.VisualBasic.dll
-D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Release\netcoreapp3.1\RoyalXML.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Release\netcoreapp3.1\System.Windows.Forms.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Release\netcoreapp3.1\System.Deployment.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Release\netcoreapp3.1\System.Runtime.Remoting.dll
@@ -11,7 +10,6 @@ D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Release\netcoreapp3.1\Acce
 D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Release\netcoreapp3.1\System.Runtime.Serialization.Formatters.Soap.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Release\netcoreapp3.1\KinglyNetworking.pdb
 D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Release\netcoreapp3.1\KinglyNetworking.xml
-D:\Projects\IntegratedMinecraftServer\IMS-Library\bin\Release\netcoreapp3.1\RoyalXML.pdb
 D:\Projects\IntegratedMinecraftServer\IMS-Library\obj\Release\netcoreapp3.1\IMS-Library.csprojAssemblyReference.cache
 D:\Projects\IntegratedMinecraftServer\IMS-Library\obj\Release\netcoreapp3.1\IMS-Library.AssemblyInfoInputs.cache
 D:\Projects\IntegratedMinecraftServer\IMS-Library\obj\Release\netcoreapp3.1\IMS-Library.AssemblyInfo.cs

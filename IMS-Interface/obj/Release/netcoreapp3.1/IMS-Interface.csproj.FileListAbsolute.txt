@@ -93,7 +93,6 @@ D:\Projects\IntegratedMinecraftServer\IMS-Interface\bin\Release\netcoreapp3.1\IM
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\bin\Release\netcoreapp3.1\System.Windows.Forms.xml
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\bin\Release\netcoreapp3.1\KinglyNetworking.pdb
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\bin\Release\netcoreapp3.1\KinglyNetworking.xml
-D:\Projects\IntegratedMinecraftServer\IMS-Interface\bin\Release\netcoreapp3.1\RoyalXML.pdb
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\bin\Release\netcoreapp3.1\Accessibility.xml
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\bin\Release\netcoreapp3.1\System.Deployment.xml
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\bin\Release\netcoreapp3.1\System.Runtime.Serialization.Formatters.Soap.xml
