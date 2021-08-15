@@ -31,7 +31,7 @@ namespace IMS_Library
         /// <summary>
         /// The URL which contains a zipfile of the latest version of IMS.
         /// </summary>
-        public const string LatestUpdateURL = "http://raw.githubusercontent.com/DouglasDwyer/IntegratedMinecraftServer/master/IMS-Distribution/latest-update.zip";
+        public const string LatestUpdateURL = "https://github.com/DouglasDwyer/IntegratedMinecraftServer/raw/master/IMS-Distribution/latest-update.zip";
 
         private static string UpdateFile => Constants.ExecutionPath + "/latest-update.zip";
         
