@@ -107,7 +107,7 @@ using IMS_Library;
         {
             __builder.AddMarkupContent(0, "<style>\r\n    label {\r\n        font-weight: normal;\r\n    }\r\n</style>\r\n");
             __builder.AddMarkupContent(1, "<label><b>Delete world?</b></label>\r\n<br>\r\n");
-            __builder.AddMarkupContent(2, "<label>This cannot be undone.</label>\r\n");
+            __builder.AddMarkupContent(2, "<label>This cannot be undone.</label>");
 #nullable restore
 #line 15 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\DeleteWorldDisplayView.razor"
  if (DisplayData.CurrentServerName != null)
@@ -116,10 +116,9 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(3, "    ");
-            __builder.OpenElement(4, "label");
-            __builder.AddContent(5, "This will also cause ");
-            __builder.AddContent(6, 
+            __builder.OpenElement(3, "label");
+            __builder.AddContent(4, "This will also cause ");
+            __builder.AddContent(5, 
 #nullable restore
 #line 17 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\DeleteWorldDisplayView.razor"
                                  DisplayData.CurrentServerName
@@ -128,9 +127,8 @@ using IMS_Library;
 #line hidden
 #nullable disable
             );
-            __builder.AddContent(7, " to generate a new world.");
+            __builder.AddContent(6, " to generate a new world.");
             __builder.CloseElement();
-            __builder.AddMarkupContent(8, "\r\n");
 #nullable restore
 #line 18 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\DeleteWorldDisplayView.razor"
 }
@@ -138,13 +136,12 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddMarkupContent(9, "<br>\r\n<br>\r\n<label></label>\r\n");
-            __builder.OpenElement(10, "div");
-            __builder.AddAttribute(11, "style", "position:absolute;right:10px;bottom:10px;");
-            __builder.AddMarkupContent(12, "\r\n    ");
-            __builder.OpenElement(13, "button");
-            __builder.AddAttribute(14, "class", "btn btn-danger");
-            __builder.AddAttribute(15, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.AddMarkupContent(7, "<br>\r\n<br>\r\n<label></label>\r\n");
+            __builder.OpenElement(8, "div");
+            __builder.AddAttribute(9, "style", "position:absolute;right:10px;bottom:10px;");
+            __builder.OpenElement(10, "button");
+            __builder.AddAttribute(11, "class", "btn btn-danger");
+            __builder.AddAttribute(12, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 23 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\DeleteWorldDisplayView.razor"
                                              Delete
@@ -153,12 +150,12 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(16, "Delete");
+            __builder.AddContent(13, "Delete");
             __builder.CloseElement();
-            __builder.AddMarkupContent(17, "\r\n    ");
-            __builder.OpenElement(18, "button");
-            __builder.AddAttribute(19, "class", "btn btn-default");
-            __builder.AddAttribute(20, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.AddMarkupContent(14, "\r\n    ");
+            __builder.OpenElement(15, "button");
+            __builder.AddAttribute(16, "class", "btn btn-default");
+            __builder.AddAttribute(17, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 24 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\DeleteWorldDisplayView.razor"
                                               x => PopupManager.ClosePopup()
@@ -167,9 +164,8 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(21, "Cancel");
+            __builder.AddContent(18, "Cancel");
             __builder.CloseElement();
-            __builder.AddMarkupContent(22, "\r\n");
             __builder.CloseElement();
         }
         #pragma warning restore 1998

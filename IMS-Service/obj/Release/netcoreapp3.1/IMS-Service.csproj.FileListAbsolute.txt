@@ -2,7 +2,6 @@ D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\IMS-
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\IMS-Interface.Views.pdb
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\appsettings.Development.json
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\appsettings.json
-D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\Properties\launchSettings.json
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\IMS-Interface.StaticWebAssets.xml
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\IMS-Interface.exe
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\IMS-Service.exe

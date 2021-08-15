@@ -136,14 +136,13 @@ using IMS_Library;
 ");
             __builder.OpenElement(1, "div");
             __builder.AddAttribute(2, "style", "margin:5px");
-            __builder.AddMarkupContent(3, "\r\n    ");
-            __builder.AddMarkupContent(4, "<label>Make backup</label>\r\n    <br>\r\n    ");
-            __builder.OpenElement(5, "input");
-            __builder.AddAttribute(6, "class", "form-control");
-            __builder.AddAttribute(7, "style", "width:200px; display:inline-block");
-            __builder.AddAttribute(8, "placeholder", "New backup");
-            __builder.AddAttribute(9, "onkeyup", "if (event.keyCode === 13) { document.getElementById(\'AddBackupButton\').click(); }");
-            __builder.AddAttribute(10, "value", Microsoft.AspNetCore.Components.BindConverter.FormatValue(
+            __builder.AddMarkupContent(3, "<label>Make backup</label>\r\n    <br>\r\n    ");
+            __builder.OpenElement(4, "input");
+            __builder.AddAttribute(5, "class", "form-control");
+            __builder.AddAttribute(6, "style", "width:200px; display:inline-block");
+            __builder.AddAttribute(7, "placeholder", "New backup");
+            __builder.AddAttribute(8, "onkeyup", "if (event.keyCode === 13) { document.getElementById(\'AddBackupButton\').click(); }");
+            __builder.AddAttribute(9, "value", Microsoft.AspNetCore.Components.BindConverter.FormatValue(
 #nullable restore
 #line 40 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
                                                                                                                                                                                                       NewBackupName
@@ -152,10 +151,9 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(11, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.CreateBinder(this, __value => NewBackupName = __value, NewBackupName));
+            __builder.AddAttribute(10, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.CreateBinder(this, __value => NewBackupName = __value, NewBackupName));
             __builder.SetUpdatesAttributeName("value");
             __builder.CloseElement();
-            __builder.AddMarkupContent(12, "\r\n");
 #nullable restore
 #line 41 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
      if (CurrentTask is null)
@@ -164,11 +162,10 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(13, "        ");
-            __builder.OpenElement(14, "button");
-            __builder.AddAttribute(15, "id", "AddBackupButton");
-            __builder.AddAttribute(16, "class", "btn btn-primary");
-            __builder.AddAttribute(17, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.OpenElement(11, "button");
+            __builder.AddAttribute(12, "id", "AddBackupButton");
+            __builder.AddAttribute(13, "class", "btn btn-primary");
+            __builder.AddAttribute(14, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 43 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
                                                                        CreateNewBackup
@@ -177,9 +174,8 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(18, "Create");
+            __builder.AddContent(15, "Create");
             __builder.CloseElement();
-            __builder.AddMarkupContent(19, "\r\n");
 #nullable restore
 #line 44 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
     }
@@ -189,8 +185,7 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(20, "        ");
-            __builder.AddMarkupContent(21, "<button id=\"AddBackupButton\" class=\"btn btn-primary\" disabled>Create</button>\r\n");
+            __builder.AddMarkupContent(16, "<button id=\"AddBackupButton\" class=\"btn btn-primary\" disabled>Create</button>");
 #nullable restore
 #line 48 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
     }
@@ -198,7 +193,6 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddMarkupContent(22, "\r\n");
 #nullable restore
 #line 50 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
      if (CurrentTask is null)
@@ -207,11 +201,10 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(23, "        ");
-            __builder.OpenElement(24, "button");
-            __builder.AddAttribute(25, "style", "float:right;vertical-align:top");
-            __builder.AddAttribute(26, "class", "linkbutton");
-            __builder.AddAttribute(27, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.OpenElement(17, "button");
+            __builder.AddAttribute(18, "style", "float:right;vertical-align:top");
+            __builder.AddAttribute(19, "class", "linkbutton");
+            __builder.AddAttribute(20, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 52 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
                                                                                     DownloadCurrentWorld
@@ -220,9 +213,8 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(28, "Download current world");
+            __builder.AddContent(21, "Download current world");
             __builder.CloseElement();
-            __builder.AddMarkupContent(29, "\r\n");
 #nullable restore
 #line 53 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
     }
@@ -232,8 +224,7 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(30, "        ");
-            __builder.AddMarkupContent(31, "<button style=\"float:right;vertical-align:top; color:gray\" class=\"linkbutton\" disabled>Download current world</button>\r\n");
+            __builder.AddMarkupContent(22, "<button style=\"float:right;vertical-align:top; color:gray\" class=\"linkbutton\" disabled>Download current world</button>");
 #nullable restore
 #line 57 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
     }
@@ -242,7 +233,7 @@ using IMS_Library;
 #line hidden
 #nullable disable
             __builder.CloseElement();
-            __builder.AddMarkupContent(32, "\r\n<hr>\r\n\r\n");
+            __builder.AddMarkupContent(23, "\r\n<hr>");
 #nullable restore
 #line 61 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
   
@@ -254,8 +245,7 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(33, "        ");
-            __builder.AddMarkupContent(34, "<label style=\"padding-top:3px; font-weight:normal\"><i>No backups of this world currently exist.</i></label>\r\n");
+            __builder.AddMarkupContent(24, "<label style=\"padding-top:3px; font-weight:normal\"><i>No backups of this world currently exist.</i></label>");
 #nullable restore
 #line 67 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
         return;
@@ -264,12 +254,10 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.OpenElement(35, "table");
-            __builder.AddAttribute(36, "class", "playertable table table-striped");
-            __builder.AddMarkupContent(37, "\r\n    ");
-            __builder.AddMarkupContent(38, "<thead>\r\n        <tr>\r\n            <th>\r\n                Name\r\n            </th>\r\n            <th>\r\n                Date\r\n            </th>\r\n            <th></th>\r\n        </tr>\r\n    </thead>\r\n    ");
-            __builder.OpenElement(39, "tbody");
-            __builder.AddMarkupContent(40, "\r\n");
+            __builder.OpenElement(25, "table");
+            __builder.AddAttribute(26, "class", "playertable table table-striped");
+            __builder.AddMarkupContent(27, "<thead><tr><th>\r\n                Name\r\n            </th>\r\n            <th>\r\n                Date\r\n            </th>\r\n            <th></th></tr></thead>\r\n    ");
+            __builder.OpenElement(28, "tbody");
 #nullable restore
 #line 83 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
          foreach (BackupInformation backup in backups)
@@ -278,11 +266,8 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(41, "            ");
-            __builder.OpenElement(42, "tr");
-            __builder.AddMarkupContent(43, "\r\n                ");
-            __builder.OpenElement(44, "th");
-            __builder.AddMarkupContent(45, "\r\n");
+            __builder.OpenElement(29, "tr");
+            __builder.OpenElement(30, "th");
 #nullable restore
 #line 87 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
                      if (CurrentlyEditingName == backup)
@@ -291,12 +276,11 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(46, "                        ");
-            __builder.OpenElement(47, "input");
-            __builder.AddAttribute(48, "onkeyup", "if (event.keyCode === 13) { document.getElementById(\'SetBackupName\').click(); }");
-            __builder.AddAttribute(49, "class", "form-control");
-            __builder.AddAttribute(50, "style", "display:inline-block; font-weight:normal; width:200px");
-            __builder.AddAttribute(51, "value", Microsoft.AspNetCore.Components.BindConverter.FormatValue(
+            __builder.OpenElement(31, "input");
+            __builder.AddAttribute(32, "onkeyup", "if (event.keyCode === 13) { document.getElementById(\'SetBackupName\').click(); }");
+            __builder.AddAttribute(33, "class", "form-control");
+            __builder.AddAttribute(34, "style", "display:inline-block; font-weight:normal; width:200px");
+            __builder.AddAttribute(35, "value", Microsoft.AspNetCore.Components.BindConverter.FormatValue(
 #nullable restore
 #line 89 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
                                       CurrentlyEditingNameText
@@ -305,14 +289,14 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(52, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.CreateBinder(this, __value => CurrentlyEditingNameText = __value, CurrentlyEditingNameText));
+            __builder.AddAttribute(36, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.CreateBinder(this, __value => CurrentlyEditingNameText = __value, CurrentlyEditingNameText));
             __builder.SetUpdatesAttributeName("value");
             __builder.CloseElement();
-            __builder.AddMarkupContent(53, "\r\n                        ");
-            __builder.OpenElement(54, "button");
-            __builder.AddAttribute(55, "class", "btn btn-success");
-            __builder.AddAttribute(56, "id", "SetBackupName");
-            __builder.AddAttribute(57, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.AddMarkupContent(37, "\r\n                        ");
+            __builder.OpenElement(38, "button");
+            __builder.AddAttribute(39, "class", "btn btn-success");
+            __builder.AddAttribute(40, "id", "SetBackupName");
+            __builder.AddAttribute(41, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 90 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
                                                                                      x => { backup.Name = CurrentlyEditingNameText; SetCurrentlyEditingNameOf(null); }
@@ -321,9 +305,8 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(58, "Confirm");
+            __builder.AddContent(42, "Confirm");
             __builder.CloseElement();
-            __builder.AddMarkupContent(59, "\r\n");
 #nullable restore
 #line 91 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
                     }
@@ -334,7 +317,7 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(60, 
+            __builder.AddContent(43, 
 #nullable restore
 #line 94 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
                          backup.Name
@@ -351,12 +334,10 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(61, "                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(62, "\r\n                ");
-            __builder.OpenElement(63, "td");
-            __builder.AddMarkupContent(64, "\r\n                    ");
-            __builder.AddContent(65, 
+            __builder.AddMarkupContent(44, "\r\n                ");
+            __builder.OpenElement(45, "td");
+            __builder.AddContent(46, 
 #nullable restore
 #line 98 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
                      backup.Date
@@ -365,15 +346,12 @@ using IMS_Library;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(66, "\r\n                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(67, "\r\n                ");
-            __builder.OpenElement(68, "td");
-            __builder.AddAttribute(69, "style", "text-align:right");
-            __builder.AddMarkupContent(70, "\r\n                    ");
-            __builder.OpenElement(71, "div");
-            __builder.AddAttribute(72, "style", "display:inline");
-            __builder.AddMarkupContent(73, "\r\n");
+            __builder.AddMarkupContent(47, "\r\n                ");
+            __builder.OpenElement(48, "td");
+            __builder.AddAttribute(49, "style", "text-align:right");
+            __builder.OpenElement(50, "div");
+            __builder.AddAttribute(51, "style", "display:inline");
 #nullable restore
 #line 102 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
                          if (CurrentTask is null)
@@ -384,10 +362,9 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(74, "                                ");
-            __builder.OpenElement(75, "button");
-            __builder.AddAttribute(76, "class", "linkbutton");
-            __builder.AddAttribute(77, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.OpenElement(52, "button");
+            __builder.AddAttribute(53, "class", "linkbutton");
+            __builder.AddAttribute(54, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 106 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
                                                                      x => SetCurrentlyEditingNameOf(null)
@@ -396,10 +373,9 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(78, "Cancel");
+            __builder.AddContent(55, "Cancel");
             __builder.CloseElement();
-            __builder.AddContent(79, " ");
-            __builder.AddContent(80, 
+            __builder.AddContent(56, 
 #nullable restore
 #line 106 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
                                                                                                                              "|"
@@ -418,10 +394,9 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(81, "                                ");
-            __builder.OpenElement(82, "button");
-            __builder.AddAttribute(83, "class", "linkbutton");
-            __builder.AddAttribute(84, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.OpenElement(57, "button");
+            __builder.AddAttribute(58, "class", "linkbutton");
+            __builder.AddAttribute(59, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 110 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
                                                                      x => SetCurrentlyEditingNameOf(backup)
@@ -430,10 +405,9 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(85, "Rename");
+            __builder.AddContent(60, "Rename");
             __builder.CloseElement();
-            __builder.AddContent(86, " ");
-            __builder.AddContent(87, 
+            __builder.AddContent(61, 
 #nullable restore
 #line 110 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
                                                                                                                                "|"
@@ -450,10 +424,9 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(88, "                            ");
-            __builder.OpenElement(89, "button");
-            __builder.AddAttribute(90, "class", "linkbutton");
-            __builder.AddAttribute(91, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.OpenElement(62, "button");
+            __builder.AddAttribute(63, "class", "linkbutton");
+            __builder.AddAttribute(64, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 112 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
                                                                  x => DownloadWorldAsync(backup.ID)
@@ -462,10 +435,9 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(92, "Download");
+            __builder.AddContent(65, "Download");
             __builder.CloseElement();
-            __builder.AddContent(93, " ");
-            __builder.AddContent(94, 
+            __builder.AddContent(66, 
 #nullable restore
 #line 112 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
                                                                                                                          "|"
@@ -474,10 +446,9 @@ using IMS_Library;
 #line hidden
 #nullable disable
             );
-            __builder.AddContent(95, "                            ");
-            __builder.OpenElement(96, "button");
-            __builder.AddAttribute(97, "class", "linkbutton");
-            __builder.AddAttribute(98, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.OpenElement(67, "button");
+            __builder.AddAttribute(68, "class", "linkbutton");
+            __builder.AddAttribute(69, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 113 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
                                                                  x => RestoreWorldAsync(backup.ID)
@@ -486,10 +457,9 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(99, "Restore");
+            __builder.AddContent(70, "Restore");
             __builder.CloseElement();
-            __builder.AddContent(100, " ");
-            __builder.AddContent(101, 
+            __builder.AddContent(71, 
 #nullable restore
 #line 113 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
                                                                                                                        "|"
@@ -498,10 +468,9 @@ using IMS_Library;
 #line hidden
 #nullable disable
             );
-            __builder.AddContent(102, "                            ");
-            __builder.OpenElement(103, "button");
-            __builder.AddAttribute(104, "class", "linkbutton");
-            __builder.AddAttribute(105, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.OpenElement(72, "button");
+            __builder.AddAttribute(73, "class", "linkbutton");
+            __builder.AddAttribute(74, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 114 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
                                                                  x => DeleteWorldAsync(backup.ID)
@@ -510,9 +479,8 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(106, "Delete");
+            __builder.AddContent(75, "Delete");
             __builder.CloseElement();
-            __builder.AddMarkupContent(107, "\r\n");
 #nullable restore
 #line 115 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
                         }
@@ -524,9 +492,8 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(108, "                                ");
-            __builder.AddMarkupContent(109, "<button class=\"linkbutton\" style=\"color:gray\" disabled\">Cancel</button> ");
-            __builder.AddContent(110, 
+            __builder.AddMarkupContent(76, "<button class=\"linkbutton\" style=\"color:gray\" disabled\">Cancel</button>");
+            __builder.AddContent(77, 
 #nullable restore
 #line 120 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
                                                                                                           "|"
@@ -545,9 +512,8 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(111, "                                ");
-            __builder.AddMarkupContent(112, "<button class=\"linkbutton\" style=\"color:gray\" disabled\">Rename</button> ");
-            __builder.AddContent(113, 
+            __builder.AddMarkupContent(78, "<button class=\"linkbutton\" style=\"color:gray\" disabled\">Rename</button>");
+            __builder.AddContent(79, 
 #nullable restore
 #line 124 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
                                                                                                           "|"
@@ -564,9 +530,8 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(114, "                            ");
-            __builder.AddMarkupContent(115, "<button class=\"linkbutton\" style=\"color:gray\" disabled>Download</button> ");
-            __builder.AddContent(116, 
+            __builder.AddMarkupContent(80, "<button class=\"linkbutton\" style=\"color:gray\" disabled>Download</button>");
+            __builder.AddContent(81, 
 #nullable restore
 #line 126 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
                                                                                                        "|"
@@ -575,9 +540,8 @@ using IMS_Library;
 #line hidden
 #nullable disable
             );
-            __builder.AddContent(117, "                            ");
-            __builder.AddMarkupContent(118, "<button class=\"linkbutton\" style=\"color:gray\" disabled>Restore</button> ");
-            __builder.AddContent(119, 
+            __builder.AddMarkupContent(82, "<button class=\"linkbutton\" style=\"color:gray\" disabled>Restore</button>");
+            __builder.AddContent(83, 
 #nullable restore
 #line 127 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
                                                                                                       "|"
@@ -586,8 +550,7 @@ using IMS_Library;
 #line hidden
 #nullable disable
             );
-            __builder.AddContent(120, "                            ");
-            __builder.AddMarkupContent(121, "<button class=\"linkbutton\" style=\"color:gray\" disabled>Delete</button>\r\n");
+            __builder.AddMarkupContent(84, "<button class=\"linkbutton\" style=\"color:gray\" disabled>Delete</button>");
 #nullable restore
 #line 129 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
                         }
@@ -595,13 +558,9 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(122, "                    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(123, "\r\n                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(124, "\r\n            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(125, "\r\n");
 #nullable restore
 #line 133 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupsDisplayView.razor"
         }
@@ -609,9 +568,7 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(126, "    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(127, "\r\n");
             __builder.CloseElement();
         }
         #pragma warning restore 1998

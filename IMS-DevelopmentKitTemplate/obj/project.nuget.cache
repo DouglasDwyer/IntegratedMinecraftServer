@@ -1,10 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6eBdgUrO3hbODo9h3mm/kLmjKEzI5Uwaf5MzBU4Kg3LJQ0vuAPETbS0D7wRIpEzhKrrWWm5l/MfqPd5Ttxd7/A==",
+  "dgSpecHash": "m2judPJZq7Xi0hOmfuS/+H1o5WLpQL2kvaA73dz/ERecoKJa4Ba4n97qOeG4LP+UY24fAnMEm11RLD6T9xevkQ==",
   "success": true,
   "projectFilePath": "D:\\Projects\\IntegratedMinecraftServer\\IMS-DevelopmentKitTemplate\\IMS-DevelopmentKitTemplate.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\Douglas\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
-  ],
+  "expectedPackageFiles": [],
   "logs": []
 }

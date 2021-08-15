@@ -167,20 +167,14 @@ using IMS_Library;
             __builder.AddMarkupContent(1, "<h3>Manage Players</h3>\r\n<br>\r\n");
             __builder.OpenElement(2, "table");
             __builder.AddAttribute(3, "class", "table table-bordered");
-            __builder.AddMarkupContent(4, "\r\n    ");
-            __builder.OpenElement(5, "thead");
-            __builder.AddMarkupContent(6, "\r\n        ");
-            __builder.OpenElement(7, "tr");
-            __builder.AddMarkupContent(8, "\r\n            ");
-            __builder.OpenElement(9, "th");
-            __builder.AddMarkupContent(10, "\r\n                ");
-            __builder.OpenElement(11, "div");
-            __builder.AddAttribute(12, "style", "display:table; margin:0 0");
-            __builder.AddMarkupContent(13, "\r\n                    ");
-            __builder.OpenElement(14, "ul");
-            __builder.AddAttribute(15, "class", "nav tab-ul");
-            __builder.AddAttribute(16, "style", "\r\n                        list-style: none;\r\n                        margin-bottom: unset;\r\n                        padding-left: unset;");
-            __builder.AddMarkupContent(17, "\r\n");
+            __builder.OpenElement(4, "thead");
+            __builder.OpenElement(5, "tr");
+            __builder.OpenElement(6, "th");
+            __builder.OpenElement(7, "div");
+            __builder.AddAttribute(8, "style", "display:table; margin:0 0");
+            __builder.OpenElement(9, "ul");
+            __builder.AddAttribute(10, "class", "nav tab-ul");
+            __builder.AddAttribute(11, "style", "\r\n                        list-style: none;\r\n                        margin-bottom: unset;\r\n                        padding-left: unset;");
 #nullable restore
 #line 70 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\ManagePlayers.razor"
                          foreach (PlayerDisplay display in Provider.PlayerManagerDisplays)
@@ -191,12 +185,10 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(18, "                                ");
-            __builder.OpenElement(19, "li");
-            __builder.AddAttribute(20, "style", "display:inline; position:static");
-            __builder.AddMarkupContent(21, "\r\n                                    ");
-            __builder.OpenElement(22, "button");
-            __builder.AddAttribute(23, "class", 
+            __builder.OpenElement(12, "li");
+            __builder.AddAttribute(13, "style", "display:inline; position:static");
+            __builder.OpenElement(14, "button");
+            __builder.AddAttribute(15, "class", 
 #nullable restore
 #line 75 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\ManagePlayers.razor"
                                                      display == SelectedView ? "nav-link-active" : "nav-link"
@@ -205,7 +197,7 @@ using IMS_Library;
 #line hidden
 #nullable disable
             );
-            __builder.AddAttribute(24, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.AddAttribute(16, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 75 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\ManagePlayers.razor"
                                                                                                                           x => SelectedView = display
@@ -214,7 +206,7 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(25, 
+            __builder.AddContent(17, 
 #nullable restore
 #line 75 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\ManagePlayers.razor"
                                                                                                                                                         display.Name
@@ -224,9 +216,7 @@ using IMS_Library;
 #nullable disable
             );
             __builder.CloseElement();
-            __builder.AddMarkupContent(26, "\r\n                                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(27, "\r\n");
 #nullable restore
 #line 77 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\ManagePlayers.razor"
                             }
@@ -235,23 +225,15 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(28, "                    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(29, "\r\n                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(30, "\r\n            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(31, "\r\n        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(32, "\r\n    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(33, "\r\n    ");
-            __builder.OpenElement(34, "tbody");
-            __builder.AddMarkupContent(35, "\r\n        ");
-            __builder.OpenElement(36, "tr");
-            __builder.AddMarkupContent(37, "\r\n            ");
-            __builder.OpenElement(38, "td");
-            __builder.AddMarkupContent(39, "\r\n");
+            __builder.AddMarkupContent(18, "\r\n    ");
+            __builder.OpenElement(19, "tbody");
+            __builder.OpenElement(20, "tr");
+            __builder.OpenElement(21, "td");
 #nullable restore
 #line 87 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\ManagePlayers.razor"
                  if (SelectedView != null)
@@ -267,7 +249,7 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(40, 
+            __builder.AddContent(22, 
 #nullable restore
 #line 95 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\ManagePlayers.razor"
                      fragment
@@ -284,17 +266,13 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(41, "            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(42, "\r\n        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(43, "\r\n    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(44, "\r\n");
             __builder.CloseElement();
-            __builder.AddMarkupContent(45, "\r\n\r\n");
-            __builder.OpenComponent<IMS_Interface.Timer>(46);
-            __builder.AddAttribute(47, "Interval", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Double>(
+            __builder.AddMarkupContent(23, "\r\n\r\n");
+            __builder.OpenComponent<IMS_Interface.Timer>(24);
+            __builder.AddAttribute(25, "Interval", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Double>(
 #nullable restore
 #line 102 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\ManagePlayers.razor"
                                     250
@@ -303,7 +281,7 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(48, "UpdateScope", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.ComponentBase>(
+            __builder.AddAttribute(26, "UpdateScope", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.ComponentBase>(
 #nullable restore
 #line 102 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\ManagePlayers.razor"
                                                      this
@@ -312,7 +290,7 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddComponentReferenceCapture(49, (__value) => {
+            __builder.AddComponentReferenceCapture(27, (__value) => {
 #nullable restore
 #line 102 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\ManagePlayers.razor"
              UpdateTimer = (IMS_Interface.Timer)__value;

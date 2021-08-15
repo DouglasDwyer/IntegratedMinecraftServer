@@ -128,11 +128,10 @@ using IMS_Library;
             __builder.AddMarkupContent(10, "\r\n<br>\r\n<br>\r\n<label></label>\r\n");
             __builder.OpenElement(11, "div");
             __builder.AddAttribute(12, "style", "position:absolute;right:10px;bottom:10px;");
-            __builder.AddMarkupContent(13, "\r\n    ");
-            __builder.OpenElement(14, "button");
-            __builder.AddAttribute(15, "class", "btn btn-primary");
-            __builder.AddAttribute(16, "id", "RenameWorld");
-            __builder.AddAttribute(17, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.OpenElement(13, "button");
+            __builder.AddAttribute(14, "class", "btn btn-primary");
+            __builder.AddAttribute(15, "id", "RenameWorld");
+            __builder.AddAttribute(16, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 19 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\RenameWorldDisplayView.razor"
                                                                  x => { DisplayData.CurrentWorld.Name = WorldNameInput; PopupManager.ClosePopup(); DisplayData.OnRenameOccur?.Invoke(); }
@@ -141,12 +140,12 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(18, "Rename");
+            __builder.AddContent(17, "Rename");
             __builder.CloseElement();
-            __builder.AddMarkupContent(19, "\r\n    ");
-            __builder.OpenElement(20, "button");
-            __builder.AddAttribute(21, "class", "btn btn-default");
-            __builder.AddAttribute(22, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.AddMarkupContent(18, "\r\n    ");
+            __builder.OpenElement(19, "button");
+            __builder.AddAttribute(20, "class", "btn btn-default");
+            __builder.AddAttribute(21, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 20 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\RenameWorldDisplayView.razor"
                                               x => PopupManager.ClosePopup()
@@ -155,9 +154,8 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(23, "Cancel");
+            __builder.AddContent(22, "Cancel");
             __builder.CloseElement();
-            __builder.AddMarkupContent(24, "\r\n");
             __builder.CloseElement();
         }
         #pragma warning restore 1998

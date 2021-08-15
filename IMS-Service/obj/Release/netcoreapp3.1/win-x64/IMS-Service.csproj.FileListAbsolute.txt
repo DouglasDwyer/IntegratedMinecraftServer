@@ -2,8 +2,6 @@ D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\win-
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\win-x64\IMS-Interface.Views.pdb
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\win-x64\appsettings.Development.json
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\win-x64\appsettings.json
-D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\win-x64\Properties\launchSettings.json
-D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\win-x64\IMS-Interface.StaticWebAssets.xml
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\win-x64\IMS-Interface.exe
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\win-x64\IMS-Service.exe
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\win-x64\IMS-Service.deps.json
@@ -287,7 +285,6 @@ D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\win-
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\win-x64\hostfxr.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\win-x64\hostpolicy.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\win-x64\mscordaccore.dll
-D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\win-x64\mscordaccore_amd64_amd64_4.700.20.20201.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\win-x64\mscordbi.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\win-x64\mscorrc.debug.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\win-x64\mscorrc.dll
@@ -412,3 +409,4 @@ D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\win-
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\win-x64\System.Security.Permissions.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\win-x64\System.Windows.Extensions.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\win-x64\aspnetcorev2_inprocess.dll
+D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Release\netcoreapp3.1\win-x64\mscordaccore_amd64_amd64_4.700.20.51601.dll

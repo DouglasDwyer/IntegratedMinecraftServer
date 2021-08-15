@@ -2,7 +2,6 @@ D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\IMS-In
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\IMS-Interface.Views.pdb
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\appsettings.Development.json
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\appsettings.json
-D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\IMS-Interface.exe
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\IMS-Service.exe
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\IMS-Service.deps.json
@@ -91,7 +90,6 @@ D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\Micros
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Components.Web.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\Microsoft.JSInterop.dll
-D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\IMS-Interface.StaticWebAssets.xml
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\Cloudcrate.AspNetCore.Blazor.Browser.Storage.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\RoyalXML.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Service\obj\Debug\netcoreapp3.1\IMS-Service.genruntimeconfig.cache
@@ -101,3 +99,4 @@ D:\Projects\IntegratedMinecraftServer\IMS-Service\obj\Debug\netcoreapp3.1\IMS-Se
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\IMS-Interface.xml
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\IMS-Library.xml
 D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\System.Reflection.MetadataLoadContext.dll
+D:\Projects\IntegratedMinecraftServer\IMS-Service\bin\Debug\netcoreapp3.1\IMS-Interface.StaticWebAssets.xml

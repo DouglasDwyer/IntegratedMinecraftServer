@@ -130,9 +130,8 @@ using System.Reflection;
 #nullable disable
             );
             __builder.AddAttribute(7, "style", "display:inline-block; margin:5px 0px");
-            __builder.AddMarkupContent(8, "\r\n    ");
-            __builder.OpenComponent<IMS_Interface.MultiToggle>(9);
-            __builder.AddAttribute(10, "Options", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String[]>(
+            __builder.OpenComponent<IMS_Interface.MultiToggle>(8);
+            __builder.AddAttribute(9, "Options", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String[]>(
 #nullable restore
 #line 11 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\HardcoreDisplayView.razor"
                           (DisplayData as HardcoreDisplay).Values
@@ -141,7 +140,7 @@ using System.Reflection;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(11, "SelectedIndex", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Int32>(
+            __builder.AddAttribute(10, "SelectedIndex", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Int32>(
 #nullable restore
 #line 12 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\HardcoreDisplayView.razor"
                                  SelectedItem
@@ -150,7 +149,7 @@ using System.Reflection;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(12, "OnSelectionChange", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.Int32>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.Int32>(this, 
+            __builder.AddAttribute(11, "OnSelectionChange", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.Int32>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.Int32>(this, 
 #nullable restore
 #line 13 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\HardcoreDisplayView.razor"
                                       x => SelectedItem = x
@@ -160,9 +159,8 @@ using System.Reflection;
 #nullable disable
             )));
             __builder.CloseComponent();
-            __builder.AddMarkupContent(13, "\r\n");
             __builder.CloseElement();
-            __builder.AddMarkupContent(14, "\r\n<br>");
+            __builder.AddMarkupContent(12, "\r\n<br>");
         }
         #pragma warning restore 1998
 #nullable restore

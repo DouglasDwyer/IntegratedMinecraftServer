@@ -126,7 +126,7 @@ using IMS_Interface.Preferences;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(1, "        <br>\r\n");
+            __builder.AddMarkupContent(1, "<br>");
 #nullable restore
 #line 18 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\ConditionalDisplayView.razor"
     }

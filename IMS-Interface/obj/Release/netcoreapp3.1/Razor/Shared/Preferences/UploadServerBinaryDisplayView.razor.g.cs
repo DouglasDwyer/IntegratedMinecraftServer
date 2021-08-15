@@ -124,7 +124,7 @@ using Blazor.FileReader;
 #nullable disable
             );
             __builder.CloseElement();
-            __builder.AddMarkupContent(3, "\r\n<br>\r\n");
+            __builder.AddMarkupContent(3, "\r\n<br>");
 #nullable restore
 #line 13 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\UploadServerBinaryDisplayView.razor"
    
@@ -134,11 +134,10 @@ using Blazor.FileReader;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddMarkupContent(4, "\r\n");
-            __builder.OpenElement(5, "label");
-            __builder.AddAttribute(6, "class", "btn btn-primary");
-            __builder.AddAttribute(7, "style", "padding:6px; margin-top:4px");
-            __builder.AddAttribute(8, "disabled", 
+            __builder.OpenElement(4, "label");
+            __builder.AddAttribute(5, "class", "btn btn-primary");
+            __builder.AddAttribute(6, "style", "padding:6px; margin-top:4px");
+            __builder.AddAttribute(7, "disabled", 
 #nullable restore
 #line 18 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\UploadServerBinaryDisplayView.razor"
                                                                               IsExecutingTask
@@ -147,9 +146,9 @@ using Blazor.FileReader;
 #line hidden
 #nullable disable
             );
-            __builder.AddAttribute(9, "data-toggle", "tooltip");
-            __builder.AddAttribute(10, "data-placement", "right");
-            __builder.AddAttribute(11, "data-title", 
+            __builder.AddAttribute(8, "data-toggle", "tooltip");
+            __builder.AddAttribute(9, "data-placement", "right");
+            __builder.AddAttribute(10, "data-title", 
 #nullable restore
 #line 18 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\UploadServerBinaryDisplayView.razor"
                                                                                                                                                          DisplayData.Description
@@ -158,7 +157,7 @@ using Blazor.FileReader;
 #line hidden
 #nullable disable
             );
-            __builder.AddAttribute(12, "data-original-title", 
+            __builder.AddAttribute(11, "data-original-title", 
 #nullable restore
 #line 18 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\UploadServerBinaryDisplayView.razor"
                                                                                                                                                                                                         DisplayData.Description
@@ -167,7 +166,6 @@ using Blazor.FileReader;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(13, "\r\n");
 #nullable restore
 #line 19 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\UploadServerBinaryDisplayView.razor"
      if(IsExecutingTask)
@@ -177,7 +175,7 @@ using Blazor.FileReader;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(14, 
+            __builder.AddContent(12, 
 #nullable restore
 #line 21 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\UploadServerBinaryDisplayView.razor"
           "Uploading..."
@@ -197,7 +195,7 @@ using Blazor.FileReader;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(15, 
+            __builder.AddContent(13, 
 #nullable restore
 #line 25 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\UploadServerBinaryDisplayView.razor"
           "Change server binary"
@@ -217,7 +215,7 @@ using Blazor.FileReader;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(16, 
+            __builder.AddContent(14, 
 #nullable restore
 #line 29 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\UploadServerBinaryDisplayView.razor"
           "Upload server binary"
@@ -234,12 +232,11 @@ using Blazor.FileReader;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(17, "    ");
-            __builder.OpenElement(18, "input");
-            __builder.AddAttribute(19, "type", "file");
-            __builder.AddAttribute(20, "class", "btn btn-primary");
-            __builder.AddAttribute(21, "style", "display:none");
-            __builder.AddAttribute(22, "accept", 
+            __builder.OpenElement(15, "input");
+            __builder.AddAttribute(16, "type", "file");
+            __builder.AddAttribute(17, "class", "btn btn-primary");
+            __builder.AddAttribute(18, "style", "display:none");
+            __builder.AddAttribute(19, "accept", 
 #nullable restore
 #line 31 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\UploadServerBinaryDisplayView.razor"
                                                                                                       Path.GetExtension(finalPath)
@@ -248,7 +245,7 @@ using Blazor.FileReader;
 #line hidden
 #nullable disable
             );
-            __builder.AddAttribute(23, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.ChangeEventArgs>(this, 
+            __builder.AddAttribute(20, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.ChangeEventArgs>(this, 
 #nullable restore
 #line 31 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\UploadServerBinaryDisplayView.razor"
                                                                                                                                                UploadServer
@@ -257,7 +254,7 @@ using Blazor.FileReader;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(24, "disabled", 
+            __builder.AddAttribute(21, "disabled", 
 #nullable restore
 #line 31 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\UploadServerBinaryDisplayView.razor"
                                                                                                                                                                         IsExecutingTask
@@ -266,7 +263,7 @@ using Blazor.FileReader;
 #line hidden
 #nullable disable
             );
-            __builder.AddElementReferenceCapture(25, (__value) => {
+            __builder.AddElementReferenceCapture(22, (__value) => {
 #nullable restore
 #line 31 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\UploadServerBinaryDisplayView.razor"
                  ServerBinaryInput = __value;
@@ -277,9 +274,8 @@ using Blazor.FileReader;
             }
             );
             __builder.CloseElement();
-            __builder.AddMarkupContent(26, "\r\n");
             __builder.CloseElement();
-            __builder.AddMarkupContent(27, "\r\n<br>");
+            __builder.AddMarkupContent(23, "\r\n<br>");
         }
         #pragma warning restore 1998
 #nullable restore

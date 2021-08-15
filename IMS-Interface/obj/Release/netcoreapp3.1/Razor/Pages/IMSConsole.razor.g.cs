@@ -109,13 +109,12 @@ using IMS_Library;
             __builder.AddMarkupContent(0, "<h3>IMS Console</h3>\r\n<br>\r\n<br>\r\n");
             __builder.OpenElement(1, "div");
             __builder.AddAttribute(2, "style", "display:table; width:80%;resize:none; height:70%; min-height:70%; max-height:70%; max-width:80%; min-width:80%; margin:0 auto");
-            __builder.AddMarkupContent(3, "\r\n    ");
-            __builder.OpenElement(4, "textarea");
-            __builder.AddAttribute(5, "id", "ConsoleOutputBox");
-            __builder.AddAttribute(6, "readonly", true);
-            __builder.AddAttribute(7, "rows", "25");
-            __builder.AddAttribute(8, "class", "form-control");
-            __builder.AddAttribute(9, "style", @"
+            __builder.OpenElement(3, "textarea");
+            __builder.AddAttribute(4, "id", "ConsoleOutputBox");
+            __builder.AddAttribute(5, "readonly", true);
+            __builder.AddAttribute(6, "rows", "25");
+            __builder.AddAttribute(7, "class", "form-control");
+            __builder.AddAttribute(8, "style", @"
         width: 100%;
         display: table-cell;
         resize: none;
@@ -125,7 +124,7 @@ using IMS_Library;
         max-width: 100%;
         min-width: 100%;
         font-family: TimesNewRoman,Times New Roman,Times,Baskerville,Georgia,serif;");
-            __builder.AddAttribute(10, "value", 
+            __builder.AddAttribute(9, "value", 
 #nullable restore
 #line 22 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\IMSConsole.razor"
                                                                                              ConsoleText
@@ -135,12 +134,12 @@ using IMS_Library;
 #nullable disable
             );
             __builder.CloseElement();
-            __builder.AddMarkupContent(11, "\r\n    ");
-            __builder.AddMarkupContent(12, "<a href=\"IMSLogViewer\">View server logs</a>\r\n");
+            __builder.AddMarkupContent(10, "\r\n    ");
+            __builder.AddMarkupContent(11, "<a href=\"IMSLogViewer\">View server logs</a>");
             __builder.CloseElement();
-            __builder.AddMarkupContent(13, "\r\n\r\n");
-            __builder.OpenComponent<IMS_Interface.Timer>(14);
-            __builder.AddAttribute(15, "UpdateScope", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.ComponentBase>(
+            __builder.AddMarkupContent(12, "\r\n\r\n");
+            __builder.OpenComponent<IMS_Interface.Timer>(13);
+            __builder.AddAttribute(14, "UpdateScope", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.ComponentBase>(
 #nullable restore
 #line 26 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\IMSConsole.razor"
                    this
@@ -149,7 +148,7 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(16, "Interval", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Double>(
+            __builder.AddAttribute(15, "Interval", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Double>(
 #nullable restore
 #line 26 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\IMSConsole.razor"
                                  250
@@ -158,7 +157,7 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(17, "Tick", new System.Action(
+            __builder.AddAttribute(16, "Tick", new System.Action(
 #nullable restore
 #line 26 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\IMSConsole.razor"
                                                             UpdateText
@@ -167,7 +166,7 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(18, "UseSynchronousTick", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Boolean>(
+            __builder.AddAttribute(17, "UseSynchronousTick", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Boolean>(
 #nullable restore
 #line 26 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\IMSConsole.razor"
                                                                                            false
@@ -176,7 +175,7 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(19, "UpdateComponentOnTick", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Boolean>(
+            __builder.AddAttribute(18, "UpdateComponentOnTick", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Boolean>(
 #nullable restore
 #line 26 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\IMSConsole.razor"
                                                                                                                        false
@@ -185,7 +184,7 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddComponentReferenceCapture(20, (__value) => {
+            __builder.AddComponentReferenceCapture(19, (__value) => {
 #nullable restore
 #line 26 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\IMSConsole.razor"
                                            LoadTimer = (IMS_Interface.Timer)__value;

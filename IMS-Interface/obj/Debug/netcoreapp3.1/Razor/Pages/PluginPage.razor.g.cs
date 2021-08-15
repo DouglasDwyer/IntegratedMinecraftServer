@@ -119,9 +119,8 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(0, "            ");
-            __builder.OpenComponent<IMS_Interface.Dynamic>(1);
-            __builder.AddAttribute(2, "Component", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Type>(
+            __builder.OpenComponent<IMS_Interface.Dynamic>(0);
+            __builder.AddAttribute(1, "Component", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Type>(
 #nullable restore
 #line 12 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\PluginPage.razor"
                                 routings[URL]
@@ -131,7 +130,6 @@ using IMS_Library;
 #nullable disable
             ));
             __builder.CloseComponent();
-            __builder.AddMarkupContent(3, "\r\n");
 #nullable restore
 #line 13 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\PluginPage.razor"
         }

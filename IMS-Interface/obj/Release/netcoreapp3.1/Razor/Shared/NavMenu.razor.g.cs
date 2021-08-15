@@ -109,44 +109,20 @@ using IMS_Library;
             __builder.OpenElement(1, "div");
             __builder.AddAttribute(2, "class", "navbar navbar-inverse navbar-fixed-left");
             __builder.AddAttribute(3, "style", "z-index:0;background-color:rgb(238,238,238); border-bottom-color:transparent; border-radius:0px; border:unset; height:100%; width:70px; position:fixed");
-            __builder.AddMarkupContent(4, "\r\n    ");
-            __builder.OpenElement(5, "div");
-            __builder.AddAttribute(6, "style", "padding-left:00px; width:72px");
-            __builder.AddMarkupContent(7, "\r\n        ");
-            __builder.OpenElement(8, "ul");
-            __builder.AddAttribute(9, "class", "brightness-img nav navbar-nav-side");
-            __builder.AddAttribute(10, "style", "padding-top:58px; margin-left:25px");
-            __builder.AddMarkupContent(11, "\r\n            ");
-            __builder.AddMarkupContent(12, @"<li>
-                <a href=""/"" style=""background-color:transparent"">
-                    <img draggable=""false"" src=""/img/lever.png"" data-toggle=""tooltip"" data-container=""app"" data-trigger=""hover"" data-placement=""right"" title=""Manage Servers"" style=""height:50px; width:50px; margin-left:-15px"" onclick=""$(this).tooltip('hide');"">
-                </a>
-            </li>
+            __builder.OpenElement(4, "div");
+            __builder.AddAttribute(5, "style", "padding-left:00px; width:72px");
+            __builder.OpenElement(6, "ul");
+            __builder.AddAttribute(7, "class", "brightness-img nav navbar-nav-side");
+            __builder.AddAttribute(8, "style", "padding-top:58px; margin-left:25px");
+            __builder.AddMarkupContent(9, @"<li><a href=""/"" style=""background-color:transparent""><img draggable=""false"" src=""/img/lever.png"" data-toggle=""tooltip"" data-container=""app"" data-trigger=""hover"" data-placement=""right"" title=""Manage Servers"" style=""height:50px; width:50px; margin-left:-15px"" onclick=""$(this).tooltip('hide');""></a></li>
             ");
-            __builder.AddMarkupContent(13, @"<li>
-                <a href=""/ManagePlayers"" style=""background-color:transparent"">
-                    <img draggable=""false"" src=""/img/steve.png"" data-toggle=""tooltip"" data-container=""app"" data-trigger=""hover"" data-placement=""right"" title=""Manage Players"" style=""height:50px; width:50px; margin-left:-15px"" onclick=""$(this).tooltip('hide');"">
-                </a>
-            </li>
+            __builder.AddMarkupContent(10, @"<li><a href=""/ManagePlayers"" style=""background-color:transparent""><img draggable=""false"" src=""/img/steve.png"" data-toggle=""tooltip"" data-container=""app"" data-trigger=""hover"" data-placement=""right"" title=""Manage Players"" style=""height:50px; width:50px; margin-left:-15px"" onclick=""$(this).tooltip('hide');""></a></li>
             ");
-            __builder.AddMarkupContent(14, @"<li>
-                <a href=""/AllWorlds"" style=""background-color:transparent"">
-                    <img draggable=""false"" src=""/img/grass_block.png"" data-toggle=""tooltip"" data-container=""app"" data-trigger=""hover"" data-placement=""right"" title=""Worlds and Backups"" style=""height:50px; width:50px; margin-left:-15px"" onclick=""$(this).tooltip('hide');"">
-                </a>
-            </li>
+            __builder.AddMarkupContent(11, @"<li><a href=""/AllWorlds"" style=""background-color:transparent""><img draggable=""false"" src=""/img/grass_block.png"" data-toggle=""tooltip"" data-container=""app"" data-trigger=""hover"" data-placement=""right"" title=""Worlds and Backups"" style=""height:50px; width:50px; margin-left:-15px"" onclick=""$(this).tooltip('hide');""></a></li>
             ");
-            __builder.AddMarkupContent(15, @"<li>
-                <a href=""ServerConsole"" style=""background-color:transparent"">
-                    <img draggable=""false"" src=""/img/command_block.png"" data-toggle=""tooltip"" data-container=""app"" data-trigger=""hover"" data-placement=""right"" title=""Server Console"" style=""height:50px; width:50px; margin-left:-15px"" onclick=""$(this).tooltip('hide');"">
-                </a>
-            </li>
+            __builder.AddMarkupContent(12, @"<li><a href=""ServerConsole"" style=""background-color:transparent""><img draggable=""false"" src=""/img/command_block.png"" data-toggle=""tooltip"" data-container=""app"" data-trigger=""hover"" data-placement=""right"" title=""Server Console"" style=""height:50px; width:50px; margin-left:-15px"" onclick=""$(this).tooltip('hide');""></a></li>
             ");
-            __builder.AddMarkupContent(16, @"<li>
-                <a href=""IMSManagement"" style=""background-color:transparent"">
-                    <img draggable=""false"" src=""/img/enchanted_book.png"" data-toggle=""tooltip"" data-container=""app"" data-trigger=""hover"" data-placement=""right"" title=""IMS Preferences"" style=""height:50px; width:50px; margin-left:-15px"" onclick=""$(this).tooltip('hide')"">
-                </a>
-            </li>
-");
+            __builder.AddMarkupContent(13, @"<li><a href=""IMSManagement"" style=""background-color:transparent""><img draggable=""false"" src=""/img/enchanted_book.png"" data-toggle=""tooltip"" data-container=""app"" data-trigger=""hover"" data-placement=""right"" title=""IMS Preferences"" style=""height:50px; width:50px; margin-left:-15px"" onclick=""$(this).tooltip('hide')""></a></li>");
 #nullable restore
 #line 41 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\NavMenu.razor"
              foreach (NavigationBarLink link in Provider.NavigationBarLinks)
@@ -155,11 +131,9 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(17, "                ");
-            __builder.OpenElement(18, "li");
-            __builder.AddMarkupContent(19, "\r\n                    ");
-            __builder.OpenElement(20, "a");
-            __builder.AddAttribute(21, "href", 
+            __builder.OpenElement(14, "li");
+            __builder.OpenElement(15, "a");
+            __builder.AddAttribute(16, "href", 
 #nullable restore
 #line 44 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\NavMenu.razor"
                               link.URL
@@ -168,11 +142,10 @@ using IMS_Library;
 #line hidden
 #nullable disable
             );
-            __builder.AddAttribute(22, "style", "background-color:transparent");
-            __builder.AddMarkupContent(23, "\r\n                        ");
-            __builder.OpenElement(24, "img");
-            __builder.AddAttribute(25, "draggable", "false");
-            __builder.AddAttribute(26, "src", 
+            __builder.AddAttribute(17, "style", "background-color:transparent");
+            __builder.OpenElement(18, "img");
+            __builder.AddAttribute(19, "draggable", "false");
+            __builder.AddAttribute(20, "src", 
 #nullable restore
 #line 45 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\NavMenu.razor"
                                                      link.ImageLocation
@@ -181,11 +154,11 @@ using IMS_Library;
 #line hidden
 #nullable disable
             );
-            __builder.AddAttribute(27, "data-toggle", "tooltip");
-            __builder.AddAttribute(28, "data-container", "app");
-            __builder.AddAttribute(29, "data-trigger", "hover");
-            __builder.AddAttribute(30, "data-placement", "right");
-            __builder.AddAttribute(31, "title", 
+            __builder.AddAttribute(21, "data-toggle", "tooltip");
+            __builder.AddAttribute(22, "data-container", "app");
+            __builder.AddAttribute(23, "data-trigger", "hover");
+            __builder.AddAttribute(24, "data-placement", "right");
+            __builder.AddAttribute(25, "title", 
 #nullable restore
 #line 45 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\NavMenu.razor"
                                                                                                                                                                         link.Tooltip
@@ -194,14 +167,11 @@ using IMS_Library;
 #line hidden
 #nullable disable
             );
-            __builder.AddAttribute(32, "style", "height:50px; width:50px; margin-left:-15px");
-            __builder.AddAttribute(33, "onclick", "$(this).tooltip(\'hide\');");
+            __builder.AddAttribute(26, "style", "height:50px; width:50px; margin-left:-15px");
+            __builder.AddAttribute(27, "onclick", "$(this).tooltip(\'hide\');");
             __builder.CloseElement();
-            __builder.AddMarkupContent(34, "\r\n                    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(35, "\r\n                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(36, "\r\n");
 #nullable restore
 #line 48 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\NavMenu.razor"
             }
@@ -209,11 +179,8 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(37, "        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(38, "\r\n    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(39, "\r\n");
             __builder.CloseElement();
         }
         #pragma warning restore 1998

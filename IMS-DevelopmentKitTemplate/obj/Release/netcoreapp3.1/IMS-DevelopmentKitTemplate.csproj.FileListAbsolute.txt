@@ -36,3 +36,5 @@ D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKitTemplate\obj\Release\net
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKitTemplate\obj\Release\netcoreapp3.1\staticwebassets\IMS-DevelopmentKitTemplate.StaticWebAssets.xml
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKitTemplate\obj\Release\netcoreapp3.1\IMS-DevelopmentKitTemplate.dll
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKitTemplate\obj\Release\netcoreapp3.1\IMS-DevelopmentKitTemplate.pdb
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKitTemplate\obj\Release\netcoreapp3.1\IMS-DevelopmentKitTemplate.RazorComponent.output.cache
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKitTemplate\obj\Release\netcoreapp3.1\scopedcss\bundle\IMS-DevelopmentKitTemplate.styles.css

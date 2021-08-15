@@ -60,12 +60,12 @@
     World loadedWorld = IMS.Instance.WorldManager.GetWorldByID(WorldID);
 }
 <h3>Manage @loadedWorld.Name</h3>
-<label style="color:gray; font-weight:normal">@loadedWorld.Edition | @loadedWorld.ID </label>
+<label style="color:gray; font-weight:normal; margin-right:5px;">@loadedWorld.Edition | @loadedWorld.ID </label>
 @{
     bool shouldRenderWorldSize = WorldSize is null ? false : WorldSize.IsCompletedSuccessfully;
     if (shouldRenderWorldSize)
     {
-        <label style="color:gray; font-weight:normal">| Current world size: @(WorldSize.Result / 1000000)MB</label>
+        <label style="color:gray; font-weight:normal; margin-right:5px;">| Current world size: @(WorldSize.Result / 1000000)MB</label>
     }
     if (TotalSize != null && TotalSize.IsCompletedSuccessfully)
     {

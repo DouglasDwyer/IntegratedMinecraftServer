@@ -1,6 +1,5 @@
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\bin\Debug\netcoreapp3.1\appsettings.Development.json
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\bin\Debug\netcoreapp3.1\appsettings.json
-D:\Projects\IntegratedMinecraftServer\IMS-Interface\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\bin\Debug\netcoreapp3.1\IMS-Interface.exe
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\bin\Debug\netcoreapp3.1\IMS-Interface.deps.json
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\bin\Debug\netcoreapp3.1\IMS-Interface.runtimeconfig.json
@@ -266,3 +265,5 @@ D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\Razo
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\bin\Debug\netcoreapp3.1\System.Reflection.MetadataLoadContext.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\PluginManager.razor.g.cs
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\Razor\Pages\PluginManager.razor.g.cs
+D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\IMS-Interface.RazorComponent.output.cache
+D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Debug\netcoreapp3.1\scopedcss\bundle\IMS-Interface.styles.css

@@ -124,11 +124,10 @@ using System.IO;
             __builder.AddMarkupContent(2, "<label>The world icon should be a 64x64 pixel image.</label>\r\n<br>\r\n<br>\r\n<label></label>\r\n");
             __builder.OpenElement(3, "div");
             __builder.AddAttribute(4, "style", "position:absolute;right:10px;bottom:10px;");
-            __builder.AddMarkupContent(5, "\r\n    ");
-            __builder.OpenElement(6, "label");
-            __builder.AddAttribute(7, "class", "btn btn-primary");
-            __builder.AddAttribute(8, "style", "padding:5px");
-            __builder.AddAttribute(9, "disabled", 
+            __builder.OpenElement(5, "label");
+            __builder.AddAttribute(6, "class", "btn btn-primary");
+            __builder.AddAttribute(7, "style", "padding:5px");
+            __builder.AddAttribute(8, "disabled", 
 #nullable restore
 #line 22 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\ChangeWorldIconDisplayView.razor"
                                                                   IsUploading
@@ -137,12 +136,12 @@ using System.IO;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(10, "\r\n        Upload icon\r\n        ");
-            __builder.OpenElement(11, "input");
-            __builder.AddAttribute(12, "class", "btn btn-primary");
-            __builder.AddAttribute(13, "style", "display:none");
-            __builder.AddAttribute(14, "type", "file");
-            __builder.AddAttribute(15, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.ChangeEventArgs>(this, 
+            __builder.AddMarkupContent(9, "\r\n        Upload icon\r\n        ");
+            __builder.OpenElement(10, "input");
+            __builder.AddAttribute(11, "class", "btn btn-primary");
+            __builder.AddAttribute(12, "style", "display:none");
+            __builder.AddAttribute(13, "type", "file");
+            __builder.AddAttribute(14, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.ChangeEventArgs>(this, 
 #nullable restore
 #line 24 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\ChangeWorldIconDisplayView.razor"
                                                                                                           UploadIcon
@@ -151,7 +150,7 @@ using System.IO;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(16, "accept", 
+            __builder.AddAttribute(15, "accept", 
 #nullable restore
 #line 24 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\ChangeWorldIconDisplayView.razor"
                                                                                                                                AcceptedFileTypes
@@ -160,7 +159,7 @@ using System.IO;
 #line hidden
 #nullable disable
             );
-            __builder.AddAttribute(17, "disabled", 
+            __builder.AddAttribute(16, "disabled", 
 #nullable restore
 #line 24 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\ChangeWorldIconDisplayView.razor"
                                                                                                                                                              IsUploading
@@ -169,7 +168,7 @@ using System.IO;
 #line hidden
 #nullable disable
             );
-            __builder.AddElementReferenceCapture(18, (__value) => {
+            __builder.AddElementReferenceCapture(17, (__value) => {
 #nullable restore
 #line 24 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\ChangeWorldIconDisplayView.razor"
                                                                               WorldIconUpload = __value;
@@ -180,12 +179,11 @@ using System.IO;
             }
             );
             __builder.CloseElement();
-            __builder.AddMarkupContent(19, "\r\n    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(20, "\r\n    ");
-            __builder.OpenElement(21, "button");
-            __builder.AddAttribute(22, "class", "btn btn-danger");
-            __builder.AddAttribute(23, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.AddMarkupContent(18, "\r\n    ");
+            __builder.OpenElement(19, "button");
+            __builder.AddAttribute(20, "class", "btn btn-danger");
+            __builder.AddAttribute(21, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 26 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\ChangeWorldIconDisplayView.razor"
                                              DeleteIcon
@@ -194,7 +192,7 @@ using System.IO;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(24, "disabled", 
+            __builder.AddAttribute(22, "disabled", 
 #nullable restore
 #line 26 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\ChangeWorldIconDisplayView.razor"
                                                                     IsUploading
@@ -203,12 +201,12 @@ using System.IO;
 #line hidden
 #nullable disable
             );
-            __builder.AddContent(25, "Clear icon");
+            __builder.AddContent(23, "Clear icon");
             __builder.CloseElement();
-            __builder.AddMarkupContent(26, "\r\n    ");
-            __builder.OpenElement(27, "button");
-            __builder.AddAttribute(28, "class", "btn btn-default");
-            __builder.AddAttribute(29, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.AddMarkupContent(24, "\r\n    ");
+            __builder.OpenElement(25, "button");
+            __builder.AddAttribute(26, "class", "btn btn-default");
+            __builder.AddAttribute(27, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 27 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\ChangeWorldIconDisplayView.razor"
                                               x => PopupManager.ClosePopup()
@@ -217,7 +215,7 @@ using System.IO;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(30, "disabled", 
+            __builder.AddAttribute(28, "disabled", 
 #nullable restore
 #line 27 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\ChangeWorldIconDisplayView.razor"
                                                                                          IsUploading
@@ -226,9 +224,8 @@ using System.IO;
 #line hidden
 #nullable disable
             );
-            __builder.AddContent(31, "Cancel");
+            __builder.AddContent(29, "Cancel");
             __builder.CloseElement();
-            __builder.AddMarkupContent(32, "\r\n");
             __builder.CloseElement();
         }
         #pragma warning restore 1998

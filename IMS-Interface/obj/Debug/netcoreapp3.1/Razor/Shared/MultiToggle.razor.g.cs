@@ -101,11 +101,9 @@ using IMS_Interface.Preferences;
             __builder.AddMarkupContent(0, "<style>\r\n    div, input, label {\r\n        outline: none !important;\r\n    }\r\n</style>\r\n");
             __builder.OpenElement(1, "div");
             __builder.AddAttribute(2, "style", "display:inline-block");
-            __builder.AddMarkupContent(3, "\r\n    ");
-            __builder.OpenElement(4, "div");
-            __builder.AddAttribute(5, "class", "btn-group btn-group-toggle");
-            __builder.AddAttribute(6, "data-toggle", "buttons");
-            __builder.AddMarkupContent(7, "\r\n");
+            __builder.OpenElement(3, "div");
+            __builder.AddAttribute(4, "class", "btn-group btn-group-toggle");
+            __builder.AddAttribute(5, "data-toggle", "buttons");
 #nullable restore
 #line 10 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MultiToggle.razor"
           
@@ -116,9 +114,8 @@ using IMS_Interface.Preferences;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(8, "                ");
-            __builder.OpenElement(9, "label");
-            __builder.AddAttribute(10, "class", "btn" + " btn-primary" + " " + (
+            __builder.OpenElement(6, "label");
+            __builder.AddAttribute(7, "class", "btn" + " btn-primary" + " " + (
 #nullable restore
 #line 14 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MultiToggle.razor"
                                                 index == SelectedIndex ? "active" : ""
@@ -127,7 +124,7 @@ using IMS_Interface.Preferences;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(11, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.AddAttribute(8, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 14 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MultiToggle.razor"
                                                                                                      () => { OnClicked(index); }
@@ -136,8 +133,8 @@ using IMS_Interface.Preferences;
 #line hidden
 #nullable disable
             ));
-            __builder.AddMarkupContent(12, "\r\n                    <input type=\"radio\" autocomplete=\"off\"> ");
-            __builder.AddContent(13, 
+            __builder.AddMarkupContent(9, "<input type=\"radio\" autocomplete=\"off\"> ");
+            __builder.AddContent(10, 
 #nullable restore
 #line 15 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MultiToggle.razor"
                                                              Options[index]
@@ -146,9 +143,7 @@ using IMS_Interface.Preferences;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(14, "\r\n                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(15, "\r\n");
 #nullable restore
 #line 17 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MultiToggle.razor"
             }
@@ -157,9 +152,7 @@ using IMS_Interface.Preferences;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(16, "    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(17, "\r\n");
             __builder.CloseElement();
         }
         #pragma warning restore 1998

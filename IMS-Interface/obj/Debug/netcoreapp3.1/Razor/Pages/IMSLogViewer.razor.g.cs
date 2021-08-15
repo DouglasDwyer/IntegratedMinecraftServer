@@ -109,9 +109,8 @@ using IMS_Library;
             __builder.AddMarkupContent(0, "<h3>IMS Logs</h3>\r\n\r\n");
             __builder.OpenElement(1, "div");
             __builder.AddAttribute(2, "style", "border:solid 1px #ddd; border-radius:3px");
-            __builder.AddMarkupContent(3, "\r\n    ");
-            __builder.OpenComponent<IMS_Interface.LogViewer>(4);
-            __builder.AddAttribute(5, "LogManager", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<IMS_Library.ILogProvider>(
+            __builder.OpenComponent<IMS_Interface.LogViewer>(3);
+            __builder.AddAttribute(4, "LogManager", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<IMS_Library.ILogProvider>(
 #nullable restore
 #line 9 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\IMSLogViewer.razor"
                            IMS.Instance
@@ -121,7 +120,6 @@ using IMS_Library;
 #nullable disable
             ));
             __builder.CloseComponent();
-            __builder.AddMarkupContent(6, "\r\n");
             __builder.CloseElement();
         }
         #pragma warning restore 1998

@@ -108,7 +108,6 @@ using IMS_Library;
         {
             __builder.OpenElement(0, "div");
             __builder.AddAttribute(1, "style", "width:fit-content;height:fit-content;margin:auto");
-            __builder.AddMarkupContent(2, "\r\n");
 #nullable restore
 #line 9 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\ServerManagement.razor"
      foreach (ServerProxy server in IMS.Instance.ServerManager.Servers)
@@ -117,9 +116,8 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(3, "        ");
-            __builder.OpenComponent<IMS_Interface.ServerOverviewWidget>(4);
-            __builder.AddAttribute(5, "CurrentServer", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<IMS_Library.ServerProxy>(
+            __builder.OpenComponent<IMS_Interface.ServerOverviewWidget>(2);
+            __builder.AddAttribute(3, "CurrentServer", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<IMS_Library.ServerProxy>(
 #nullable restore
 #line 11 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\ServerManagement.razor"
                                              server
@@ -129,7 +127,7 @@ using IMS_Library;
 #nullable disable
             ));
             __builder.CloseComponent();
-            __builder.AddMarkupContent(6, "\r\n        <br>\r\n");
+            __builder.AddMarkupContent(4, "\r\n        <br>");
 #nullable restore
 #line 13 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\ServerManagement.razor"
     }

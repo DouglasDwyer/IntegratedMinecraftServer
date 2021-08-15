@@ -33,6 +33,10 @@ namespace IMS_Library
         /// <returns>Whether the file is locked or not.</returns>
         public static bool IsFileLocked(this FileInfo file)
         {
+            if(!file.Exists)
+            {
+                throw new FileNotFoundException(file.FullName);
+            }
             try
             {
                 using (FileStream stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None))

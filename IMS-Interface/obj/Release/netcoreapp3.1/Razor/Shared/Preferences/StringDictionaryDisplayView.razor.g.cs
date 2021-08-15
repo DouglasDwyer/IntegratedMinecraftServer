@@ -119,16 +119,12 @@ using System.Reflection;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(6, "\r\n    ");
-            __builder.OpenElement(7, "thead");
-            __builder.AddMarkupContent(8, "\r\n        ");
-            __builder.OpenElement(9, "tr");
-            __builder.AddMarkupContent(10, "\r\n            ");
-            __builder.OpenElement(11, "th");
-            __builder.AddMarkupContent(12, "\r\n                ");
-            __builder.OpenElement(13, "label");
-            __builder.AddAttribute(14, "style", "font-weight:normal; vertical-align:middle");
-            __builder.AddContent(15, 
+            __builder.OpenElement(6, "thead");
+            __builder.OpenElement(7, "tr");
+            __builder.OpenElement(8, "th");
+            __builder.OpenElement(9, "label");
+            __builder.AddAttribute(10, "style", "font-weight:normal; vertical-align:middle");
+            __builder.AddContent(11, 
 #nullable restore
 #line 11 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\StringDictionaryDisplayView.razor"
                                                                           DisplayData.DisplayName
@@ -138,11 +134,11 @@ using System.Reflection;
 #nullable disable
             );
             __builder.CloseElement();
-            __builder.AddMarkupContent(16, "\r\n                ");
-            __builder.OpenElement(17, "button");
-            __builder.AddAttribute(18, "class", "btn btn-default");
-            __builder.AddAttribute(19, "style", "float:right; font-weight:bold");
-            __builder.AddAttribute(20, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.AddMarkupContent(12, "\r\n                ");
+            __builder.OpenElement(13, "button");
+            __builder.AddAttribute(14, "class", "btn btn-default");
+            __builder.AddAttribute(15, "style", "float:right; font-weight:bold");
+            __builder.AddAttribute(16, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 12 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\StringDictionaryDisplayView.razor"
                                                                                                   x => EditingDictionary.Add(new MutableKeyValuePair("", ""))
@@ -151,39 +147,27 @@ using System.Reflection;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(21, "+");
+            __builder.AddContent(17, "+");
             __builder.CloseElement();
-            __builder.AddMarkupContent(22, "\r\n            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(23, "\r\n        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(24, "\r\n    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(25, "\r\n    ");
-            __builder.OpenElement(26, "tbody");
-            __builder.AddMarkupContent(27, "\r\n        ");
-            __builder.OpenElement(28, "tr");
-            __builder.AddMarkupContent(29, "\r\n            ");
-            __builder.OpenElement(30, "td");
-            __builder.AddMarkupContent(31, "\r\n                ");
-            __builder.OpenElement(32, "table");
-            __builder.AddAttribute(33, "class", "table table-striped");
-            __builder.AddMarkupContent(34, "\r\n                    ");
-            __builder.AddMarkupContent(35, @"<thead>
-                        <tr>
-                            <th>
+            __builder.AddMarkupContent(18, "\r\n    ");
+            __builder.OpenElement(19, "tbody");
+            __builder.OpenElement(20, "tr");
+            __builder.OpenElement(21, "td");
+            __builder.OpenElement(22, "table");
+            __builder.AddAttribute(23, "class", "table table-striped");
+            __builder.AddMarkupContent(24, @"<thead><tr><th>
                                 Key
                             </th>
                             <th></th>
                             <th>
                                 Value
                             </th>
-                            <th></th>
-                        </tr>
-                    </thead>
+                            <th></th></tr></thead>
                     ");
-            __builder.OpenElement(36, "tbody");
-            __builder.AddMarkupContent(37, "\r\n");
+            __builder.OpenElement(25, "tbody");
 #nullable restore
 #line 33 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\StringDictionaryDisplayView.razor"
                          foreach (MutableKeyValuePair pair in EditingDictionary)
@@ -192,11 +176,8 @@ using System.Reflection;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(38, "                            ");
-            __builder.OpenElement(39, "tr");
-            __builder.AddMarkupContent(40, "\r\n                                ");
-            __builder.OpenElement(41, "td");
-            __builder.AddMarkupContent(42, "\r\n");
+            __builder.OpenElement(26, "tr");
+            __builder.OpenElement(27, "td");
 #nullable restore
 #line 37 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\StringDictionaryDisplayView.razor"
                                       
@@ -206,10 +187,9 @@ using System.Reflection;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(43, "                                    ");
-            __builder.OpenElement(44, "input");
-            __builder.AddAttribute(45, "type", "text");
-            __builder.AddAttribute(46, "class", "form-control" + " " + (
+            __builder.OpenElement(28, "input");
+            __builder.AddAttribute(29, "type", "text");
+            __builder.AddAttribute(30, "class", "form-control" + " " + (
 #nullable restore
 #line 40 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\StringDictionaryDisplayView.razor"
                                                                              keyInvalid ? "has-error" : ""
@@ -218,8 +198,8 @@ using System.Reflection;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(47, "style", "width:100%");
-            __builder.AddAttribute(48, "value", 
+            __builder.AddAttribute(31, "style", "width:100%");
+            __builder.AddAttribute(32, "value", 
 #nullable restore
 #line 40 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\StringDictionaryDisplayView.razor"
                                                                                                                                         pair.Key
@@ -228,7 +208,7 @@ using System.Reflection;
 #line hidden
 #nullable disable
             );
-            __builder.AddAttribute(49, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.ChangeEventArgs>(this, 
+            __builder.AddAttribute(33, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.ChangeEventArgs>(this, 
 #nullable restore
 #line 40 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\StringDictionaryDisplayView.razor"
                                                                                                                                                              x => { pair.Key = (string)x.Value; UpdateDictionary(); }
@@ -238,7 +218,6 @@ using System.Reflection;
 #nullable disable
             ));
             __builder.CloseElement();
-            __builder.AddMarkupContent(50, "\r\n");
 #nullable restore
 #line 41 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\StringDictionaryDisplayView.razor"
                                      if (keyInvalid)
@@ -247,8 +226,7 @@ using System.Reflection;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(51, "                                        ");
-            __builder.AddMarkupContent(52, "<label class=\"alert-danger\" style=\"background-color:transparent; font-weight:normal;\">Duplicate key</label>\r\n");
+            __builder.AddMarkupContent(34, "<label class=\"alert-danger\" style=\"background-color:transparent; font-weight:normal;\">Duplicate key</label>");
 #nullable restore
 #line 44 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\StringDictionaryDisplayView.razor"
                                     }
@@ -256,17 +234,15 @@ using System.Reflection;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(53, "                                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(54, "\r\n                                ");
-            __builder.AddMarkupContent(55, "<td style=\"width:20px\">\r\n                                    =\r\n                                </td>\r\n                                ");
-            __builder.OpenElement(56, "td");
-            __builder.AddMarkupContent(57, "\r\n                                    ");
-            __builder.OpenElement(58, "input");
-            __builder.AddAttribute(59, "type", "text");
-            __builder.AddAttribute(60, "class", "form-control");
-            __builder.AddAttribute(61, "style", "width:100%");
-            __builder.AddAttribute(62, "value", 
+            __builder.AddMarkupContent(35, "\r\n                                ");
+            __builder.AddMarkupContent(36, "<td style=\"width:20px\">\r\n                                    =\r\n                                </td>\r\n                                ");
+            __builder.OpenElement(37, "td");
+            __builder.OpenElement(38, "input");
+            __builder.AddAttribute(39, "type", "text");
+            __builder.AddAttribute(40, "class", "form-control");
+            __builder.AddAttribute(41, "style", "width:100%");
+            __builder.AddAttribute(42, "value", 
 #nullable restore
 #line 50 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\StringDictionaryDisplayView.razor"
                                                                                                        pair.Value
@@ -275,7 +251,7 @@ using System.Reflection;
 #line hidden
 #nullable disable
             );
-            __builder.AddAttribute(63, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.ChangeEventArgs>(this, 
+            __builder.AddAttribute(43, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.ChangeEventArgs>(this, 
 #nullable restore
 #line 50 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\StringDictionaryDisplayView.razor"
                                                                                                                               x => { pair.Value = (string)x.Value; UpdateDictionary(); }
@@ -285,16 +261,14 @@ using System.Reflection;
 #nullable disable
             ));
             __builder.CloseElement();
-            __builder.AddMarkupContent(64, "\r\n                                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(65, "\r\n                                ");
-            __builder.OpenElement(66, "td");
-            __builder.AddAttribute(67, "style", "width:20px");
-            __builder.AddMarkupContent(68, "\r\n                                    ");
-            __builder.OpenElement(69, "button");
-            __builder.AddAttribute(70, "class", "btn btn-default");
-            __builder.AddAttribute(71, "style", "float:right; font-weight:bold");
-            __builder.AddAttribute(72, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.AddMarkupContent(44, "\r\n                                ");
+            __builder.OpenElement(45, "td");
+            __builder.AddAttribute(46, "style", "width:20px");
+            __builder.OpenElement(47, "button");
+            __builder.AddAttribute(48, "class", "btn btn-default");
+            __builder.AddAttribute(49, "style", "float:right; font-weight:bold");
+            __builder.AddAttribute(50, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 53 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\StringDictionaryDisplayView.razor"
                                                                                                                     x => { EditingDictionary.Remove(pair); UpdateDictionary(); }
@@ -303,13 +277,10 @@ using System.Reflection;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(73, "-");
+            __builder.AddContent(51, "-");
             __builder.CloseElement();
-            __builder.AddMarkupContent(74, "\r\n                                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(75, "\r\n                            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(76, "\r\n");
 #nullable restore
 #line 56 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\StringDictionaryDisplayView.razor"
                         }
@@ -317,17 +288,11 @@ using System.Reflection;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(77, "                    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(78, "\r\n                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(79, "\r\n            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(80, "\r\n        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(81, "\r\n    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(82, "\r\n");
             __builder.CloseElement();
         }
         #pragma warning restore 1998

@@ -109,7 +109,6 @@ using IMS_Library;
             __builder.AddMarkupContent(0, "<h3>IMS Overview</h3>\r\n");
             __builder.OpenElement(1, "div");
             __builder.AddAttribute(2, "style", "width:fit-content;height:fit-content;margin:auto");
-            __builder.AddMarkupContent(3, "\r\n");
 #nullable restore
 #line 10 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Index.razor"
      foreach (ServerProxy server in IMS.Instance.ServerManager.Servers)
@@ -118,9 +117,8 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(4, "        ");
-            __builder.OpenComponent<IMS_Interface.ServerOverviewWidget>(5);
-            __builder.AddAttribute(6, "CurrentServer", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<IMS_Library.ServerProxy>(
+            __builder.OpenComponent<IMS_Interface.ServerOverviewWidget>(3);
+            __builder.AddAttribute(4, "CurrentServer", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<IMS_Library.ServerProxy>(
 #nullable restore
 #line 12 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Index.razor"
                                              server
@@ -129,7 +127,7 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(7, "OnDelete", new System.Action(
+            __builder.AddAttribute(5, "OnDelete", new System.Action(
 #nullable restore
 #line 12 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Index.razor"
                                                                StateHasChanged
@@ -139,7 +137,7 @@ using IMS_Library;
 #nullable disable
             ));
             __builder.CloseComponent();
-            __builder.AddMarkupContent(8, "\r\n        <br>\r\n");
+            __builder.AddMarkupContent(6, "\r\n        <br>");
 #nullable restore
 #line 14 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Index.razor"
     }

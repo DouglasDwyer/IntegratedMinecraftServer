@@ -108,12 +108,11 @@ using IMS_Library;
             __builder.AddMarkupContent(0, "<style>\r\n    .form-control {\r\n        display: inline-block;\r\n        width: 200px;\r\n        margin-left: 2px;\r\n        margin-right: 2px;\r\n    }\r\n</style>\r\n");
             __builder.OpenElement(1, "div");
             __builder.AddAttribute(2, "style", "display:inline-block");
-            __builder.AddMarkupContent(3, "\r\n    ");
-            __builder.AddMarkupContent(4, "<label>Delete any backup named </label>\r\n    ");
-            __builder.OpenElement(5, "input");
-            __builder.AddAttribute(6, "class", "form-control");
-            __builder.AddAttribute(7, "style", "display:inline-block; width:200px");
-            __builder.AddAttribute(8, "value", Microsoft.AspNetCore.Components.BindConverter.FormatValue(
+            __builder.AddMarkupContent(3, "<label>Delete any backup named </label>\r\n    ");
+            __builder.OpenElement(4, "input");
+            __builder.AddAttribute(5, "class", "form-control");
+            __builder.AddAttribute(6, "style", "display:inline-block; width:200px");
+            __builder.AddAttribute(7, "value", Microsoft.AspNetCore.Components.BindConverter.FormatValue(
 #nullable restore
 #line 17 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\RemoveBackupAfterTimeIntervalPolicyDisplayView.razor"
                                                                                   Policy.BackupName
@@ -122,17 +121,17 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(9, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.CreateBinder(this, __value => Policy.BackupName = __value, Policy.BackupName));
+            __builder.AddAttribute(8, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.CreateBinder(this, __value => Policy.BackupName = __value, Policy.BackupName));
             __builder.SetUpdatesAttributeName("value");
             __builder.CloseElement();
-            __builder.AddMarkupContent(10, "\r\n    ");
-            __builder.AddMarkupContent(11, "<label> that is over </label>\r\n    ");
-            __builder.OpenElement(12, "input");
-            __builder.AddAttribute(13, "class", "form-control");
-            __builder.AddAttribute(14, "type", "number");
-            __builder.AddAttribute(15, "min", "1");
-            __builder.AddAttribute(16, "style", "display:inline-block; width:200px");
-            __builder.AddAttribute(17, "value", Microsoft.AspNetCore.Components.BindConverter.FormatValue(
+            __builder.AddMarkupContent(9, "\r\n    ");
+            __builder.AddMarkupContent(10, "<label> that is over </label>\r\n    ");
+            __builder.OpenElement(11, "input");
+            __builder.AddAttribute(12, "class", "form-control");
+            __builder.AddAttribute(13, "type", "number");
+            __builder.AddAttribute(14, "min", "1");
+            __builder.AddAttribute(15, "style", "display:inline-block; width:200px");
+            __builder.AddAttribute(16, "value", Microsoft.AspNetCore.Components.BindConverter.FormatValue(
 #nullable restore
 #line 19 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\RemoveBackupAfterTimeIntervalPolicyDisplayView.razor"
                                                                                                        CurrentBackupTime
@@ -141,11 +140,11 @@ using IMS_Library;
 #line hidden
 #nullable disable
             , culture: global::System.Globalization.CultureInfo.InvariantCulture));
-            __builder.AddAttribute(18, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.CreateBinder(this, __value => CurrentBackupTime = __value, CurrentBackupTime, culture: global::System.Globalization.CultureInfo.InvariantCulture));
+            __builder.AddAttribute(17, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.CreateBinder(this, __value => CurrentBackupTime = __value, CurrentBackupTime, culture: global::System.Globalization.CultureInfo.InvariantCulture));
             __builder.SetUpdatesAttributeName("value");
             __builder.CloseElement();
-            __builder.AddMarkupContent(19, "\r\n    ");
-            __builder.AddMarkupContent(20, "<label> hour(s) old.</label>\r\n");
+            __builder.AddMarkupContent(18, "\r\n    ");
+            __builder.AddMarkupContent(19, "<label> hour(s) old.</label>");
             __builder.CloseElement();
         }
         #pragma warning restore 1998

@@ -123,8 +123,7 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(0, "        ");
-            __builder.AddMarkupContent(1, "<label style=\"font-weight:normal; margin:10px; vertical-align:sub\"><i>There are no logs to show here.</i></label>\r\n");
+            __builder.AddMarkupContent(0, "<label style=\"font-weight:normal; margin:10px; vertical-align:sub\"><i>There are no logs to show here.</i></label>");
 #nullable restore
 #line 12 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\LogViewer.razor"
     }
@@ -134,27 +133,10 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(2, "        ");
-            __builder.OpenElement(3, "table");
-            __builder.AddAttribute(4, "class", "table table-striped");
-            __builder.AddMarkupContent(5, "\r\n            ");
-            __builder.AddMarkupContent(6, @"<thead>
-                <tr>
-                    <th>
-                        Name
-                    </th>
-                    <td>
-                        Date
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-            </thead>
-            ");
-            __builder.OpenElement(7, "tbody");
-            __builder.AddMarkupContent(8, "\r\n");
+            __builder.OpenElement(1, "table");
+            __builder.AddAttribute(2, "class", "table table-striped");
+            __builder.AddMarkupContent(3, "<thead><tr><th>\r\n                        Name\r\n                    </th>\r\n                    <td>\r\n                        Date\r\n                    </td>\r\n                    <td></td>\r\n                    <td></td></tr></thead>\r\n            ");
+            __builder.OpenElement(4, "tbody");
 #nullable restore
 #line 31 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\LogViewer.razor"
                  foreach (LogFileInformation info in files)
@@ -163,14 +145,11 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(9, "                    ");
-            __builder.OpenElement(10, "tr");
-            __builder.AddMarkupContent(11, "\r\n                        ");
-            __builder.OpenElement(12, "th");
-            __builder.AddMarkupContent(13, "\r\n                            ");
-            __builder.OpenElement(14, "a");
-            __builder.AddAttribute(15, "href", "javascript:;");
-            __builder.AddAttribute(16, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.OpenElement(5, "tr");
+            __builder.OpenElement(6, "th");
+            __builder.OpenElement(7, "a");
+            __builder.AddAttribute(8, "href", "javascript:;");
+            __builder.AddAttribute(9, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 35 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\LogViewer.razor"
                                                              x => CurrentInformation = info
@@ -179,7 +158,7 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(17, 
+            __builder.AddContent(10, 
 #nullable restore
 #line 35 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\LogViewer.razor"
                                                                                               info.Name
@@ -189,12 +168,10 @@ using IMS_Library;
 #nullable disable
             );
             __builder.CloseElement();
-            __builder.AddMarkupContent(18, "\r\n                        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(19, "\r\n                        ");
-            __builder.OpenElement(20, "td");
-            __builder.AddMarkupContent(21, "\r\n                            ");
-            __builder.AddContent(22, 
+            __builder.AddMarkupContent(11, "\r\n                        ");
+            __builder.OpenElement(12, "td");
+            __builder.AddContent(13, 
 #nullable restore
 #line 38 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\LogViewer.razor"
                              info.CreationDate
@@ -203,11 +180,9 @@ using IMS_Library;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(23, "\r\n                        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(24, "\r\n                        ");
-            __builder.OpenElement(25, "td");
-            __builder.AddMarkupContent(26, "\r\n");
+            __builder.AddMarkupContent(14, "\r\n                        ");
+            __builder.OpenElement(15, "td");
 #nullable restore
 #line 41 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\LogViewer.razor"
                              if (!info.CleanExit)
@@ -217,7 +192,7 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(27, 
+            __builder.AddContent(16, 
 #nullable restore
 #line 43 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\LogViewer.razor"
                                   "Crash"
@@ -234,14 +209,12 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(28, "                        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(29, "\r\n                        ");
-            __builder.OpenElement(30, "td");
-            __builder.AddMarkupContent(31, "\r\n                            ");
-            __builder.OpenElement(32, "a");
-            __builder.AddAttribute(33, "href", "javascript:;");
-            __builder.AddAttribute(34, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.AddMarkupContent(17, "\r\n                        ");
+            __builder.OpenElement(18, "td");
+            __builder.OpenElement(19, "a");
+            __builder.AddAttribute(20, "href", "javascript:;");
+            __builder.AddAttribute(21, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 47 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\LogViewer.razor"
                                                              x => LogManager.DeleteLogFile(info)
@@ -250,13 +223,10 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(35, "Delete");
+            __builder.AddContent(22, "Delete");
             __builder.CloseElement();
-            __builder.AddMarkupContent(36, "\r\n                        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(37, "\r\n                    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(38, "\r\n");
 #nullable restore
 #line 50 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\LogViewer.razor"
                 }
@@ -264,11 +234,8 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(39, "            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(40, "\r\n        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(41, "\r\n");
 #nullable restore
 #line 53 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\LogViewer.razor"
     }
@@ -279,13 +246,11 @@ else
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(42, "    ");
-            __builder.OpenElement(43, "div");
-            __builder.AddAttribute(44, "style", "padding:10px");
-            __builder.AddMarkupContent(45, "\r\n        ");
-            __builder.OpenElement(46, "a");
-            __builder.AddAttribute(47, "href", "javascript:;");
-            __builder.AddAttribute(48, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.OpenElement(23, "div");
+            __builder.AddAttribute(24, "style", "padding:10px");
+            __builder.OpenElement(25, "a");
+            __builder.AddAttribute(26, "href", "javascript:;");
+            __builder.AddAttribute(27, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 58 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\LogViewer.razor"
                                          x => CurrentInformation = null
@@ -294,11 +259,11 @@ else
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(49, "Back to list");
+            __builder.AddContent(28, "Back to list");
             __builder.CloseElement();
-            __builder.AddMarkupContent(50, "\r\n        <br>\r\n        <br>\r\n        ");
-            __builder.OpenElement(51, "label");
-            __builder.AddContent(52, 
+            __builder.AddMarkupContent(29, "\r\n        <br>\r\n        <br>\r\n        ");
+            __builder.OpenElement(30, "label");
+            __builder.AddContent(31, 
 #nullable restore
 #line 61 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\LogViewer.razor"
                 CurrentInformation.Value.Name
@@ -308,16 +273,15 @@ else
 #nullable disable
             );
             __builder.CloseElement();
-            __builder.AddMarkupContent(53, "\r\n        <br>\r\n        ");
-            __builder.OpenElement(54, "div");
-            __builder.AddAttribute(55, "style", "display:table; width:100%;resize:none; height:100%; min-height:100%; max-height:100%; max-width:100%; min-width:100%; margin:0 auto");
-            __builder.AddMarkupContent(56, "\r\n            ");
-            __builder.OpenElement(57, "textarea");
-            __builder.AddAttribute(58, "id", "ConsoleOutputBox");
-            __builder.AddAttribute(59, "readonly", true);
-            __builder.AddAttribute(60, "rows", "25");
-            __builder.AddAttribute(61, "class", "form-control");
-            __builder.AddAttribute(62, "style", @"
+            __builder.AddMarkupContent(32, "\r\n        <br>\r\n        ");
+            __builder.OpenElement(33, "div");
+            __builder.AddAttribute(34, "style", "display:table; width:100%;resize:none; height:100%; min-height:100%; max-height:100%; max-width:100%; min-width:100%; margin:0 auto");
+            __builder.OpenElement(35, "textarea");
+            __builder.AddAttribute(36, "id", "ConsoleOutputBox");
+            __builder.AddAttribute(37, "readonly", true);
+            __builder.AddAttribute(38, "rows", "25");
+            __builder.AddAttribute(39, "class", "form-control");
+            __builder.AddAttribute(40, "style", @"
             width: 100%;
             display: table-cell;
             resize: none;
@@ -327,7 +291,7 @@ else
             max-width: 100%;
             min-width: 100%;
             font-family: TimesNewRoman,Times New Roman,Times,Baskerville,Georgia,serif;");
-            __builder.AddAttribute(63, "value", 
+            __builder.AddAttribute(41, "value", 
 #nullable restore
 #line 73 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\LogViewer.razor"
                                                                                                  LogManager.GetLogFile(CurrentInformation.Value)
@@ -337,11 +301,8 @@ else
 #nullable disable
             );
             __builder.CloseElement();
-            __builder.AddMarkupContent(64, "\r\n        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(65, "\r\n    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(66, "\r\n");
 #nullable restore
 #line 76 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\LogViewer.razor"
 }

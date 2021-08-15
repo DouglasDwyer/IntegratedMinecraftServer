@@ -135,9 +135,8 @@ using IMS_Library;
 ");
             __builder.OpenElement(1, "div");
             __builder.AddAttribute(2, "style", "margin:5px; float:right");
-            __builder.AddMarkupContent(3, "\r\n    ");
-            __builder.OpenComponent<IMS_Interface.MultiToggle>(4);
-            __builder.AddAttribute(5, "Options", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String[]>(
+            __builder.OpenComponent<IMS_Interface.MultiToggle>(3);
+            __builder.AddAttribute(4, "Options", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String[]>(
 #nullable restore
 #line 35 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                                                       WhitelistOnOffOptions
@@ -146,7 +145,7 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(6, "SelectedIndex", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Int32>(
+            __builder.AddAttribute(5, "SelectedIndex", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Int32>(
 #nullable restore
 #line 35 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                                                                                             CurrentServer.WhitelistEnabled ? 0 : 1
@@ -155,7 +154,7 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(7, "OnSelectionChange", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.Int32>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.Int32>(this, 
+            __builder.AddAttribute(6, "OnSelectionChange", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.Int32>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.Int32>(this, 
 #nullable restore
 #line 35 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                                                                                                                                                        ToggleWhitelist
@@ -164,7 +163,7 @@ using IMS_Library;
 #line hidden
 #nullable disable
             )));
-            __builder.AddComponentReferenceCapture(8, (__value) => {
+            __builder.AddComponentReferenceCapture(7, (__value) => {
 #nullable restore
 #line 35 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                        WhitelistOnOffToggle = (IMS_Interface.MultiToggle)__value;
@@ -175,19 +174,17 @@ using IMS_Library;
             }
             );
             __builder.CloseComponent();
-            __builder.AddMarkupContent(9, "\r\n");
             __builder.CloseElement();
-            __builder.AddMarkupContent(10, "\r\n");
-            __builder.OpenElement(11, "div");
-            __builder.AddAttribute(12, "style", "margin:5px");
-            __builder.AddMarkupContent(13, "\r\n    ");
-            __builder.AddMarkupContent(14, "<label>Add user to whitelist</label>\r\n    <br>\r\n    ");
-            __builder.OpenElement(15, "input");
-            __builder.AddAttribute(16, "class", "form-control");
-            __builder.AddAttribute(17, "style", "width:200px; display:inline-block");
-            __builder.AddAttribute(18, "placeholder", "Username");
-            __builder.AddAttribute(19, "onkeyup", "if (event.keyCode === 13) { document.getElementById(\'AddPlayerButton\').click(); }");
-            __builder.AddAttribute(20, "value", Microsoft.AspNetCore.Components.BindConverter.FormatValue(
+            __builder.AddMarkupContent(8, "\r\n");
+            __builder.OpenElement(9, "div");
+            __builder.AddAttribute(10, "style", "margin:5px");
+            __builder.AddMarkupContent(11, "<label>Add user to whitelist</label>\r\n    <br>\r\n    ");
+            __builder.OpenElement(12, "input");
+            __builder.AddAttribute(13, "class", "form-control");
+            __builder.AddAttribute(14, "style", "width:200px; display:inline-block");
+            __builder.AddAttribute(15, "placeholder", "Username");
+            __builder.AddAttribute(16, "onkeyup", "if (event.keyCode === 13) { document.getElementById(\'AddPlayerButton\').click(); }");
+            __builder.AddAttribute(17, "value", Microsoft.AspNetCore.Components.BindConverter.FormatValue(
 #nullable restore
 #line 40 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                                                                                                                                                                                                     CurrentAddUserText
@@ -196,14 +193,14 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(21, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.CreateBinder(this, __value => CurrentAddUserText = __value, CurrentAddUserText));
+            __builder.AddAttribute(18, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.CreateBinder(this, __value => CurrentAddUserText = __value, CurrentAddUserText));
             __builder.SetUpdatesAttributeName("value");
             __builder.CloseElement();
-            __builder.AddMarkupContent(22, "\r\n    ");
-            __builder.OpenElement(23, "button");
-            __builder.AddAttribute(24, "id", "AddPlayerButton");
-            __builder.AddAttribute(25, "class", "btn btn-primary");
-            __builder.AddAttribute(26, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.AddMarkupContent(19, "\r\n    ");
+            __builder.OpenElement(20, "button");
+            __builder.AddAttribute(21, "id", "AddPlayerButton");
+            __builder.AddAttribute(22, "class", "btn btn-primary");
+            __builder.AddAttribute(23, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 41 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                                                                    AddUserToWhitelistButtonClick
@@ -212,11 +209,10 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(27, "Add");
+            __builder.AddContent(24, "Add");
             __builder.CloseElement();
-            __builder.AddMarkupContent(28, "\r\n");
             __builder.CloseElement();
-            __builder.AddMarkupContent(29, "\r\n<hr>\r\n");
+            __builder.AddMarkupContent(25, "\r\n<hr>");
 #nullable restore
 #line 44 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
   
@@ -227,8 +223,7 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(30, "        ");
-            __builder.AddMarkupContent(31, "<label style=\"padding-top:3px; font-weight:normal\"><i>There are currently no whitelisted players.</i></label>\r\n");
+            __builder.AddMarkupContent(26, "<label style=\"padding-top:3px; font-weight:normal\"><i>There are currently no whitelisted players.</i></label>");
 #nullable restore
 #line 49 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
         return;
@@ -237,9 +232,8 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.OpenElement(32, "table");
-            __builder.AddAttribute(33, "class", "playertable table table-striped");
-            __builder.AddMarkupContent(34, "\r\n");
+            __builder.OpenElement(27, "table");
+            __builder.AddAttribute(28, "class", "playertable table table-striped");
 #nullable restore
 #line 53 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
       
@@ -254,14 +248,11 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(35, "    ");
-            __builder.OpenElement(36, "thead");
-            __builder.AddMarkupContent(37, "\r\n        ");
-            __builder.OpenElement(38, "tr");
-            __builder.AddMarkupContent(39, "\r\n            ");
-            __builder.AddMarkupContent(40, "<th style=\"width:32px\">\r\n            </th>\r\n            ");
-            __builder.AddMarkupContent(41, "<th>\r\n                Name\r\n            </th>\r\n            ");
-            __builder.AddMarkupContent(42, "<th>\r\n                UUID\r\n            </th>\r\n");
+            __builder.OpenElement(29, "thead");
+            __builder.OpenElement(30, "tr");
+            __builder.AddMarkupContent(31, "<th style=\"width:32px\"></th>\r\n            ");
+            __builder.AddMarkupContent(32, "<th>\r\n                Name\r\n            </th>\r\n            ");
+            __builder.AddMarkupContent(33, "<th>\r\n                UUID\r\n            </th>");
 #nullable restore
 #line 71 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
              if (renderIPs)
@@ -270,8 +261,7 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(43, "                ");
-            __builder.AddMarkupContent(44, "<th>\r\n                    IP\r\n                </th>\r\n");
+            __builder.AddMarkupContent(34, "<th>\r\n                    IP\r\n                </th>");
 #nullable restore
 #line 76 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
             }
@@ -279,14 +269,11 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(45, "            ");
-            __builder.AddMarkupContent(46, "<th>\r\n                Last seen\r\n            </th>\r\n            <th></th>\r\n        ");
+            __builder.AddMarkupContent(35, "<th>\r\n                Last seen\r\n            </th>\r\n            <th></th>");
             __builder.CloseElement();
-            __builder.AddMarkupContent(47, "\r\n    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(48, "\r\n    ");
-            __builder.OpenElement(49, "tbody");
-            __builder.AddMarkupContent(50, "\r\n");
+            __builder.AddMarkupContent(36, "\r\n    ");
+            __builder.OpenElement(37, "tbody");
 #nullable restore
 #line 84 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
           
@@ -306,15 +293,12 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(51, "            ");
-            __builder.OpenElement(52, "tr");
-            __builder.AddMarkupContent(53, "\r\n                ");
-            __builder.OpenElement(54, "td");
-            __builder.AddAttribute(55, "style", "width:32px");
-            __builder.AddMarkupContent(56, "\r\n                    ");
-            __builder.OpenElement(57, "div");
-            __builder.AddAttribute(58, "class", "playerheadicon");
-            __builder.AddAttribute(59, "style", "background-image:url(" + (
+            __builder.OpenElement(38, "tr");
+            __builder.OpenElement(39, "td");
+            __builder.AddAttribute(40, "style", "width:32px");
+            __builder.OpenElement(41, "div");
+            __builder.AddAttribute(42, "class", "playerheadicon");
+            __builder.AddAttribute(43, "style", "background-image:url(" + (
 #nullable restore
 #line 93 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                                                                               "https://crafatar.com/avatars/" + player.UUID + "?overlay"
@@ -323,14 +307,11 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ) + ")");
-            __builder.AddMarkupContent(60, "\r\n                    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(61, "\r\n                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(62, "\r\n                ");
-            __builder.OpenElement(63, "th");
-            __builder.AddMarkupContent(64, "\r\n                    ");
-            __builder.AddContent(65, 
+            __builder.AddMarkupContent(44, "\r\n                ");
+            __builder.OpenElement(45, "th");
+            __builder.AddContent(46, 
 #nullable restore
 #line 97 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                      player.Username
@@ -339,12 +320,10 @@ using IMS_Library;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(66, "\r\n                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(67, "\r\n                ");
-            __builder.OpenElement(68, "td");
-            __builder.AddMarkupContent(69, "\r\n                    ");
-            __builder.AddContent(70, 
+            __builder.AddMarkupContent(47, "\r\n                ");
+            __builder.OpenElement(48, "td");
+            __builder.AddContent(49, 
 #nullable restore
 #line 100 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                      player.UUID
@@ -353,9 +332,7 @@ using IMS_Library;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(71, "\r\n                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(72, "\r\n");
 #nullable restore
 #line 102 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                  if (renderIPs)
@@ -364,10 +341,8 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(73, "                    ");
-            __builder.OpenElement(74, "td");
-            __builder.AddMarkupContent(75, "\r\n                        ");
-            __builder.AddContent(76, 
+            __builder.OpenElement(50, "td");
+            __builder.AddContent(51, 
 #nullable restore
 #line 105 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                          player.IP
@@ -376,9 +351,7 @@ using IMS_Library;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(77, "\r\n                    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(78, "\r\n");
 #nullable restore
 #line 107 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                 }
@@ -386,9 +359,7 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(79, "                ");
-            __builder.OpenElement(80, "td");
-            __builder.AddMarkupContent(81, "\r\n");
+            __builder.OpenElement(52, "td");
 #nullable restore
 #line 109 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                      if (onlinePlayers.Contains(player))
@@ -398,7 +369,7 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(82, 
+            __builder.AddContent(53, 
 #nullable restore
 #line 111 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                           "Online for " + GetHoursAndMinutesOfTimespan(DateTime.Now - player.LastConnectionEvent)
@@ -420,7 +391,7 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(83, 
+            __builder.AddContent(54, 
 #nullable restore
 #line 117 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                               "Never"
@@ -440,7 +411,7 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(84, 
+            __builder.AddContent(55, 
 #nullable restore
 #line 121 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                              player.LastConnectionEvent
@@ -458,18 +429,15 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(85, "                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(86, "\r\n                ");
-            __builder.OpenElement(87, "td");
-            __builder.AddAttribute(88, "style", "text-align:right");
-            __builder.AddMarkupContent(89, "\r\n                    ");
-            __builder.OpenElement(90, "div");
-            __builder.AddAttribute(91, "style", "display:inline");
-            __builder.AddMarkupContent(92, "\r\n                        ");
-            __builder.OpenElement(93, "button");
-            __builder.AddAttribute(94, "class", "linkbutton");
-            __builder.AddAttribute(95, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.AddMarkupContent(56, "\r\n                ");
+            __builder.OpenElement(57, "td");
+            __builder.AddAttribute(58, "style", "text-align:right");
+            __builder.OpenElement(59, "div");
+            __builder.AddAttribute(60, "style", "display:inline");
+            __builder.OpenElement(61, "button");
+            __builder.AddAttribute(62, "class", "linkbutton");
+            __builder.AddAttribute(63, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 127 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                                                              x => UnwhitelistPlayer(player.Username)
@@ -478,9 +446,8 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(96, "Unwhitelist");
+            __builder.AddContent(64, "Unwhitelist");
             __builder.CloseElement();
-            __builder.AddMarkupContent(97, "\r\n");
 #nullable restore
 #line 128 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                          if (renderOps)
@@ -490,7 +457,7 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(98, 
+            __builder.AddContent(65, 
 #nullable restore
 #line 130 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                               "|"
@@ -507,10 +474,9 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(99, "                                ");
-            __builder.OpenElement(100, "button");
-            __builder.AddAttribute(101, "class", "linkbutton");
-            __builder.AddAttribute(102, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.OpenElement(66, "button");
+            __builder.AddAttribute(67, "class", "linkbutton");
+            __builder.AddAttribute(68, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 133 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                                                                      x => DeopPlayer(player.Username)
@@ -519,9 +485,8 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(103, "Deop");
+            __builder.AddContent(69, "Deop");
             __builder.CloseElement();
-            __builder.AddMarkupContent(104, "\r\n");
 #nullable restore
 #line 134 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                             }
@@ -531,10 +496,9 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(105, "                                ");
-            __builder.OpenElement(106, "button");
-            __builder.AddAttribute(107, "class", "linkbutton");
-            __builder.AddAttribute(108, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.OpenElement(70, "button");
+            __builder.AddAttribute(71, "class", "linkbutton");
+            __builder.AddAttribute(72, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 137 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                                                                      x => OpPlayer(player.Username)
@@ -543,9 +507,8 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(109, "Op");
+            __builder.AddContent(73, "Op");
             __builder.CloseElement();
-            __builder.AddMarkupContent(110, "\r\n");
 #nullable restore
 #line 138 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                             }
@@ -570,7 +533,7 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(111, 
+            __builder.AddContent(74, 
 #nullable restore
 #line 142 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                               "|"
@@ -579,10 +542,9 @@ using IMS_Library;
 #line hidden
 #nullable disable
             );
-            __builder.AddContent(112, "                            ");
-            __builder.OpenElement(113, "button");
-            __builder.AddAttribute(114, "class", "linkbutton");
-            __builder.AddAttribute(115, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.OpenElement(75, "button");
+            __builder.AddAttribute(76, "class", "linkbutton");
+            __builder.AddAttribute(77, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 143 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                                                                  x => KickPlayer(player.Username)
@@ -591,9 +553,8 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(116, "Kick");
+            __builder.AddContent(78, "Kick");
             __builder.CloseElement();
-            __builder.AddMarkupContent(117, "\r\n");
 #nullable restore
 #line 144 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                         }
@@ -610,7 +571,7 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(118, 
+            __builder.AddContent(79, 
 #nullable restore
 #line 147 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                               "|"
@@ -628,10 +589,9 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(119, "                                ");
-            __builder.OpenElement(120, "button");
-            __builder.AddAttribute(121, "class", "linkbutton");
-            __builder.AddAttribute(122, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.OpenElement(80, "button");
+            __builder.AddAttribute(81, "class", "linkbutton");
+            __builder.AddAttribute(82, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 150 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                                                                      x => BanPlayer(player.Username)
@@ -640,9 +600,8 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(123, "Ban");
+            __builder.AddContent(83, "Ban");
             __builder.CloseElement();
-            __builder.AddMarkupContent(124, "\r\n");
 #nullable restore
 #line 151 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                             }
@@ -652,10 +611,9 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(125, "                                ");
-            __builder.OpenElement(126, "button");
-            __builder.AddAttribute(127, "class", "linkbutton");
-            __builder.AddAttribute(128, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.OpenElement(84, "button");
+            __builder.AddAttribute(85, "class", "linkbutton");
+            __builder.AddAttribute(86, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 154 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                                                                      x => UnbanPlayer(player.Username)
@@ -664,9 +622,8 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(129, "Unban");
+            __builder.AddContent(87, "Unban");
             __builder.CloseElement();
-            __builder.AddMarkupContent(130, "\r\n");
 #nullable restore
 #line 155 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                             }
@@ -684,7 +641,7 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(131, 
+            __builder.AddContent(88, 
 #nullable restore
 #line 159 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                               "|"
@@ -702,10 +659,9 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(132, "                                ");
-            __builder.OpenElement(133, "button");
-            __builder.AddAttribute(134, "class", "linkbutton");
-            __builder.AddAttribute(135, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.OpenElement(89, "button");
+            __builder.AddAttribute(90, "class", "linkbutton");
+            __builder.AddAttribute(91, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 162 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                                                                      x => BanIP(player.IP)
@@ -714,9 +670,8 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(136, "Ban IP");
+            __builder.AddContent(92, "Ban IP");
             __builder.CloseElement();
-            __builder.AddMarkupContent(137, "\r\n");
 #nullable restore
 #line 163 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                             }
@@ -726,10 +681,9 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(138, "                                ");
-            __builder.OpenElement(139, "button");
-            __builder.AddAttribute(140, "class", "linkbutton");
-            __builder.AddAttribute(141, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.OpenElement(93, "button");
+            __builder.AddAttribute(94, "class", "linkbutton");
+            __builder.AddAttribute(95, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 166 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                                                                      x => UnbanIP(player.IP)
@@ -738,9 +692,8 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(142, "Unban IP");
+            __builder.AddContent(96, "Unban IP");
             __builder.CloseElement();
-            __builder.AddMarkupContent(143, "\r\n");
 #nullable restore
 #line 167 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
                             }
@@ -749,13 +702,9 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(144, "                    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(145, "\r\n                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(146, "\r\n            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(147, "\r\n");
 #nullable restore
 #line 172 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\WhitelistPlayerDisplayView.razor"
         }
@@ -763,9 +712,7 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(148, "    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(149, "\r\n");
             __builder.CloseElement();
         }
         #pragma warning restore 1998

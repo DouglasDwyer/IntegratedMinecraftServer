@@ -32,7 +32,7 @@
     }
     @if (!string.IsNullOrEmpty(ApplyText))
     {
-        <button class="btn btn-success" @onclick="Apply">@ApplyText</button>
+        <button class="btn btn-success" style="margin: 0px 5px 0px 0px;" @onclick="Apply">@ApplyText</button>
     }
     @if (!string.IsNullOrEmpty(RevertText))
     {
@@ -40,7 +40,7 @@
     }
     @if (!string.IsNullOrEmpty(ResetText))
     {
-        <button class="btn btn-danger" @onclick="Reset">@ResetText</button>
+        <button class="btn btn-danger" style="margin: 0px 0px 0px 5px;" @onclick="Reset">@ResetText</button>
     }
 </div>
 <br />

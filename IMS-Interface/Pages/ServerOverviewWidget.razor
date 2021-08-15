@@ -33,26 +33,26 @@
                     <br />
                     @if (CurrentServer.State == ServerProxy.ServerState.Disabled)
                     {
-                        <label class="label label-danger">Offline</label>
+                        <label class="label label-danger" style="margin: 0px 5px 0px 0px;">Offline</label>
                     }
                     else if (CurrentServer.State == ServerProxy.ServerState.Running)
                     {
                         if (CurrentServer.CurrentConfiguration is JavaServerConfiguration jConfig)
                         {
-                            <label class="label label-success">@CurrentServer.GetOnlinePlayers().Count()/@jConfig.MaxPlayers online</label>
+                            <label class="label label-success" style="margin: 0px 5px 0px 0px;">@CurrentServer.GetOnlinePlayers().Count()/@jConfig.MaxPlayers online</label>
                         }
                         else if (CurrentServer.CurrentConfiguration is BedrockServerConfiguration bConfig)
                         {
-                            <label class="label label-success">@CurrentServer.GetOnlinePlayers().Count()/@bConfig.MaxPlayers online</label>
+                            <label class="label label-success" style="margin: 0px 5px 0px 0px;">@CurrentServer.GetOnlinePlayers().Count()/@bConfig.MaxPlayers online</label>
                         }
                         else
                         {
-                            <label class="label label-success">@CurrentServer.GetOnlinePlayers().Count() online</label>
+                            <label class="label label-success" style="margin: 0px 5px 0px 0px;">@CurrentServer.GetOnlinePlayers().Count() online</label>
                         }
                     }
                     else
                     {
-                        <label class="label label-danger">@CurrentServer.State</label>
+                        <label class="label label-danger" style="margin: 0px 5px 0px 0px;">@CurrentServer.State</label>
                     }
                     <label class="label label-info">
                         @CurrentServer

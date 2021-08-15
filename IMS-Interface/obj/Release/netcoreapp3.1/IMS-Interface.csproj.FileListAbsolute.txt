@@ -1,6 +1,5 @@
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\bin\Release\netcoreapp3.1\appsettings.Development.json
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\bin\Release\netcoreapp3.1\appsettings.json
-D:\Projects\IntegratedMinecraftServer\IMS-Interface\bin\Release\netcoreapp3.1\Properties\launchSettings.json
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\bin\Release\netcoreapp3.1\IMS-Interface.StaticWebAssets.xml
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\bin\Release\netcoreapp3.1\IMS-Interface.exe
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\bin\Release\netcoreapp3.1\IMS-Interface.deps.json
@@ -264,3 +263,5 @@ D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Release\netcoreapp3.1\st
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Release\netcoreapp3.1\IMS-Interface.dll
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Release\netcoreapp3.1\IMS-Interface.pdb
 D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Release\netcoreapp3.1\IMS-Interface.genruntimeconfig.cache
+D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Release\netcoreapp3.1\IMS-Interface.RazorComponent.output.cache
+D:\Projects\IntegratedMinecraftServer\IMS-Interface\obj\Release\netcoreapp3.1\scopedcss\bundle\IMS-Interface.styles.css

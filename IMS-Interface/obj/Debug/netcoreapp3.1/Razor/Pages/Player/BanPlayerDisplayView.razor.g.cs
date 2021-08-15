@@ -131,8 +131,7 @@ using IMS_Library;
         padding: 0 !important;
         color: #23527c;
     }
-</style>
-");
+</style>");
 #nullable restore
 #line 36 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
   
@@ -143,8 +142,7 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(1, "        ");
-            __builder.AddMarkupContent(2, "<label style=\"padding-top:3px; font-weight:normal\"><i>There are currently no banned players.</i></label>\r\n");
+            __builder.AddMarkupContent(1, "<label style=\"padding-top:3px; font-weight:normal\"><i>There are currently no banned players.</i></label>");
 #nullable restore
 #line 41 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
         return;
@@ -153,9 +151,8 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.OpenElement(3, "table");
-            __builder.AddAttribute(4, "class", "playertable table table-striped");
-            __builder.AddMarkupContent(5, "\r\n");
+            __builder.OpenElement(2, "table");
+            __builder.AddAttribute(3, "class", "playertable table table-striped");
 #nullable restore
 #line 45 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
       
@@ -170,14 +167,11 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(6, "    ");
-            __builder.OpenElement(7, "thead");
-            __builder.AddMarkupContent(8, "\r\n        ");
-            __builder.OpenElement(9, "tr");
-            __builder.AddMarkupContent(10, "\r\n            ");
-            __builder.AddMarkupContent(11, "<th style=\"width:32px\">\r\n            </th>\r\n            ");
-            __builder.AddMarkupContent(12, "<th>\r\n                Name\r\n            </th>\r\n            ");
-            __builder.AddMarkupContent(13, "<th>\r\n                UUID\r\n            </th>\r\n");
+            __builder.OpenElement(4, "thead");
+            __builder.OpenElement(5, "tr");
+            __builder.AddMarkupContent(6, "<th style=\"width:32px\"></th>\r\n            ");
+            __builder.AddMarkupContent(7, "<th>\r\n                Name\r\n            </th>\r\n            ");
+            __builder.AddMarkupContent(8, "<th>\r\n                UUID\r\n            </th>");
 #nullable restore
 #line 63 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
              if (renderIPs)
@@ -186,8 +180,7 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(14, "                ");
-            __builder.AddMarkupContent(15, "<th>\r\n                    IP\r\n                </th>\r\n");
+            __builder.AddMarkupContent(9, "<th>\r\n                    IP\r\n                </th>");
 #nullable restore
 #line 68 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
             }
@@ -195,16 +188,13 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(16, "            ");
-            __builder.AddMarkupContent(17, "<th>\r\n                Banned on\r\n            </th>\r\n            ");
-            __builder.AddMarkupContent(18, "<th>\r\n                Banned by\r\n            </th>\r\n            ");
-            __builder.AddMarkupContent(19, "<th>\r\n                Reason\r\n            </th>\r\n            <th></th>\r\n        ");
+            __builder.AddMarkupContent(10, "<th>\r\n                Banned on\r\n            </th>\r\n            ");
+            __builder.AddMarkupContent(11, "<th>\r\n                Banned by\r\n            </th>\r\n            ");
+            __builder.AddMarkupContent(12, "<th>\r\n                Reason\r\n            </th>\r\n            <th></th>");
             __builder.CloseElement();
-            __builder.AddMarkupContent(20, "\r\n    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(21, "\r\n    ");
-            __builder.OpenElement(22, "tbody");
-            __builder.AddMarkupContent(23, "\r\n");
+            __builder.AddMarkupContent(13, "\r\n    ");
+            __builder.OpenElement(14, "tbody");
 #nullable restore
 #line 82 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
           
@@ -223,15 +213,12 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(24, "            ");
-            __builder.OpenElement(25, "tr");
-            __builder.AddMarkupContent(26, "\r\n                ");
-            __builder.OpenElement(27, "td");
-            __builder.AddAttribute(28, "style", "width:32px");
-            __builder.AddMarkupContent(29, "\r\n                    ");
-            __builder.OpenElement(30, "div");
-            __builder.AddAttribute(31, "class", "playerheadicon");
-            __builder.AddAttribute(32, "style", "background-image:url(" + (
+            __builder.OpenElement(15, "tr");
+            __builder.OpenElement(16, "td");
+            __builder.AddAttribute(17, "style", "width:32px");
+            __builder.OpenElement(18, "div");
+            __builder.AddAttribute(19, "class", "playerheadicon");
+            __builder.AddAttribute(20, "style", "background-image:url(" + (
 #nullable restore
 #line 90 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
                                                                               "https://crafatar.com/avatars/" + info.Player.UUID + "?overlay"
@@ -240,14 +227,11 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ) + ")");
-            __builder.AddMarkupContent(33, "\r\n                    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(34, "\r\n                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(35, "\r\n                ");
-            __builder.OpenElement(36, "th");
-            __builder.AddMarkupContent(37, "\r\n                    ");
-            __builder.AddContent(38, 
+            __builder.AddMarkupContent(21, "\r\n                ");
+            __builder.OpenElement(22, "th");
+            __builder.AddContent(23, 
 #nullable restore
 #line 94 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
                      info.Player.Username
@@ -256,12 +240,10 @@ using IMS_Library;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(39, "\r\n                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(40, "\r\n                ");
-            __builder.OpenElement(41, "td");
-            __builder.AddMarkupContent(42, "\r\n                    ");
-            __builder.AddContent(43, 
+            __builder.AddMarkupContent(24, "\r\n                ");
+            __builder.OpenElement(25, "td");
+            __builder.AddContent(26, 
 #nullable restore
 #line 97 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
                      info.Player.UUID
@@ -270,9 +252,7 @@ using IMS_Library;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(44, "\r\n                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(45, "\r\n");
 #nullable restore
 #line 99 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
                  if (renderIPs)
@@ -281,10 +261,8 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(46, "                    ");
-            __builder.OpenElement(47, "td");
-            __builder.AddMarkupContent(48, "\r\n                        ");
-            __builder.AddContent(49, 
+            __builder.OpenElement(27, "td");
+            __builder.AddContent(28, 
 #nullable restore
 #line 102 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
                          info.Player.IP
@@ -293,9 +271,7 @@ using IMS_Library;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(50, "\r\n                    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(51, "\r\n");
 #nullable restore
 #line 104 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
                 }
@@ -303,10 +279,8 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(52, "                ");
-            __builder.OpenElement(53, "td");
-            __builder.AddMarkupContent(54, "\r\n                    ");
-            __builder.AddContent(55, 
+            __builder.OpenElement(29, "td");
+            __builder.AddContent(30, 
 #nullable restore
 #line 106 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
                      DateTime.Parse(info.CreatedDate).ToString()
@@ -315,12 +289,10 @@ using IMS_Library;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(56, "\r\n                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(57, "\r\n                ");
-            __builder.OpenElement(58, "td");
-            __builder.AddMarkupContent(59, "\r\n                    ");
-            __builder.AddContent(60, 
+            __builder.AddMarkupContent(31, "\r\n                ");
+            __builder.OpenElement(32, "td");
+            __builder.AddContent(33, 
 #nullable restore
 #line 109 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
                      info.BanSource
@@ -329,12 +301,10 @@ using IMS_Library;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(61, "\r\n                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(62, "\r\n                ");
-            __builder.OpenElement(63, "td");
-            __builder.AddMarkupContent(64, "\r\n                    ");
-            __builder.AddContent(65, 
+            __builder.AddMarkupContent(34, "\r\n                ");
+            __builder.OpenElement(35, "td");
+            __builder.AddContent(36, 
 #nullable restore
 #line 112 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
                      info.Reason
@@ -343,15 +313,12 @@ using IMS_Library;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(66, "\r\n                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(67, "\r\n                ");
-            __builder.OpenElement(68, "td");
-            __builder.AddAttribute(69, "style", "text-align:right");
-            __builder.AddMarkupContent(70, "\r\n                    ");
-            __builder.OpenElement(71, "div");
-            __builder.AddAttribute(72, "style", "display:inline");
-            __builder.AddMarkupContent(73, "\r\n");
+            __builder.AddMarkupContent(37, "\r\n                ");
+            __builder.OpenElement(38, "td");
+            __builder.AddAttribute(39, "style", "text-align:right");
+            __builder.OpenElement(40, "div");
+            __builder.AddAttribute(41, "style", "display:inline");
 #nullable restore
 #line 116 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
                            bool somethingPrevious = false; 
@@ -377,10 +344,9 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(74, "                                ");
-            __builder.OpenElement(75, "button");
-            __builder.AddAttribute(76, "class", "linkbutton");
-            __builder.AddAttribute(77, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.OpenElement(42, "button");
+            __builder.AddAttribute(43, "class", "linkbutton");
+            __builder.AddAttribute(44, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 122 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
                                                                      x => UnwhitelistPlayer(info.Player.Username)
@@ -389,9 +355,8 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(78, "Unwhitelist");
+            __builder.AddContent(45, "Unwhitelist");
             __builder.CloseElement();
-            __builder.AddMarkupContent(79, "\r\n");
 #nullable restore
 #line 123 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
                             }
@@ -401,10 +366,9 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(80, "                                ");
-            __builder.OpenElement(81, "button");
-            __builder.AddAttribute(82, "class", "linkbutton");
-            __builder.AddAttribute(83, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.OpenElement(46, "button");
+            __builder.AddAttribute(47, "class", "linkbutton");
+            __builder.AddAttribute(48, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 126 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
                                                                      x => WhitelistPlayer(info.Player.Username)
@@ -413,9 +377,8 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(84, "Whitelist");
+            __builder.AddContent(49, "Whitelist");
             __builder.CloseElement();
-            __builder.AddMarkupContent(85, "\r\n");
 #nullable restore
 #line 127 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
                             }
@@ -442,7 +405,7 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(86, 
+            __builder.AddContent(50, 
 #nullable restore
 #line 133 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
                                   "|"
@@ -469,10 +432,9 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(87, "                                ");
-            __builder.OpenElement(88, "button");
-            __builder.AddAttribute(89, "class", "linkbutton");
-            __builder.AddAttribute(90, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.OpenElement(51, "button");
+            __builder.AddAttribute(52, "class", "linkbutton");
+            __builder.AddAttribute(53, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 138 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
                                                                      x => DeopPlayer(info.Player.Username)
@@ -481,9 +443,8 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(91, "Deop");
+            __builder.AddContent(54, "Deop");
             __builder.CloseElement();
-            __builder.AddMarkupContent(92, "\r\n");
 #nullable restore
 #line 139 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
                             }
@@ -493,10 +454,9 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(93, "                                ");
-            __builder.OpenElement(94, "button");
-            __builder.AddAttribute(95, "class", "linkbutton");
-            __builder.AddAttribute(96, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.OpenElement(55, "button");
+            __builder.AddAttribute(56, "class", "linkbutton");
+            __builder.AddAttribute(57, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 142 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
                                                                      x => OpPlayer(info.Player.Username)
@@ -505,9 +465,8 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(97, "Op");
+            __builder.AddContent(58, "Op");
             __builder.CloseElement();
-            __builder.AddMarkupContent(98, "\r\n");
 #nullable restore
 #line 143 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
                             }
@@ -534,7 +493,7 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(99, 
+            __builder.AddContent(59, 
 #nullable restore
 #line 149 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
                                   "|"
@@ -552,10 +511,9 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(100, "                            ");
-            __builder.OpenElement(101, "button");
-            __builder.AddAttribute(102, "class", "linkbutton");
-            __builder.AddAttribute(103, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.OpenElement(60, "button");
+            __builder.AddAttribute(61, "class", "linkbutton");
+            __builder.AddAttribute(62, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 152 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
                                                                  x => UnbanPlayer(info.Player.Username)
@@ -564,9 +522,8 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(104, "Unban");
+            __builder.AddContent(63, "Unban");
             __builder.CloseElement();
-            __builder.AddMarkupContent(105, "\r\n");
 #nullable restore
 #line 153 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
                         }
@@ -585,7 +542,7 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(106, 
+            __builder.AddContent(64, 
 #nullable restore
 #line 158 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
                                   "|"
@@ -605,10 +562,9 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(107, "                                ");
-            __builder.OpenElement(108, "button");
-            __builder.AddAttribute(109, "class", "linkbutton");
-            __builder.AddAttribute(110, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.OpenElement(65, "button");
+            __builder.AddAttribute(66, "class", "linkbutton");
+            __builder.AddAttribute(67, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 163 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
                                                                      x => BanIP(info.Player.IP)
@@ -617,9 +573,8 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(111, "Ban IP");
+            __builder.AddContent(68, "Ban IP");
             __builder.CloseElement();
-            __builder.AddMarkupContent(112, "\r\n");
 #nullable restore
 #line 164 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
                             }
@@ -629,10 +584,9 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(113, "                                ");
-            __builder.OpenElement(114, "button");
-            __builder.AddAttribute(115, "class", "linkbutton");
-            __builder.AddAttribute(116, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.OpenElement(69, "button");
+            __builder.AddAttribute(70, "class", "linkbutton");
+            __builder.AddAttribute(71, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 167 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
                                                                      x => UnbanIP(info.Player.IP)
@@ -641,9 +595,8 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(117, "Unban IP");
+            __builder.AddContent(72, "Unban IP");
             __builder.CloseElement();
-            __builder.AddMarkupContent(118, "\r\n");
 #nullable restore
 #line 168 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
                             }
@@ -652,13 +605,9 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(119, "                    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(120, "\r\n                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(121, "\r\n            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(122, "\r\n");
 #nullable restore
 #line 173 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Player\BanPlayerDisplayView.razor"
         }
@@ -666,9 +615,7 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(123, "    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(124, "\r\n");
             __builder.CloseElement();
         }
         #pragma warning restore 1998

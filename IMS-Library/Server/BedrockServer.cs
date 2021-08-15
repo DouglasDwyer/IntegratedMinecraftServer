@@ -868,7 +868,7 @@ namespace IMS_Library
                     LogWriter.WriteLine(args.Data);
 
                     Match regexMatch;
-                    if (MatchRegex(args.Data, @"^\[[0-9-]* [0-9:]* INFO] (.*)$", out regexMatch))
+                    if (MatchRegex(args.Data, @"^\[[0-9-]* [0-9:]* INFO] (.*)$", out regexMatch) || MatchRegex(args.Data, @"^\[INFO] (.*)$", out regexMatch))
                     {
                         string data = regexMatch.Groups[1].Value;
                         if (MatchRegex(data, @"^Player connected: ([^,;]+), xuid: ([0-9]*)$", out regexMatch))
@@ -1047,15 +1047,15 @@ namespace IMS_Library
                         {
                             Directory.CreateDirectory(newFolder);
                         }
-                    }
-                    else if (folderName == "internalStorage")
-                    {
-                        Directory.Delete(newFolder + "/" + directory, true);
-                        Extensions.CopyFolder(directory, newFolder);
-                    }
-                    else
-                    {
-                        JunctionPoint.Create(newFolder, directory, true);
+                        else if (folderName == "internalStorage")
+                        {
+                            Directory.Delete(newFolder + "/" + directory, true);
+                            Extensions.CopyFolder(directory, newFolder);
+                        }
+                        else
+                        {
+                            JunctionPoint.Create(newFolder, directory, true);
+                        }
                     }
                 }
             }

@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "IMS-Library/1.0.1.3": {
+      "IMS-Library/1.0.1.4": {
         "dependencies": {
           "DouglasDwyer.RoyalXml": "1.1.0.2",
           "Microsoft.VisualBasic": "10.3.0",
@@ -828,7 +828,7 @@
         "runtime": {
           "System.Windows.Forms.dll": {
             "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.8.4200.0"
+            "fileVersion": "4.8.4390.0"
           }
         }
       },
@@ -836,7 +836,7 @@
         "runtime": {
           "System.Deployment.dll": {
             "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.8.4240.0"
+            "fileVersion": "4.8.4270.0"
           }
         }
       },
@@ -867,7 +867,7 @@
     }
   },
   "libraries": {
-    "IMS-Library/1.0.1.3": {
+    "IMS-Library/1.0.1.4": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

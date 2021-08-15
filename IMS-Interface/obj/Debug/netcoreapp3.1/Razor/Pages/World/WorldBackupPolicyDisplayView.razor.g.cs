@@ -120,12 +120,10 @@ using IMS_Library;
             ));
             __builder.AddAttribute(5, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.CreateBinder(this, __value => AddPolicyDropdownValue = __value, AddPolicyDropdownValue));
             __builder.SetUpdatesAttributeName("value");
-            __builder.AddMarkupContent(6, "\r\n    ");
-            __builder.OpenElement(7, "option");
-            __builder.AddAttribute(8, "value", "0");
-            __builder.AddContent(9, "Add new backup policy...");
+            __builder.OpenElement(6, "option");
+            __builder.AddAttribute(7, "value", "0");
+            __builder.AddContent(8, "Add new backup policy...");
             __builder.CloseElement();
-            __builder.AddMarkupContent(10, "\r\n");
 #nullable restore
 #line 23 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupPolicyDisplayView.razor"
       
@@ -143,9 +141,8 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(11, "            ");
-            __builder.OpenElement(12, "option");
-            __builder.AddAttribute(13, "value", 
+            __builder.OpenElement(9, "option");
+            __builder.AddAttribute(10, "value", 
 #nullable restore
 #line 27 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupPolicyDisplayView.razor"
                              i + 1
@@ -154,7 +151,7 @@ using IMS_Library;
 #line hidden
 #nullable disable
             );
-            __builder.AddContent(14, 
+            __builder.AddContent(11, 
 #nullable restore
 #line 27 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupPolicyDisplayView.razor"
                                       display.Name
@@ -164,7 +161,6 @@ using IMS_Library;
 #nullable disable
             );
             __builder.CloseElement();
-            __builder.AddMarkupContent(15, "\r\n");
 #nullable restore
 #line 28 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupPolicyDisplayView.razor"
             i++;
@@ -174,7 +170,7 @@ using IMS_Library;
 #line hidden
 #nullable disable
             __builder.CloseElement();
-            __builder.AddMarkupContent(16, "\r\n<hr>\r\n");
+            __builder.AddMarkupContent(12, "\r\n<hr>");
 #nullable restore
 #line 33 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupPolicyDisplayView.razor"
   
@@ -183,7 +179,6 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddMarkupContent(17, "\r\n");
 #nullable restore
 #line 37 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupPolicyDisplayView.razor"
  if (policies.Length > 0)
@@ -192,12 +187,9 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(18, "    ");
-            __builder.OpenElement(19, "table");
-            __builder.AddAttribute(20, "class", "playertable table table-striped");
-            __builder.AddMarkupContent(21, "\r\n        ");
-            __builder.OpenElement(22, "tbody");
-            __builder.AddMarkupContent(23, "\r\n");
+            __builder.OpenElement(13, "table");
+            __builder.AddAttribute(14, "class", "playertable table table-striped");
+            __builder.OpenElement(15, "tbody");
 #nullable restore
 #line 41 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupPolicyDisplayView.razor"
              foreach (IBackupPolicy backup in policies)
@@ -206,11 +198,8 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(24, "                ");
-            __builder.OpenElement(25, "tr");
-            __builder.AddMarkupContent(26, "\r\n                    ");
-            __builder.OpenElement(27, "td");
-            __builder.AddMarkupContent(28, "\r\n");
+            __builder.OpenElement(16, "tr");
+            __builder.OpenElement(17, "td");
 #nullable restore
 #line 45 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupPolicyDisplayView.razor"
                          if (Provider.BackupPolicyDisplayBinding.ContainsKey(backup.GetType()))
@@ -227,7 +216,7 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(29, 
+            __builder.AddContent(18, 
 #nullable restore
 #line 54 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupPolicyDisplayView.razor"
                              fragment
@@ -244,15 +233,13 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(30, "                    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(31, "\r\n                    ");
-            __builder.OpenElement(32, "td");
-            __builder.AddAttribute(33, "style", "vertical-align:middle");
-            __builder.AddMarkupContent(34, "\r\n                        ");
-            __builder.OpenElement(35, "button");
-            __builder.AddAttribute(36, "class", "linkbutton");
-            __builder.AddAttribute(37, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.AddMarkupContent(19, "\r\n                    ");
+            __builder.OpenElement(20, "td");
+            __builder.AddAttribute(21, "style", "vertical-align:middle");
+            __builder.OpenElement(22, "button");
+            __builder.AddAttribute(23, "class", "linkbutton");
+            __builder.AddAttribute(24, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 58 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupPolicyDisplayView.razor"
                                                              x => DeleteBackupPolicy(backup)
@@ -261,13 +248,10 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(38, "Delete");
+            __builder.AddContent(25, "Delete");
             __builder.CloseElement();
-            __builder.AddMarkupContent(39, "\r\n                    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(40, "\r\n                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(41, "\r\n");
 #nullable restore
 #line 61 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupPolicyDisplayView.razor"
             }
@@ -275,11 +259,8 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(42, "        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(43, "\r\n    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(44, "\r\n");
 #nullable restore
 #line 64 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupPolicyDisplayView.razor"
 }
@@ -289,8 +270,7 @@ else
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(45, "    ");
-            __builder.AddMarkupContent(46, "<label><i>There currently are no backup policies in place.</i></label>\r\n");
+            __builder.AddMarkupContent(26, "<label><i>There currently are no backup policies in place.</i></label>");
 #nullable restore
 #line 68 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\WorldBackupPolicyDisplayView.razor"
 }

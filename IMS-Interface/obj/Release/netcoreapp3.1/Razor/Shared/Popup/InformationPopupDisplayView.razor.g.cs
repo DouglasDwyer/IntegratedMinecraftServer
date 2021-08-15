@@ -128,7 +128,6 @@ using IMS_Interface.Preferences;
             __builder.AddMarkupContent(8, "\r\n<br>\r\n<br>\r\n<label></label>\r\n");
             __builder.OpenElement(9, "div");
             __builder.AddAttribute(10, "style", "position:absolute;right:10px;bottom:10px;");
-            __builder.AddMarkupContent(11, "\r\n");
 #nullable restore
 #line 18 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Popup\InformationPopupDisplayView.razor"
      for (int i = 0; i < DisplayData.Buttons.Length; i++)
@@ -138,9 +137,8 @@ using IMS_Interface.Preferences;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(12, "        ");
-            __builder.OpenElement(13, "button");
-            __builder.AddAttribute(14, "class", "btn" + " " + (
+            __builder.OpenElement(11, "button");
+            __builder.AddAttribute(12, "class", "btn" + " " + (
 #nullable restore
 #line 21 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Popup\InformationPopupDisplayView.razor"
                              u == 0 ? "btn-primary" : "btn-default"
@@ -149,7 +147,7 @@ using IMS_Interface.Preferences;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(15, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.AddAttribute(13, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 21 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Popup\InformationPopupDisplayView.razor"
                                                                                 x => { PopupManager.ClosePopup(); DisplayData.OnUserSubmit?.Invoke(u); }
@@ -158,7 +156,7 @@ using IMS_Interface.Preferences;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(16, 
+            __builder.AddContent(14, 
 #nullable restore
 #line 21 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Popup\InformationPopupDisplayView.razor"
                                                                                                                                                            DisplayData.Buttons[u]
@@ -168,7 +166,6 @@ using IMS_Interface.Preferences;
 #nullable disable
             );
             __builder.CloseElement();
-            __builder.AddMarkupContent(17, "\r\n");
 #nullable restore
 #line 22 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Popup\InformationPopupDisplayView.razor"
     }

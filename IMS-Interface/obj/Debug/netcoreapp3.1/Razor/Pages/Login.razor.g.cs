@@ -134,17 +134,15 @@ using Microsoft.AspNetCore.Http;
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
             __builder.OpenElement(0, "div");
-            __builder.AddMarkupContent(1, "\r\n    ");
-            __builder.OpenElement(2, "div");
-            __builder.AddAttribute(3, "class", "jumbotron");
-            __builder.AddAttribute(4, "style", "padding: 15px 20px 15px 20px; position: absolute; width: 400px; height: 310px; vertical-align: middle; margin: auto; top: 0px; right: 0px; bottom: 0px; left: 0px;");
-            __builder.AddMarkupContent(5, "\r\n        ");
-            __builder.AddMarkupContent(6, "<label style=\"font-size:x-large\">IMS Login</label>\r\n        <br>\r\n        <br>\r\n        ");
-            __builder.AddMarkupContent(7, "<label style=\"font-size:medium\">Username</label>\r\n        <br>\r\n        ");
-            __builder.OpenElement(8, "input");
-            __builder.AddAttribute(9, "class", "form-control");
-            __builder.AddAttribute(10, "style", "width:100%");
-            __builder.AddAttribute(11, "value", Microsoft.AspNetCore.Components.BindConverter.FormatValue(
+            __builder.OpenElement(1, "div");
+            __builder.AddAttribute(2, "class", "jumbotron");
+            __builder.AddAttribute(3, "style", "padding: 15px 20px 15px 20px; position: absolute; width: 400px; height: 310px; vertical-align: middle; margin: auto; top: 0px; right: 0px; bottom: 0px; left: 0px;");
+            __builder.AddMarkupContent(4, "<label style=\"font-size:x-large\">IMS Login</label>\r\n        <br>\r\n        <br>\r\n        ");
+            __builder.AddMarkupContent(5, "<label style=\"font-size:medium\">Username</label>\r\n        <br>\r\n        ");
+            __builder.OpenElement(6, "input");
+            __builder.AddAttribute(7, "class", "form-control");
+            __builder.AddAttribute(8, "style", "width:100%");
+            __builder.AddAttribute(9, "value", Microsoft.AspNetCore.Components.BindConverter.FormatValue(
 #nullable restore
 #line 21 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Login.razor"
                                                               Username
@@ -153,17 +151,17 @@ using Microsoft.AspNetCore.Http;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(12, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.CreateBinder(this, __value => Username = __value, Username));
+            __builder.AddAttribute(10, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.CreateBinder(this, __value => Username = __value, Username));
             __builder.SetUpdatesAttributeName("value");
             __builder.CloseElement();
-            __builder.AddMarkupContent(13, "\r\n        <br>\r\n        ");
-            __builder.AddMarkupContent(14, "<label style=\"font-size:medium\">Password</label>\r\n        <br>\r\n        ");
-            __builder.OpenElement(15, "input");
-            __builder.AddAttribute(16, "class", "form-control");
-            __builder.AddAttribute(17, "style", "width:100%");
-            __builder.AddAttribute(18, "type", "password");
-            __builder.AddAttribute(19, "onkeyup", "if (event.keyCode === 13) { document.getElementById(\'LoginButton\').click(); }");
-            __builder.AddAttribute(20, "value", Microsoft.AspNetCore.Components.BindConverter.FormatValue(
+            __builder.AddMarkupContent(11, "\r\n        <br>\r\n        ");
+            __builder.AddMarkupContent(12, "<label style=\"font-size:medium\">Password</label>\r\n        <br>\r\n        ");
+            __builder.OpenElement(13, "input");
+            __builder.AddAttribute(14, "class", "form-control");
+            __builder.AddAttribute(15, "style", "width:100%");
+            __builder.AddAttribute(16, "type", "password");
+            __builder.AddAttribute(17, "onkeyup", "if (event.keyCode === 13) { document.getElementById(\'LoginButton\').click(); }");
+            __builder.AddAttribute(18, "value", Microsoft.AspNetCore.Components.BindConverter.FormatValue(
 #nullable restore
 #line 25 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Login.razor"
                                                                               Password
@@ -172,15 +170,15 @@ using Microsoft.AspNetCore.Http;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(21, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.CreateBinder(this, __value => Password = __value, Password));
+            __builder.AddAttribute(19, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.CreateBinder(this, __value => Password = __value, Password));
             __builder.SetUpdatesAttributeName("value");
             __builder.CloseElement();
-            __builder.AddMarkupContent(22, "\r\n        <br>\r\n        ");
-            __builder.OpenElement(23, "button");
-            __builder.AddAttribute(24, "class", "btn btn-primary");
-            __builder.AddAttribute(25, "id", "LoginButton");
-            __builder.AddAttribute(26, "type", "submit");
-            __builder.AddAttribute(27, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.AddMarkupContent(20, "\r\n        <br>\r\n        ");
+            __builder.OpenElement(21, "button");
+            __builder.AddAttribute(22, "class", "btn btn-primary");
+            __builder.AddAttribute(23, "id", "LoginButton");
+            __builder.AddAttribute(24, "type", "submit");
+            __builder.AddAttribute(25, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 27 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Login.razor"
                                                                                  AttemptLoginAsync
@@ -189,13 +187,13 @@ using Microsoft.AspNetCore.Http;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(28, "Login");
+            __builder.AddContent(26, "Login");
             __builder.CloseElement();
-            __builder.AddMarkupContent(29, "\r\n        ");
-            __builder.OpenElement(30, "button");
-            __builder.AddAttribute(31, "class", "btn btn-primary");
-            __builder.AddAttribute(32, "style", "margin-left:10px; background-color:transparent; color:#23527c");
-            __builder.AddAttribute(33, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.AddMarkupContent(27, "\r\n        ");
+            __builder.OpenElement(28, "button");
+            __builder.AddAttribute(29, "class", "btn btn-primary");
+            __builder.AddAttribute(30, "style", "margin-left:10px; background-color:transparent; color:#23527c");
+            __builder.AddAttribute(31, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 28 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Login.razor"
                                                                                                                         RequestLoginReset
@@ -204,16 +202,15 @@ using Microsoft.AspNetCore.Http;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(34, "Reset username/password");
+            __builder.AddContent(32, "Reset username/password");
             __builder.CloseElement();
-            __builder.AddMarkupContent(35, "\r\n        <br>\r\n        ");
-            __builder.OpenElement(36, "div");
-            __builder.AddAttribute(37, "style", "margin-top:10px");
-            __builder.AddMarkupContent(38, "\r\n            ");
-            __builder.OpenElement(39, "label");
-            __builder.AddAttribute(40, "class", "alert-danger");
-            __builder.AddAttribute(41, "style", "background-color:transparent; font-weight:normal;");
-            __builder.AddContent(42, 
+            __builder.AddMarkupContent(33, "\r\n        <br>\r\n        ");
+            __builder.OpenElement(34, "div");
+            __builder.AddAttribute(35, "style", "margin-top:10px");
+            __builder.OpenElement(36, "label");
+            __builder.AddAttribute(37, "class", "alert-danger");
+            __builder.AddAttribute(38, "style", "background-color:transparent; font-weight:normal;");
+            __builder.AddContent(39, 
 #nullable restore
 #line 31 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Login.razor"
                                                                                                    ErrorText
@@ -223,11 +220,8 @@ using Microsoft.AspNetCore.Http;
 #nullable disable
             );
             __builder.CloseElement();
-            __builder.AddMarkupContent(43, "\r\n        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(44, "\r\n    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(45, "\r\n");
             __builder.CloseElement();
         }
         #pragma warning restore 1998

@@ -130,9 +130,8 @@ using System.Reflection;
 #nullable disable
             );
             __builder.AddAttribute(7, "style", "display:inline-block; margin:5px 0px");
-            __builder.AddMarkupContent(8, "\r\n    ");
-            __builder.OpenComponent<IMS_Interface.MultiToggle>(9);
-            __builder.AddAttribute(10, "Options", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String[]>(
+            __builder.OpenComponent<IMS_Interface.MultiToggle>(8);
+            __builder.AddAttribute(9, "Options", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String[]>(
 #nullable restore
 #line 11 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\NetworkCompressionThresholdDisplayView.razor"
                           Values
@@ -141,7 +140,7 @@ using System.Reflection;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(11, "SelectedIndex", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Int32>(
+            __builder.AddAttribute(10, "SelectedIndex", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Int32>(
 #nullable restore
 #line 12 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\NetworkCompressionThresholdDisplayView.razor"
                                 SelectedItem
@@ -150,7 +149,7 @@ using System.Reflection;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(12, "OnSelectionChange", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.Int32>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.Int32>(this, 
+            __builder.AddAttribute(11, "OnSelectionChange", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.Int32>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.Int32>(this, 
 #nullable restore
 #line 13 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\NetworkCompressionThresholdDisplayView.razor"
                                       x => SelectedItem = x
@@ -160,9 +159,8 @@ using System.Reflection;
 #nullable disable
             )));
             __builder.CloseComponent();
-            __builder.AddMarkupContent(13, "\r\n");
             __builder.CloseElement();
-            __builder.AddMarkupContent(14, "\r\n<br>\r\n");
+            __builder.AddMarkupContent(12, "\r\n<br>");
 #nullable restore
 #line 16 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\NetworkCompressionThresholdDisplayView.razor"
  if ((int)DisplayData.ParentDisplay.CurrentConfiguration.GetType().GetField(DisplayData.FieldName, BindingFlags.Public | BindingFlags.Instance).GetValue(DisplayData.ParentDisplay.CurrentConfiguration) > 0)
@@ -171,13 +169,12 @@ using System.Reflection;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(15, "    ");
-            __builder.OpenElement(16, "input");
-            __builder.AddAttribute(17, "class", "form-control");
-            __builder.AddAttribute(18, "style", "margin-top:5px;margin-bottom:5px; width:150px; display:unset");
-            __builder.AddAttribute(19, "type", "number");
-            __builder.AddAttribute(20, "min", "1");
-            __builder.AddAttribute(21, "max", (
+            __builder.OpenElement(13, "input");
+            __builder.AddAttribute(14, "class", "form-control");
+            __builder.AddAttribute(15, "style", "margin-top:5px;margin-bottom:5px; width:150px; display:unset");
+            __builder.AddAttribute(16, "type", "number");
+            __builder.AddAttribute(17, "min", "1");
+            __builder.AddAttribute(18, "max", (
 #nullable restore
 #line 22 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\NetworkCompressionThresholdDisplayView.razor"
                  int.MaxValue
@@ -186,7 +183,7 @@ using System.Reflection;
 #line hidden
 #nullable disable
             ) + ")");
-            __builder.AddAttribute(22, "value", Microsoft.AspNetCore.Components.BindConverter.FormatValue(
+            __builder.AddAttribute(19, "value", Microsoft.AspNetCore.Components.BindConverter.FormatValue(
 #nullable restore
 #line 23 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\NetworkCompressionThresholdDisplayView.razor"
                   Value
@@ -195,10 +192,10 @@ using System.Reflection;
 #line hidden
 #nullable disable
             , culture: global::System.Globalization.CultureInfo.InvariantCulture));
-            __builder.AddAttribute(23, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.CreateBinder(this, __value => Value = __value, Value, culture: global::System.Globalization.CultureInfo.InvariantCulture));
+            __builder.AddAttribute(20, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.CreateBinder(this, __value => Value = __value, Value, culture: global::System.Globalization.CultureInfo.InvariantCulture));
             __builder.SetUpdatesAttributeName("value");
             __builder.CloseElement();
-            __builder.AddMarkupContent(24, "\r\n    <br>\r\n");
+            __builder.AddMarkupContent(21, "\r\n    <br>");
 #nullable restore
 #line 25 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\NetworkCompressionThresholdDisplayView.razor"
 }

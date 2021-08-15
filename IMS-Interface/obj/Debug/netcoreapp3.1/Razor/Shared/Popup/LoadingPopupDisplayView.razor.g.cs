@@ -113,7 +113,7 @@ using IMS_Interface.Preferences;
             __builder.CloseElement();
             __builder.CloseElement();
             __builder.AddMarkupContent(4, "\r\n");
-            __builder.AddMarkupContent(5, "<div class=\"progress progress-striped active\" style=\"margin-bottom:0px\">\r\n    <div class=\"progress-bar\" role=\"progressbar\" aria-valuenow=\"100\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 100%\">\r\n    </div>\r\n</div>");
+            __builder.AddMarkupContent(5, "<div class=\"progress progress-striped active\" style=\"margin-bottom:0px\"><div class=\"progress-bar\" role=\"progressbar\" aria-valuenow=\"100\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 100%\"></div></div>");
         }
         #pragma warning restore 1998
 #nullable restore

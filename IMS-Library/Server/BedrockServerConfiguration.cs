@@ -1,6 +1,7 @@
 ﻿using IMS_Library;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace IMS_Library
@@ -89,8 +90,13 @@ namespace IMS_Library
         /// <summary>
         /// The default permission level assigned to new players.
         /// </summary>
-        [ServerProperty("default-player-permission-level")]
+        [Obsolete]
         public string DefaultPlayerPermissionLevel = "member";
+        /// <summary>
+        /// The default permission level assigned to new players.
+        /// </summary>
+        [PlayerPermissionProperty("default-player-permission-level")]
+        public PlayerPermissionLevel DefaultPlayerPermissionStatus = PlayerPermissionLevel.Member;
         /// <summary>
         /// Whether players must download a texture pack to play on the current server.
         /// </summary>
@@ -109,8 +115,13 @@ namespace IMS_Library
         /// <summary>
         /// Whether the server should analyze client movement.  The server will only enforce correct movement if <see cref="CorrectPlayerMovement"/> is <c>true</c>.
         /// </summary>
-        [ServerProperty("server-authoritative-movement")]
-        public bool ServerAuthoritativeMovement = true;
+        [Obsolete]
+        public bool ServerAuthoritativeMovement = false;
+        /// <summary>
+        /// Whether the server should analyze client movement.  The server will only enforce correct movement if <see cref="CorrectPlayerMovement"/> is <c>true</c>.
+        /// </summary>
+        [AuthoritativeMovementProperty("server-authoritative-movement")]
+        public AuthoritativeMovementType ServerAuthoritativeMovementConfiguration = AuthoritativeMovementType.Server;
         /// <summary>
         /// The number of times that abnormal behavior of a client can occur before it is reported.
         /// </summary>
@@ -131,6 +142,11 @@ namespace IMS_Library
         /// </summary>
         [ServerProperty("correct-player-movement")]
         public bool CorrectPlayerMovement = true;
+        /// <summary>
+        /// Whether the server should verify clients' attempts to break blocks.
+        /// </summary>
+        [ServerProperty("server-authoritative-block-breaking")]
+        public bool ServerAuthoritativeBlockBreaking = false;
 
         /// <summary>
         /// Creates a new <see cref="BedrockServerConfiguration"/> instance with a new unique identifier.
@@ -185,6 +201,80 @@ namespace IMS_Library
         public override ServerProxy CreateServer()
         {
             return new BedrockServer(ID, this);
+        }
+
+        /// <summary>
+        /// The way in which a Bedrock server processes player movement.
+        /// </summary>
+        public enum AuthoritativeMovementType
+        {
+            /// <summary>
+            /// Clients report their current position and movements to the server.
+            /// </summary>
+            Client = 0,
+            /// <summary>
+            /// Clients report user input to the server, which then computes their current position and movements.
+            /// </summary>
+            Server = 1,
+            /// <summary>
+            /// Clients report user input to the server, which then computes their current position and movements. The server may ask clients to repeat their inputs or recalculate when it determines they are out-of-sync.
+            /// </summary>
+            ServerWithRewind = 2
+        }
+
+        private class AuthoritativeMovementProperty : ServerProperty
+        {
+            public AuthoritativeMovementProperty(string propertyName) : base(propertyName)
+            {
+            }
+
+            public override string GetData(ServerConfiguration configuration, FieldInfo field)
+            {
+                AuthoritativeMovementType movement = (AuthoritativeMovementType)field.GetValue(configuration);
+                if(movement == AuthoritativeMovementType.Client)
+                {
+                    return PropertyName + "=" + "client-auth";
+                }
+                else if(movement == AuthoritativeMovementType.Server)
+                {
+                    return PropertyName + "=" + "server-auth";
+                }
+                else
+                {
+                    return PropertyName + "=" + "server-auth-with-rewind";
+                }
+            }
+        }
+
+        /// <summary>
+        /// The permission level of a player on a Bedrock server, which determines what actions they can take.
+        /// </summary>
+        public enum PlayerPermissionLevel
+        {
+            /// <summary>
+            /// The player interact with the environment.
+            /// </summary>
+            Visitor = 0,
+            /// <summary>
+            /// The player can interact with the environment and play the game normally, but cannot execute administrative commands.
+            /// </summary>
+            Member = 1,
+            /// <summary>
+            /// The player is an operator, and has access to administrative commands like kicking and banning.
+            /// </summary>
+            Operator = 2
+        }
+
+        private class PlayerPermissionProperty : ServerProperty
+        {
+            public PlayerPermissionProperty(string propertyName) : base(propertyName)
+            {
+            }
+
+            public override string GetData(ServerConfiguration configuration, FieldInfo field)
+            {
+                return PropertyName + "=" + ((PlayerPermissionLevel)field.GetValue(configuration)).ToString().ToLowerInvariant();
+            }
         }
     }
 }

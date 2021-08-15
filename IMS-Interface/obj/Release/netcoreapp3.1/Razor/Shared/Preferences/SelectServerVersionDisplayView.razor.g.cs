@@ -129,7 +129,7 @@ using System.Reflection;
             __builder.AddContent(6, " server version");
             __builder.CloseElement();
             __builder.CloseElement();
-            __builder.AddMarkupContent(7, "\r\n<label></label>\r\n");
+            __builder.AddMarkupContent(7, "\r\n<label></label>");
 #nullable restore
 #line 15 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\SelectServerVersionDisplayView.razor"
   
@@ -161,7 +161,6 @@ using System.Reflection;
 #line hidden
 #nullable disable
             ));
-            __builder.AddMarkupContent(13, "\r\n");
 #nullable restore
 #line 21 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\SelectServerVersionDisplayView.razor"
      for (int x = 0; x < Information.Count(); x++)
@@ -172,9 +171,8 @@ using System.Reflection;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(14, "        ");
-            __builder.OpenElement(15, "option");
-            __builder.AddAttribute(16, "value", 
+            __builder.OpenElement(13, "option");
+            __builder.AddAttribute(14, "value", 
 #nullable restore
 #line 25 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\SelectServerVersionDisplayView.razor"
                         i
@@ -183,7 +181,7 @@ using System.Reflection;
 #line hidden
 #nullable disable
             );
-            __builder.AddAttribute(17, "selected", 
+            __builder.AddAttribute(15, "selected", 
 #nullable restore
 #line 25 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\SelectServerVersionDisplayView.razor"
                                        info == SelectedVersion
@@ -192,8 +190,7 @@ using System.Reflection;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(18, "\r\n            ");
-            __builder.AddContent(19, 
+            __builder.AddContent(16, 
 #nullable restore
 #line 26 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\SelectServerVersionDisplayView.razor"
              info.Name
@@ -202,7 +199,6 @@ using System.Reflection;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(20, "\r\n");
 #nullable restore
 #line 27 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\SelectServerVersionDisplayView.razor"
              if (info.PhysicalLocation != null)
@@ -212,7 +208,7 @@ using System.Reflection;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(21, 
+            __builder.AddContent(17, 
 #nullable restore
 #line 29 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\SelectServerVersionDisplayView.razor"
                   "\U0001F4BE"
@@ -229,9 +225,7 @@ using System.Reflection;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(22, "        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(23, "\r\n");
 #nullable restore
 #line 32 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\SelectServerVersionDisplayView.razor"
     }
@@ -240,11 +234,11 @@ using System.Reflection;
 #line hidden
 #nullable disable
             __builder.CloseElement();
-            __builder.AddMarkupContent(24, "\r\n");
-            __builder.OpenElement(25, "input");
-            __builder.AddAttribute(26, "id", "showsnapshotscheckbox");
-            __builder.AddAttribute(27, "type", "checkbox");
-            __builder.AddAttribute(28, "checked", Microsoft.AspNetCore.Components.BindConverter.FormatValue(
+            __builder.AddMarkupContent(18, "\r\n");
+            __builder.OpenElement(19, "input");
+            __builder.AddAttribute(20, "id", "showsnapshotscheckbox");
+            __builder.AddAttribute(21, "type", "checkbox");
+            __builder.AddAttribute(22, "checked", Microsoft.AspNetCore.Components.BindConverter.FormatValue(
 #nullable restore
 #line 34 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\SelectServerVersionDisplayView.razor"
                                                                  ShowSnapshots
@@ -253,17 +247,16 @@ using System.Reflection;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(29, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.CreateBinder(this, __value => ShowSnapshots = __value, ShowSnapshots));
+            __builder.AddAttribute(23, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.CreateBinder(this, __value => ShowSnapshots = __value, ShowSnapshots));
             __builder.SetUpdatesAttributeName("checked");
             __builder.CloseElement();
-            __builder.AddMarkupContent(30, "\r\n");
-            __builder.AddMarkupContent(31, "<label for=\"showsnapshotscheckbox\">Show snapshots</label>\r\n<br>\r\n<br>\r\n<label></label>\r\n");
-            __builder.OpenElement(32, "div");
-            __builder.AddAttribute(33, "style", "position:absolute;right:10px;bottom:10px;");
-            __builder.AddMarkupContent(34, "\r\n    ");
-            __builder.OpenElement(35, "button");
-            __builder.AddAttribute(36, "class", "btn btn-primary");
-            __builder.AddAttribute(37, "disabled", 
+            __builder.AddMarkupContent(24, "\r\n");
+            __builder.AddMarkupContent(25, "<label for=\"showsnapshotscheckbox\">Show snapshots</label>\r\n<br>\r\n<br>\r\n<label></label>\r\n");
+            __builder.OpenElement(26, "div");
+            __builder.AddAttribute(27, "style", "position:absolute;right:10px;bottom:10px;");
+            __builder.OpenElement(28, "button");
+            __builder.AddAttribute(29, "class", "btn btn-primary");
+            __builder.AddAttribute(30, "disabled", 
 #nullable restore
 #line 40 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\SelectServerVersionDisplayView.razor"
                                                IsWorking
@@ -272,7 +265,7 @@ using System.Reflection;
 #line hidden
 #nullable disable
             );
-            __builder.AddAttribute(38, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.AddAttribute(31, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 40 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\SelectServerVersionDisplayView.razor"
                                                                     x => BeginVersionDownloadAndSet(SelectedVersion.Version)
@@ -281,7 +274,6 @@ using System.Reflection;
 #line hidden
 #nullable disable
             ));
-            __builder.AddMarkupContent(39, "\r\n");
 #nullable restore
 #line 41 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\SelectServerVersionDisplayView.razor"
          if (IsWorking)
@@ -291,7 +283,7 @@ using System.Reflection;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(40, 
+            __builder.AddContent(32, 
 #nullable restore
 #line 43 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\SelectServerVersionDisplayView.razor"
               "Downloading..."
@@ -313,7 +305,7 @@ using System.Reflection;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(41, 
+            __builder.AddContent(33, 
 #nullable restore
 #line 49 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\SelectServerVersionDisplayView.razor"
                   "Select/download"
@@ -333,7 +325,7 @@ using System.Reflection;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(42, 
+            __builder.AddContent(34, 
 #nullable restore
 #line 53 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\SelectServerVersionDisplayView.razor"
                   "Select"
@@ -351,12 +343,11 @@ using System.Reflection;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(43, "    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(44, "\r\n    ");
-            __builder.OpenElement(45, "button");
-            __builder.AddAttribute(46, "class", "btn btn-default");
-            __builder.AddAttribute(47, "disabled", 
+            __builder.AddMarkupContent(35, "\r\n    ");
+            __builder.OpenElement(36, "button");
+            __builder.AddAttribute(37, "class", "btn btn-default");
+            __builder.AddAttribute(38, "disabled", 
 #nullable restore
 #line 57 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\SelectServerVersionDisplayView.razor"
                                                IsWorking
@@ -365,7 +356,7 @@ using System.Reflection;
 #line hidden
 #nullable disable
             );
-            __builder.AddAttribute(48, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.AddAttribute(39, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 57 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\SelectServerVersionDisplayView.razor"
                                                                     x => BeginVersionDownloadAndSet(null)
@@ -374,12 +365,12 @@ using System.Reflection;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(49, "Use latest");
+            __builder.AddContent(40, "Use latest");
             __builder.CloseElement();
-            __builder.AddMarkupContent(50, "\r\n    ");
-            __builder.OpenElement(51, "button");
-            __builder.AddAttribute(52, "class", "btn btn-default");
-            __builder.AddAttribute(53, "disabled", 
+            __builder.AddMarkupContent(41, "\r\n    ");
+            __builder.OpenElement(42, "button");
+            __builder.AddAttribute(43, "class", "btn btn-default");
+            __builder.AddAttribute(44, "disabled", 
 #nullable restore
 #line 58 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\SelectServerVersionDisplayView.razor"
                                                IsWorking
@@ -388,7 +379,7 @@ using System.Reflection;
 #line hidden
 #nullable disable
             );
-            __builder.AddAttribute(54, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.AddAttribute(45, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 58 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\SelectServerVersionDisplayView.razor"
                                                                     x => PopupManager.ClosePopup()
@@ -397,9 +388,8 @@ using System.Reflection;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(55, "Cancel");
+            __builder.AddContent(46, "Cancel");
             __builder.CloseElement();
-            __builder.AddMarkupContent(56, "\r\n");
             __builder.CloseElement();
         }
         #pragma warning restore 1998

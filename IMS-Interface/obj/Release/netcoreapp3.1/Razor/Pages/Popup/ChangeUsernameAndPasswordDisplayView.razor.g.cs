@@ -162,10 +162,9 @@ using Microsoft.AspNetCore.Http;
             __builder.AddMarkupContent(20, "\r\n\r\n<br>\r\n<br>\r\n<label></label>\r\n");
             __builder.OpenElement(21, "div");
             __builder.AddAttribute(22, "style", "position:absolute;right:10px;bottom:10px;");
-            __builder.AddMarkupContent(23, "\r\n    ");
-            __builder.OpenElement(24, "button");
-            __builder.AddAttribute(25, "class", "btn btn-primary");
-            __builder.AddAttribute(26, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.OpenElement(23, "button");
+            __builder.AddAttribute(24, "class", "btn btn-primary");
+            __builder.AddAttribute(25, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 33 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Popup\ChangeUsernameAndPasswordDisplayView.razor"
                                               x => UpdateUsernamePasswordAndClose()
@@ -174,12 +173,12 @@ using Microsoft.AspNetCore.Http;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(27, "Change");
+            __builder.AddContent(26, "Change");
             __builder.CloseElement();
-            __builder.AddMarkupContent(28, "\r\n    ");
-            __builder.OpenElement(29, "button");
-            __builder.AddAttribute(30, "class", "btn btn-warning");
-            __builder.AddAttribute(31, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.AddMarkupContent(27, "\r\n    ");
+            __builder.OpenElement(28, "button");
+            __builder.AddAttribute(29, "class", "btn btn-warning");
+            __builder.AddAttribute(30, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 34 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Popup\ChangeUsernameAndPasswordDisplayView.razor"
                                               x => DisableLoginAndClose()
@@ -188,12 +187,12 @@ using Microsoft.AspNetCore.Http;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(32, "Don\'t require login");
+            __builder.AddContent(31, "Don\'t require login");
             __builder.CloseElement();
-            __builder.AddMarkupContent(33, "\r\n    ");
-            __builder.OpenElement(34, "button");
-            __builder.AddAttribute(35, "class", "btn btn-default");
-            __builder.AddAttribute(36, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.AddMarkupContent(32, "\r\n    ");
+            __builder.OpenElement(33, "button");
+            __builder.AddAttribute(34, "class", "btn btn-default");
+            __builder.AddAttribute(35, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 35 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\Popup\ChangeUsernameAndPasswordDisplayView.razor"
                                               x => PopupManager.ClosePopup()
@@ -202,9 +201,8 @@ using Microsoft.AspNetCore.Http;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(37, "Cancel");
+            __builder.AddContent(36, "Cancel");
             __builder.CloseElement();
-            __builder.AddMarkupContent(38, "\r\n");
             __builder.CloseElement();
         }
         #pragma warning restore 1998

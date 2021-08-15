@@ -183,7 +183,6 @@ using IMS_Library;
 #nullable disable
             )));
             __builder.CloseComponent();
-            __builder.AddMarkupContent(19, "\r\n");
 #nullable restore
 #line 21 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\PortDisplayView.razor"
  if (CurrentPort.AttemptUPnPForwarding && !IMS.Instance.PortManager.ConnectedToPortForwardableDevice)
@@ -192,8 +191,7 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(20, "    ");
-            __builder.AddMarkupContent(21, "<label class=\"label label-warning\" style=\"font-size:14px; align-content:center\" data-toggle=\"tooltip\" data-placement=\"right\" data-title=\"IMS is not currently connected to a UPnP-enabled router.\">⚠</label>\r\n");
+            __builder.AddMarkupContent(19, "<label class=\"label label-warning\" style=\"font-size:14px; align-content:center\" data-toggle=\"tooltip\" data-placement=\"right\" data-title=\"IMS is not currently connected to a UPnP-enabled router.\">⚠</label>");
 #nullable restore
 #line 24 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\PortDisplayView.razor"
 }
@@ -201,7 +199,7 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddMarkupContent(22, "<br>");
+            __builder.AddMarkupContent(20, "<br>");
         }
         #pragma warning restore 1998
 #nullable restore

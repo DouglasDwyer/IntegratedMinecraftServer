@@ -108,11 +108,9 @@ using IMS_Library;
             __builder.AddMarkupContent(0, "<div class=\"sidebar\" style=\"background-image:none; height:100vh\"></div>\r\n\r\n");
             __builder.OpenElement(1, "div");
             __builder.AddAttribute(2, "class", "main");
-            __builder.AddMarkupContent(3, "\r\n    ");
-            __builder.OpenElement(4, "div");
-            __builder.AddAttribute(5, "class", "px-4");
-            __builder.AddMarkupContent(6, "\r\n        ");
-            __builder.AddContent(7, 
+            __builder.OpenElement(3, "div");
+            __builder.AddAttribute(4, "class", "px-4");
+            __builder.AddContent(5, 
 #nullable restore
 #line 10 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\EmptyLayout.razor"
          Body
@@ -121,9 +119,7 @@ using IMS_Library;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(8, "\r\n    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(9, "\r\n");
             __builder.CloseElement();
         }
         #pragma warning restore 1998

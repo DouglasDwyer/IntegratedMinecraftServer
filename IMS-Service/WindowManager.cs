@@ -98,13 +98,27 @@ namespace WindowManager
     {
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         internal static extern MsgBoxResult MessageBox(System.IntPtr hWnd, string text, string caption, MsgBoxStyle options);
+
+        [System.Runtime.InteropServices.DllImport("wtsapi32.dll", SetLastError = true)]
+        internal static extern bool WTSSendMessage(
+            IntPtr hServer,
+            [System.Runtime.InteropServices.MarshalAs(System.Runtime.InteropServices.UnmanagedType.I4)] int SessionId,
+            String pTitle,
+            [System.Runtime.InteropServices.MarshalAs(System.Runtime.InteropServices.UnmanagedType.U4)] int TitleLength,
+            String pMessage,
+            [System.Runtime.InteropServices.MarshalAs(System.Runtime.InteropServices.UnmanagedType.U4)] int MessageLength,
+             MsgBoxStyle Style,
+            [System.Runtime.InteropServices.MarshalAs(System.Runtime.InteropServices.UnmanagedType.U4)] int Timeout,
+            out MsgBoxResult pResponse,
+            bool bWait);
+
+        [System.Runtime.InteropServices.DllImport("Kernel32.dll", SetLastError = true)]
+        internal static extern int WTSGetActiveConsoleSessionId();
     }
 
 
     public class Interaction
     {
-
-
         private static string GetTitleFromAssembly(System.Reflection.Assembly CallingAssembly)
         {
             try
@@ -130,7 +144,11 @@ namespace WindowManager
                 caption = GetTitleFromAssembly(System.Reflection.Assembly.GetCallingAssembly());
 
             if (System.Environment.OSVersion.Platform != System.PlatformID.Unix)
-                return UnsafeNativeMethods.MessageBox(System.IntPtr.Zero, text, caption, options);
+            {
+                UnsafeNativeMethods.WTSSendMessage(IntPtr.Zero, UnsafeNativeMethods.WTSGetActiveConsoleSessionId(), caption, caption.Length, text, text.Length, options, 0, out MsgBoxResult results, true);
+                return results;
+            }
+                //return UnsafeNativeMethods.MessageBox(System.IntPtr.Zero, text, caption, options);
 
             text = text.Replace("\"", @"\""");
             caption = caption.Replace("\"", @"\""");

@@ -31,7 +31,7 @@ namespace IMS_Library
         /// <summary>
         /// Additional arguments that should be passed to the JVM when the server begins.
         /// </summary>
-        public string JavaArguments = "-XX:+AggressiveOpts -XX:+UnlockExperimentalVMOptions";
+        public string JavaArguments = "-XX:+UnlockExperimentalVMOptions";
 
         /// <summary>
         /// Whether the server should kick non-creative players for flying.
@@ -298,7 +298,7 @@ namespace IMS_Library
             {
                 ports.Add(ServerPort.Port);
             }
-            if((ServerPort.Port != QueryPort.Port || !ServerPort.AttemptUPnPForwarding) && QueryPort.AttemptUPnPForwarding)
+            if(EnableQuery && (ServerPort.Port != QueryPort.Port || !ServerPort.AttemptUPnPForwarding) && QueryPort.AttemptUPnPForwarding)
             {
                 ports.Add(QueryPort.Port);
             }

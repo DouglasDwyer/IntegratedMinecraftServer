@@ -42,3 +42,7 @@ D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\ProjectTempla
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\IMS-DevelopmentKit.pkgdef
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\IMS-DevelopmentKit.pkgdef
 D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\obj\Debug\IMS-DevelopmentKit.latest.pkgdef
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\System.Text.Json.dll
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\System.Text.Encodings.Web.dll
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\System.Memory.dll
+D:\Projects\IntegratedMinecraftServer\IMS-DevelopmentKit\bin\Debug\System.Numerics.Vectors.dll

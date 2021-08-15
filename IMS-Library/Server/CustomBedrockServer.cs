@@ -35,7 +35,7 @@ namespace IMS_Library
         {
             if (!File.Exists(ExeLocation))
             {
-                throw new InvalidOperationException("There is no JAR file associated with this server!  As such, the server cannot start.");
+                throw new InvalidOperationException("There is no executable file associated with this server!  As such, the server cannot start.");
             }
             return base.StartAsync();
         }

@@ -168,18 +168,13 @@ using System.IO;
             }
             );
             __builder.CloseElement();
-            __builder.AddMarkupContent(14, "\r\n");
             __builder.CloseElement();
-            __builder.AddMarkupContent(15, "\r\n<hr>\r\n");
-            __builder.OpenElement(16, "table");
-            __builder.AddAttribute(17, "class", "table table-bordered");
-            __builder.AddMarkupContent(18, "\r\n    ");
-            __builder.OpenElement(19, "tbody");
-            __builder.AddMarkupContent(20, "\r\n        ");
-            __builder.OpenElement(21, "tr");
-            __builder.AddMarkupContent(22, "\r\n            ");
-            __builder.OpenElement(23, "td");
-            __builder.AddMarkupContent(24, "\r\n");
+            __builder.AddMarkupContent(14, "\r\n<hr>\r\n");
+            __builder.OpenElement(15, "table");
+            __builder.AddAttribute(16, "class", "table table-bordered");
+            __builder.OpenElement(17, "tbody");
+            __builder.OpenElement(18, "tr");
+            __builder.OpenElement(19, "td");
 #nullable restore
 #line 22 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\PluginManager.razor"
                  if (IMS.Instance.PluginManager.KnownPlugins.Count > 0)
@@ -188,13 +183,9 @@ using System.IO;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(25, "                    ");
-            __builder.OpenElement(26, "table");
-            __builder.AddAttribute(27, "class", "table table-striped");
-            __builder.AddMarkupContent(28, "\r\n                        ");
-            __builder.AddMarkupContent(29, @"<thead>
-                            <tr>
-                                <th>
+            __builder.OpenElement(20, "table");
+            __builder.AddAttribute(21, "class", "table table-striped");
+            __builder.AddMarkupContent(22, @"<thead><tr><th>
                                     Name
                                 </th>
                                 <th>
@@ -206,12 +197,9 @@ using System.IO;
                                 <th>
                                     Author
                                 </th>
-                                <th></th>
-                            </tr>
-                        </thead>
+                                <th></th></tr></thead>
                         ");
-            __builder.OpenElement(30, "tbody");
-            __builder.AddMarkupContent(31, "\r\n");
+            __builder.OpenElement(23, "tbody");
 #nullable restore
 #line 43 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\PluginManager.razor"
                              foreach (PluginInformation plugin in IMS.Instance.PluginManager.KnownPlugins.Values)
@@ -220,12 +208,9 @@ using System.IO;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(32, "                                ");
-            __builder.OpenElement(33, "tr");
-            __builder.AddMarkupContent(34, "\r\n                                    ");
-            __builder.OpenElement(35, "th");
-            __builder.AddMarkupContent(36, "\r\n                                        ");
-            __builder.AddContent(37, 
+            __builder.OpenElement(24, "tr");
+            __builder.OpenElement(25, "th");
+            __builder.AddContent(26, 
 #nullable restore
 #line 47 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\PluginManager.razor"
                                          plugin.Name
@@ -234,12 +219,10 @@ using System.IO;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(38, "\r\n                                    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(39, "\r\n                                    ");
-            __builder.OpenElement(40, "td");
-            __builder.AddMarkupContent(41, "\r\n                                        ");
-            __builder.AddContent(42, 
+            __builder.AddMarkupContent(27, "\r\n                                    ");
+            __builder.OpenElement(28, "td");
+            __builder.AddContent(29, 
 #nullable restore
 #line 50 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\PluginManager.razor"
                                          plugin.Description
@@ -248,12 +231,10 @@ using System.IO;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(43, "\r\n                                    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(44, "\r\n                                    ");
-            __builder.OpenElement(45, "td");
-            __builder.AddMarkupContent(46, "\r\n                                        ");
-            __builder.AddContent(47, 
+            __builder.AddMarkupContent(30, "\r\n                                    ");
+            __builder.OpenElement(31, "td");
+            __builder.AddContent(32, 
 #nullable restore
 #line 53 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\PluginManager.razor"
                                          plugin.AssemblyVersion
@@ -262,12 +243,10 @@ using System.IO;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(48, "\r\n                                    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(49, "\r\n                                    ");
-            __builder.OpenElement(50, "td");
-            __builder.AddMarkupContent(51, "\r\n                                        ");
-            __builder.AddContent(52, 
+            __builder.AddMarkupContent(33, "\r\n                                    ");
+            __builder.OpenElement(34, "td");
+            __builder.AddContent(35, 
 #nullable restore
 #line 56 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\PluginManager.razor"
                                          plugin.Author
@@ -276,12 +255,10 @@ using System.IO;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(53, "\r\n                                    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(54, "\r\n                                    ");
-            __builder.OpenElement(55, "td");
-            __builder.AddAttribute(56, "style", "float:right");
-            __builder.AddMarkupContent(57, "\r\n");
+            __builder.AddMarkupContent(36, "\r\n                                    ");
+            __builder.OpenElement(37, "td");
+            __builder.AddAttribute(38, "style", "float:right");
 #nullable restore
 #line 59 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\PluginManager.razor"
                                          if (plugin.Enabled)
@@ -290,10 +267,9 @@ using System.IO;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(58, "                                            ");
-            __builder.OpenElement(59, "a");
-            __builder.AddAttribute(60, "href", "javascript:;");
-            __builder.AddAttribute(61, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.OpenElement(39, "a");
+            __builder.AddAttribute(40, "href", "javascript:;");
+            __builder.AddAttribute(41, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 61 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\PluginManager.razor"
                                                                              x => { IMS.Instance.PluginManager.UnloadPlugin(plugin.AssemblyName); plugin.Enabled = false; }
@@ -302,9 +278,8 @@ using System.IO;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(62, "Disable");
+            __builder.AddContent(42, "Disable");
             __builder.CloseElement();
-            __builder.AddMarkupContent(63, "\r\n");
 #nullable restore
 #line 62 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\PluginManager.razor"
                                         }
@@ -314,10 +289,9 @@ using System.IO;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(64, "                                            ");
-            __builder.OpenElement(65, "a");
-            __builder.AddAttribute(66, "href", "javascript:;");
-            __builder.AddAttribute(67, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.OpenElement(43, "a");
+            __builder.AddAttribute(44, "href", "javascript:;");
+            __builder.AddAttribute(45, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 65 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\PluginManager.razor"
                                                                              x => { IMS.Instance.PluginManager.LoadPlugin(plugin); plugin.Enabled = true; }
@@ -326,9 +300,8 @@ using System.IO;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(68, "Enable");
+            __builder.AddContent(46, "Enable");
             __builder.CloseElement();
-            __builder.AddMarkupContent(69, "\r\n");
 #nullable restore
 #line 66 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\PluginManager.razor"
                                         }
@@ -336,10 +309,10 @@ using System.IO;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(70, "                                        | ");
-            __builder.OpenElement(71, "a");
-            __builder.AddAttribute(72, "href", "javascript:;");
-            __builder.AddAttribute(73, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.AddContent(47, "                                        | ");
+            __builder.OpenElement(48, "a");
+            __builder.AddAttribute(49, "href", "javascript:;");
+            __builder.AddAttribute(50, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 67 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\PluginManager.razor"
                                                                            x => IMS.Instance.PluginManager.DeletePlugin(plugin)
@@ -348,13 +321,10 @@ using System.IO;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(74, "Remove");
+            __builder.AddContent(51, "Remove");
             __builder.CloseElement();
-            __builder.AddMarkupContent(75, "\r\n                                    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(76, "\r\n                                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(77, "\r\n");
 #nullable restore
 #line 70 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\PluginManager.razor"
                             }
@@ -362,11 +332,8 @@ using System.IO;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(78, "                        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(79, "\r\n                    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(80, "\r\n");
 #nullable restore
 #line 73 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\PluginManager.razor"
                 }
@@ -376,8 +343,7 @@ using System.IO;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(81, "                    ");
-            __builder.AddMarkupContent(82, "<label style=\"font-weight:normal; vertical-align:middle\"><i>There currently are no known plugins.</i></label>\r\n");
+            __builder.AddMarkupContent(52, "<label style=\"font-weight:normal; vertical-align:middle\"><i>There currently are no known plugins.</i></label>");
 #nullable restore
 #line 77 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\PluginManager.razor"
                 }
@@ -385,13 +351,9 @@ using System.IO;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(83, "            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(84, "\r\n        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(85, "\r\n    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(86, "\r\n");
             __builder.CloseElement();
         }
         #pragma warning restore 1998

@@ -157,7 +157,7 @@ using IMS_Library;
             ));
             __builder.AddContent(15, "Restart IMS");
             __builder.CloseElement();
-            __builder.AddMarkupContent(16, "\r\n<br>\r\n");
+            __builder.AddMarkupContent(16, "\r\n<br>");
 #nullable restore
 #line 17 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\IMSManagement.razor"
  if (IMS.Instance.UpdateManager.UpdatesReadyForInstallation)
@@ -166,10 +166,9 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(17, "    ");
-            __builder.OpenElement(18, "a");
-            __builder.AddAttribute(19, "href", "javascript:;");
-            __builder.AddAttribute(20, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.OpenElement(17, "a");
+            __builder.AddAttribute(18, "href", "javascript:;");
+            __builder.AddAttribute(19, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 19 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\IMSManagement.razor"
                                      AttemptIMSUpdate
@@ -178,9 +177,8 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(21, "Install latest version of IMS");
+            __builder.AddContent(20, "Install latest version of IMS");
             __builder.CloseElement();
-            __builder.AddMarkupContent(22, "\r\n");
 #nullable restore
 #line 20 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\IMSManagement.razor"
 }
@@ -190,10 +188,9 @@ else
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(23, "    ");
-            __builder.OpenElement(24, "a");
-            __builder.AddAttribute(25, "href", "javascript:;");
-            __builder.AddAttribute(26, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.OpenElement(21, "a");
+            __builder.AddAttribute(22, "href", "javascript:;");
+            __builder.AddAttribute(23, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 23 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\IMSManagement.razor"
                                      CheckForUpdates
@@ -202,9 +199,8 @@ else
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(27, "Check for updates");
+            __builder.AddContent(24, "Check for updates");
             __builder.CloseElement();
-            __builder.AddMarkupContent(28, "\r\n");
 #nullable restore
 #line 24 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\IMSManagement.razor"
 }
@@ -212,12 +208,12 @@ else
 #line default
 #line hidden
 #nullable disable
-            __builder.AddMarkupContent(29, "<br>\r\n");
-            __builder.AddMarkupContent(30, "<a href=\"IMSPreferences\">Configure IMS</a>\r\n<br>\r\n");
-            __builder.AddMarkupContent(31, "<a href=\"PluginManager\">Manage plugins</a>\r\n<br>\r\n");
-            __builder.OpenElement(32, "a");
-            __builder.AddAttribute(33, "href", "javascript:;");
-            __builder.AddAttribute(34, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.AddMarkupContent(25, "<br>\r\n");
+            __builder.AddMarkupContent(26, "<a href=\"IMSPreferences\">Configure IMS</a>\r\n<br>\r\n");
+            __builder.AddMarkupContent(27, "<a href=\"PluginManager\">Manage plugins</a>\r\n<br>\r\n");
+            __builder.OpenElement(28, "a");
+            __builder.AddAttribute(29, "href", "javascript:;");
+            __builder.AddAttribute(30, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 30 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\IMSManagement.razor"
                                    x => PopupManager.ShowPopup(new ChangeUsernameAndPasswordDisplay())
@@ -226,12 +222,12 @@ else
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(35, "Change username/password");
+            __builder.AddContent(31, "Change username/password");
             __builder.CloseElement();
-            __builder.AddMarkupContent(36, "\r\n<br>\r\n");
-            __builder.AddMarkupContent(37, "<a href=\"ReleaseNotes\">Release notes</a>\r\n<br>\r\n");
-            __builder.AddMarkupContent(38, "<a href=\"IMSConsole\">View IMS console</a>\r\n<br>\r\n");
-            __builder.AddMarkupContent(39, "<a href=\"https://github.com/DouglasDwyer/IntegratedMinecraftServer/issues/new\">Report a bug</a>\r\n<br>");
+            __builder.AddMarkupContent(32, "\r\n<br>\r\n");
+            __builder.AddMarkupContent(33, "<a href=\"ReleaseNotes\">Release notes</a>\r\n<br>\r\n");
+            __builder.AddMarkupContent(34, "<a href=\"IMSConsole\">View IMS console</a>\r\n<br>\r\n");
+            __builder.AddMarkupContent(35, "<a href=\"https://github.com/DouglasDwyer/IntegratedMinecraftServer/issues/new\">Report a bug</a>\r\n<br>");
         }
         #pragma warning restore 1998
 #nullable restore

@@ -146,32 +146,29 @@ using IMS_Library;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(10, "\r\n    ");
-            __builder.OpenElement(11, "div");
-            __builder.AddAttribute(12, "class", "sample-toolbar");
-            __builder.AddMarkupContent(13, "\r\n        ");
-            __builder.AddMarkupContent(14, @"<button id=""boldButton"" data-toggle=""tooltip"" data-trigger=""hover"" data-placement=""top"" title=""Bold"" onclick=""format('bold'); document.getElementById('mainEditor').focus(); setButtonFormattingsForMOTDDisplay(this.parentElement.parentElement); executeInputEvent(this.parentElement.parentElement, 'EditorData');"" class=""editor-button""><b>B</b></button>
+            __builder.OpenElement(10, "div");
+            __builder.AddAttribute(11, "class", "sample-toolbar");
+            __builder.AddMarkupContent(12, @"<button id=""boldButton"" data-toggle=""tooltip"" data-trigger=""hover"" data-placement=""top"" title=""Bold"" onclick=""format('bold'); document.getElementById('mainEditor').focus(); setButtonFormattingsForMOTDDisplay(this.parentElement.parentElement); executeInputEvent(this.parentElement.parentElement, 'EditorData');"" class=""editor-button""><b>B</b></button>
         ");
-            __builder.AddMarkupContent(15, @"<button id=""italicButton"" data-toggle=""tooltip"" data-trigger=""hover"" data-placement=""top"" title=""Italics"" onclick=""format('italic'); document.getElementById('mainEditor').focus(); setButtonFormattingsForMOTDDisplay(this.parentElement.parentElement); executeInputEvent(this.parentElement.parentElement, 'EditorData');"" class=""editor-button""><i>I</i></button>
+            __builder.AddMarkupContent(13, @"<button id=""italicButton"" data-toggle=""tooltip"" data-trigger=""hover"" data-placement=""top"" title=""Italics"" onclick=""format('italic'); document.getElementById('mainEditor').focus(); setButtonFormattingsForMOTDDisplay(this.parentElement.parentElement); executeInputEvent(this.parentElement.parentElement, 'EditorData');"" class=""editor-button""><i>I</i></button>
         ");
-            __builder.AddMarkupContent(16, @"<button id=""underlineButton"" data-toggle=""tooltip"" data-trigger=""hover"" data-placement=""top"" title=""Underline"" onclick=""format('underline'); document.getElementById('mainEditor').focus(); setButtonFormattingsForMOTDDisplay(this.parentElement.parentElement); executeInputEvent(this.parentElement.parentElement, 'EditorData');"" class=""editor-button""><u>U</u></button>
+            __builder.AddMarkupContent(14, @"<button id=""underlineButton"" data-toggle=""tooltip"" data-trigger=""hover"" data-placement=""top"" title=""Underline"" onclick=""format('underline'); document.getElementById('mainEditor').focus(); setButtonFormattingsForMOTDDisplay(this.parentElement.parentElement); executeInputEvent(this.parentElement.parentElement, 'EditorData');"" class=""editor-button""><u>U</u></button>
         ");
-            __builder.AddMarkupContent(17, @"<button id=""strikethroughButton"" data-toggle=""tooltip"" data-trigger=""hover"" data-placement=""top"" title=""Strikethrough"" onclick=""format('strikethrough'); document.getElementById('mainEditor').focus(); setButtonFormattingsForMOTDDisplay(this.parentElement.parentElement); executeInputEvent(this.parentElement.parentElement, 'EditorData');"" class=""editor-button""><del>S</del></button>
+            __builder.AddMarkupContent(15, @"<button id=""strikethroughButton"" data-toggle=""tooltip"" data-trigger=""hover"" data-placement=""top"" title=""Strikethrough"" onclick=""format('strikethrough'); document.getElementById('mainEditor').focus(); setButtonFormattingsForMOTDDisplay(this.parentElement.parentElement); executeInputEvent(this.parentElement.parentElement, 'EditorData');"" class=""editor-button""><del>S</del></button>
         ");
-            __builder.AddMarkupContent(18, @"<button id=""superscriptButton"" data-toggle=""tooltip"" data-trigger=""hover"" data-placement=""top"" title=""Obfuscated"" onclick=""format('superscript'); document.getElementById('mainEditor').focus(); setButtonFormattingsForMOTDDisplay(this.parentElement.parentElement); executeInputEvent(this.parentElement.parentElement, 'EditorData');"" class=""editor-button"">O</button>
+            __builder.AddMarkupContent(16, @"<button id=""superscriptButton"" data-toggle=""tooltip"" data-trigger=""hover"" data-placement=""top"" title=""Obfuscated"" onclick=""format('superscript'); document.getElementById('mainEditor').focus(); setButtonFormattingsForMOTDDisplay(this.parentElement.parentElement); executeInputEvent(this.parentElement.parentElement, 'EditorData');"" class=""editor-button"">O</button>
         ");
-            __builder.AddMarkupContent(19, "<button id=\"foreColorButton\" onclick=\"this.parentElement.querySelector(\'.color-box\').hidden ^= true;\" data-toggle=\"tooltip\" data-trigger=\"hover\" data-placement=\"top\" title=\"Color\" class=\"editor-button\">\r\n            C\r\n        </button>\r\n        ");
-            __builder.AddMarkupContent(20, @"<button id=""foreColorButton"" data-toggle=""tooltip"" data-trigger=""hover"" data-placement=""top"" title=""Clear formatting"" onclick=""format('removeFormat', 'foreColor'); document.getElementById('mainEditor').focus();"" class=""editor-button"">
+            __builder.AddMarkupContent(17, "<button id=\"foreColorButton\" onclick=\"this.parentElement.querySelector(\'.color-box\').hidden ^= true;\" data-toggle=\"tooltip\" data-trigger=\"hover\" data-placement=\"top\" title=\"Color\" class=\"editor-button\">\r\n            C\r\n        </button>\r\n        ");
+            __builder.AddMarkupContent(18, @"<button id=""foreColorButton"" data-toggle=""tooltip"" data-trigger=""hover"" data-placement=""top"" title=""Clear formatting"" onclick=""format('removeFormat', 'foreColor'); document.getElementById('mainEditor').focus();"" class=""editor-button"">
             X
         </button>
         ");
+            __builder.OpenElement(19, "div");
+            __builder.AddAttribute(20, "style", "position:relative");
             __builder.OpenElement(21, "div");
-            __builder.AddAttribute(22, "style", "position:relative");
-            __builder.AddMarkupContent(23, "\r\n            ");
-            __builder.OpenElement(24, "div");
-            __builder.AddAttribute(25, "class", "color-box");
-            __builder.AddAttribute(26, "hidden", true);
-            __builder.AddMarkupContent(27, "\r\n                <div class=\"arrow bubble-left\"></div>\r\n");
+            __builder.AddAttribute(22, "class", "color-box");
+            __builder.AddAttribute(23, "hidden", true);
+            __builder.AddMarkupContent(24, "<div class=\"arrow bubble-left\"></div>");
 #nullable restore
 #line 122 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\MOTDDisplayView.razor"
                  foreach (string color in Constants.MinecraftColorsHexAndFormattingCodes.Keys)
@@ -180,9 +177,8 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(28, "                    ");
-            __builder.OpenElement(29, "button");
-            __builder.AddAttribute(30, "style", "width:20px;" + " height:20px;" + " display:inline;" + " margin-top:1px;margin-bottom:1px;" + " background-color:" + (
+            __builder.OpenElement(25, "button");
+            __builder.AddAttribute(26, "style", "width:20px;" + " height:20px;" + " display:inline;" + " margin-top:1px;margin-bottom:1px;" + " background-color:" + (
 #nullable restore
 #line 124 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\MOTDDisplayView.razor"
                                                                                                                                 color
@@ -191,7 +187,7 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(31, "onclick", "this.parentElement.hidden" + " =" + " true;" + " format(\'foreColor\'," + " \'" + (
+            __builder.AddAttribute(27, "onclick", "this.parentElement.hidden" + " =" + " true;" + " format(\'foreColor\'," + " \'" + (
 #nullable restore
 #line 124 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\MOTDDisplayView.razor"
                                                                                                                                                                                                         color
@@ -201,7 +197,6 @@ using IMS_Library;
 #nullable disable
             ) + "\');" + " document.getElementById(\'mainEditor\').focus();");
             __builder.CloseElement();
-            __builder.AddMarkupContent(32, "\r\n");
 #nullable restore
 #line 125 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\MOTDDisplayView.razor"
                 }
@@ -209,24 +204,21 @@ using IMS_Library;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(33, "            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(34, "\r\n        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(35, "\r\n    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(36, "\r\n\r\n    ");
-            __builder.OpenElement(37, "div");
-            __builder.AddAttribute(38, "id", "mainEditor");
-            __builder.AddAttribute(39, "class", "editor");
-            __builder.AddAttribute(40, "contenteditable", "true");
-            __builder.AddAttribute(41, "onpaste", "event.preventDefault(); var text = event.clipboardData.getData(\'text/plain\'); document.execCommand(\'insertText\', false, text);");
-            __builder.AddAttribute(42, "oninput", "var hiddenData = this.parentElement.querySelector(\'#EditorData\'); hiddenData.value = this.innerHTML; hiddenData.dispatchEvent(new Event(event.type, event));");
-            __builder.AddAttribute(43, "spellcheck", "false");
-            __builder.AddAttribute(44, "onkeydown", "setButtonFormattingsForMOTDDisplay(this.parentElement)");
-            __builder.AddAttribute(45, "onkeyup", "setButtonFormattingsForMOTDDisplay(this.parentElement)");
-            __builder.AddAttribute(46, "onclick", "setButtonFormattingsForMOTDDisplay(this.parentElement)");
-            __builder.AddElementReferenceCapture(47, (__value) => {
+            __builder.AddMarkupContent(28, "\r\n\r\n    ");
+            __builder.OpenElement(29, "div");
+            __builder.AddAttribute(30, "id", "mainEditor");
+            __builder.AddAttribute(31, "class", "editor");
+            __builder.AddAttribute(32, "contenteditable", "true");
+            __builder.AddAttribute(33, "onpaste", "event.preventDefault(); var text = event.clipboardData.getData(\'text/plain\'); document.execCommand(\'insertText\', false, text);");
+            __builder.AddAttribute(34, "oninput", "var hiddenData = this.parentElement.querySelector(\'#EditorData\'); hiddenData.value = this.innerHTML; hiddenData.dispatchEvent(new Event(event.type, event));");
+            __builder.AddAttribute(35, "spellcheck", "false");
+            __builder.AddAttribute(36, "onkeydown", "setButtonFormattingsForMOTDDisplay(this.parentElement)");
+            __builder.AddAttribute(37, "onkeyup", "setButtonFormattingsForMOTDDisplay(this.parentElement)");
+            __builder.AddAttribute(38, "onclick", "setButtonFormattingsForMOTDDisplay(this.parentElement)");
+            __builder.AddElementReferenceCapture(39, (__value) => {
 #nullable restore
 #line 130 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\MOTDDisplayView.razor"
                Editor = __value;
@@ -236,12 +228,11 @@ using IMS_Library;
 #nullable disable
             }
             );
-            __builder.AddMarkupContent(48, "\r\n    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(49, "\r\n    ");
-            __builder.OpenElement(50, "input");
-            __builder.AddAttribute(51, "id", "EditorData");
-            __builder.AddAttribute(52, "oninput", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.ChangeEventArgs>(this, 
+            __builder.AddMarkupContent(40, "\r\n    ");
+            __builder.OpenElement(41, "input");
+            __builder.AddAttribute(42, "id", "EditorData");
+            __builder.AddAttribute(43, "oninput", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.ChangeEventArgs>(this, 
 #nullable restore
 #line 132 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\MOTDDisplayView.razor"
                                      x => MOTDValue = (string)x.Value
@@ -250,7 +241,7 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(53, "value", 
+            __builder.AddAttribute(44, "value", 
 #nullable restore
 #line 132 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\Preferences\MOTDDisplayView.razor"
                                                                                MOTDValue
@@ -259,9 +250,8 @@ using IMS_Library;
 #line hidden
 #nullable disable
             );
-            __builder.AddAttribute(54, "hidden", true);
+            __builder.AddAttribute(45, "hidden", true);
             __builder.CloseElement();
-            __builder.AddMarkupContent(55, "\r\n");
             __builder.CloseElement();
         }
         #pragma warning restore 1998

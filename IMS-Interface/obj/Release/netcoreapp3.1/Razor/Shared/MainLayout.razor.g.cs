@@ -141,8 +141,7 @@ using Microsoft.AspNetCore.Http;
         image-rendering: pixelated;
         background-color: white;
     }
-</style>
-");
+</style>");
 #nullable restore
 #line 42 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
   
@@ -159,15 +158,12 @@ using Microsoft.AspNetCore.Http;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(1, "    ");
-            __builder.OpenElement(2, "div");
-            __builder.AddAttribute(3, "class", "popup-background");
-            __builder.AddMarkupContent(4, "\r\n        ");
-            __builder.OpenElement(5, "div");
-            __builder.AddAttribute(6, "class", "world-card");
-            __builder.AddAttribute(7, "style", "\r\n                margin: auto;\r\n                width: unset;\r\n                display:block;\r\n                padding: 10px;\r\n                position:relative;\r\n                height:unset;\r\n                overflow:auto;\r\n            ");
-            __builder.AddMarkupContent(8, "\r\n            ");
-            __builder.AddContent(9, 
+            __builder.OpenElement(1, "div");
+            __builder.AddAttribute(2, "class", "popup-background");
+            __builder.OpenElement(3, "div");
+            __builder.AddAttribute(4, "class", "world-card");
+            __builder.AddAttribute(5, "style", "\r\n                margin: auto;\r\n                width: unset;\r\n                display:block;\r\n                padding: 10px;\r\n                position:relative;\r\n                height:unset;\r\n                overflow:auto;\r\n            ");
+            __builder.AddContent(6, 
 #nullable restore
 #line 57 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
              PopupManager.CurrentPopupFragment
@@ -176,11 +172,8 @@ using Microsoft.AspNetCore.Http;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(10, "\r\n        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(11, "\r\n    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(12, "\r\n");
 #nullable restore
 #line 60 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
 }
@@ -196,10 +189,8 @@ using Microsoft.AspNetCore.Http;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(13, "    ");
-            __builder.OpenComponent<IMS_Interface.NavMenu>(14);
+            __builder.OpenComponent<IMS_Interface.NavMenu>(7);
             __builder.CloseComponent();
-            __builder.AddMarkupContent(15, "\r\n");
 #nullable restore
 #line 64 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
 }
@@ -207,18 +198,14 @@ using Microsoft.AspNetCore.Http;
 #line default
 #line hidden
 #nullable disable
-            __builder.OpenElement(16, "div");
-            __builder.AddAttribute(17, "class", "main");
-            __builder.AddMarkupContent(18, "\r\n\r\n    ");
-            __builder.OpenElement(19, "div");
-            __builder.AddAttribute(20, "class", "navbar navbar-inverse navbar-fixed-top");
-            __builder.AddAttribute(21, "style", "z-index:300");
-            __builder.AddMarkupContent(22, "\r\n        ");
-            __builder.OpenElement(23, "div");
-            __builder.AddMarkupContent(24, "\r\n            ");
-            __builder.OpenElement(25, "div");
-            __builder.AddAttribute(26, "class", "navbar-header");
-            __builder.AddMarkupContent(27, "\r\n");
+            __builder.OpenElement(8, "div");
+            __builder.AddAttribute(9, "class", "main");
+            __builder.OpenElement(10, "div");
+            __builder.AddAttribute(11, "class", "navbar navbar-inverse navbar-fixed-top");
+            __builder.AddAttribute(12, "style", "z-index:300");
+            __builder.OpenElement(13, "div");
+            __builder.OpenElement(14, "div");
+            __builder.AddAttribute(15, "class", "navbar-header");
 #nullable restore
 #line 70 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
                  if (IMS.Instance.IsDevelopmentMode)
@@ -227,8 +214,7 @@ using Microsoft.AspNetCore.Http;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(28, "                    ");
-            __builder.AddMarkupContent(29, "<a class=\"navbar-brand\" style=\"padding:15px 0px\" href=\"/\">IntegratedMinecraftServer (experimental)</a>\r\n");
+            __builder.AddMarkupContent(16, "<a class=\"navbar-brand\" style=\"padding:15px 0px\" href=\"/\">IntegratedMinecraftServer (experimental)</a>");
 #nullable restore
 #line 73 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
                 }
@@ -238,8 +224,7 @@ using Microsoft.AspNetCore.Http;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(30, "                    ");
-            __builder.AddMarkupContent(31, "<a class=\"navbar-brand\" style=\"padding:15px 0px\" href=\"/\">IntegratedMinecraftServer</a>\r\n");
+            __builder.AddMarkupContent(17, "<a class=\"navbar-brand\" style=\"padding:15px 0px\" href=\"/\">IntegratedMinecraftServer</a>");
 #nullable restore
 #line 77 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
                 }
@@ -247,16 +232,14 @@ using Microsoft.AspNetCore.Http;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(32, "            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(33, "\r\n\r\n            ");
-            __builder.OpenElement(34, "div");
-            __builder.AddAttribute(35, "style", "right:8px; position:absolute; height:100%; width:fit-content; display:flex; align-items:center");
-            __builder.AddMarkupContent(36, "\r\n                ");
-            __builder.OpenElement(37, "a");
-            __builder.AddAttribute(38, "href", "javascript:;");
-            __builder.AddAttribute(39, "style", "font-size: 40px; display:inline; text-decoration:none; line-height: 0px; color: white; vertical-align: middle; margin: 0px 10px 0px 10px; font-weight:normal;");
-            __builder.AddAttribute(40, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.AddMarkupContent(18, "\r\n\r\n            ");
+            __builder.OpenElement(19, "div");
+            __builder.AddAttribute(20, "style", "right:8px; position:absolute; height:100%; width:fit-content; display:flex; align-items:center");
+            __builder.OpenElement(21, "a");
+            __builder.AddAttribute(22, "href", "javascript:;");
+            __builder.AddAttribute(23, "style", "font-size: 40px; display:inline; text-decoration:none; line-height: 0px; color: white; vertical-align: middle; margin: 0px 10px 0px 10px; font-weight:normal;");
+            __builder.AddAttribute(24, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 81 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
                                                                                                                                                                                                                          x => { JSRuntime.InvokeVoidAsync("toggleInfoBox"); IMS.Instance.UserMessageManager.NewMessagesForUser = false; }
@@ -265,8 +248,8 @@ using Microsoft.AspNetCore.Http;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(41, "id", "infoButton");
-            __builder.AddMarkupContent(42, "\r\n                    🛈\r\n");
+            __builder.AddAttribute(25, "id", "infoButton");
+            __builder.AddMarkupContent(26, "\r\n                    🛈\r\n");
 #nullable restore
 #line 83 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
                      if (IMS.Instance.UserMessageManager.NewMessagesForUser)
@@ -275,7 +258,7 @@ using Microsoft.AspNetCore.Http;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddMarkupContent(43, "                        <div style=\"position: absolute;float:right;width: 10px;height: 10px;background-color: red;border-radius: 5px;top: 31px;left: 33px;\"></div>\r\n");
+            __builder.AddMarkupContent(27, "<div style=\"position: absolute;float:right;width: 10px;height: 10px;background-color: red;border-radius: 5px;top: 31px;left: 33px;\"></div>");
 #nullable restore
 #line 86 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
                     }
@@ -283,18 +266,15 @@ using Microsoft.AspNetCore.Http;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(44, "                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(45, "\r\n                ");
-            __builder.OpenElement(46, "div");
-            __builder.AddAttribute(47, "id", "ShowUserInformation");
-            __builder.AddAttribute(48, "style", "position:absolute");
-            __builder.AddAttribute(49, "hidden", true);
-            __builder.AddMarkupContent(50, "\r\n                    ");
-            __builder.AddMarkupContent(51, "<style>\r\n\r\n\r\n                        .info-box {\r\n                            right: 10px;\r\n                            top: 50px;\r\n                            position: fixed;\r\n                            background-color: #ddd;\r\n                            border: 1px solid #ccc;\r\n                            border-radius: 2px;\r\n                            width: 350px;\r\n                            height: 175px;\r\n                            padding: 0px 6px 0px 6px;\r\n                            z-index: 100;\r\n                            overflow-y: auto;\r\n                        }\r\n\r\n                            .info-box > button {\r\n                                border-radius: 5px;\r\n                                border: 1px solid #aaa;\r\n                            }\r\n\r\n                        .info-box-arrow {\r\n                            top: -8px;\r\n                            border-style: solid;\r\n                            position: absolute;\r\n                        }\r\n\r\n                        .bubble-top {\r\n                            border-color: transparent transparent #bbb transparent;\r\n                            border-width: 0px 8px 8px 8px;\r\n                            left: -8px;\r\n                        }\r\n\r\n                            .bubble-top:after {\r\n                                border-color: transparent transparent white transparent;\r\n                                border-style: solid;\r\n                                border-width: 0px 7px 7px 7px;\r\n                                top: 1px;\r\n                                content: \"\";\r\n                                position: absolute;\r\n                                left: -7px;\r\n                            }\r\n\r\n                        .user-message-box {\r\n                            background-color: white;\r\n                            border: 1px solid #bbb;\r\n                            box-shadow: rgba(0, 0, 0, 0.2) 2px 2px;\r\n                            width: 100%;\r\n                            margin: 5px 0px;\r\n                            padding: 4px;\r\n                        }\r\n                    </style>\r\n\r\n                    ");
-            __builder.OpenElement(52, "div");
-            __builder.AddAttribute(53, "class", "info-box");
-            __builder.AddMarkupContent(54, "\r\n                        \r\n");
+            __builder.AddMarkupContent(28, "\r\n                ");
+            __builder.OpenElement(29, "div");
+            __builder.AddAttribute(30, "id", "ShowUserInformation");
+            __builder.AddAttribute(31, "style", "position:absolute");
+            __builder.AddAttribute(32, "hidden", true);
+            __builder.AddMarkupContent(33, "<style>\r\n\r\n\r\n                        .info-box {\r\n                            right: 10px;\r\n                            top: 50px;\r\n                            position: fixed;\r\n                            background-color: #ddd;\r\n                            border: 1px solid #ccc;\r\n                            border-radius: 2px;\r\n                            width: 350px;\r\n                            height: 175px;\r\n                            padding: 0px 6px 0px 6px;\r\n                            z-index: 100;\r\n                            overflow-y: auto;\r\n                        }\r\n\r\n                            .info-box > button {\r\n                                border-radius: 5px;\r\n                                border: 1px solid #aaa;\r\n                            }\r\n\r\n                        .info-box-arrow {\r\n                            top: -8px;\r\n                            border-style: solid;\r\n                            position: absolute;\r\n                        }\r\n\r\n                        .bubble-top {\r\n                            border-color: transparent transparent #bbb transparent;\r\n                            border-width: 0px 8px 8px 8px;\r\n                            left: -8px;\r\n                        }\r\n\r\n                            .bubble-top:after {\r\n                                border-color: transparent transparent white transparent;\r\n                                border-style: solid;\r\n                                border-width: 0px 7px 7px 7px;\r\n                                top: 1px;\r\n                                content: \"\";\r\n                                position: absolute;\r\n                                left: -7px;\r\n                            }\r\n\r\n                        .user-message-box {\r\n                            background-color: white;\r\n                            border: 1px solid #bbb;\r\n                            box-shadow: rgba(0, 0, 0, 0.2) 2px 2px;\r\n                            width: 100%;\r\n                            margin: 5px 0px;\r\n                            padding: 4px;\r\n                        }\r\n                    </style>\r\n\r\n                    ");
+            __builder.OpenElement(34, "div");
+            __builder.AddAttribute(35, "class", "info-box");
 #nullable restore
 #line 145 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
                          if (IMS.Instance.UserMessageManager.Messages.Count > 0)
@@ -305,13 +285,11 @@ using Microsoft.AspNetCore.Http;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(55, "                        ");
-            __builder.OpenElement(56, "div");
-            __builder.AddAttribute(57, "class", "user-message-box");
-            __builder.AddMarkupContent(58, "\r\n                            ");
-            __builder.OpenElement(59, "a");
-            __builder.AddAttribute(60, "href", "javascript:;");
-            __builder.AddAttribute(61, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.OpenElement(36, "div");
+            __builder.AddAttribute(37, "class", "user-message-box");
+            __builder.OpenElement(38, "a");
+            __builder.AddAttribute(39, "href", "javascript:;");
+            __builder.AddAttribute(40, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 150 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
                                                              x => IMS.Instance.UserMessageManager.Messages.Remove(item)
@@ -320,13 +298,13 @@ using Microsoft.AspNetCore.Http;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(62, "style", "float: right; color: white; background-color: gray; border-radius: 6px; height: 12px; width: 12px; text-align: center; text-decoration: none; line-height: 12px; padding-left:1px");
-            __builder.AddMarkupContent(63, "×");
+            __builder.AddAttribute(41, "style", "float: right; color: white; background-color: gray; border-radius: 6px; height: 12px; width: 12px; text-align: center; text-decoration: none; line-height: 12px; padding-left:1px");
+            __builder.AddMarkupContent(42, "×");
             __builder.CloseElement();
-            __builder.AddMarkupContent(64, "\r\n                            ");
-            __builder.OpenElement(65, "label");
-            __builder.AddAttribute(66, "style", "font-weight:normal;color:darkgray; font-size:12px; line-height:1; display:block;");
-            __builder.AddContent(67, 
+            __builder.AddMarkupContent(43, "\r\n                            ");
+            __builder.OpenElement(44, "label");
+            __builder.AddAttribute(45, "style", "font-weight:normal;color:darkgray; font-size:12px; line-height:1; display:block;");
+            __builder.AddContent(46, 
 #nullable restore
 #line 151 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
                                                                                                                              item.LastSendTime
@@ -335,12 +313,11 @@ using Microsoft.AspNetCore.Http;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(68, "<br>");
+            __builder.AddMarkupContent(47, "<br>");
             __builder.CloseElement();
-            __builder.AddMarkupContent(69, "\r\n                            ");
-            __builder.OpenElement(70, "label");
-            __builder.AddAttribute(71, "style", "font-weight:normal; margin-bottom:0px; margin-right:5px; line-height:1");
-            __builder.AddMarkupContent(72, "\r\n");
+            __builder.AddMarkupContent(48, "\r\n                            ");
+            __builder.OpenElement(49, "label");
+            __builder.AddAttribute(50, "style", "font-weight:normal; margin-bottom:0px; margin-right:5px; line-height:1");
 #nullable restore
 #line 153 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
                                  switch (item.Severity)
@@ -350,8 +327,7 @@ using Microsoft.AspNetCore.Http;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(73, "                                        ");
-            __builder.AddMarkupContent(74, "<label style=\"color:darkgray\">\r\n                                            🛈&#xFE0E;\r\n                                        </label>\r\n");
+            __builder.AddMarkupContent(51, "<label style=\"color:darkgray\">\r\n                                            🛈&#xFE0E;\r\n                                        </label>");
 #nullable restore
 #line 159 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
                                         break;
@@ -360,8 +336,7 @@ using Microsoft.AspNetCore.Http;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(75, "                                        ");
-            __builder.AddMarkupContent(76, "<label style=\"color:darkgoldenrod\">\r\n                                            ⚠&#xFE0E;\r\n                                        </label>\r\n");
+            __builder.AddMarkupContent(52, "<label style=\"color:darkgoldenrod\">\r\n                                            ⚠&#xFE0E;\r\n                                        </label>");
 #nullable restore
 #line 164 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
                                         break;
@@ -370,8 +345,7 @@ using Microsoft.AspNetCore.Http;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(77, "                                        ");
-            __builder.AddMarkupContent(78, "<label style=\"color:darkred\">\r\n                                            ⛔&#xFE0E;\r\n                                        </label>\r\n");
+            __builder.AddMarkupContent(53, "<label style=\"color:darkred\">\r\n                                            ⛔&#xFE0E;\r\n                                        </label>");
 #nullable restore
 #line 169 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
                                         break;
@@ -382,8 +356,7 @@ using Microsoft.AspNetCore.Http;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(79, "                                ");
-            __builder.AddContent(80, 
+            __builder.AddContent(54, 
 #nullable restore
 #line 173 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
                                  item.Message
@@ -392,11 +365,8 @@ using Microsoft.AspNetCore.Http;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(81, "\r\n                            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(82, "\r\n                        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(83, "\r\n");
 #nullable restore
 #line 176 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
                             }
@@ -407,8 +377,7 @@ using Microsoft.AspNetCore.Http;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(84, "                            ");
-            __builder.AddMarkupContent(85, "<label style=\"font-weight:normal;margin:5px\">There are no new messages to show here.</label>\r\n");
+            __builder.AddMarkupContent(55, "<label style=\"font-weight:normal;margin:5px\">There are no new messages to show here.</label>");
 #nullable restore
 #line 181 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
                         }
@@ -416,11 +385,8 @@ using Microsoft.AspNetCore.Http;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(86, "                    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(87, "\r\n                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(88, "\r\n");
 #nullable restore
 #line 184 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
                  if (IMS.Instance.ServerManager.Servers.Count > 0)
@@ -429,11 +395,10 @@ using Microsoft.AspNetCore.Http;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(89, "                    ");
-            __builder.OpenElement(90, "select");
-            __builder.AddAttribute(91, "style", "width:250px; display:inline");
-            __builder.AddAttribute(92, "class", "btn btn-default dropdown-toggle");
-            __builder.AddAttribute(93, "value", Microsoft.AspNetCore.Components.BindConverter.FormatValue(
+            __builder.OpenElement(56, "select");
+            __builder.AddAttribute(57, "style", "width:250px; display:inline");
+            __builder.AddAttribute(58, "class", "btn btn-default dropdown-toggle");
+            __builder.AddAttribute(59, "value", Microsoft.AspNetCore.Components.BindConverter.FormatValue(
 #nullable restore
 #line 186 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
                                                                                                                CurrentServerBoxText
@@ -442,9 +407,8 @@ using Microsoft.AspNetCore.Http;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(94, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.CreateBinder(this, __value => CurrentServerBoxText = __value, CurrentServerBoxText));
+            __builder.AddAttribute(60, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.CreateBinder(this, __value => CurrentServerBoxText = __value, CurrentServerBoxText));
             __builder.SetUpdatesAttributeName("value");
-            __builder.AddMarkupContent(95, "\r\n");
 #nullable restore
 #line 187 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
                          foreach (ServerProxy proxy in IMS.Instance.ServerManager.Servers)
@@ -453,9 +417,8 @@ using Microsoft.AspNetCore.Http;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(96, "                            ");
-            __builder.OpenElement(97, "option");
-            __builder.AddAttribute(98, "value", 
+            __builder.OpenElement(61, "option");
+            __builder.AddAttribute(62, "value", 
 #nullable restore
 #line 189 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
                                             proxy.ID
@@ -464,7 +427,7 @@ using Microsoft.AspNetCore.Http;
 #line hidden
 #nullable disable
             );
-            __builder.AddContent(99, 
+            __builder.AddContent(63, 
 #nullable restore
 #line 189 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
                                                        proxy.CurrentConfiguration.ServerName
@@ -474,7 +437,6 @@ using Microsoft.AspNetCore.Http;
 #nullable disable
             );
             __builder.CloseElement();
-            __builder.AddMarkupContent(100, "\r\n");
 #nullable restore
 #line 190 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
                         }
@@ -482,14 +444,11 @@ using Microsoft.AspNetCore.Http;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(101, "                        ");
-            __builder.OpenElement(102, "option");
-            __builder.AddAttribute(103, "value", "NEW");
-            __builder.AddContent(104, "Create new server...");
+            __builder.OpenElement(64, "option");
+            __builder.AddAttribute(65, "value", "NEW");
+            __builder.AddContent(66, "Create new server...");
             __builder.CloseElement();
-            __builder.AddMarkupContent(105, "\r\n                    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(106, "\r\n");
 #nullable restore
 #line 193 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
                 }
@@ -505,10 +464,9 @@ using Microsoft.AspNetCore.Http;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(107, "                    ");
-            __builder.OpenElement(108, "button");
-            __builder.AddAttribute(109, "style", "background-color:transparent; margin-left:10px; border-style:none; color:white; height:32px; display:inline");
-            __builder.AddAttribute(110, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.OpenElement(67, "button");
+            __builder.AddAttribute(68, "style", "background-color:transparent; margin-left:10px; border-style:none; color:white; height:32px; display:inline");
+            __builder.AddAttribute(69, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 196 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
                                                                                                                                                           LogoutAsync
@@ -517,9 +475,8 @@ using Microsoft.AspNetCore.Http;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(111, "Sign Out");
+            __builder.AddContent(70, "Sign Out");
             __builder.CloseElement();
-            __builder.AddMarkupContent(112, "\r\n");
 #nullable restore
 #line 197 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
                 }
@@ -527,18 +484,14 @@ using Microsoft.AspNetCore.Http;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(113, "            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(114, "\r\n        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(115, "\r\n    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(116, "\r\n\r\n    ");
-            __builder.OpenElement(117, "div");
-            __builder.AddAttribute(118, "class", "px-4");
-            __builder.AddAttribute(119, "style", "margin-left:80px; margin-top:74px; margin-right:10px");
-            __builder.AddMarkupContent(120, "\r\n        ");
-            __builder.AddContent(121, 
+            __builder.AddMarkupContent(71, "\r\n\r\n    ");
+            __builder.OpenElement(72, "div");
+            __builder.AddAttribute(73, "class", "px-4");
+            __builder.AddAttribute(74, "style", "margin-left:80px; margin-top:74px; margin-right:10px");
+            __builder.AddContent(75, 
 #nullable restore
 #line 203 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
          Body
@@ -547,13 +500,12 @@ using Microsoft.AspNetCore.Http;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(122, "\r\n        <br>\r\n    ");
+            __builder.AddMarkupContent(76, "\r\n        <br>");
             __builder.CloseElement();
-            __builder.AddMarkupContent(123, "\r\n");
             __builder.CloseElement();
-            __builder.AddMarkupContent(124, "\r\n\r\n");
-            __builder.OpenComponent<IMS_Interface.Timer>(125);
-            __builder.AddAttribute(126, "Interval", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Double>(
+            __builder.AddMarkupContent(77, "\r\n\r\n");
+            __builder.OpenComponent<IMS_Interface.Timer>(78);
+            __builder.AddAttribute(79, "Interval", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Double>(
 #nullable restore
 #line 208 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
                                   500
@@ -562,7 +514,7 @@ using Microsoft.AspNetCore.Http;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(127, "UpdateComponentOnTick", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Boolean>(
+            __builder.AddAttribute(80, "UpdateComponentOnTick", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Boolean>(
 #nullable restore
 #line 208 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
                                                               true
@@ -571,7 +523,7 @@ using Microsoft.AspNetCore.Http;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(128, "UpdateScope", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.ComponentBase>(
+            __builder.AddAttribute(81, "UpdateScope", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.ComponentBase>(
 #nullable restore
 #line 208 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
                                                                                  this
@@ -580,7 +532,7 @@ using Microsoft.AspNetCore.Http;
 #line hidden
 #nullable disable
             ));
-            __builder.AddComponentReferenceCapture(129, (__value) => {
+            __builder.AddComponentReferenceCapture(82, (__value) => {
 #nullable restore
 #line 208 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Shared\MainLayout.razor"
              MainTimer = (IMS_Interface.Timer)__value;

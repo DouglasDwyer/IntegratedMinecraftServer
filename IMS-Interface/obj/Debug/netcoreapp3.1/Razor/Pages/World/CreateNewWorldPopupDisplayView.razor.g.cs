@@ -168,10 +168,9 @@ using IMS_Library;
             __builder.AddMarkupContent(23, "\r\n<br>\r\n<br>\r\n<br>\r\n<label></label>\r\n");
             __builder.OpenElement(24, "div");
             __builder.AddAttribute(25, "style", "position:absolute;right:10px;bottom:10px;");
-            __builder.AddMarkupContent(26, "\r\n    ");
-            __builder.OpenElement(27, "button");
-            __builder.AddAttribute(28, "class", "btn btn-primary");
-            __builder.AddAttribute(29, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.OpenElement(26, "button");
+            __builder.AddAttribute(27, "class", "btn btn-primary");
+            __builder.AddAttribute(28, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 31 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\CreateNewWorldPopupDisplayView.razor"
                                                 x => { PopupManager.ShowPopup(new LoadingPopupDisplay("Creating world...")); DisplayData.OnUserSubmit?.Invoke(WorldName, Seed, LevelType); }
@@ -180,12 +179,12 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(30, "Create");
+            __builder.AddContent(29, "Create");
             __builder.CloseElement();
-            __builder.AddMarkupContent(31, "\r\n    ");
-            __builder.OpenElement(32, "button");
-            __builder.AddAttribute(33, "class", "btn btn-default");
-            __builder.AddAttribute(34, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.AddMarkupContent(30, "\r\n    ");
+            __builder.OpenElement(31, "button");
+            __builder.AddAttribute(32, "class", "btn btn-default");
+            __builder.AddAttribute(33, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 32 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\CreateNewWorldPopupDisplayView.razor"
                                               x => PopupManager.ClosePopup()
@@ -194,9 +193,8 @@ using IMS_Library;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(35, "Cancel");
+            __builder.AddContent(34, "Cancel");
             __builder.CloseElement();
-            __builder.AddMarkupContent(36, "\r\n");
             __builder.CloseElement();
         }
         #pragma warning restore 1998

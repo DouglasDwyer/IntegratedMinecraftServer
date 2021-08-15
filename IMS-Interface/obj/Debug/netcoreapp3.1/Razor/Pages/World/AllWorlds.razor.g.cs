@@ -166,7 +166,6 @@ using Blazor.FileReader;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(6, "\r\n");
 #nullable restore
 #line 43 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\AllWorlds.razor"
      if (CurrentWorldUpload != null)
@@ -176,7 +175,7 @@ using Blazor.FileReader;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(7, 
+            __builder.AddContent(6, 
 #nullable restore
 #line 45 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\AllWorlds.razor"
           "Uploading... (" + Math.Round((double)CurrentWorldUpload.UploadedSize / CurrentWorldUpload.TotalSize * 100) + "%)"
@@ -196,7 +195,7 @@ using Blazor.FileReader;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(8, 
+            __builder.AddContent(7, 
 #nullable restore
 #line 49 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\AllWorlds.razor"
           "Upload new world"
@@ -213,15 +212,14 @@ using Blazor.FileReader;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(9, "    ");
-            __builder.OpenElement(10, "input");
-            __builder.AddAttribute(11, "type", "file");
-            __builder.AddAttribute(12, "class", "btn btn-primary");
-            __builder.AddAttribute(13, "style", "display:none");
-            __builder.AddAttribute(14, "multiple", true);
-            __builder.AddAttribute(15, "webkitdirectory", true);
-            __builder.AddAttribute(16, "mozdirectory", true);
-            __builder.AddAttribute(17, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.ChangeEventArgs>(this, 
+            __builder.OpenElement(8, "input");
+            __builder.AddAttribute(9, "type", "file");
+            __builder.AddAttribute(10, "class", "btn btn-primary");
+            __builder.AddAttribute(11, "style", "display:none");
+            __builder.AddAttribute(12, "multiple", true);
+            __builder.AddAttribute(13, "webkitdirectory", true);
+            __builder.AddAttribute(14, "mozdirectory", true);
+            __builder.AddAttribute(15, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.ChangeEventArgs>(this, 
 #nullable restore
 #line 51 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\AllWorlds.razor"
                                                                                                                                           BeginWorldUpload
@@ -230,7 +228,7 @@ using Blazor.FileReader;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(18, "disabled", 
+            __builder.AddAttribute(16, "disabled", 
 #nullable restore
 #line 51 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\AllWorlds.razor"
                                                                                                                                                                        IsExecutingTask
@@ -239,7 +237,7 @@ using Blazor.FileReader;
 #line hidden
 #nullable disable
             );
-            __builder.AddElementReferenceCapture(19, (__value) => {
+            __builder.AddElementReferenceCapture(17, (__value) => {
 #nullable restore
 #line 51 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\AllWorlds.razor"
                  NewWorldInput = __value;
@@ -250,12 +248,11 @@ using Blazor.FileReader;
             }
             );
             __builder.CloseElement();
-            __builder.AddMarkupContent(20, "\r\n");
             __builder.CloseElement();
-            __builder.AddMarkupContent(21, "\r\n");
-            __builder.OpenElement(22, "button");
-            __builder.AddAttribute(23, "class", "btn btn-primary");
-            __builder.AddAttribute(24, "disabled", 
+            __builder.AddMarkupContent(18, "\r\n");
+            __builder.OpenElement(19, "button");
+            __builder.AddAttribute(20, "class", "btn btn-primary");
+            __builder.AddAttribute(21, "disabled", 
 #nullable restore
 #line 53 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\AllWorlds.razor"
                                            IsExecutingTask
@@ -264,7 +261,7 @@ using Blazor.FileReader;
 #line hidden
 #nullable disable
             );
-            __builder.AddAttribute(25, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.AddAttribute(22, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 53 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\AllWorlds.razor"
                                                                       OnCreateNewWorld
@@ -273,22 +270,16 @@ using Blazor.FileReader;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(26, "Generate new world");
+            __builder.AddContent(23, "Generate new world");
             __builder.CloseElement();
-            __builder.AddMarkupContent(27, "\r\n<br>\r\n");
-            __builder.AddMarkupContent(28, @"<label style=""margin-top:2px;font-weight:normal; color:gray;"">Java worlds are usually located at
-    <button style=""background-color:transparent; border:none"" onclick=""navigator.clipboard.writeText('%AppData%\\.minecraft\\saves')"">
-        <b style=""border-bottom: 1px dotted #000;"" data-toggle=""tooltip"" data-container=""app"" data-trigger=""hover"" data-placement=""top"" title=""Click to copy path"">%AppData%\.minecraft\saves</b>
-    </button>and Bedrock worlds at
-    <button style=""background-color:transparent; border:none"" onclick=""navigator.clipboard.writeText('%LocalAppData%\\Packages\\Microsoft.MinecraftUWP_8wekyb3d8bbwe\\LocalState\\games\\com.mojang\\minecraftWorlds')"">
-        <b style=""border-bottom: 1px dotted #000;"" data-toggle=""tooltip"" data-container=""app"" data-trigger=""hover"" data-placement=""top"" title=""Click to copy path"">%LocalAppData%\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang\minecraftWorlds</b>
-    </button>
-</label>
+            __builder.AddMarkupContent(24, "\r\n<br>\r\n");
+            __builder.AddMarkupContent(25, @"<label style=""margin-top:2px;font-weight:normal; color:gray;"">Java worlds are usually located at
+    <button style=""background-color:transparent; border:none"" onclick=""navigator.clipboard.writeText('%AppData%\\.minecraft\\saves')""><b style=""border-bottom: 1px dotted #000;"" data-toggle=""tooltip"" data-container=""app"" data-trigger=""hover"" data-placement=""top"" title=""Click to copy path"">%AppData%\.minecraft\saves</b></button>and Bedrock worlds at
+    <button style=""background-color:transparent; border:none"" onclick=""navigator.clipboard.writeText('%LocalAppData%\\Packages\\Microsoft.MinecraftUWP_8wekyb3d8bbwe\\LocalState\\games\\com.mojang\\minecraftWorlds')""><b style=""border-bottom: 1px dotted #000;"" data-toggle=""tooltip"" data-container=""app"" data-trigger=""hover"" data-placement=""top"" title=""Click to copy path"">%LocalAppData%\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang\minecraftWorlds</b></button></label>
 <hr>
 ");
-            __builder.OpenElement(29, "div");
-            __builder.AddAttribute(30, "style", "padding:2px");
-            __builder.AddMarkupContent(31, "\r\n");
+            __builder.OpenElement(26, "div");
+            __builder.AddAttribute(27, "style", "padding:2px");
 #nullable restore
 #line 65 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\AllWorlds.razor"
        
@@ -307,12 +298,10 @@ using Blazor.FileReader;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(32, "        ");
-            __builder.OpenElement(33, "div");
-            __builder.AddAttribute(34, "class", "world-card");
-            __builder.AddMarkupContent(35, "\r\n            ");
-            __builder.OpenElement(36, "img");
-            __builder.AddAttribute(37, "src", 
+            __builder.OpenElement(28, "div");
+            __builder.AddAttribute(29, "class", "world-card");
+            __builder.OpenElement(30, "img");
+            __builder.AddAttribute(31, "src", 
 #nullable restore
 #line 72 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\AllWorlds.razor"
                        GetRelativeWorldIcon(world)
@@ -321,12 +310,11 @@ using Blazor.FileReader;
 #line hidden
 #nullable disable
             );
-            __builder.AddAttribute(38, "style", "width:200px; height:200px");
+            __builder.AddAttribute(32, "style", "width:200px; height:200px");
             __builder.CloseElement();
-            __builder.AddMarkupContent(39, "\r\n            ");
-            __builder.OpenElement(40, "div");
-            __builder.AddAttribute(41, "class", "world-card-container");
-            __builder.AddMarkupContent(42, "\r\n");
+            __builder.AddMarkupContent(33, "\r\n            ");
+            __builder.OpenElement(34, "div");
+            __builder.AddAttribute(35, "class", "world-card-container");
 #nullable restore
 #line 74 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\AllWorlds.razor"
                   
@@ -337,14 +325,13 @@ using Blazor.FileReader;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(43, "                        ");
-            __builder.OpenElement(44, "label");
-            __builder.AddAttribute(45, "style", "display:inline-block; position:relative; bottom:10px");
-            __builder.AddAttribute(46, "data-toggle", "tooltip");
-            __builder.AddAttribute(47, "data-container", "app");
-            __builder.AddAttribute(48, "data-trigger", "hover");
-            __builder.AddAttribute(49, "data-placement", "top");
-            __builder.AddAttribute(50, "title", 
+            __builder.OpenElement(36, "label");
+            __builder.AddAttribute(37, "style", "display:inline-block; position:relative; bottom:10px");
+            __builder.AddAttribute(38, "data-toggle", "tooltip");
+            __builder.AddAttribute(39, "data-container", "app");
+            __builder.AddAttribute(40, "data-trigger", "hover");
+            __builder.AddAttribute(41, "data-placement", "top");
+            __builder.AddAttribute(42, "title", 
 #nullable restore
 #line 78 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\AllWorlds.razor"
                                                                                                                                                                                          "World " + (server.State == ServerProxy.ServerState.Disabled ? "mounted" : "running") + " on " + server.CurrentConfiguration.ServerName
@@ -353,9 +340,8 @@ using Blazor.FileReader;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(51, "🔒&#xFE0E;");
+            __builder.AddMarkupContent(43, "🔒&#xFE0E;");
             __builder.CloseElement();
-            __builder.AddMarkupContent(52, "\r\n");
 #nullable restore
 #line 79 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\AllWorlds.razor"
                     }
@@ -363,9 +349,8 @@ using Blazor.FileReader;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(53, "                    ");
-            __builder.OpenElement(54, "a");
-            __builder.AddAttribute(55, "href", 
+            __builder.OpenElement(44, "a");
+            __builder.AddAttribute(45, "href", 
 #nullable restore
 #line 80 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\AllWorlds.razor"
                                "WorldManager/" + world.ID
@@ -374,8 +359,8 @@ using Blazor.FileReader;
 #line hidden
 #nullable disable
             );
-            __builder.AddAttribute(56, "style", "white-space: nowrap; overflow: hidden; width: 154px; text-overflow: ellipsis; display: inline-block;");
-            __builder.AddContent(57, 
+            __builder.AddAttribute(46, "style", "white-space: nowrap; overflow: hidden; width: 154px; text-overflow: ellipsis; display: inline-block;");
+            __builder.AddContent(47, 
 #nullable restore
 #line 80 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\AllWorlds.razor"
                                                                                                                                                                            world.Name
@@ -385,14 +370,13 @@ using Blazor.FileReader;
 #nullable disable
             );
             __builder.CloseElement();
-            __builder.AddMarkupContent(58, "\r\n                    ");
-            __builder.OpenElement(59, "div");
-            __builder.AddAttribute(60, "style", "float:right; position:relative; margin-top:-2px; display:inline-block");
-            __builder.AddMarkupContent(61, "\r\n                        ");
-            __builder.OpenElement(62, "select");
-            __builder.AddAttribute(63, "class", "btn");
-            __builder.AddAttribute(64, "style", "width:30px; -webkit-appearance:none; color:black; position:absolute; right:0");
-            __builder.AddAttribute(65, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.ChangeEventArgs>(this, 
+            __builder.AddMarkupContent(48, "\r\n                    ");
+            __builder.OpenElement(49, "div");
+            __builder.AddAttribute(50, "style", "float:right; position:relative; margin-top:-2px; display:inline-block");
+            __builder.OpenElement(51, "select");
+            __builder.AddAttribute(52, "class", "btn");
+            __builder.AddAttribute(53, "style", "width:30px; -webkit-appearance:none; color:black; position:absolute; right:0");
+            __builder.AddAttribute(54, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.ChangeEventArgs>(this, 
 #nullable restore
 #line 82 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\AllWorlds.razor"
                                                                                                                                             x => TakeActionOnWorld((string)x.Value, world, server)
@@ -401,15 +385,13 @@ using Blazor.FileReader;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(66, "keepSelectedIndexAtZero", true);
-            __builder.AddMarkupContent(67, "\r\n                            ");
-            __builder.OpenElement(68, "option");
-            __builder.AddAttribute(69, "selected", true);
-            __builder.AddAttribute(70, "disabled", true);
-            __builder.AddAttribute(71, "hidden", true);
-            __builder.AddMarkupContent(72, "⋮");
+            __builder.AddAttribute(55, "keepSelectedIndexAtZero", true);
+            __builder.OpenElement(56, "option");
+            __builder.AddAttribute(57, "selected", true);
+            __builder.AddAttribute(58, "disabled", true);
+            __builder.AddAttribute(59, "hidden", true);
+            __builder.AddMarkupContent(60, "⋮");
             __builder.CloseElement();
-            __builder.AddMarkupContent(73, "\r\n");
 #nullable restore
 #line 84 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\AllWorlds.razor"
                              if (server is null && selectedServer.SupportedEdition == world.Edition)
@@ -418,11 +400,9 @@ using Blazor.FileReader;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(74, "                                ");
-            __builder.OpenElement(75, "option");
-            __builder.AddMarkupContent(76, "\r\n                                    Set as server world\r\n                                ");
+            __builder.OpenElement(61, "option");
+            __builder.AddMarkupContent(62, "\r\n                                    Set as server world\r\n                                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(77, "\r\n");
 #nullable restore
 #line 89 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\AllWorlds.razor"
                             }
@@ -430,28 +410,21 @@ using Blazor.FileReader;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(78, "                            ");
-            __builder.OpenElement(79, "option");
-            __builder.AddMarkupContent(80, "\r\n                                Rename\r\n                            ");
+            __builder.OpenElement(63, "option");
+            __builder.AddMarkupContent(64, "\r\n                                Rename\r\n                            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(81, "\r\n                            ");
-            __builder.OpenElement(82, "option");
-            __builder.AddMarkupContent(83, "\r\n                                Change world icon\r\n                            ");
+            __builder.AddMarkupContent(65, "\r\n                            ");
+            __builder.OpenElement(66, "option");
+            __builder.AddMarkupContent(67, "\r\n                                Change world icon\r\n                            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(84, "\r\n                            ");
-            __builder.OpenElement(85, "option");
-            __builder.AddMarkupContent(86, "\r\n                                Delete\r\n                            ");
+            __builder.AddMarkupContent(68, "\r\n                            ");
+            __builder.OpenElement(69, "option");
+            __builder.AddMarkupContent(70, "\r\n                                Delete\r\n                            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(87, "\r\n                        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(88, "\r\n                    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(89, "\r\n");
-            __builder.AddContent(90, "            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(91, "\r\n        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(92, "\r\n");
 #nullable restore
 #line 104 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\World\AllWorlds.razor"
     }

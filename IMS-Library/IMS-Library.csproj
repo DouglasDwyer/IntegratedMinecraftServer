@@ -4,14 +4,14 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>IMS-DevelopmentKit</PackageId>
-    <Version>1.0.1.3</Version>
+    <Version>1.0.1.4</Version>
     <Authors>Douglas Dwyer</Authors>
     <Company />
     <Product>IMS</Product>
     <PackageIcon></PackageIcon>
     <PackageIconUrl />
-    <AssemblyVersion>1.0.1.3</AssemblyVersion>
-    <FileVersion>1.0.1.3</FileVersion>
+    <AssemblyVersion>1.0.1.4</AssemblyVersion>
+    <FileVersion>1.0.1.4</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

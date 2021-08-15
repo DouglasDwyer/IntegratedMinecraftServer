@@ -130,9 +130,8 @@ using System.Reflection;
 #nullable disable
             );
             __builder.AddAttribute(7, "style", "display:inline-block; margin:5px 0px");
-            __builder.AddMarkupContent(8, "\r\n    ");
-            __builder.OpenComponent<IMS_Interface.MultiToggle>(9);
-            __builder.AddAttribute(10, "Options", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String[]>(
+            __builder.OpenComponent<IMS_Interface.MultiToggle>(8);
+            __builder.AddAttribute(9, "Options", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String[]>(
 #nullable restore
 #line 11 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\IMSUpdateTimeDisplayView.razor"
                             new string[] { "Don't update", "Update" }
@@ -141,7 +140,7 @@ using System.Reflection;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(11, "SelectedIndex", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Int32>(
+            __builder.AddAttribute(10, "SelectedIndex", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Int32>(
 #nullable restore
 #line 12 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\IMSUpdateTimeDisplayView.razor"
                                 SelectedItem
@@ -150,7 +149,7 @@ using System.Reflection;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(12, "OnSelectionChange", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.Int32>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.Int32>(this, 
+            __builder.AddAttribute(11, "OnSelectionChange", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.Int32>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.Int32>(this, 
 #nullable restore
 #line 13 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\IMSUpdateTimeDisplayView.razor"
                                       x => SelectedItem = x
@@ -160,9 +159,7 @@ using System.Reflection;
 #nullable disable
             )));
             __builder.CloseComponent();
-            __builder.AddMarkupContent(13, "\r\n");
             __builder.CloseElement();
-            __builder.AddMarkupContent(14, "\r\n");
 #nullable restore
 #line 15 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\IMSUpdateTimeDisplayView.razor"
  if (SelectedItem != 0)
@@ -171,13 +168,12 @@ using System.Reflection;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(15, "    ");
-            __builder.AddMarkupContent(16, "<label style=\"font-weight:normal; margin:0px 5px 0px 5px\">at</label>\r\n    ");
-            __builder.OpenElement(17, "input");
-            __builder.AddAttribute(18, "class", "form-control");
-            __builder.AddAttribute(19, "style", "margin-top:5px;margin-bottom:5px; width:150px; display:unset");
-            __builder.AddAttribute(20, "type", "time");
-            __builder.AddAttribute(21, "value", Microsoft.AspNetCore.Components.BindConverter.FormatValue(
+            __builder.AddMarkupContent(12, "<label style=\"font-weight:normal; margin:0px 5px 0px 5px\">at</label>\r\n    ");
+            __builder.OpenElement(13, "input");
+            __builder.AddAttribute(14, "class", "form-control");
+            __builder.AddAttribute(15, "style", "margin-top:5px;margin-bottom:5px; width:150px; display:unset");
+            __builder.AddAttribute(16, "type", "time");
+            __builder.AddAttribute(17, "value", Microsoft.AspNetCore.Components.BindConverter.FormatValue(
 #nullable restore
 #line 21 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\IMSUpdateTimeDisplayView.razor"
                   Value
@@ -186,10 +182,10 @@ using System.Reflection;
 #line hidden
 #nullable disable
             , format: "HH:mm:ss", culture: global::System.Globalization.CultureInfo.InvariantCulture));
-            __builder.AddAttribute(22, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.CreateBinder(this, __value => Value = __value, Value, format: "HH:mm:ss", culture: global::System.Globalization.CultureInfo.InvariantCulture));
+            __builder.AddAttribute(18, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.CreateBinder(this, __value => Value = __value, Value, format: "HH:mm:ss", culture: global::System.Globalization.CultureInfo.InvariantCulture));
             __builder.SetUpdatesAttributeName("value");
             __builder.CloseElement();
-            __builder.AddMarkupContent(23, "<label style=\"margin-left:10px\"> if a new version is available.</label>\r\n");
+            __builder.AddMarkupContent(19, "<label style=\"margin-left:10px\"> if a new version is available.</label>");
 #nullable restore
 #line 22 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\IMSUpdateTimeDisplayView.razor"
 }
@@ -197,7 +193,7 @@ using System.Reflection;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddMarkupContent(24, "<br>");
+            __builder.AddMarkupContent(20, "<br>");
         }
         #pragma warning restore 1998
 #nullable restore

@@ -1486,6 +1486,11 @@
             The default permission level assigned to new players.
             </summary>
         </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.DefaultPlayerPermissionStatus">
+            <summary>
+            The default permission level assigned to new players.
+            </summary>
+        </member>
         <member name="F:IMS_Library.BedrockServerConfiguration.TexturePackRequired">
             <summary>
             Whether players must download a texture pack to play on the current server.
@@ -1502,6 +1507,11 @@
             </summary>
         </member>
         <member name="F:IMS_Library.BedrockServerConfiguration.ServerAuthoritativeMovement">
+            <summary>
+            Whether the server should analyze client movement.  The server will only enforce correct movement if <see cref="F:IMS_Library.BedrockServerConfiguration.CorrectPlayerMovement"/> is <c>true</c>.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.ServerAuthoritativeMovementConfiguration">
             <summary>
             Whether the server should analyze client movement.  The server will only enforce correct movement if <see cref="F:IMS_Library.BedrockServerConfiguration.CorrectPlayerMovement"/> is <c>true</c>.
             </summary>
@@ -1524,6 +1534,11 @@
         <member name="F:IMS_Library.BedrockServerConfiguration.CorrectPlayerMovement">
             <summary>
             Whether the server should correct clients' position when their movement score exceeds <see cref="F:IMS_Library.BedrockServerConfiguration.PlayerMovementScoreThreshold"/>.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.ServerAuthoritativeBlockBreaking">
+            <summary>
+            Whether the server should verify clients' attempts to break blocks.
             </summary>
         </member>
         <member name="M:IMS_Library.BedrockServerConfiguration.#ctor">
@@ -1554,6 +1569,46 @@
             Creates a server object that can be used to run a Minecraft server with this configuration.
             </summary>
             <returns>A Minecraft server wrapper configured with these settings.</returns>
+        </member>
+        <member name="T:IMS_Library.BedrockServerConfiguration.AuthoritativeMovementType">
+            <summary>
+            The way in which a Bedrock server processes player movement.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.AuthoritativeMovementType.Client">
+            <summary>
+            Clients report their current position and movements to the server.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.AuthoritativeMovementType.Server">
+            <summary>
+            Clients report user input to the server, which then computes their current position and movements.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.AuthoritativeMovementType.ServerWithRewind">
+            <summary>
+            Clients report user input to the server, which then computes their current position and movements. The server may ask clients to repeat their inputs or recalculate when it determines they are out-of-sync.
+            </summary>
+        </member>
+        <member name="T:IMS_Library.BedrockServerConfiguration.PlayerPermissionLevel">
+            <summary>
+            The permission level of a player on a Bedrock server, which determines what actions they can take.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.PlayerPermissionLevel.Visitor">
+            <summary>
+            The player interact with the environment.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.PlayerPermissionLevel.Member">
+            <summary>
+            The player can interact with the environment and play the game normally, but cannot execute administrative commands.
+            </summary>
+        </member>
+        <member name="F:IMS_Library.BedrockServerConfiguration.PlayerPermissionLevel.Operator">
+            <summary>
+            The player is an operator, and has access to administrative commands like kicking and banning.
+            </summary>
         </member>
         <member name="T:IMS_Library.CustomBedrockServer">
             <summary>

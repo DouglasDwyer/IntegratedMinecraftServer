@@ -103,13 +103,12 @@ using IMS_Interface.Preferences;
             __builder.AddMarkupContent(0, "<h3>Server Console</h3>\r\n<br>\r\n<br>\r\n    ");
             __builder.OpenElement(1, "div");
             __builder.AddAttribute(2, "style", "display:table; width:80%;resize:none; height:70%; min-height:70%; max-height:70%; max-width:80%; min-width:80%; margin:0 auto");
-            __builder.AddMarkupContent(3, "\r\n        ");
-            __builder.OpenElement(4, "textarea");
-            __builder.AddAttribute(5, "id", "ConsoleOutputBox");
-            __builder.AddAttribute(6, "readonly", true);
-            __builder.AddAttribute(7, "rows", "25");
-            __builder.AddAttribute(8, "class", "form-control");
-            __builder.AddAttribute(9, "style", @"
+            __builder.OpenElement(3, "textarea");
+            __builder.AddAttribute(4, "id", "ConsoleOutputBox");
+            __builder.AddAttribute(5, "readonly", true);
+            __builder.AddAttribute(6, "rows", "25");
+            __builder.AddAttribute(7, "class", "form-control");
+            __builder.AddAttribute(8, "style", @"
         width: 100%;
         display: table-cell;
         resize: none;
@@ -119,7 +118,7 @@ using IMS_Interface.Preferences;
         max-width: 100%;
         min-width: 100%;
         font-family: TimesNewRoman,Times New Roman,Times,Baskerville,Georgia,serif;");
-            __builder.AddAttribute(10, "value", 
+            __builder.AddAttribute(9, "value", 
 #nullable restore
 #line 19 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\ServerConsole.razor"
                                                                                              ConsoleText
@@ -129,13 +128,13 @@ using IMS_Interface.Preferences;
 #nullable disable
             );
             __builder.CloseElement();
-            __builder.AddMarkupContent(11, "\r\n        ");
-            __builder.OpenElement(12, "input");
-            __builder.AddAttribute(13, "placeholder", "Enter console command...");
-            __builder.AddAttribute(14, "class", "form-control");
-            __builder.AddAttribute(15, "style", "margin-top:4px; display:table-cell; margin-left:0px; width:100%; margin-right:6px; max-width:calc(100% - 44px)");
-            __builder.AddAttribute(16, "onkeyup", "if (event.keyCode === 13) { document.getElementById(\'SendCommandButton\').click(); }");
-            __builder.AddAttribute(17, "value", Microsoft.AspNetCore.Components.BindConverter.FormatValue(
+            __builder.AddMarkupContent(10, "\r\n        ");
+            __builder.OpenElement(11, "input");
+            __builder.AddAttribute(12, "placeholder", "Enter console command...");
+            __builder.AddAttribute(13, "class", "form-control");
+            __builder.AddAttribute(14, "style", "margin-top:4px; display:table-cell; margin-left:0px; width:100%; margin-right:6px; max-width:calc(100% - 44px)");
+            __builder.AddAttribute(15, "onkeyup", "if (event.keyCode === 13) { document.getElementById(\'SendCommandButton\').click(); }");
+            __builder.AddAttribute(16, "value", Microsoft.AspNetCore.Components.BindConverter.FormatValue(
 #nullable restore
 #line 20 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\ServerConsole.razor"
                                                                                                                                                                                                                                                                                                        CommandText
@@ -144,15 +143,15 @@ using IMS_Interface.Preferences;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(18, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.CreateBinder(this, __value => CommandText = __value, CommandText));
+            __builder.AddAttribute(17, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.CreateBinder(this, __value => CommandText = __value, CommandText));
             __builder.SetUpdatesAttributeName("value");
             __builder.CloseElement();
-            __builder.AddMarkupContent(19, "\r\n        ");
-            __builder.OpenElement(20, "button");
-            __builder.AddAttribute(21, "class", "btn btn-primary");
-            __builder.AddAttribute(22, "id", "SendCommandButton");
-            __builder.AddAttribute(23, "style", "margin-right:0");
-            __builder.AddAttribute(24, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.AddMarkupContent(18, "\r\n        ");
+            __builder.OpenElement(19, "button");
+            __builder.AddAttribute(20, "class", "btn btn-primary");
+            __builder.AddAttribute(21, "id", "SendCommandButton");
+            __builder.AddAttribute(22, "style", "margin-right:0");
+            __builder.AddAttribute(23, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 21 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\ServerConsole.razor"
                                                                                                 SendCommand
@@ -161,14 +160,14 @@ using IMS_Interface.Preferences;
 #line hidden
 #nullable disable
             ));
-            __builder.AddMarkupContent(25, "▶");
+            __builder.AddMarkupContent(24, "▶");
             __builder.CloseElement();
-            __builder.AddMarkupContent(26, "\r\n        ");
-            __builder.AddMarkupContent(27, "<a href=\"ServerLogViewer\">View server logs</a>\r\n    ");
+            __builder.AddMarkupContent(25, "\r\n        ");
+            __builder.AddMarkupContent(26, "<a href=\"ServerLogViewer\">View server logs</a>");
             __builder.CloseElement();
-            __builder.AddMarkupContent(28, "\r\n\r\n");
-            __builder.OpenComponent<IMS_Interface.Timer>(29);
-            __builder.AddAttribute(30, "UpdateScope", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.ComponentBase>(
+            __builder.AddMarkupContent(27, "\r\n\r\n");
+            __builder.OpenComponent<IMS_Interface.Timer>(28);
+            __builder.AddAttribute(29, "UpdateScope", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.ComponentBase>(
 #nullable restore
 #line 25 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\ServerConsole.razor"
                    this
@@ -177,7 +176,7 @@ using IMS_Interface.Preferences;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(31, "Interval", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Double>(
+            __builder.AddAttribute(30, "Interval", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Double>(
 #nullable restore
 #line 25 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\ServerConsole.razor"
                                  250
@@ -186,7 +185,7 @@ using IMS_Interface.Preferences;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(32, "Tick", new System.Action(
+            __builder.AddAttribute(31, "Tick", new System.Action(
 #nullable restore
 #line 25 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\ServerConsole.razor"
                                                             UpdateText
@@ -195,7 +194,7 @@ using IMS_Interface.Preferences;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(33, "UseSynchronousTick", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Boolean>(
+            __builder.AddAttribute(32, "UseSynchronousTick", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Boolean>(
 #nullable restore
 #line 25 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\ServerConsole.razor"
                                                                                            false
@@ -204,7 +203,7 @@ using IMS_Interface.Preferences;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(34, "UpdateComponentOnTick", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Boolean>(
+            __builder.AddAttribute(33, "UpdateComponentOnTick", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Boolean>(
 #nullable restore
 #line 25 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\ServerConsole.razor"
                                                                                                                        false
@@ -213,7 +212,7 @@ using IMS_Interface.Preferences;
 #line hidden
 #nullable disable
             ));
-            __builder.AddComponentReferenceCapture(35, (__value) => {
+            __builder.AddComponentReferenceCapture(34, (__value) => {
 #nullable restore
 #line 25 "D:\Projects\IntegratedMinecraftServer\IMS-Interface\Pages\ServerConsole.razor"
                                            LoadTimer = (IMS_Interface.Timer)__value;
