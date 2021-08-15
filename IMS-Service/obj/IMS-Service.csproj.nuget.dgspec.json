@@ -106,7 +106,7 @@
       }
     },
     "D:\\Projects\\IntegratedMinecraftServer\\IMS-Library\\IMS-Library.csproj": {
-      "version": "1.0.1.4",
+      "version": "1.0.1.5",
       "restore": {
         "projectUniqueName": "D:\\Projects\\IntegratedMinecraftServer\\IMS-Library\\IMS-Library.csproj",
         "projectName": "IMS-DevelopmentKit",
@@ -192,7 +192,7 @@
       }
     },
     "D:\\Projects\\IntegratedMinecraftServer\\IMS-Service\\IMS-Service.csproj": {
-      "version": "1.0.1.4",
+      "version": "1.0.1.5",
       "restore": {
         "projectUniqueName": "D:\\Projects\\IntegratedMinecraftServer\\IMS-Service\\IMS-Service.csproj",
         "projectName": "IMS-Service",

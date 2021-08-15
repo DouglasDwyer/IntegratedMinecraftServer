@@ -44,6 +44,13 @@ namespace IMS_Library
         /// </summary>
         public void Start()
         {
+            string extJavaPath = Path.GetDirectoryName(Constants.ExecutionPath + Constants.JavaExecutableLocation) + "/../lib/";
+            string extJavaFolder = extJavaPath + "ext";
+            if (Directory.Exists(extJavaFolder))
+            {
+                Directory.Move(extJavaFolder, extJavaPath + "ext.old");
+            }
+
             if(IMS.Instance.IsDevelopmentMode)
             {
                 return;
