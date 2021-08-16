@@ -1,3 +1,4 @@
 # Auto detect text files and perform LF normalization
 * text=auto
 IMS-Distribution/latest-version.zip filter=lfs diff=lfs merge=lfs -text
+IMS-Distribution/latest-lfs-update.zip filter=lfs diff=lfs merge=lfs -text

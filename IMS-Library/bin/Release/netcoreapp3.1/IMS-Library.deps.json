@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "IMS-Library/1.0.1.5": {
+      "IMS-Library/1.0.1.6": {
         "dependencies": {
           "DouglasDwyer.RoyalXml": "1.1.0.2",
           "Microsoft.VisualBasic": "10.3.0",
@@ -867,7 +867,7 @@
     }
   },
   "libraries": {
-    "IMS-Library/1.0.1.5": {
+    "IMS-Library/1.0.1.6": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

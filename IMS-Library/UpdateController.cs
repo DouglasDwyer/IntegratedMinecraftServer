@@ -27,11 +27,11 @@ namespace IMS_Library
         /// <summary>
         /// The URL which contains data about the latest version of IMS.  Fetching this URL should return a string that can be parsed into a <see cref="Version"/> object.
         /// </summary>
-        public const string VersionDataURL = "http://raw.githubusercontent.com/DouglasDwyer/IntegratedMinecraftServer/master/IMS-Distribution/lfs-version.txt";
+        public const string VersionDataURL = "http://raw.githubusercontent.com/DouglasDwyer/IntegratedMinecraftServer/master/IMS-Distribution/version.txt";
         /// <summary>
         /// The URL which contains a zipfile of the latest version of IMS.
         /// </summary>
-        public const string LatestUpdateURL = "https://github.com/DouglasDwyer/IntegratedMinecraftServer/raw/master/IMS-Distribution/latest-update.zip";
+        public const string LatestUpdateURL = "https://github.com/DouglasDwyer/IntegratedMinecraftServer/raw/master/IMS-Distribution/latest-lfs-update.zip";
 
         private static string UpdateFile => Constants.ExecutionPath + "/latest-update.zip";
         
