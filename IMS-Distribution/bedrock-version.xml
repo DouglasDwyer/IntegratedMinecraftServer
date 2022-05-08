@@ -2,14 +2,14 @@
     <Root
         type="ServerVersionInformation">
         <Name
-            type="String">Bedrock 1.17.11.01</Name>
+            type="String">Bedrock 1.18.32.02</Name>
         <Version
-            type="String">1.17.11.01</Version>
-        <ReleaseTime>8/14/2021 12:00:00 PM</ReleaseTime>
+            type="String">1.18.32.02</Version>
+        <ReleaseTime>5/8/2022 12:00:00 PM</ReleaseTime>
         <Edition>Bedrock</Edition>
         <VersionType>Release</VersionType>
         <DownloadURL
-            type="String">https://minecraft.azureedge.net/bin-win/bedrock-server-1.17.11.01.zip</DownloadURL>
+            type="String">https://minecraft.azureedge.net/bin-win/bedrock-server-1.18.32.02.zip</DownloadURL>
     </Root>
     <Types>
         <TypeInfo
